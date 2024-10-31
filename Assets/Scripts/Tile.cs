@@ -13,5 +13,7 @@ public class Tile : MonoBehaviour
 {
     public TileType type;
     public Transform pivot;
+    public Vector3 prevSpawnVector;
+    public Vector3 conSpawnVector;
 }
 
