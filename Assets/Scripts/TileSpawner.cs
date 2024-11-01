@@ -15,9 +15,9 @@ public class TileSpawner : MonoBehaviour
     [SerializeField] private List<GameObject> obstaclePrefabs = new();
 
     #region TileSpawnerData
-        private Vector3 currentPositionSpawn = Vector3.zero;
-        private Vector3 currentDirectionSpawn = Vector3.forward;
-        GameObject prevTile;
+    private Vector3 currentPositionSpawn = Vector3.zero;
+    private Vector3 currentDirectionSpawn = Vector3.forward;
+    GameObject prevTile;
     #endregion
 
     private void Start() {
@@ -28,30 +28,32 @@ public class TileSpawner : MonoBehaviour
         SpawnTileWay(true);
     }
 
-    public void SpawnTileWay(bool startingSpawn = false){        
-        //Setting Num TileSpawn In Wave
-        int numTileSpawn = 0;
-        if(startingSpawn) numTileSpawn = tileStartCount;
-        else numTileSpawn = UnityEngine.Random.Range(minimumStraightTile, maxStraightTile);
+    private int GetTileSpawnCount(bool startingSpawn) {
+        return startingSpawn ? tileStartCount : UnityEngine.Random.Range(minimumStraightTile, maxStraightTile);
+    }
 
-        //spawn straight
+    public void SpawnTileWay(bool startingSpawn = false){
+        int numTileSpawn = GetTileSpawnCount(startingSpawn);
+        //spawn straight tile
         for(int i = 0; i < numTileSpawn; i++)
         {
             SpawnOneTile(straightTilePrefab);
         }
-
-        SpawnOneTile(crossTilePrefabs[1]);
-        currentDirectionSpawn = Vector3.left;
-        SpawnOneTile(straightTilePrefab);
+        //spawn cross tile
+        SpawnOneTile(crossTilePrefabs[UnityEngine.Random.Range(0, crossTilePrefabs.Count)]);
     }
 
     public void SpawnOneTile(GameObject tile, bool spawnObstacle = false){
-        //Get quaternion to current direction
+        var tileComponent = tile.GetComponent<Tile>();
+        var prevTileComponent = prevTile.GetComponent<Tile>();
+        //Get quaternion to spawn 1 tile from forward dir to its correct dir spawn and current direction
         Quaternion newTileRotation = tile.transform.rotation * Quaternion.LookRotation(currentDirectionSpawn);
+        //Get spawn pos equal default local vector between pivot 2 tiles * quaternion
+        currentPositionSpawn += Vector3.Scale(tileComponent.offsetFromPreviousTile + prevTileComponent.offsetToNextTile, currentDirectionSpawn);
 
-        currentPositionSpawn += Vector3.Scale(tile.GetComponent<Tile>().prevSpawnVector + prevTile.GetComponent<Tile>().conSpawnVector, currentDirectionSpawn);
-        
-        GameObject tileSpawned = Instantiate(tile, currentPositionSpawn, newTileRotation);
+        GameObject tileSpawned = PoolObject.GetPoolObject(tile).GetObjectInPool();
+        tileSpawned.transform.SetPositionAndRotation(currentPositionSpawn, newTileRotation);
+        tileSpawned.SetActive(true);
 
         prevTile = tileSpawned;
     }

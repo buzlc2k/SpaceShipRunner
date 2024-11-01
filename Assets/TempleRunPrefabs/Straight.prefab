@@ -317,8 +317,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   pivot: {fileID: 5475724674181686055}
-  prevSpawnVector: {x: 5, y: 5, z: 5}
-  conSpawnVector: {x: 5, y: 5, z: 5}
+  offsetFromPreviousTile: {x: 5, y: 5, z: 5}
+  offsetToNextTile: {x: 5, y: 5, z: 5}
 --- !u!65 &7859742000213358136
 BoxCollider:
   m_ObjectHideFlags: 0

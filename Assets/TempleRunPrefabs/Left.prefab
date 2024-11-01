@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3504972824814534260}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -2.4954093, y: 0, z: -0.00000047683716}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -320,8 +320,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   pivot: {fileID: 8795145022663253240}
-  prevSpawnVector: {x: 5, y: 5, z: 5}
-  conSpawnVector: {x: 12, y: 12, z: 12}
+  offsetFromPreviousTile: {x: 5, y: 5, z: 5}
+  offsetToNextTile: {x: 12, y: 12, z: 12}
 --- !u!65 &54947653135122987
 BoxCollider:
   m_ObjectHideFlags: 0
