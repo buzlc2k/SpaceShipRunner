@@ -1,19 +1,17 @@
+using System;
 using UnityEngine;
-public enum TileType {
-    STRAIGHT,
-    LEFT,
-    RIGHT,
-    SIDEWAYS
-}
 
 /// <summary>
 /// Defines the attributes of a tile.
 /// </summary>
-public class Tile : MonoBehaviour
+public class Tile : MonoBehaviour, IPooled
 {
-    public TileType type;
-    public Transform pivot;
-    public Vector3 offsetFromPreviousTile;
-    public Vector3 offsetToNextTile;
+    public void Release()
+    {
+        gameObject.SetActive(false);
+        ReleaseCallback?.Invoke(this.gameObject);
+    }
+
+    public Action<GameObject> ReleaseCallback { get; set; }
 }
 

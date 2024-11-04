@@ -358,8 +358,8 @@ GameObject:
   - component: {fileID: 3834284269336500892}
   - component: {fileID: 7170280902967847153}
   - component: {fileID: 6120497600957415259}
-  - component: {fileID: 3341987877426231989}
   - component: {fileID: 7709597924023028516}
+  - component: {fileID: 5343435228551305745}
   m_Layer: 8
   m_Name: Right
   m_TagString: Untagged
@@ -652,22 +652,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3109650500946958552}
   m_Mesh: {fileID: 0}
---- !u!114 &3341987877426231989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3109650500946958552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d62634e321fc83418b343b60162b9f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 2
-  pivot: {fileID: 3567112284201473539}
-  offsetFromPreviousTile: {x: 5, y: 5, z: 5}
-  offsetToNextTile: {x: 12, y: 12, z: 12}
 --- !u!65 &7709597924023028516
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -681,6 +665,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.0442195, y: 0.14896965, z: 14.052819}
   m_Center: {x: -0.00097179436, y: 0, z: -5.020298}
+--- !u!114 &5343435228551305745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3109650500946958552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2684a906d085fbd4ab893e9a5ce15211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetFromPreviousTile: {x: 5, y: 5, z: 5}
+  offsetToNextTile: {x: 12, y: 12, z: 12}
 --- !u!1 &3193841953801928358
 GameObject:
   m_ObjectHideFlags: 0

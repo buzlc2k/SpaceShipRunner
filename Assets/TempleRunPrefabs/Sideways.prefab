@@ -372,8 +372,8 @@ GameObject:
   - component: {fileID: 6907139428798143195}
   - component: {fileID: 5756927042606111321}
   - component: {fileID: 5442956170591159588}
-  - component: {fileID: 4163924903548961238}
   - component: {fileID: 5341697770862133703}
+  - component: {fileID: 3165729067896945989}
   m_Layer: 8
   m_Name: Sideways
   m_TagString: Untagged
@@ -611,7 +611,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 0
+  m_VersionIndex: 3
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -666,22 +666,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5635246150992067340}
   m_Mesh: {fileID: 0}
---- !u!114 &4163924903548961238
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5635246150992067340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d62634e321fc83418b343b60162b9f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 3
-  pivot: {fileID: 837941063547552833}
-  offsetFromPreviousTile: {x: 5, y: 5, z: 5}
-  offsetToNextTile: {x: 10, y: 10, z: 10}
 --- !u!65 &5341697770862133703
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -695,6 +679,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.025053, y: 0.14896965, z: 20.035975}
   m_Center: {x: 0.00000023841864, y: 0, z: 0}
+--- !u!114 &3165729067896945989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5635246150992067340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2684a906d085fbd4ab893e9a5ce15211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetFromPreviousTile: {x: 5, y: 5, z: 5}
+  offsetToNextTile: {x: 10, y: 10, z: 10}
 --- !u!1 &6821940555805276590
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1908706969483305261}
   - component: {fileID: 7418254030628999326}
   - component: {fileID: 5726498178971717387}
-  - component: {fileID: 5680116188410879156}
   - component: {fileID: 7859742000213358136}
+  - component: {fileID: 3147262664568084736}
   m_Layer: 8
   m_Name: Straight
   m_TagString: Untagged
@@ -248,7 +248,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 0
+  m_VersionIndex: 3
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -303,22 +303,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7270030239991754380}
   m_Mesh: {fileID: 0}
---- !u!114 &5680116188410879156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7270030239991754380}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d62634e321fc83418b343b60162b9f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  pivot: {fileID: 5475724674181686055}
-  offsetFromPreviousTile: {x: 5, y: 5, z: 5}
-  offsetToNextTile: {x: 5, y: 5, z: 5}
 --- !u!65 &7859742000213358136
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -332,3 +316,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.034137, y: 0.14896965, z: 10.026205}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3147262664568084736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7270030239991754380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2684a906d085fbd4ab893e9a5ce15211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetFromPreviousTile: {x: 5, y: 5, z: 5}
+  offsetToNextTile: {x: 5, y: 5, z: 5}
