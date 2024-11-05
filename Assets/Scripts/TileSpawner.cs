@@ -54,11 +54,15 @@ public class TileSpawner : MonoBehaviour
 
     private int GetTileSpawnCount(bool startingSpawn) => startingSpawn ? tileStartCount : UnityEngine.Random.Range(minimumStraightTile, maxStraightTile);
 
+    /// <summary>
+    /// Tạo ra 1 đường đi mới
+    /// </summary>
+    /// <param name="direaction"> Hướng của đường đi tiếp theo so với đường đi hiện tại</param>
     public void SpawnTileWay(Vector3 direction, bool startingSpawn = false)
     {
         DeletePreviousTileWay(startingSpawn);
 
-        currentDirectionSpawn = direction;
+        currentDirectionSpawn = Quaternion.AngleAxis(direction.x * 90, Vector3.up) * currentDirectionSpawn;
         int numTileSpawn = GetTileSpawnCount(startingSpawn);
 
         for (int i = 0; i < numTileSpawn; i++)
