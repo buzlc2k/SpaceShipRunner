@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Defines the attributes of a tile.
 /// </summary>
-public class Tile : MonoBehaviour, IPooled
+public class ObstacleTile : MonoBehaviour, IPooled
 {
     public void Release()
     {

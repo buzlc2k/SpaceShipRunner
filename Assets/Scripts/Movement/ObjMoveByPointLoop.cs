@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Derived class extending ObjMovement allows objects to reset their movement based on a specified distance from the target point.
 /// </summary>
-public abstract class ObjMoveByPoint : ObjMovement
+public abstract class ObjMoveByPointLoop : ObjMovement
 {
     [Header("ObjMoveByPoint")]
     [SerializeField] protected float distanceToReset; // Distance threshold to trigger motion reset. Can be closest distance or can be farthest distance
