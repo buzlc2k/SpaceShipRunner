@@ -10,18 +10,9 @@ public class ObjectMoveByPointRecycleLoop : ObjMoveByPointLoop
 {
     [Header("ObjectMoveByPointRecycleLoop")]
     [SerializeField] protected Vector3 spawnPosition; // Initial spawn position of the object
-    /// <summary>
-    /// Overrides the ResetMovingAfterReachTarget method to reset the object's position.
-    /// If the object comes within the specified distance (distanceToReset) from the target position,
-    /// it resets to the initial spawn position, creating a continuous movement loop.
-    /// </summary>
-    protected override void ResetMovingAfterReachTarget()
-    {
-        // Check if the object is within the specified reset distance from the target position
-        if (Vector3.Distance(this.transform.parent.position, targetPosition) >= distanceToReset) return;
 
+    protected override void ResetingMoving(){
         // Reset the object's position back to the spawn position
         this.transform.parent.position = this.spawnPosition;
-        
     }
 }

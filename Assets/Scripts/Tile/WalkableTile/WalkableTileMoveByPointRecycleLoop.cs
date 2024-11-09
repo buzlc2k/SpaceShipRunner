@@ -7,10 +7,10 @@ using UnityEngine;
 /// </summary>
 public class WalkableTileMoveByPointRecycleLoop : ObjectMoveByPointRecycleLoop
 {
-    protected override void ResetMovingAfterReachTarget()
+    protected override void ResetingMoving()
     {
-        base.ResetMovingAfterReachTarget();
-
+        base.ResetingMoving();
+        //Post event that walkabletile is reseted
         Observer.PostEvent(EventID.ResetWalkableTile, new KeyValuePair<EventParameterType, object>(EventParameterType.ResetWalkableTile_WalkableTileObject, this.transform.parent.gameObject));
     }
 }

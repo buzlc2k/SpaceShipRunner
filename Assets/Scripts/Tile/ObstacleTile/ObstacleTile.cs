@@ -10,8 +10,8 @@ public class ObstacleTile : MonoBehaviour, IPooled
     public ObjDespawn obstacleTileDespawn;
 
     private void Awake() {
-        obstacleTileMovement = GetComponent<ObjMovement>();
-        obstacleTileDespawn = GetComponent<ObjDespawn>();
+        obstacleTileMovement = GetComponentInChildren<ObjMovement>();
+        obstacleTileDespawn = GetComponentInChildren<ObjDespawn>();
     }
 
     public void Release()

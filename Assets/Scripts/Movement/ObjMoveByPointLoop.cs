@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Derived class extending ObjMovement allows objects to reset their movement based on a specified distance from the target point.
+/// Derived class extending ObjMovement allows objects to reset their movement based on a custom logic.
 /// </summary>
 public abstract class ObjMoveByPointLoop : ObjMovement
 {
@@ -16,11 +16,20 @@ public abstract class ObjMoveByPointLoop : ObjMovement
         ResetMovingAfterReachTarget();
     }
 
-    /// <summary>
-    /// Virtual method meant to be overridden to define how movement should reset once the target is reached.
-    /// This method logs "Need override" if not overridden.
-    /// </summary>
-    protected virtual void ResetMovingAfterReachTarget(){
-        Debug.Log("Need override");
+    protected void ResetMovingAfterReachTarget(){
+        if(CanResetMoving()) ResetingMoving();
     }
+
+    /// <summary>
+    /// Checks if the object should reset its movement.
+    /// </summary>
+    protected virtual bool CanResetMoving(){
+        // Check if the object is within the specified reset distance from the target position
+        return Vector3.Distance(this.transform.parent.position, targetPosition) < distanceToReset;
+    }
+
+    /// <summary>
+    /// Defining custom reset behavior when the object reaches the target distance.
+    /// </summary>
+    protected abstract void ResetingMoving();
 }

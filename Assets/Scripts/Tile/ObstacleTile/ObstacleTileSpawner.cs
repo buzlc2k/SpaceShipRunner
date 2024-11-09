@@ -5,15 +5,15 @@ using System.Collections.Generic;
 public class ObstacleTileSpawner : MonoBehaviour
 {
     [Header("OstacleTilesPrefab")]
-    [SerializeField] private Transform tileHolder;
+    [SerializeField] private Transform obstacleTileHolder;
     [SerializeField] List<GameObject> obstacleTilePrefabs = new();
-    private List<ObjectPooler<ObstacleTile>> obstacleTilePoolers;
+    private List<ObjectPooler<ObstacleTile>> obstacleTilePoolers = new();
 
     private Action<KeyValuePair<EventParameterType, object>> spawnObstacleTileDelegate;
 
     private void Start() {
         foreach(GameObject obstacleTilePrefab in obstacleTilePrefabs) {
-            var obstacleTilePooler = new ObjectPooler<ObstacleTile>(obstacleTilePrefab.GetComponent<ObstacleTile>(), tileHolder, 2);
+            var obstacleTilePooler = new ObjectPooler<ObstacleTile>(obstacleTilePrefab.GetComponent<ObstacleTile>(), obstacleTileHolder, 2);
             obstacleTilePoolers.Add(obstacleTilePooler);
         }
 
@@ -21,17 +21,15 @@ public class ObstacleTileSpawner : MonoBehaviour
             if (param.Key != EventParameterType.ResetWalkableTile_WalkableTileObject) return;
             SpawnObstacleTile((GameObject)param.Value);
         };
-    }
 
-    private void OnEnable() {
         Observer.AddListener(EventID.ResetWalkableTile, spawnObstacleTileDelegate);
     }
 
-    private void OnDisable() {
+    private void OnDestroy() {
         Observer.RemoveListener(EventID.ResetWalkableTile, spawnObstacleTileDelegate);
     }
 
-    public void SpawnObstacleTile(GameObject walkableTile){
+    private void SpawnObstacleTile(GameObject walkableTile){
         for(int i = 0; i < 2; i++){
             if(UnityEngine.Random.value < 0.5f) continue;
             

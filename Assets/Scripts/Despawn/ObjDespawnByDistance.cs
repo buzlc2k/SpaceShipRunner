@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// 
+/// Despawning objects based on their distance from a specified spawn position.
 /// </summary>
 public class ObjDespawnByDistance : ObjDespawn
 {
@@ -11,9 +9,6 @@ public class ObjDespawnByDistance : ObjDespawn
     [SerializeField] protected Vector3 spawnPos;
     [SerializeField] protected float disToDespawn;
 
-    /// <summary>
-    /// 
-    /// </summary>
     protected override bool CanDespawn()
     {
         if(Vector3.Distance(this.spawnPos, this.transform.parent.position) > disToDespawn) return true;
