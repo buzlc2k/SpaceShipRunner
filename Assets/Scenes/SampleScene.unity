@@ -189,7 +189,7 @@ PrefabInstance:
       objectReference: {fileID: 1391912912}
     - target: {fileID: 3116828938851013167, guid: 0fc795516a977f3418e1a7a8ebcbdc7f, type: 3}
       propertyPath: m_VersionIndex
-      value: 46
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 9098606360840764425, guid: 0fc795516a977f3418e1a7a8ebcbdc7f, type: 3}
       propertyPath: m_Mesh
@@ -256,6 +256,10 @@ PrefabInstance:
     - target: {fileID: 9044570001579232042, guid: bc0a6ffb9e3834c48ac7e1ce9ae35260, type: 3}
       propertyPath: m_Name
       value: RightObstacleCube_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9044570001579232042, guid: bc0a6ffb9e3834c48ac7e1ce9ae35260, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9044570002766930154, guid: bc0a6ffb9e3834c48ac7e1ce9ae35260, type: 3}
       propertyPath: m_Mesh
@@ -449,6 +453,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 194477728}
+  - component: {fileID: 194477729}
   m_Layer: 0
   m_Name: Moving
   m_TagString: Untagged
@@ -471,6 +476,21 @@ Transform:
   m_Father: {fileID: 281049048}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &194477729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194477727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee84bdba6749d547a1c65a2e25e9ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPosition: {x: 0, y: 0, z: 0}
+  moveSpeed: 10
+  moveTarget: {fileID: 0}
 --- !u!1001 &281049047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -537,6 +557,10 @@ PrefabInstance:
     - target: {fileID: 8306078441018121214, guid: 522c438ef10c69e46a8b5dd291bfa527, type: 3}
       propertyPath: m_Name
       value: RightOstacleCube_3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8306078441018121214, guid: 522c438ef10c69e46a8b5dd291bfa527, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8306078441350614810, guid: 522c438ef10c69e46a8b5dd291bfa527, type: 3}
       propertyPath: m_Mesh
@@ -762,13 +786,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 321823406}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d00cb674230662a4e96ae7adfc1a75b6, type: 3}
+  m_Script: {fileID: 11500000, guid: eee84bdba6749d547a1c65a2e25e9ce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPosition: {x: 0, y: 0, z: 0}
   targetPosition: {x: 0, y: 0, z: 0}
-  moveSpeed: 0
-  distanceToReset: 0
+  moveSpeed: 10
+  moveTarget: {fileID: 0}
 --- !u!1 &381262662
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,6 +827,7 @@ Transform:
   - {fileID: 2085200893}
   - {fileID: 106007529}
   - {fileID: 570013225}
+  - {fileID: 1646860880}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -986,6 +1010,10 @@ PrefabInstance:
     - target: {fileID: 8108634918198868004, guid: 3037b9c41c9e2584aa029323ad404fd0, type: 3}
       propertyPath: m_Name
       value: LeftObstacleCube_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8108634918198868004, guid: 3037b9c41c9e2584aa029323ad404fd0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8108634918198868005, guid: 3037b9c41c9e2584aa029323ad404fd0, type: 3}
       propertyPath: m_RootOrder
@@ -1527,6 +1555,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeftOstacleCube_3
       objectReference: {fileID: 0}
+    - target: {fileID: 5408051560942261215, guid: e30969dfe1fdc7f488e00336b645274b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5408051561100934820, guid: e30969dfe1fdc7f488e00336b645274b, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -1567,6 +1599,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 757882315}
+  - component: {fileID: 757882316}
   m_Layer: 0
   m_Name: Moving
   m_TagString: Untagged
@@ -1589,6 +1622,21 @@ Transform:
   m_Father: {fileID: 1569226558}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &757882316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757882314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee84bdba6749d547a1c65a2e25e9ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPosition: {x: 0, y: 0, z: 0}
+  moveSpeed: 10
+  moveTarget: {fileID: 0}
 --- !u!43 &801642070
 Mesh:
   m_ObjectHideFlags: 0
@@ -1762,6 +1810,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 805555287}
+  - component: {fileID: 805555288}
   m_Layer: 0
   m_Name: Moving
   m_TagString: Untagged
@@ -1784,6 +1833,21 @@ Transform:
   m_Father: {fileID: 940737234}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &805555288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805555286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee84bdba6749d547a1c65a2e25e9ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPosition: {x: 0, y: 0, z: 0}
+  moveSpeed: 10
+  moveTarget: {fileID: 0}
 --- !u!1 &833042690
 GameObject:
   m_ObjectHideFlags: 0
@@ -1793,6 +1857,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 833042691}
+  - component: {fileID: 833042692}
   m_Layer: 0
   m_Name: Moving
   m_TagString: Untagged
@@ -1815,6 +1880,21 @@ Transform:
   m_Father: {fileID: 941019305}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &833042692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833042690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee84bdba6749d547a1c65a2e25e9ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPosition: {x: 0, y: 0, z: 0}
+  moveSpeed: 10
+  moveTarget: {fileID: 0}
 --- !u!43 &852495185
 Mesh:
   m_ObjectHideFlags: 0
@@ -2234,6 +2314,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CenterOstacleCube_3
       objectReference: {fileID: 0}
+    - target: {fileID: 695508689422911915, guid: d7de9e6ca141f1e47bcf15bf5c4e234e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7de9e6ca141f1e47bcf15bf5c4e234e, type: 3}
 --- !u!4 &940737234 stripped
@@ -2295,6 +2379,10 @@ PrefabInstance:
     - target: {fileID: 5261467296061590963, guid: ea56245738c7d1243a19759f563ae2e2, type: 3}
       propertyPath: m_Name
       value: LeftObstacleCube_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5261467296061590963, guid: ea56245738c7d1243a19759f563ae2e2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5261467297552668660, guid: ea56245738c7d1243a19759f563ae2e2, type: 3}
       propertyPath: m_Mesh
@@ -2803,6 +2891,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1091950911}
+  - component: {fileID: 1091950912}
   m_Layer: 0
   m_Name: Moving
   m_TagString: Untagged
@@ -2825,6 +2914,21 @@ Transform:
   m_Father: {fileID: 123937501}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1091950912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091950910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee84bdba6749d547a1c65a2e25e9ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPosition: {x: 0, y: 0, z: 0}
+  moveSpeed: 10
+  moveTarget: {fileID: 0}
 --- !u!1 &1153832263
 GameObject:
   m_ObjectHideFlags: 0
@@ -3238,6 +3342,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CenterOstacleCube_1
       objectReference: {fileID: 0}
+    - target: {fileID: 3287281561570873362, guid: 4951106820fe7fe4185146a2198f47d1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3287281561570873365, guid: 4951106820fe7fe4185146a2198f47d1, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -3310,6 +3418,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1187039793}
+  - component: {fileID: 1187039794}
   m_Layer: 0
   m_Name: Moving
   m_TagString: Untagged
@@ -3332,6 +3441,21 @@ Transform:
   m_Father: {fileID: 645750965}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1187039794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187039792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee84bdba6749d547a1c65a2e25e9ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPosition: {x: 0, y: 0, z: 0}
+  moveSpeed: 10
+  moveTarget: {fileID: 0}
 --- !u!1001 &1212142608
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3398,6 +3522,10 @@ PrefabInstance:
     - target: {fileID: 1273047231790502026, guid: e9c8739c7bc6f574586421a2e2e00811, type: 3}
       propertyPath: m_Name
       value: CenterOstacleCube_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1273047231790502026, guid: e9c8739c7bc6f574586421a2e2e00811, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9c8739c7bc6f574586421a2e2e00811, type: 3}
@@ -3467,7 +3595,7 @@ PrefabInstance:
       objectReference: {fileID: 1167797412}
     - target: {fileID: 3116828938851013167, guid: 0fc795516a977f3418e1a7a8ebcbdc7f, type: 3}
       propertyPath: m_VersionIndex
-      value: 46
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 9098606360840764425, guid: 0fc795516a977f3418e1a7a8ebcbdc7f, type: 3}
       propertyPath: m_Mesh
@@ -3653,6 +3781,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1564855306}
+  - component: {fileID: 1564855307}
   m_Layer: 0
   m_Name: Moving
   m_TagString: Untagged
@@ -3675,6 +3804,21 @@ Transform:
   m_Father: {fileID: 1212142609}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1564855307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564855305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee84bdba6749d547a1c65a2e25e9ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPosition: {x: 0, y: 0, z: 0}
+  moveSpeed: 10
+  moveTarget: {fileID: 0}
 --- !u!1001 &1569226557
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3729,6 +3873,10 @@ PrefabInstance:
     - target: {fileID: 1873492246444669239, guid: bc2a49ef56ee8704d85d93b627526986, type: 3}
       propertyPath: m_Name
       value: RightObstacleCube_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1873492246444669239, guid: bc2a49ef56ee8704d85d93b627526986, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1873492246729617793, guid: bc2a49ef56ee8704d85d93b627526986, type: 3}
       propertyPath: m_Mesh
@@ -3913,6 +4061,79 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1646860879
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1646860880}
+  - component: {fileID: 1646860883}
+  - component: {fileID: 1646860882}
+  - component: {fileID: 1646860881}
+  m_Layer: 0
+  m_Name: TileWayCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1646860880
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646860879}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 381262663}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1646860881
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646860879}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.5, z: 70}
+  m_Center: {x: 5.5, y: 0.7, z: 30}
+--- !u!65 &1646860882
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646860879}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.5, z: 70}
+  m_Center: {x: -5.5, y: 0.7, z: 30}
+--- !u!65 &1646860883
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646860879}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 12, y: 1, z: 70}
+  m_Center: {x: 0, y: -0.4, z: 30}
 --- !u!4 &1662117938 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1624176112038446036, guid: 0fc795516a977f3418e1a7a8ebcbdc7f, type: 3}
@@ -3979,7 +4200,7 @@ PrefabInstance:
       objectReference: {fileID: 1048467494}
     - target: {fileID: 3116828938851013167, guid: 0fc795516a977f3418e1a7a8ebcbdc7f, type: 3}
       propertyPath: m_VersionIndex
-      value: 46
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 9098606360840764425, guid: 0fc795516a977f3418e1a7a8ebcbdc7f, type: 3}
       propertyPath: m_Mesh
@@ -3996,6 +4217,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1717164247}
+  - component: {fileID: 1717164248}
   m_Layer: 0
   m_Name: Moving
   m_TagString: Untagged
@@ -4018,6 +4240,21 @@ Transform:
   m_Father: {fileID: 737899728}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1717164248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717164246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eee84bdba6749d547a1c65a2e25e9ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPosition: {x: 0, y: 0, z: 0}
+  moveSpeed: 10
+  moveTarget: {fileID: 0}
 --- !u!43 &1769141516
 Mesh:
   m_ObjectHideFlags: 0
@@ -5063,7 +5300,7 @@ PrefabInstance:
       objectReference: {fileID: 1984788502}
     - target: {fileID: 3116828938851013167, guid: 0fc795516a977f3418e1a7a8ebcbdc7f, type: 3}
       propertyPath: m_VersionIndex
-      value: 46
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 9098606360840764425, guid: 0fc795516a977f3418e1a7a8ebcbdc7f, type: 3}
       propertyPath: m_Mesh
@@ -5301,7 +5538,7 @@ PrefabInstance:
       objectReference: {fileID: 2015596549}
     - target: {fileID: 3116828938851013167, guid: 0fc795516a977f3418e1a7a8ebcbdc7f, type: 3}
       propertyPath: m_VersionIndex
-      value: 46
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 9098606360840764425, guid: 0fc795516a977f3418e1a7a8ebcbdc7f, type: 3}
       propertyPath: m_Mesh
@@ -5370,7 +5607,7 @@ PrefabInstance:
       objectReference: {fileID: 1786062968}
     - target: {fileID: 3116828938851013167, guid: 0fc795516a977f3418e1a7a8ebcbdc7f, type: 3}
       propertyPath: m_VersionIndex
-      value: 46
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 9098606360840764425, guid: 0fc795516a977f3418e1a7a8ebcbdc7f, type: 3}
       propertyPath: m_Mesh
@@ -5439,7 +5676,7 @@ PrefabInstance:
       objectReference: {fileID: 1604899592}
     - target: {fileID: 3116828938851013167, guid: 0fc795516a977f3418e1a7a8ebcbdc7f, type: 3}
       propertyPath: m_VersionIndex
-      value: 46
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 9098606360840764425, guid: 0fc795516a977f3418e1a7a8ebcbdc7f, type: 3}
       propertyPath: m_Mesh

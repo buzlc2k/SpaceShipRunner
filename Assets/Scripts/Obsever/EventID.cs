@@ -3,4 +3,5 @@
 /// </summary>
 public enum EventID{
     None = 0,
+    ResetWalkableTile,
 }

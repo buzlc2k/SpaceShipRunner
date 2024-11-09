@@ -8,6 +8,8 @@ using UnityEngine;
 /// </summary>
 public class ObjectMoveByPointRecycleLoop : ObjMoveByPointLoop
 {
+    [Header("ObjectMoveByPointRecycleLoop")]
+    [SerializeField] protected Vector3 spawnPosition; // Initial spawn position of the object
     /// <summary>
     /// Overrides the ResetMovingAfterReachTarget method to reset the object's position.
     /// If the object comes within the specified distance (distanceToReset) from the target position,
@@ -16,10 +18,10 @@ public class ObjectMoveByPointRecycleLoop : ObjMoveByPointLoop
     protected override void ResetMovingAfterReachTarget()
     {
         // Check if the object is within the specified reset distance from the target position
-        if (Vector3.Distance(this.transform.parent.position, targetPosition) < distanceToReset)
-        {
-            // Reset the object's position back to the spawn position
-            this.transform.parent.position = spawnPosition;
-        }
+        if (Vector3.Distance(this.transform.parent.position, targetPosition) >= distanceToReset) return;
+
+        // Reset the object's position back to the spawn position
+        this.transform.parent.position = this.spawnPosition;
+        
     }
 }

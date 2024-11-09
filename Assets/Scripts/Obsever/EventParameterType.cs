@@ -4,4 +4,5 @@
 /// </summary>
 public enum EventParameterType{
     None = 0,
+    ResetWalkableTile_WalkableTileObject,
 }

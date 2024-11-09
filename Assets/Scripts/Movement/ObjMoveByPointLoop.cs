@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public abstract class ObjMoveByPointLoop : ObjMovement
 {
-    [Header("ObjMoveByPoint")]
+    [Header("ObjMoveByPointLoop")]
     [SerializeField] protected float distanceToReset; // Distance threshold to trigger motion reset. Can be closest distance or can be farthest distance
 
     protected override void Moving(){
