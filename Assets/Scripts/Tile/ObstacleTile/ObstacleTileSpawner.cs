@@ -38,7 +38,7 @@ public class ObstacleTileSpawner : MonoBehaviour
 
             ObstacleTile obstacleTile = obstacleTilePoolers[UnityEngine.Random.Range(0, obstacleTilePoolers.Count - 1)].Get(spawnPosition, spawnRotation);
 
-            ((ObstacleTileMoveForward)obstacleTile.obstacleTileMovement).SetMoveTarget(walkableTile.transform);
+            ((ObstacleTileMoveByTargetTransform)obstacleTile.obstacleTileMovement).SetMoveTarget(walkableTile.transform);
         }
     }
 }

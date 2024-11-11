@@ -6,7 +6,7 @@ using UnityEngine;
 /// Derived class from ObjMoveByPoint that creates a movement loop.
 /// When the object gets close enough to the target position, it resets back to the spawn position.
 /// </summary>
-public class ObjectMoveByPointRecycleLoop : ObjMoveByPointLoop
+public class ObjectMoveByStaticPointRecycleLoop : ObjMoveByStaticPointLoop
 {
     [Header("ObjectMoveByPointRecycleLoop")]
     [SerializeField] protected Vector3 spawnPosition; // Initial spawn position of the object

@@ -5,9 +5,9 @@ using UnityEngine;
 /// <summary>
 /// Derived class extending ObjMovement allows objects to reset their movement based on a custom logic.
 /// </summary>
-public abstract class ObjMoveByPointLoop : ObjMovement
+public abstract class ObjMoveByStaticPointLoop : ObjMovement
 {
-    [Header("ObjMoveByPointLoop")]
+    [Header("ObjMoveByStaticPointLoop")]
     [SerializeField] protected float distanceToReset; // Distance threshold to trigger motion reset. Can be closest distance or can be farthest distance
 
     protected override void Moving(){

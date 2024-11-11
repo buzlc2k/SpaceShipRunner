@@ -3,9 +3,9 @@ using UnityEngine;
 /// <summary>
 /// Derived class extending ObjMovement allows objects to move object follow to target.
 /// </summary>
-public class ObjMoveForward : ObjMovement
+public abstract class ObjMoveByTargetTransform : ObjMovement
 {
-    [Header("ObjMoveForward")]
+    [Header("ObjMoveByTargetTransform")]
     [SerializeField] protected Transform moveTarget;
 
     /// <summary>

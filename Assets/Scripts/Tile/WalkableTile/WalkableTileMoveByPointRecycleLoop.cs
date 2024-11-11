@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Derived class from ObjectMoveByPointRecycleLoop that creates a movement trajectory loop for walkable tile.
 /// </summary>
-public class WalkableTileMoveByPointRecycleLoop : ObjectMoveByPointRecycleLoop
+public class WalkableTileMoveByPointRecycleLoop : ObjectMoveByStaticPointRecycleLoop
 {
     protected override void ResetingMoving()
     {
