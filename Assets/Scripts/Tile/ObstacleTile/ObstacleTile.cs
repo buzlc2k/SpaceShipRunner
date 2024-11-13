@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -6,10 +8,14 @@ using UnityEngine;
 /// </summary>
 public class ObstacleTile : MonoBehaviour, IPooled
 {
+    public Transform[] obstacleModel;
     public ObjMovement obstacleTileMovement;
     public ObjDespawn obstacleTileDespawn;
 
     private void Awake() {
+        obstacleModel = GetComponentsInChildren<MeshRenderer>()
+               .Select(meshRenderer => meshRenderer.transform)
+               .ToArray();
         obstacleTileMovement = GetComponentInChildren<ObjMovement>();
         obstacleTileDespawn = GetComponentInChildren<ObjDespawn>();
     }

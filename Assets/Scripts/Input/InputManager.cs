@@ -19,7 +19,9 @@ public class InputManager : Singleton<InputManager>
     }
 
     private void Update() {
+        GetIsTouching();
         GetMovePos();
+        GetTouchTime();
     }
 
     /// <summary>
@@ -27,18 +29,47 @@ public class InputManager : Singleton<InputManager>
     /// </summary>
     public Vector3 MoveInput;
     private void GetMovePos(){
-        if(UnityEngine.InputSystem.EnhancedTouch.Touch.activeFingers.Count == 0) return;
-        
+        if(!IsTouching) return;
+
         UnityEngine.InputSystem.EnhancedTouch.Touch touch = UnityEngine.InputSystem.EnhancedTouch.Touch.activeTouches[0];
-            
-        if(touch.phase != UnityEngine.InputSystem.TouchPhase.Moved) return;
         
         Ray directionOfTouch = CameraController.Instance.MyCamera.ScreenPointToRay(touch.screenPosition);
-
+        
+        //layer 6 is TileWay Layer, the area where the player can move
         if (Physics.Raycast(directionOfTouch.origin, directionOfTouch.direction, out RaycastHit hit, Mathf.Infinity, 1 << 6))
         {
             Debug.DrawRay(hit.point, Vector3.up * 2f, Color.cyan, 0.5f);
             MoveInput = new(hit.point.x, 0, 3.5f);
         }
     }
+
+    /// <summary>
+    /// Touch time on screen
+    /// </summary>
+    public float TouchTime = 0;
+    private void GetTouchTime(){
+        if(!IsTouching) TouchTime = 0;
+        else TouchTime += Time.deltaTime;
+    }
+
+    /// <summary>
+    /// Check is touching
+    /// </summary>
+    public bool IsTouching = false;
+    private void GetIsTouching(){
+        if(UnityEngine.InputSystem.EnhancedTouch.Touch.activeFingers.Count == 0) {
+            IsTouching = false;
+            return;
+        }
+
+        UnityEngine.InputSystem.EnhancedTouch.Touch touch = UnityEngine.InputSystem.EnhancedTouch.Touch.activeTouches[0];
+            
+        if(touch.phase != UnityEngine.InputSystem.TouchPhase.Moved){
+            IsTouching = false;
+            return;
+        }
+
+        IsTouching = true;
+    }
+
 }
