@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// Defines the attributes of a tile and control a tile.
 /// </summary>
-public class ObstacleTile : MonoBehaviour, IPooled
+public class ObstacleTileCtrl : MonoBehaviour, IPooled
 {
     public Transform[] obstacleModel;
     public ObjMovement obstacleTileMovement;
