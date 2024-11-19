@@ -8,7 +8,7 @@ using UnityEngine;
 public abstract class ObjMovement : MonoBehaviour
 {
     [Header("ObjMovement")]
-    [SerializeField] protected Vector3 targetPosition; 
+    protected Vector3 targetPosition = Vector3.zero; 
     [SerializeField] protected float moveSpeed; 
 
     private void Update() {

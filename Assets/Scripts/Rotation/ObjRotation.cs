@@ -7,11 +7,11 @@ using UnityEngine;
 /// </summary>
 public abstract class ObjRotation : MonoBehaviour
 {
-    [Header("ObjMovement")]
-    [SerializeField] protected Vector3 targetRotation; 
-    [SerializeField, Range(0, 1)] protected float rotateSpeed;
+    [Header("ObjRotation")]
+    [SerializeField] protected Vector3 currentRotationAngle; 
+    [SerializeField] protected float rotateSpeed;
+    [SerializeField] protected float rotationThreshold = 0.1f;
     protected Transform objModel;
-    const float rotationThreshold = 0.1f; 
 
     private void Start() {
         SetObjectModel();
@@ -29,24 +29,38 @@ public abstract class ObjRotation : MonoBehaviour
     /// <summary>
     /// Method to set the speed of rotation.
     /// </summary>
+    /// <param name="_speed"> Speed of rotation </param>
     public virtual void SetRotateSpeed(float _speed){
         if(_speed < 0 || _speed > 1) return;
         this.rotateSpeed = _speed;
     }
 
     /// <summary>
-    /// Handle rotation logic, rotating the object's model to the target rotation.
+    /// Method to custom the logic of object's curent rotation calculation
     /// </summary>
-    protected virtual void Rotating(){
-        if(Quaternion.Angle(objModel.rotation, Quaternion.Euler(targetRotation)) < rotationThreshold){
-            objModel.rotation = Quaternion.Euler(targetRotation);
-            return;
-        }
+    protected virtual Vector3 CalculateTheCurrentRotationAngle(){
+        //noop
+        return Vector3.zero;
+    }
+
+    /// <summary>
+    /// Direct set the rotation of object
+    /// </summary>
+    /// <param name="_currentRotationAngle"> The angle which is the rotation of object </param>
+    public virtual void SetAngleToRotate(Vector3 _currentRotationAngle)
+    {
+        this.currentRotationAngle = _currentRotationAngle;
+    }
+
+    /// <summary>
+    /// Basic rotate logic of an object in the scene.
+    /// </summary>
+    protected virtual void Rotating()
+    {
+        var currentRotationAngle = CalculateTheCurrentRotationAngle();
+        SetAngleToRotate(currentRotationAngle);
         
-        objModel.rotation = Quaternion.Lerp(
-            objModel.rotation,
-            Quaternion.Euler(targetRotation),
-            rotateSpeed
-        );
+        // Sets the rotation of objModel directly to the currentRotationAngle.
+        this.objModel.rotation = Quaternion.Euler(this.currentRotationAngle);
     }
 }

@@ -9,6 +9,9 @@ public class ObstacleTileSpawner : MonoBehaviour
     [SerializeField] List<GameObject> obstacleTilePrefabs = new();
     private List<ObjectPooler<ObstacleTileCtrl>> obstacleTilePoolers = new();
 
+    [Header("SpawnRate")]
+    [SerializeField] float spawnRate = 0.3f;
+
     private Action<KeyValuePair<EventParameterType, object>> spawnObstacleTileDelegate;
 
     private void Start() {
@@ -30,15 +33,13 @@ public class ObstacleTileSpawner : MonoBehaviour
     }
 
     private void SpawnObstacleTile(GameObject walkableTile){
-        for(int i = 0; i < 2; i++){
-            if(UnityEngine.Random.value < 0.5f) continue;
-            
-            var spawnPosition = walkableTile.transform.position + i * 4 * Vector3.forward;
-            var spawnRotation = Quaternion.identity;
+        if(UnityEngine.Random.value > spawnRate) return;
 
-            ObstacleTileCtrl obstacleTile = obstacleTilePoolers[UnityEngine.Random.Range(0, obstacleTilePoolers.Count - 1)].Get(spawnPosition, spawnRotation);
+        var spawnPosition = walkableTile.transform.position;
+        var spawnRotation = Quaternion.identity;
 
-            ((ObstacleTileMoveByTargetTransform)obstacleTile.obstacleTileMovement).SetMoveTarget(walkableTile.transform);
-        }
+        ObstacleTileCtrl obstacleTile = obstacleTilePoolers[UnityEngine.Random.Range(0, obstacleTilePoolers.Count)].Get(spawnPosition, spawnRotation);
+
+        ((ObstacleTileMoveByTargetTransform)obstacleTile.obstacleTileMovement).SetMoveTarget(walkableTile.transform);
     }
 }

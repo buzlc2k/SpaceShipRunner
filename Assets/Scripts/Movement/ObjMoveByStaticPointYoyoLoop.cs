@@ -1,15 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
 /// Derived class from ObjMoveByPoint that creates a movement loop.
-/// When the object gets close enough to the target position, it resets back to the spawn position.
+/// When the object gets close enough to the target position, it move back to the spawn position.
 /// </summary>
-public class ObjectMoveByStaticPointRecycleLoop : ObjMoveByStaticPointLoop
+public class ObjMoveByStaticPointYoyoLoop : ObjMoveByStaticPointLoop
 {
     protected override void ResetingMoving(){
         // Reset the object's position back to the spawn position
-        this.transform.parent.position = this.spawnPoint;
+        (targetPoint, spawnPoint) = (spawnPoint, targetPoint);
     }
 }

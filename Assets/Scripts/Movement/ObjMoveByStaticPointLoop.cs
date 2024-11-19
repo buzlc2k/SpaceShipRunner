@@ -8,12 +8,28 @@ using UnityEngine;
 public abstract class ObjMoveByStaticPointLoop : ObjMovement
 {
     [Header("ObjMoveByStaticPointLoop")]
-    [SerializeField] protected float distanceToReset; // Distance threshold to trigger motion reset. Can be closest distance or can be farthest distance
+    [SerializeField] protected Vector3 spawnPoint; 
+    [SerializeField] protected Vector3 targetPoint; 
+    [SerializeField] protected float distanceThreshold; 
+    [SerializeField] protected bool moveByLocalPoint;
 
     protected override void Moving(){
+        SetMovePosition();
+
         base.Moving();
 
         ResetMovingAfterReachTarget();
+    }
+
+    /// <summary>
+    /// Updates the target position for the object to move to.
+    /// If moveByLocalPoint is true, targetPosition is calculated from the parent's position and `argetPoint (as a local position).
+    /// </summary>
+    public virtual void SetMovePosition(){
+        if(!moveByLocalPoint && targetPoint.Equals(targetPosition)) return;
+
+        if(!moveByLocalPoint) targetPosition = targetPoint;
+        else targetPosition = transform.parent.transform.parent.position + targetPoint;
     }
 
     protected void ResetMovingAfterReachTarget(){
@@ -25,7 +41,7 @@ public abstract class ObjMoveByStaticPointLoop : ObjMovement
     /// </summary>
     protected virtual bool CanResetMoving(){
         // Check if the object is within the specified reset distance from the target position
-        return Vector3.Distance(this.transform.parent.position, targetPosition) < distanceToReset;
+        return Vector3.Distance(this.transform.parent.position, targetPosition) < distanceThreshold;
     }
 
     /// <summary>
