@@ -5,5 +5,8 @@ using UnityEngine;
 /// </summary>
 public class ObstacleTileMoveByTargetTransform : ObjMoveByTargetTransform
 {
-    //noop
+    protected override object GetObjCtrl()
+    {
+        return this.transform.parent.GetComponent<ObstacleTileCtrl>();
+    }
 }

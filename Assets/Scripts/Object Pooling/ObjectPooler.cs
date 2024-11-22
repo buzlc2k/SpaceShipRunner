@@ -3,7 +3,7 @@ using UnityEngine;
 
 /// <summary>
 /// </summary>
-/// <typeparam name="T"> phải là các class có kế thừa từ Monobehaviour và Interface: IObjectPool </typeparam>
+/// <typeparam name="T"> phải là các class có kế thừa từ Monobehaviour</typeparam>
 public class ObjectPooler<T> where T : MonoBehaviour, IPooled
 {
     private readonly Queue<T> Pool;
@@ -11,8 +11,6 @@ public class ObjectPooler<T> where T : MonoBehaviour, IPooled
     private readonly Transform _parent;
 
     public readonly List<T> List = new ();
-
-    public GameObject PoolPrefab { get => _prefab.gameObject; }
     
     /// <summary>
     /// Khởi tạo 1 pool với type T

@@ -15,9 +15,12 @@ public abstract class ObjMovement : MonoBehaviour
         Moving();
     }
 
+    protected abstract object GetObjCtrl();
+
     /// <summary>
     /// Method to set the speed of movement.
     /// </summary>
+    /// <param name="_speed"> speed of movement </param>
     public virtual void SetMoveSpeed(float _speed){
         this.moveSpeed = _speed;
     }

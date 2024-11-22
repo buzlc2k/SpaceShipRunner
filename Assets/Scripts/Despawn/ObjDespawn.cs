@@ -9,6 +9,8 @@ public abstract class ObjDespawn : MonoBehaviour
         Despawning();
     }
 
+    protected abstract object GetObjCtrl();
+
     protected virtual void Despawning(){
         if(CanDespawn()) DespawnObject();
     }
@@ -19,9 +21,11 @@ public abstract class ObjDespawn : MonoBehaviour
     protected abstract bool CanDespawn();
 
     /// <summary>
-    /// Deactivates the object's parent GameObject, effectively despawning it.
+    /// Thực hiện despawn obj
     /// </summary>
     protected virtual void DespawnObject(){
         this.transform.parent.gameObject.SetActive(false);
+        //Nếu Obj là Obj trong Pool, gọi ReleaseCallback để trở giải phóng Obj về Pool
+        if(GetObjCtrl() is IPooled objPooled) objPooled.ReleaseCallback?.Invoke(this.transform.parent.gameObject);
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 /// <summary>
 /// Despawning objects based on their distance from a specified spawn position.
 /// </summary>
-public class ObjDespawnByDistance : ObjDespawn
+public abstract class ObjDespawnByDistance : ObjDespawn
 {
     [Header("ObjDespawnByDistance")]
     [SerializeField] protected Vector3 spawnPos;

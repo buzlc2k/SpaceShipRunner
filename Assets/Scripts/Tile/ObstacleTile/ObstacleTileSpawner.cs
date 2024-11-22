@@ -39,7 +39,7 @@ public class ObstacleTileSpawner : MonoBehaviour
         var spawnRotation = Quaternion.identity;
 
         ObstacleTileCtrl obstacleTile = obstacleTilePoolers[UnityEngine.Random.Range(0, obstacleTilePoolers.Count)].Get(spawnPosition, spawnRotation);
-
+        
         ((ObstacleTileMoveByTargetTransform)obstacleTile.obstacleTileMovement).SetMoveTarget(walkableTile.transform);
     }
 }

@@ -5,10 +5,10 @@ using UnityEngine;
 /// Derived class from ObjMoveByPoint that creates a movement loop.
 /// When the object gets close enough to the target position, it move back to the spawn position.
 /// </summary>
-public class ObjMoveByStaticPointYoyoLoop : ObjMoveByStaticPointLoop
+public abstract class ObjMoveByStaticPointYoyoLoop : ObjMoveByStaticPointLoop
 {
-    protected override void ResetingMoving(){
-        // Reset the object's position back to the spawn position
+    protected override void PerformReseting(){
+        // Swap value between target point and spawn point
         (targetPoint, spawnPoint) = (spawnPoint, targetPoint);
     }
 }

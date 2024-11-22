@@ -13,18 +13,17 @@ public abstract class ObjRotation : MonoBehaviour
     [SerializeField] protected float rotationThreshold = 0.1f;
     protected Transform objModel;
 
-    private void Start() {
-        SetObjectModel();
-    }
-
     private void Update() {
         Rotating();
     }
 
-    /// <summary>
-    /// Method to set the object's model to rotate.
-    /// </summary>
-    protected abstract void SetObjectModel();
+    private void Start() {
+        SetObjModel();
+    }
+
+    protected abstract object GetObjCtrl();
+
+    protected abstract void SetObjModel();
 
     /// <summary>
     /// Method to set the speed of rotation.
