@@ -95,53 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacleCubeModel: {fileID: 8916579096305439051}
   obstacleCubeMovement: {fileID: 3520780225882591964}
-  obstacleCubeCollision: {fileID: 8888719564818689807}
---- !u!1 &2233690502765652398
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2881414157010673473}
-  - component: {fileID: 3221892058475623968}
-  m_Layer: 0
-  m_Name: InitializeObstacleCubeMovementAction
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2881414157010673473
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2233690502765652398}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2281153394290668095}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3221892058475623968
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2233690502765652398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06dfd814a5f2f0d488ef66bfc624369d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obstacleCubeCtrl: {fileID: 8246581289359530159}
-  loopToInitializeMovement: 3
+  obstacleCubeCollision: {fileID: 886630793423396613}
 --- !u!1 &3928454723646842829
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2281153394290668095}
-  - component: {fileID: 8888719564818689807}
+  - component: {fileID: 886630793423396613}
   m_Layer: 0
   m_Name: ColliderCaclulating
   m_TagString: Untagged
@@ -170,12 +124,11 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2881414157010673473}
+  m_Children: []
   m_Father: {fileID: 2884705454401110652}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8888719564818689807
+--- !u!114 &886630793423396613
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -184,13 +137,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3928454723646842829}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 806f1521e99df2c4fbfaeb1dc1dffa09, type: 3}
+  m_Script: {fileID: 11500000, guid: e34d93a8aa4768c458cd933b28bec90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   colliderRadius: 1.8
-  onEnterCollideCallBackActions: []
-  onEnterCollisionableAreaCallbackActions:
-  - {fileID: 3221892058475623968}
+  loopToInitializeMovement: 3
 --- !u!1 &5046450760616416863
 GameObject:
   m_ObjectHideFlags: 0

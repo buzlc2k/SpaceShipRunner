@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,11 +14,9 @@ public abstract class ObjCollision : MonoBehaviour
     private ObjTagCollision tagOfCollisionableObject;
     private ObjTagCollision tagOfObject; 
 
-    [Header("CollisionEvent")]
-    private UnityEvent onEnterCollideCallBack = new();
-    private UnityEvent onEnterCollisionableAreaCallback = new();
-    [SerializeField] private List<EventAction> onEnterCollideCallBackActions;
-    [SerializeField] private List<EventAction>  onEnterCollisionableAreaCallbackActions;
+    // [Header("CollisionEvent")]
+    // protected UnityEvent onEnterCollideCallBack = new();
+    // protected UnityEvent onEnterCollisionableAreaCallback = new();
 
     #region  Properties
     public float ColliderRadius => colliderRadius; 
@@ -29,29 +28,7 @@ public abstract class ObjCollision : MonoBehaviour
         CollisionLogicRunning();
     }
 
-    private void OnEnable() {
-        RegisterActions(onEnterCollisionableAreaCallbackActions, onEnterCollisionableAreaCallback);
-        RegisterActions(onEnterCollideCallBackActions, onEnterCollideCallBack);
-    }
-
-    private void Start() {
-        GetObjCtrl();
-    }
-
     protected abstract object GetObjCtrl();
-
-    private void OnDisable() {
-        onEnterCollideCallBack?.RemoveAllListeners();
-        onEnterCollisionableAreaCallback?.RemoveAllListeners();
-    }
-
-    private void RegisterActions(List<EventAction> actions, UnityEvent unityEvent)
-    {
-        foreach (var action in actions)
-        {
-            action?.RegisterListener(unityEvent);
-        }
-    }
 
     /// <summary>
     /// Thực hiện logic kiểm tra va chạm cho đối tượng.
@@ -63,6 +40,7 @@ public abstract class ObjCollision : MonoBehaviour
 
     /// <summary>
     /// Kiểm tra va chạm giữa đối tượng hiện tại và các đối tượng khác trong khu vực va chạm.
+    /// Nếu có, gọi OnEnterCollide().
     /// </summary>
     protected virtual void CheckCollisionWithOtherObject(){
         foreach(GameObject obj in CollisionManager.Instance.ObjectsInCollisionableArea){
@@ -71,18 +49,32 @@ public abstract class ObjCollision : MonoBehaviour
             //Kiểm tra Object va chạm có phải là object được va chạm không.
             bool hasMatchingCollisionTag = obj.GetComponentInChildren<ObjCollision>().TagOfObject == tagOfCollisionableObject; 
             if(!isWithinCollisionDistance || !hasMatchingCollisionTag) continue;
-            onEnterCollideCallBack?.Invoke();
+            OnEnterCollide();
         }
     }
 
     /// <summary>
     /// Coroutine kiểm tra xem đối tượng có vào khu vực va chạm trong frame tiếp theo hay không.
-    /// Nếu có, gọi Event onEnterCollisionableAreaCallback.
+    /// Nếu có, gọi OnEnterCollisionableArea().
     /// </summary>
     protected virtual IEnumerator C_CheckEnterCollisionableAreaNextFrame(){
         yield return null;
         if(CollisionManager.Instance.CheckObjectIsInCollisionableArea(this.transform.parent.gameObject)){
-            onEnterCollisionableAreaCallback?.Invoke();
+            OnEnterCollisionableArea();
         }
+    }
+
+    /// <summary>
+    /// Hàm thực hiện logic khi Obj va chạm
+    /// </summary>
+    protected virtual void OnEnterCollide(){
+        //noop
+    }
+
+    /// <summary>
+    /// Hàm thực hiện logic khi Obj vào vùng có thể va chạm
+    /// </summary>
+    protected virtual void OnEnterCollisionableArea(){
+        //noop
     }
 }
