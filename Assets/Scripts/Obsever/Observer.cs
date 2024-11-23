@@ -2,9 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-    /// <summary>
-	/// Sử dụng để truyền thông tin liên lạc giữa các Obj khác nhau trong scene
-	/// </summary>
 public class Observer
 {
     /// Store all "listener"

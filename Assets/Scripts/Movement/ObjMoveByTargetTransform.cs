@@ -17,9 +17,7 @@ public abstract class ObjMoveByTargetTransform : ObjMovement
         this.moveTarget = target;
     }
 
-    /// <summary>
-    /// Set targetPos base on moveTarget
-    /// </summary>
+    // Set targetPos base on moveTarget
     protected virtual void GetMovePosition()
     {
         if (this.moveTarget == null) return;

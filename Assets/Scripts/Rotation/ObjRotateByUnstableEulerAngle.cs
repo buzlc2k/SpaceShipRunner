@@ -5,18 +5,13 @@ using UnityEngine;
 /// </summary>
 public abstract class ObjRotateByUnstableEulerAngle : ObjRotation
 {
-    /// <summary>
-    /// Method to get the final rotation of object.
-    /// </summary>
+    // Method to get the final rotation of object.
     protected virtual Vector3 GetTheDesiredAngle(){
         //noop
         return Vector3.zero;
     }
 
-    /// <summary>
-    /// Method interpolate smoothly from the current angle to the final angle
-    /// </summary>
-    /// <param name="_desiredAngle"> Speed of rotation </param>
+    // Method interpolate smoothly from the current angle to the final angle
     protected virtual Vector3 CalculateTheAngleToDesiredAngle(Vector3 _desiredAngle){
         Vector3 _angleToRotate;
         //If the current rotation is close to the target angle (within the rotation threshold), set the target angle directly

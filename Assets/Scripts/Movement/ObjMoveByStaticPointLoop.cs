@@ -32,9 +32,8 @@ public abstract class ObjMoveByStaticPointLoop : ObjMovement
     }
 
     #region UpdateTargetPos
-    /// <summary>
-    /// Updates the target position based on local or world space.
-    /// </summary>
+
+    // Updates the target position based on local or world space.
     protected virtual void UpdateTargetPosition()
     {
         if (!ShouldUpdateTargetPosition()) return;
@@ -56,9 +55,8 @@ public abstract class ObjMoveByStaticPointLoop : ObjMovement
     #endregion
 
     #region ResetMovement
-    /// <summary>
-    /// Handles resetting the object's movement when reaching the target.
-    /// </summary>
+    
+    // Handles resetting the object's movement when reaching the target.
     private void HandleResetMovement()
     {
         if (!CanResetMovement() || !CanContinueLoop()) return;
@@ -66,26 +64,20 @@ public abstract class ObjMoveByStaticPointLoop : ObjMovement
         PerformReseting();
     }
 
-    /// <summary>
-    /// Checks if the object is close enough to the target position to reset.
-    /// </summary>
+    // Checks if the object is close enough to the target position to reset.
     protected virtual bool CanResetMovement()
     {
         return Vector3.Distance(transform.parent.position, targetPosition) < resetDistanceThreshold;
     }
 
-    /// <summary>
-    /// Checks if the object should continue looping and decrements the loop count if applicable.
-    /// </summary>
+    // Checks if the object should continue looping and decrements the loop count if applicable.
     private bool CanContinueLoop()
     {
         if (remainingLoops > 0) remainingLoops--;
         return remainingLoops != 0;
     }
 
-    /// <summary>
-    /// Performs the reset behavior
-    /// </summary>
+    // Performs the reset behavior
     protected abstract void PerformReseting();
     #endregion
 }

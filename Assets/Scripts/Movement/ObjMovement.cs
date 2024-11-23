@@ -25,9 +25,7 @@ public abstract class ObjMovement : MonoBehaviour
         this.moveSpeed = _speed;
     }
 
-    /// <summary>
-    /// Handle movement logic, moving the object's parent position towards the target position.
-    /// </summary>
+    // Handle movement logic, moving the object's parent position towards the target position.
     protected virtual void Moving(){
         if(this.transform.parent.position.Equals(targetPosition)) return;
         this.transform.parent.position = Vector3.MoveTowards(this.transform.parent.position, this.targetPosition, this.moveSpeed * Time.deltaTime);

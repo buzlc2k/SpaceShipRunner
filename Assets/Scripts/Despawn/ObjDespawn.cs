@@ -15,14 +15,10 @@ public abstract class ObjDespawn : MonoBehaviour
         if(CanDespawn()) DespawnObject();
     }
 
-    /// <summary>
-    /// Checks if the object should despawn
-    /// </summary>
+    // Checks if the object should despawn
     protected abstract bool CanDespawn();
 
-    /// <summary>
-    /// Thực hiện despawn obj
-    /// </summary>
+    // Thực hiện despawn obj
     protected virtual void DespawnObject(){
         this.transform.parent.gameObject.SetActive(false);
         //Nếu Obj là Obj trong Pool, gọi ReleaseCallback để trở giải phóng Obj về Pool

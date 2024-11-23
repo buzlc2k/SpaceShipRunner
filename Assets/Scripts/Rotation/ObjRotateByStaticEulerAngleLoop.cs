@@ -20,15 +20,11 @@ public abstract class ObjRotateByStaticEulerAngleLoop : ObjRotation
         if(CanResetRotating()) ResetingRotating();
     }
 
-    /// <summary>
-    /// Check if the object is qualified to reset the rotation
-    /// </summary>
+    // Check if the object is qualified to reset the rotation
     protected virtual bool CanResetRotating(){
         return Quaternion.Angle(this.objModel.rotation, Quaternion.Euler(targetAngle)) < rotationThreshold;
     }
 
-    /// <summary>
-    /// logic when the object is qualified to reset rotation
-    /// </summary>
+    // logic when the object is qualified to reset rotation
     protected abstract void ResetingRotating();
 }

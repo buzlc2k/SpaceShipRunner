@@ -5,17 +5,13 @@ using UnityEngine;
 /// </summary>
 public abstract class ObjMoveByDynamicPoint : ObjMovement
 {
-    /// <summary>
-    /// Calculate target position which this obj is moving to
-    /// </summary>
+    // Calculate target position which this obj is moving to
     protected virtual Vector3 GetTargetPosition(){
         //noop
         return Vector3.zero;
     }
 
-    /// <summary>
-    /// Set targetPos base on a point given
-    /// </summary>
+    // Set targetPos base on a point given
     public virtual void SetMovePosition(Vector3 _targetPos)
     {
         this.targetPosition = _targetPos;

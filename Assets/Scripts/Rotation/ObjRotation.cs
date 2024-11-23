@@ -34,9 +34,7 @@ public abstract class ObjRotation : MonoBehaviour
         this.rotateSpeed = _speed;
     }
 
-    /// <summary>
-    /// Method to custom the logic of object's curent rotation calculation
-    /// </summary>
+    // Method to custom the logic of object's curent rotation calculation
     protected virtual Vector3 CalculateTheCurrentRotationAngle(){
         //noop
         return Vector3.zero;
@@ -51,9 +49,7 @@ public abstract class ObjRotation : MonoBehaviour
         this.currentRotationAngle = _currentRotationAngle;
     }
 
-    /// <summary>
-    /// Basic rotate logic of an object in the scene.
-    /// </summary>
+    // Basic rotate logic of an object in the scene
     protected virtual void Rotating()
     {
         var currentRotationAngle = CalculateTheCurrentRotationAngle();
