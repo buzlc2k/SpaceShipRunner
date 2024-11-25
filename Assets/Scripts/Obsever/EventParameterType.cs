@@ -5,4 +5,5 @@
 public enum EventParameterType{
     None = 0,
     ResetWalkableTile_WalkableTileObject,
+    AddMoreObstacle_ListObstaclePrefab,
 }

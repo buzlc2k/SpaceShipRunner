@@ -20,7 +20,7 @@ public abstract class ObjRotateByUnstableEulerAngle : ObjRotation
         else _angleToRotate = Quaternion.Lerp(
                 objModel.rotation,
                 Quaternion.Euler(_desiredAngle),
-                rotateSpeed
+                rotateSpeed * (1 + DifficultyManager.Instance.GameSpeedRate)
             ).eulerAngles;
         
         return _angleToRotate;

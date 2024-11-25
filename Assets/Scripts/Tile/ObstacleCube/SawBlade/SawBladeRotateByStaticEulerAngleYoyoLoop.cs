@@ -21,7 +21,7 @@ public class SawBladeRotateByStaticEulerAngleYoyoLoop : ObjRotateByStaticEulerAn
         //The rotation of saw blade only rotates along the x axis 
         //The angle to rotate will gradually change over time base on rotateSpeed
         var _angleToRotate = new Vector3(
-            currentRotationAngle.x + direction * rotateSpeed * Time.deltaTime,
+            currentRotationAngle.x + direction * rotateSpeed * (1 + DifficultyManager.Instance.GameSpeedRate) * Time.deltaTime,
             currentRotationAngle.y,
             currentRotationAngle.z
         );

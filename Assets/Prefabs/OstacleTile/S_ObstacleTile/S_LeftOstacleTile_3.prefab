@@ -45,8 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderRadius: 0.75
-  onEnterCollideCallBackActions: []
-  onEnterCollisionableAreaCallbackActions: []
 --- !u!1 &833478477991803809
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee84bdba6749d547a1c65a2e25e9ce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 8.41667
   moveTarget: {fileID: 0}
 --- !u!1 &2675085596310498455
 GameObject:
@@ -1051,8 +1049,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderRadius: 0.75
-  onEnterCollideCallBackActions: []
-  onEnterCollisionableAreaCallbackActions: []
 --- !u!1 &7980197735609323541
 GameObject:
   m_ObjectHideFlags: 0
