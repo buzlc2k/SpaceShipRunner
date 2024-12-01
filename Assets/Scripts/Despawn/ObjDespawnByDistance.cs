@@ -6,12 +6,12 @@ using UnityEngine;
 public abstract class ObjDespawnByDistance : ObjDespawn
 {
     [Header("ObjDespawnByDistance")]
-    [SerializeField] protected Vector3 spawnPos;
-    [SerializeField] protected float disToDespawn;
+    protected Vector3 posToCalculateDespawn;
+    protected float disToDespawn;
 
-    protected override bool CanDespawn()
+    protected override bool CheckCanDespawn()
     {
-        if(Vector3.Distance(this.spawnPos, this.transform.parent.position) > disToDespawn) return true;
+        if(Vector3.Distance(this.posToCalculateDespawn, this.transform.parent.position) > disToDespawn) return true;
         return false;
     }
 }

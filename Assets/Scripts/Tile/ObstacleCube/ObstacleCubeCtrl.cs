@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ObstacleCubeCtrl : MonoBehaviour
+public class ObstacleCubeCtrl : ButMonobehavior
 {
     [Header("ObstacleCubeCtrl")]
     public Transform obstacleCubeModel;
-    public ObjMovement obstacleCubeMovement;
     public ObjCollision obstacleCubeCollision;
+    public ObstacleCubeConfig obstacleCubeConfig;
 
-    private void Reset() {
-        obstacleCubeModel = GetComponentInChildren<MeshRenderer>().transform;
-        obstacleCubeMovement = GetComponentInChildren<ObjMovement>();
-        obstacleCubeCollision = GetComponentInChildren<ObjCollision>();
+    protected override void LoadComponents() {
+        base.LoadComponents();
+        if (obstacleCubeModel == null) obstacleCubeModel = GetComponentInChildren<MeshRenderer>().transform;
+        if (obstacleCubeCollision == null) obstacleCubeCollision = GetComponentInChildren<ObjCollision>();
     }
 }

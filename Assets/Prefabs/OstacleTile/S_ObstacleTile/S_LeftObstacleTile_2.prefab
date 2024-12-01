@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4737094972714133152}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8877646866941769828
 MonoBehaviour:
@@ -89,58 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59201c63c71d3814a87e7cdee48a1898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPos: {x: 0, y: 0, z: 60}
-  disToDespawn: 65
---- !u!1 &4848072566317650821
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5969176559181749755}
-  - component: {fileID: 2748677400291135218}
-  m_Layer: 0
-  m_Name: Moving
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5969176559181749755
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4848072566317650821}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4737094972714133152}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2748677400291135218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4848072566317650821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 930ab38b195bd394e9f387c535bb2557, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  spawnPoint: {x: -3.5, y: 0.765, z: 0}
-  targetPoint: {x: -3.5, y: 0.765, z: 0}
-  remainingLoops: 0
-  resetDistanceThreshold: 0.1
-  moveByLocalPoint: 1
+  posToCalculateDespawn: {x: 0, y: 0, z: 60}
+  disToDespawn: 85
 --- !u!1 &6495691504972732109
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +121,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2485719578781081856}
-  - {fileID: 5969176559181749755}
   - {fileID: 1408676579276508095}
   m_Father: {fileID: 6543497102603681620}
   m_RootOrder: 2
@@ -189,8 +138,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleCubeModel: {fileID: 2485719578781081856}
-  obstacleCubeMovement: {fileID: 2748677400291135218}
   obstacleCubeCollision: {fileID: 8877646866941769828}
+  obstacleCubeConfig: {fileID: 11400000, guid: f4f82ea8105fb464eb8caa463912137e, type: 2}
 --- !u!1 &6802829230827656421
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8.41667
-  moveTarget: {fileID: 0}
+  targetTransform: {fileID: 0}
 --- !u!1 &8809528461099607170
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,6 +237,7 @@ MonoBehaviour:
   - {fileID: 4737094972714133152}
   obstacleTileMovement: {fileID: 5552195355043671674}
   obstacleTileDespawn: {fileID: 8524423490674899330}
+  obstacleTileConfig: {fileID: 11400000, guid: 41dede5d9d4efa8409869fb5f5cd0782, type: 2}
 --- !u!1 &8905867825293907035
 GameObject:
   m_ObjectHideFlags: 0

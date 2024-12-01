@@ -1,55 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4870680982675446105
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4902244609005839402}
-  - component: {fileID: 3157937994607591405}
-  m_Layer: 0
-  m_Name: Moving
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4902244609005839402
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4870680982675446105}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8838030212213421273}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3157937994607591405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4870680982675446105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 930ab38b195bd394e9f387c535bb2557, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  spawnPoint: {x: -3.2, y: 0.765, z: 0}
-  targetPoint: {x: -3.2, y: 0.765, z: 0}
-  remainingLoops: 0
-  resetDistanceThreshold: 0.1
-  moveByLocalPoint: 1
 --- !u!1 &5732317292762622594
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,7 +30,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8107985710474176702}
-  - {fileID: 4902244609005839402}
   - {fileID: 1570445201821132500}
   m_Father: {fileID: 529188625001260713}
   m_RootOrder: 2
@@ -98,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleCubeModel: {fileID: 8107985710474176702}
-  obstacleCubeMovement: {fileID: 3157937994607591405}
   obstacleCubeCollision: {fileID: 4599634167285164009}
+  obstacleCubeConfig: {fileID: 11400000, guid: ac9c7c4a6ad5212428240586533efb2e, type: 2}
 --- !u!1 &6075230695763205072
 GameObject:
   m_ObjectHideFlags: 0
@@ -460,7 +409,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8838030212213421273}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4599634167285164009
 MonoBehaviour:
@@ -526,6 +475,7 @@ MonoBehaviour:
   - {fileID: 8838030212213421273}
   obstacleTileMovement: {fileID: 6434226957894436156}
   obstacleTileDespawn: {fileID: 7166731237802204627}
+  obstacleTileConfig: {fileID: 11400000, guid: 41dede5d9d4efa8409869fb5f5cd0782, type: 2}
 --- !u!1 &7687291825324259132
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,8 +520,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59201c63c71d3814a87e7cdee48a1898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPos: {x: 0, y: 0, z: 60}
-  disToDespawn: 65
+  posToCalculateDespawn: {x: 0, y: 0, z: 60}
+  disToDespawn: 85
 --- !u!1 &8246275808620123636
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,4 +567,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8.41667
-  moveTarget: {fileID: 0}
+  targetTransform: {fileID: 0}

@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkableModel: {fileID: 8845504060643790885}
   walkableMovement: {fileID: 3349593092952763808}
+  walkableTileConfig: {fileID: 11400000, guid: 42b060bd15fd8094da411e8142d3db99, type: 2}
 --- !u!1 &3786599293165264997
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,7 +95,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 8.41667
   spawnPoint: {x: 0, y: 0, z: 54}
-  targetPoint: {x: 0, y: 0, z: -10}
+  targetPoint: {x: 0, y: 0, z: -30}
   remainingLoops: -1
   resetDistanceThreshold: 0.1
   moveByLocalPoint: 0

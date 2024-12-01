@@ -5,6 +5,12 @@ using UnityEngine;
 /// </summary>
 public class ObstacleTileMoveByTargetTransform : ObjMoveByTargetTransform
 {
+    protected override void LoadValue(){
+        base.LoadValue();
+
+        moveSpeed = ((ObstacleTileCtrl)GetObjCtrl()).obstacleTileConfig.InitialMoveSpeed;
+    }
+
     protected override object GetObjCtrl()
     {
         return this.transform.parent.GetComponent<ObstacleTileCtrl>();

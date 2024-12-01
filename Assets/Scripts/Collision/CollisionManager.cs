@@ -21,8 +21,8 @@ public class CollisionManager : Singleton<CollisionManager>
     /// </summary>
     /// <param name="_gameObject">Đối tượng cần kiểm tra.</param>
     public bool CheckObjectIsInCollisionableArea(GameObject _gameObject){
-        float distance = Vector3.Distance(_gameObject.transform.position, collisionableAreaCenterPoint);
-        bool isWithinArea = distance < collisionableAreaRadius;
+        float distanceToCenterPoint = Vector3.Distance(_gameObject.transform.position, collisionableAreaCenterPoint);
+        bool isWithinArea = distanceToCenterPoint < collisionableAreaRadius;
 
         if (ObjectsInCollisionableArea.Contains(_gameObject))
         {

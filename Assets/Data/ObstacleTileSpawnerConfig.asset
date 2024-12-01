@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f6b4d1ee4009844a692de9547b6d4f, type: 3}
   m_Name: ObstacleTileSpawnerConfig
   m_EditorClassIdentifier: 
-  TimeInterval: 20
+  TimeInterval: 10
   ObstacleTilePrefabs_1:
   - {fileID: 2083767964476467247, guid: 9f897d14c1a11d046aa3afad03b12954, type: 3}
   - {fileID: 8087162497509891183, guid: f6dd1a8a67766a84da379628a4115710, type: 3}
@@ -30,6 +30,5 @@ MonoBehaviour:
   - {fileID: 8277810070028359613, guid: d70a7d6fb7bada74ba47bd89696a9b13, type: 3}
   ObstacleTilePrefabs_3:
   - {fileID: 2043609008788324122, guid: 78984394862a8a54680c6027601e674b, type: 3}
-  - {fileID: 4156877719382103176, guid: 172305bb32e698e4d9540d3458b7e6ae, type: 3}
   - {fileID: 8916579096204215621, guid: 3f0d5ae1648c077498f0e30f83762aaf, type: 3}
   - {fileID: 2899759749092631195, guid: 39c23c8ed980aba4da8b13e92c673763, type: 3}

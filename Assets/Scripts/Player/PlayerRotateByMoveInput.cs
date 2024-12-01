@@ -6,6 +6,11 @@ using UnityEngine;
 /// </summary>
 public class PlayerRotateByMoveInput : ObjRotateByUnstableEulerAngle
 {
+    protected override void LoadValue()
+    {
+        base.LoadValue();
+        rotateSpeed = ((PlayerCtrl)GetObjCtrl()).playerConfig.InitialRotateSpeed;
+    }
     protected override object GetObjCtrl()
     {
         return PlayerCtrl.Instance;
@@ -13,18 +18,18 @@ public class PlayerRotateByMoveInput : ObjRotateByUnstableEulerAngle
 
     protected override void SetObjModel()
     {
-        objModel = ((PlayerCtrl)GetObjCtrl()).playerModel.transform;
+        if(objModel == null) objModel = ((PlayerCtrl)GetObjCtrl()).playerModel.transform;
     }
 
-    protected override Vector3 GetTheDesiredAngle()
+    protected override Vector3 GetTheFinalAngleToRotate()
     {
         //Get the target angle based on move input
         int directionRotate = InputManager.Instance.MoveInput.x < transform.parent.position.x || 
                           (InputManager.Instance.MoveInput.x == transform.parent.position.x && InputManager.Instance.MoveInput.x < 0) 
                           ? -1 : 1;
         //Move 1/35 unit, then the player will rotate 15 degree
-        var targetAngle = new Vector3(90 + Vector3.Distance(InputManager.Instance.MoveInput, this.transform.parent.position) * 35 * 15f * directionRotate, 90, 90);
+        var finalAngle = new Vector3(90 + Vector3.Distance(InputManager.Instance.MoveInput, this.transform.parent.position) * 35 * 15f * directionRotate, 90, 90);
 
-        return targetAngle;
+        return finalAngle;
     }
 }

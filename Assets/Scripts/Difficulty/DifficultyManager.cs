@@ -6,25 +6,38 @@ using UnityEngine;
 public class DifficultyManager : Singleton<DifficultyManager>
 {
     private float currentTime;
-    private bool isCounting;
+    private float maxTimeToRate;
+    private bool isRating;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         gameSpeedRateCalculator = new GameSpeedRateCalculator(gameSpeedRateConfig);
-        ResetRateGameSpeed();
     }
 
-    private void Start() {
-        StartUpdateGameDifficulty();
+    protected override void Start() {
+        base.Start();
+        InitializeUpdateGameDifficulty();
     }
-    
+
+    protected override void LoadValue()
+    {
+        base.LoadValue();
+
+        isRating = false;
+        currentTime = 0f;
+        maxTimeToRate = gameSpeedRateCalculator.GetMaxTimeToRate();
+
+        gameSpeedRate = 0f;
+    }
+
     /// <summary>
-    /// Bắt đầu cập nhật độ khó của trò chơi
+    /// Tiến hành cập nhật độ khó của trò chơi
     /// </summary>
     /// <param name="resumePreviousState">Tiếp tục tính toán độ khó từ trạng thái hiện tại</param>
-    public void StartUpdateGameDifficulty(bool resumePreviousState = true)
+    public void InitializeUpdateGameDifficulty(bool resumePreviousState = true)
     {
-        isCounting = true;
+        isRating = true;
 
         if (resumePreviousState) {
             StartCoroutine(UpdateGameSpeedRate());
@@ -39,15 +52,7 @@ public class DifficultyManager : Singleton<DifficultyManager>
     /// </summary>
     public void PauseUpdateGameDifficulty()
     {
-        isCounting = false;
-    }
-
-    /// <summary>
-    /// Hủy và reset độ khó của trò chơi
-    /// </summary>
-    public void StopUpdateGameDifficulty()
-    {
-        ResetRateGameSpeed();
+        isRating = false;
     }
 
     #region GameSpeedRate
@@ -58,22 +63,14 @@ public class DifficultyManager : Singleton<DifficultyManager>
     private float gameSpeedRate;
 
     /// <summary>
-    /// Tốc độ tỉ lệ hiện tại của trò chơi
+    /// Tỉ lệ tốc độ hiện tại của trò chơi
     /// </summary>
     public float GameSpeedRate => gameSpeedRate;
-
-    // Đặt lại trạng thái về ban đầu
-    private void ResetRateGameSpeed()
-    {
-        isCounting = false;
-        currentTime = 0f;
-        gameSpeedRate = 0f;
-    }
 
     // Cập nhật tốc độ trò chơi dựa trên thời gian
     private IEnumerator UpdateGameSpeedRate()
     {
-        while (isCounting && currentTime <= gameSpeedRateCalculator.GetMaxTimeToRate())
+        while (isRating && currentTime <= maxTimeToRate)
         {
             currentTime += Time.deltaTime;
             gameSpeedRate = gameSpeedRateCalculator.CalculateGameSpeedRate(currentTime);
@@ -84,7 +81,7 @@ public class DifficultyManager : Singleton<DifficultyManager>
     // Đặt lại thời gian rồi bắt đầu lại
     private IEnumerator ResetAndStartRateGameSpeed()
     {
-        while (isCounting && currentTime > 0)
+        while (isRating && currentTime > 0)
         {
             currentTime = Mathf.Clamp(currentTime - 10 * Time.deltaTime, 0, currentTime); // Giảm thời gian nhanh hơn để reset
             gameSpeedRate = gameSpeedRateCalculator.CalculateGameSpeedRate(currentTime);
@@ -93,7 +90,7 @@ public class DifficultyManager : Singleton<DifficultyManager>
 
         StartCoroutine(UpdateGameSpeedRate());
     }
-    
+
     #endregion
 
     #region UpdateObstacleTileSpawner
@@ -102,7 +99,7 @@ public class DifficultyManager : Singleton<DifficultyManager>
 
     // Kiểm tra thông báo update obstacle tới ObstacleTileSpawner
     private IEnumerator UpdateObstacleTileSpawner(){
-        while(isCounting && currentTime <= gameSpeedRateCalculator.GetMaxTimeToRate()){
+        while(isRating && currentTime <= maxTimeToRate){
 
             if(currentTime % obstacleTileSpawnerConfig.TimeInterval > 0.02f){
                 yield return null;
@@ -152,7 +149,7 @@ internal class GameSpeedRateCalculator
             config.MinObstacleTimeToReact,
             config.MaxObstacleTimeToReact 
             - config.ObstacleTimeToReactReducePerSecond * elapsedTime 
-            + config.SurpriseTimeBonus * (int)(elapsedTime / config.SurpriseTimeInterval)
+            + config.SurpriseTimeToRectBonus * (int)(elapsedTime / config.SurpriseTimeInterval)
         );
         //Vận tốc của Obstacle hiện tại
         float currentObstacleSpeed = 1 / currentReactionTime;
@@ -171,9 +168,10 @@ internal class GameSpeedRateCalculator
     internal int GetMaxTimeToRate()
     {
         //Tính dựa trên phương trình
-        // 15 * MinObstacleTimeToRect = 15 * MaxObstacleTimeToRect - 15 * ObstacleTimeToRectReducePerSecond * x + 0.5 * (int)x;
+        // SurpriseTimeInterval * MinObstacleTimeToRect 
+        // = SurpriseTimeInterval * MaxObstacleTimeToRect - SurpriseTimeInterval * ObstacleTimeToRectReducePerSecond * x + SurpriseTimeToRectBonus * (int)x;
         float x1 = config.SurpriseTimeInterval * (config.MaxObstacleTimeToReact - config.MinObstacleTimeToReact);
-        float x2 = config.SurpriseTimeInterval * config.ObstacleTimeToReactReducePerSecond - config.SurpriseTimeBonus;
+        float x2 = config.SurpriseTimeInterval * config.ObstacleTimeToReactReducePerSecond - config.SurpriseTimeToRectBonus;
         return (int)(x1 / x2);
     }
 }

@@ -7,12 +7,12 @@ using UnityEngine.Events;
 /// <summary>
 /// Base Class của xử lý va chạm trong game
 /// </summary>
-public abstract class ObjCollision : MonoBehaviour
+public abstract class ObjCollision : ButMonobehavior
 {
     [Header("CollisionAreaAttribute")]
-    [SerializeField] protected float colliderRadius;
-    private ObjTagCollision tagOfCollisionableObject;
-    private ObjTagCollision tagOfObject;
+    protected float colliderRadius;
+    protected ObjTagCollision tagOfCollisionableObject;
+    protected ObjTagCollision tagOfObject;
 
     #region  Properties
     public float ColliderRadius => colliderRadius; 
@@ -20,7 +20,7 @@ public abstract class ObjCollision : MonoBehaviour
     public ObjTagCollision TagOfObject => tagOfObject; 
     #endregion
 
-    private void Update() {
+    protected virtual void Update() {
         CollisionLogicRunning();
     }
 

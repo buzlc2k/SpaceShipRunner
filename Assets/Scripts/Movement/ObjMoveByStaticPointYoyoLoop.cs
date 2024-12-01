@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public abstract class ObjMoveByStaticPointYoyoLoop : ObjMoveByStaticPointLoop
 {
-    protected override void PerformReseting(){
+    protected override void InitializeResetMoving(){
         // Swap value between target point and spawn point
         (targetPoint, spawnPoint) = (spawnPoint, targetPoint);
     }

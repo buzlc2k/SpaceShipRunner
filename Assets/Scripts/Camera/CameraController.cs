@@ -8,9 +8,9 @@ public class CameraController : Singleton<CameraController>
     /// <summary>
     /// Main Camera in Scene
     /// </summary>
-    public Camera MyCamera { get; private set; }
+    public Camera MainCamera { get; private set; }
 
-    private void Awake() {
-        MyCamera = GetComponent<Camera>();
+    protected override void LoadComponents() {
+        MainCamera = GetComponent<Camera>();
     }
 }

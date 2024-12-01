@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class ObjRotateByStaticEulerAngleYoyoLoop : ObjRotateByStaticEulerAngleLoop
 { 
     
-    protected override void ResetingRotating()
+    protected override void InitializResetRotate()
     {
         //swap value between target angle and spawn angle
         (targetAngle, spawnAngle) = (spawnAngle, targetAngle);

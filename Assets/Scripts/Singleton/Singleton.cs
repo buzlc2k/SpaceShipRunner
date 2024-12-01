@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Singleton <T> : MonoBehaviour where T : MonoBehaviour
+public class Singleton <T> : ButMonobehavior where T : ButMonobehavior
 {
     private static T _reference;
 
@@ -21,8 +21,10 @@ public class Singleton <T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
-    protected virtual void AwakeSingleton()
+    protected override void LoadComponents()
     {
+        base.LoadComponents();
+        
         if (IsValid && _reference != this)
         {
             Destroy(gameObject);

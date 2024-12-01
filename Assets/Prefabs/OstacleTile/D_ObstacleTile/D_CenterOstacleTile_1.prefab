@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3006997741151004457}
-  - component: {fileID: 6096954958282496705}
+  - component: {fileID: 8183119991498243390}
   m_Layer: 0
   m_Name: RCube
   m_TagString: Untagged
@@ -35,7 +35,7 @@ Transform:
   m_Father: {fileID: 2043609008788324125}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6096954958282496705
+--- !u!114 &8183119991498243390
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,12 +44,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 824883860459781064}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4b1f57c047282f44887a2e4c1f79148, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b8936c56bfe8694bb1340bc8f097036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleCubeModel: {fileID: 2043609007251112440}
-  obstacleCubeMovement: {fileID: 5495203380212900006}
   obstacleCubeCollision: {fileID: 4075054550686199155}
+  obstacleCubeConfig: {fileID: 11400000, guid: 907eb739cf3cb134b9263166fd69b830, type: 2}
+  obstacleCubeMovement: {fileID: 5495203380212900006}
 --- !u!1 &2043609007251112441
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,7 +298,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1697
+  m_VersionIndex: 1700
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -627,7 +628,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1688
+  m_VersionIndex: 1691
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -719,7 +720,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2043609008788324125}
-  - component: {fileID: 7355738851214648308}
+  - component: {fileID: 8069387003567700722}
   m_Layer: 0
   m_Name: D_CenterOstacleTile_1
   m_TagString: Untagged
@@ -746,7 +747,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7355738851214648308
+--- !u!114 &8069387003567700722
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -759,10 +760,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleCubes:
+  - {fileID: 2043609008788324125}
   - {fileID: 3791596660930356795}
   - {fileID: 3006997741151004457}
   obstacleTileMovement: {fileID: 3585602771512757688}
   obstacleTileDespawn: {fileID: 7804306686191254526}
+  obstacleTileConfig: {fileID: 11400000, guid: 41dede5d9d4efa8409869fb5f5cd0782, type: 2}
 --- !u!1 &2608511258999118476
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,7 +856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930ab38b195bd394e9f387c535bb2557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 1.5
   spawnPoint: {x: 3, y: 0.765, z: 0}
   targetPoint: {x: 4, y: 0.765, z: 0}
   remainingLoops: 0
@@ -904,7 +907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8.41667
-  moveTarget: {fileID: 0}
+  targetTransform: {fileID: 0}
 --- !u!1 &4433742451891122903
 GameObject:
   m_ObjectHideFlags: 0
@@ -995,8 +998,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59201c63c71d3814a87e7cdee48a1898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPos: {x: 0, y: 0, z: 60}
-  disToDespawn: 65
+  posToCalculateDespawn: {x: 0, y: 0, z: 60}
+  disToDespawn: 85
 --- !u!1 &4760302669802062459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,7 +1044,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930ab38b195bd394e9f387c535bb2557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 1.5
   spawnPoint: {x: -3, y: 0.765, z: 0}
   targetPoint: {x: -4, y: 0.765, z: 0}
   remainingLoops: 0
@@ -1056,7 +1059,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3791596660930356795}
-  - component: {fileID: 7434220808157016289}
+  - component: {fileID: 9012579338949913820}
   m_Layer: 0
   m_Name: LCube
   m_TagString: Untagged
@@ -1082,7 +1085,7 @@ Transform:
   m_Father: {fileID: 2043609008788324125}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7434220808157016289
+--- !u!114 &9012579338949913820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1091,9 +1094,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8539094746919115718}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4b1f57c047282f44887a2e4c1f79148, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b8936c56bfe8694bb1340bc8f097036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleCubeModel: {fileID: 2043609008347335558}
-  obstacleCubeMovement: {fileID: 5687672023625206775}
   obstacleCubeCollision: {fileID: 2884564465582719545}
+  obstacleCubeConfig: {fileID: 11400000, guid: 64cb4cb202b529140ab5314e5f7ce5af, type: 2}
+  obstacleCubeMovement: {fileID: 5687672023625206775}

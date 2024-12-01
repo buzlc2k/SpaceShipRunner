@@ -8,11 +8,23 @@ public class PlayerCtrl : Singleton<PlayerCtrl>
     public ObjMovement playerMovement;
     public ObjRotation playerRotation;
     public ObjCollision playerCollision;
+    public PlayerConfig playerConfig;
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
 
-    private void Reset() {
-        playerModel = GetComponentInChildren<MeshRenderer>().transform;
-        playerMovement = GetComponentInChildren<ObjMovement>();
-        playerRotation = GetComponentInChildren<ObjRotation>();
-        playerCollision = GetComponentInChildren<ObjCollision>();
+        if(playerModel == null) playerModel = GetComponentInChildren<MeshRenderer>().transform;
+        if(playerMovement == null) playerMovement = GetComponentInChildren<ObjMovement>();
+        if(playerRotation == null) playerRotation = GetComponentInChildren<ObjRotation>();
+        if(playerCollision == null) playerCollision = GetComponentInChildren<ObjCollision>();
+    }
+
+    protected override void ResetValue()
+    {
+        base.ResetValue();
+
+        foreach(Transform child in transform){
+            if(!child.gameObject.activeSelf) child.gameObject.SetActive(true);
+        }
     }
 }

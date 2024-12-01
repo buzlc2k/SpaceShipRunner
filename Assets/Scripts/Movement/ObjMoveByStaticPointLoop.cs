@@ -7,9 +7,9 @@ using UnityEngine;
 public abstract class ObjMoveByStaticPointLoop : ObjMovement
 {
     [Header("ObjMoveByStaticPointLoop")]
-    [SerializeField] protected Vector3 spawnPoint;
-    [SerializeField] protected Vector3 targetPoint;
-    [SerializeField, Tooltip("-1 for infinite loops, 1 loop for 1/2 trajectory")] protected int remainingLoops = -1; 
+    protected Vector3 spawnPoint;
+    protected Vector3 targetPoint;
+    protected int remainingLoops = -1; 
     [SerializeField] protected float resetDistanceThreshold = 0.1f;
     [SerializeField, Tooltip("True if Object is moving based on parent position")] protected bool moveByLocalPoint;
 
@@ -19,7 +19,7 @@ public abstract class ObjMoveByStaticPointLoop : ObjMovement
 
         base.Moving();
 
-        HandleResetMovement();
+        ResetMoving();
     }
 
     /// <summary>
@@ -36,12 +36,12 @@ public abstract class ObjMoveByStaticPointLoop : ObjMovement
     // Updates the target position based on local or world space.
     protected virtual void UpdateTargetPosition()
     {
-        if (!ShouldUpdateTargetPosition()) return;
+        if (!CheckCanUpdateTargetPosition()) return;
 
         targetPosition = CalculateTargetPosition();
     }
 
-    private bool ShouldUpdateTargetPosition()
+    private bool CheckCanUpdateTargetPosition()
     {
         return moveByLocalPoint || !targetPoint.Equals(targetPosition);
     }
@@ -57,11 +57,11 @@ public abstract class ObjMoveByStaticPointLoop : ObjMovement
     #region ResetMovement
     
     // Handles resetting the object's movement when reaching the target.
-    private void HandleResetMovement()
+    private void ResetMoving()
     {
-        if (!CanResetMovement() || !CanContinueLoop()) return;
+        if (!CanResetMovement() || !CheckCanContinueLoop()) return;
 
-        PerformReseting();
+        InitializeResetMoving();
     }
 
     // Checks if the object is close enough to the target position to reset.
@@ -71,13 +71,13 @@ public abstract class ObjMoveByStaticPointLoop : ObjMovement
     }
 
     // Checks if the object should continue looping and decrements the loop count if applicable.
-    private bool CanContinueLoop()
+    private bool CheckCanContinueLoop()
     {
         if (remainingLoops > 0) remainingLoops--;
         return remainingLoops != 0;
     }
 
     // Performs the reset behavior
-    protected abstract void PerformReseting();
+    protected abstract void InitializeResetMoving();
     #endregion
 }

@@ -5,13 +5,13 @@ using UnityEngine;
 /// <summary>
 /// Base class defining the basic movement logic of an object in the scene.
 /// </summary>
-public abstract class ObjMovement : MonoBehaviour
+public abstract class ObjMovement : ButMonobehavior
 {
     [Header("ObjMovement")]
     protected Vector3 targetPosition = Vector3.zero; 
-    [SerializeField] protected float moveSpeed; 
+    protected float moveSpeed; 
 
-    private void Update() {
+    protected virtual void Update() {
         Moving();
     }
 
@@ -20,9 +20,9 @@ public abstract class ObjMovement : MonoBehaviour
     /// <summary>
     /// Method to set the speed of movement.
     /// </summary>
-    /// <param name="_speed"> speed of movement </param>
-    public virtual void SetMoveSpeed(float _speed){
-        this.moveSpeed = _speed;
+    /// <param name="moveSpeed"> speed of movement </param>
+    public virtual void SetMoveSpeed(float moveSpeed){
+        this.moveSpeed = moveSpeed;
     }
 
     // Handle movement logic, moving the object's parent position towards the target position.

@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4cdff5b4cd2504ba813cd30d63660b, type: 3}
   m_Name: GameSpeedRateConfig
   m_EditorClassIdentifier: 
-  MinObstacleTimeToRect: 2
-  MaxObstacleTimeToRect: 6
+  MinObstacleTimeToReact: 3
+  MaxObstacleTimeToReact: 6
+  ObstacleTimeToReactReducePerSecond: 0.2
+  SurpriseTimeInterval: 5
+  SurpriseTimeToRectBonus: 0.5

@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WalkableTileCtrl : MonoBehaviour
+public class WalkableTileCtrl : ButMonobehavior
 {
     public Transform walkableModel;
     public ObjMovement walkableMovement;
+    public WalkableTileConfig walkableTileConfig;
 
-    private void Reset() {
-        walkableModel = GetComponentInChildren<MeshRenderer>().transform;
-        walkableMovement = GetComponentInChildren<ObjMovement>();
+    protected override void LoadComponents() {
+        if(walkableModel == null) walkableModel = GetComponentInChildren<MeshRenderer>().transform;
+        if(walkableMovement == null) walkableMovement = GetComponentInChildren<ObjMovement>();
     }
 }

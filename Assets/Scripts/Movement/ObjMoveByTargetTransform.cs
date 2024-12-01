@@ -6,27 +6,27 @@ using UnityEngine;
 public abstract class ObjMoveByTargetTransform : ObjMovement
 {
     [Header("ObjMoveByTargetTransform")]
-    [SerializeField] protected Transform moveTarget;
+    protected Transform targetTransform;
 
     /// <summary>
     /// Set target to move forward.
     /// </summary>
     /// <param name="target">target to move forward.</param>
-    public virtual void SetMoveTarget(Transform target)
+    public virtual void SetTargetTransform(Transform target)
     {
-        this.moveTarget = target;
+        this.targetTransform = target;
     }
 
     // Set targetPos base on moveTarget
-    protected virtual void GetMovePosition()
+    protected virtual void UpdateTargetPosition()
     {
-        if (this.moveTarget == null) return;
+        if (this.targetTransform == null) return;
 
-        this.targetPosition = this.moveTarget.position;
+        this.targetPosition = this.targetTransform.position;
     }
 
     protected override void Moving(){
-        GetMovePosition();
+        UpdateTargetPosition();
 
         base.Moving();
     }

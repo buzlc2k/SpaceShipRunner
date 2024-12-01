@@ -3,8 +3,8 @@ using UnityEngine;
 
 /// <summary>
 /// </summary>
-/// <typeparam name="T"> phải là các class có kế thừa từ Monobehaviour</typeparam>
-public class ObjectPooler<T> where T : MonoBehaviour, IPooled
+/// <typeparam name="T"> phải là các class có kế thừa từ ButMonobehavior</typeparam>
+public class ObjectPooler<T> where T : ButMonobehavior, IPooled
 {
     private readonly Queue<T> Pool;
     private readonly T _prefab;

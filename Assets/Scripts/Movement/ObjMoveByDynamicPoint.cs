@@ -6,21 +6,21 @@ using UnityEngine;
 public abstract class ObjMoveByDynamicPoint : ObjMovement
 {
     // Calculate target position which this obj is moving to
-    protected virtual Vector3 GetTargetPosition(){
+    protected virtual Vector3 CalculateTargetPosition(){
         //noop
         return Vector3.zero;
     }
 
     // Set targetPos base on a point given
-    public virtual void SetMovePosition(Vector3 _targetPos)
+    protected virtual void SetTargetPosition(Vector3 targetPosition)
     {
-        this.targetPosition = _targetPos;
+        this.targetPosition = targetPosition;
     }
 
     protected override void Moving()
     {
-        var _targetPos = GetTargetPosition();
-        SetMovePosition(_targetPos);
+        var _targetPosition = CalculateTargetPosition();
+        SetTargetPosition(_targetPosition);
         base.Moving();
     }
 }

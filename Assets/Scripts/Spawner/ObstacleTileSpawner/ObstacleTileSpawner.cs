@@ -2,7 +2,7 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
-public class ObstacleTileSpawner : MonoBehaviour
+public class ObstacleTileSpawner : ButMonobehavior
 {
     
     [Header("OstacleTilesPrefab")]
@@ -11,7 +11,7 @@ public class ObstacleTileSpawner : MonoBehaviour
     private Action<KeyValuePair<EventParameterType, object>> spawnObstacleTileDelegate;
     private Action<KeyValuePair<EventParameterType, object>> createListObstacleTilePoolerDelegate;
 
-    private void Start() {
+    protected override void Start() {
         spawnObstacleTileDelegate = (param) => {
             if (param.Key != EventParameterType.ResetWalkableTile_WalkableTileObject) return;
             SpawnObstacleTile((GameObject)param.Value);
@@ -19,7 +19,7 @@ public class ObstacleTileSpawner : MonoBehaviour
 
         createListObstacleTilePoolerDelegate = (param) => {
             if (param.Key != EventParameterType.AddMoreObstacle_ListObstaclePrefab) return;
-            CreateListObstacleTilePooler((List<GameObject>)param.Value);
+            AddNewObstacleTilePooler((List<GameObject>)param.Value);
         };
 
         Observer.AddListener(EventID.ResetWalkableTile, spawnObstacleTileDelegate);
@@ -37,10 +37,10 @@ public class ObstacleTileSpawner : MonoBehaviour
 
         ObstacleTileCtrl obstacleTile = obstacleTilePoolers[UnityEngine.Random.Range(0, obstacleTilePoolers.Count)].Get(spawnPosition, spawnRotation);
         
-        ((ObstacleTileMoveByTargetTransform)obstacleTile.obstacleTileMovement).SetMoveTarget(walkableTile.transform);
+        ((ObstacleTileMoveByTargetTransform)obstacleTile.obstacleTileMovement).SetTargetTransform(walkableTile.transform);
     }
 
-    private void CreateListObstacleTilePooler(List<GameObject> obstacleTilePrefabs){
+    private void AddNewObstacleTilePooler(List<GameObject> obstacleTilePrefabs){
         foreach(var obstacleTilePrefab in obstacleTilePrefabs){
             var obstacleTilePooler = new ObjectPooler<ObstacleTileCtrl>(obstacleTilePrefab.GetComponent<ObstacleTileCtrl>(), obstacleTileHolder, 2);
             obstacleTilePoolers.Add(obstacleTilePooler);

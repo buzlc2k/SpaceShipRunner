@@ -16,5 +16,5 @@ public class GameSpeedRateConfig : ScriptableObject
     public float SurpriseTimeInterval = 15f;
 
     [Tooltip("Thời gian thêm vào khi đạt chu kỳ bất ngờ.")] 
-    public float SurpriseTimeBonus = 0.5f;
+    public float SurpriseTimeToRectBonus = 0.5f;
 }

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colliderRadius: 1.8
-  loopToInitializeMovement: 3
+  loopToInitializeMovement: 2
 --- !u!1 &2899759749092631195
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,6 +97,7 @@ MonoBehaviour:
   - {fileID: 7360145347836911917}
   obstacleTileMovement: {fileID: 3585427589252007520}
   obstacleTileDespawn: {fileID: 1208431126007685451}
+  obstacleTileConfig: {fileID: 11400000, guid: 41dede5d9d4efa8409869fb5f5cd0782, type: 2}
 --- !u!1 &3585427589252007526
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8.41667
-  moveTarget: {fileID: 0}
+  targetTransform: {fileID: 0}
 --- !u!1 &5107936040405949348
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +153,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7360145347836911917}
-  - component: {fileID: 9036681705284975385}
+  - component: {fileID: 6475466090534720020}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -178,7 +179,7 @@ Transform:
   m_Father: {fileID: 2899759749092631192}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9036681705284975385
+--- !u!114 &6475466090534720020
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,12 +188,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5107936040405949348}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4b1f57c047282f44887a2e4c1f79148, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b8936c56bfe8694bb1340bc8f097036, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleCubeModel: {fileID: 6559630635037177419}
-  obstacleCubeMovement: {fileID: 7953940469272533167}
   obstacleCubeCollision: {fileID: 1369150908948370368}
+  obstacleCubeConfig: {fileID: 11400000, guid: 15e69c43d17d6754cabf9ad244dd63fa, type: 2}
+  obstacleCubeMovement: {fileID: 7953940469272533167}
 --- !u!1 &5413502623922728332
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,8 +239,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59201c63c71d3814a87e7cdee48a1898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPos: {x: 0, y: 0, z: 60}
-  disToDespawn: 65
+  posToCalculateDespawn: {x: 0, y: 0, z: 60}
+  disToDespawn: 85
 --- !u!1 &6410362468759527187
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,7 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930ab38b195bd394e9f387c535bb2557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 2
   spawnPoint: {x: -3.2, y: 0.765, z: 0}
   targetPoint: {x: 3.2, y: 0.765, z: 0}
   remainingLoops: 0
