@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ObstacleCubeCollision : ObjCollision
 { 
-       protected override void LoadValue()
+    protected override void LoadValue()
     {
         base.LoadValue();
         colliderRadius = ((ObstacleCubeCtrl)GetObjCtrl()).obstacleCubeConfig.InitialColliderRadius;

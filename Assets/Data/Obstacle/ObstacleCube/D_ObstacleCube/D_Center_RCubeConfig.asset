@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: D_Center_RCubeConfig
   m_EditorClassIdentifier: 
   InitialColliderRadius: 1
-  InitialTagOfCollisionableObject: 4
+  InitialTagOfCollisionableObject: 04000000
   InitialTagOfObject: 2
   InitialMoveSpeed: 1.5
   InitialSpawnPoint: {x: 3, y: 0.765, z: 0}

@@ -9,7 +9,7 @@ public class ObstacleTileSpawner : ButMonobehavior
     [SerializeField] private Transform obstacleTileHolder;
     private List<ObjectPooler<ObstacleTileCtrl>> obstacleTilePoolers = new();
     private Action<KeyValuePair<EventParameterType, object>> spawnObstacleTileDelegate;
-    private Action<KeyValuePair<EventParameterType, object>> createListObstacleTilePoolerDelegate;
+    private Action<KeyValuePair<EventParameterType, object>> addNewObstacleTilePoolerDelegate;
 
     protected override void Start() {
         spawnObstacleTileDelegate = (param) => {
@@ -17,18 +17,18 @@ public class ObstacleTileSpawner : ButMonobehavior
             SpawnObstacleTile((GameObject)param.Value);
         };
 
-        createListObstacleTilePoolerDelegate = (param) => {
+        addNewObstacleTilePoolerDelegate = (param) => {
             if (param.Key != EventParameterType.AddMoreObstacle_ListObstaclePrefab) return;
             AddNewObstacleTilePooler((List<GameObject>)param.Value);
         };
 
         Observer.AddListener(EventID.ResetWalkableTile, spawnObstacleTileDelegate);
-        Observer.AddListener(EventID.AddMoreObstacle, createListObstacleTilePoolerDelegate);
+        Observer.AddListener(EventID.AddMoreObstacle, addNewObstacleTilePoolerDelegate);
     }
 
     private void OnDestroy() {
         Observer.RemoveListener(EventID.ResetWalkableTile, spawnObstacleTileDelegate);
-        Observer.RemoveListener(EventID.AddMoreObstacle, createListObstacleTilePoolerDelegate);
+        Observer.RemoveListener(EventID.AddMoreObstacle, addNewObstacleTilePoolerDelegate);
     }
 
     private void SpawnObstacleTile(GameObject walkableTile){
@@ -38,6 +38,10 @@ public class ObstacleTileSpawner : ButMonobehavior
         ObstacleTileCtrl obstacleTile = obstacleTilePoolers[UnityEngine.Random.Range(0, obstacleTilePoolers.Count)].Get(spawnPosition, spawnRotation);
         
         ((ObstacleTileMoveByTargetTransform)obstacleTile.obstacleTileMovement).SetTargetTransform(walkableTile.transform);
+
+        Observer.PostEvent(EventID.ObstacleTileSpawned, new KeyValuePair<EventParameterType, object>
+                                                        (EventParameterType.ObstacleTileSpawned_WalkableTileObjectAndListSpawnPositions,
+                                                        Tuple.Create<GameObject, List<Vector3>>(obstacleTile.gameObject, obstacleTile.obstacleTileConfig.AvailablePositionToSpawnItem)));
     }
 
     private void AddNewObstacleTilePooler(List<GameObject> obstacleTilePrefabs){

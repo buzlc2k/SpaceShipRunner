@@ -33,7 +33,7 @@ Transform:
   - {fileID: 6063518867315515091}
   - {fileID: 884329532150859861}
   m_Father: {fileID: 2043609008788324125}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8183119991498243390
 MonoBehaviour:
@@ -742,6 +742,7 @@ Transform:
   m_Children:
   - {fileID: 3585602771512757671}
   - {fileID: 9063361750719959484}
+  - {fileID: 5318828217801759749}
   - {fileID: 3791596660930356795}
   - {fileID: 3006997741151004457}
   m_Father: {fileID: 0}
@@ -760,7 +761,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstacleCubes:
-  - {fileID: 2043609008788324125}
   - {fileID: 3791596660930356795}
   - {fileID: 3006997741151004457}
   obstacleTileMovement: {fileID: 3585602771512757688}
@@ -810,7 +810,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34d93a8aa4768c458cd933b28bec90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderRadius: 1
   loopToInitializeMovement: 3
 --- !u!1 &3449401741143028170
 GameObject:
@@ -856,10 +855,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930ab38b195bd394e9f387c535bb2557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1.5
-  spawnPoint: {x: 3, y: 0.765, z: 0}
-  targetPoint: {x: 4, y: 0.765, z: 0}
-  remainingLoops: 0
   resetDistanceThreshold: 0.1
   moveByLocalPoint: 1
 --- !u!1 &3585602771512757670
@@ -906,8 +901,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee84bdba6749d547a1c65a2e25e9ce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8.41667
-  targetTransform: {fileID: 0}
 --- !u!1 &4433742451891122903
 GameObject:
   m_ObjectHideFlags: 0
@@ -952,7 +945,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34d93a8aa4768c458cd933b28bec90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderRadius: 1
   loopToInitializeMovement: 3
 --- !u!1 &4612258927623746126
 GameObject:
@@ -998,8 +990,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59201c63c71d3814a87e7cdee48a1898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posToCalculateDespawn: {x: 0, y: 0, z: 60}
-  disToDespawn: 85
 --- !u!1 &4760302669802062459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1044,12 +1034,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930ab38b195bd394e9f387c535bb2557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1.5
-  spawnPoint: {x: -3, y: 0.765, z: 0}
-  targetPoint: {x: -4, y: 0.765, z: 0}
-  remainingLoops: 0
   resetDistanceThreshold: 0.1
   moveByLocalPoint: 1
+--- !u!1 &7711472251914453437
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5318828217801759749}
+  m_Layer: 0
+  m_Name: Spawning
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5318828217801759749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7711472251914453437}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2043609008788324125}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8539094746919115718
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,7 +1100,7 @@ Transform:
   - {fileID: 7353952744026551507}
   - {fileID: 5105631599925883138}
   m_Father: {fileID: 2043609008788324125}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9012579338949913820
 MonoBehaviour:

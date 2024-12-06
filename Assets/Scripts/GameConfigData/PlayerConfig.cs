@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObject/PlayerConfig")]
@@ -11,6 +12,6 @@ public class PlayerConfig : ScriptableObject
 
     [Header("Collision")]
     public float InitialColliderRadius;
-    public ObjTagCollision InitialTagOfCollisionableObject;
+    public List<ObjTagCollision> InitialTagOfCollisionableObject;
     public ObjTagCollision InitialTagOfObject;
 }

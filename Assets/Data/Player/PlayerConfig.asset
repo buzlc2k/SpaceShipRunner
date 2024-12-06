@@ -15,5 +15,5 @@ MonoBehaviour:
   InitialMoveSpeed: 50
   InitialRotateSpeed: 0.05
   InitialColliderRadius: 1.15
-  InitialTagOfCollisionableObject: 2
+  InitialTagOfCollisionableObject: 0500000002000000
   InitialTagOfObject: 4

@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34d93a8aa4768c458cd933b28bec90a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderRadius: 1.8
   loopToInitializeMovement: 2
 --- !u!1 &2899759749092631195
 GameObject:
@@ -97,7 +96,7 @@ MonoBehaviour:
   - {fileID: 7360145347836911917}
   obstacleTileMovement: {fileID: 3585427589252007520}
   obstacleTileDespawn: {fileID: 1208431126007685451}
-  obstacleTileConfig: {fileID: 11400000, guid: 41dede5d9d4efa8409869fb5f5cd0782, type: 2}
+  obstacleTileConfig: {fileID: 11400000, guid: 6b3dcb01ad91364438751d966b2ed525, type: 2}
 --- !u!1 &3585427589252007526
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,8 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee84bdba6749d547a1c65a2e25e9ce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8.41667
-  targetTransform: {fileID: 0}
 --- !u!1 &5107936040405949348
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,8 +236,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59201c63c71d3814a87e7cdee48a1898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posToCalculateDespawn: {x: 0, y: 0, z: 60}
-  disToDespawn: 85
 --- !u!1 &6410362468759527187
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,10 +280,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930ab38b195bd394e9f387c535bb2557, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
-  spawnPoint: {x: -3.2, y: 0.765, z: 0}
-  targetPoint: {x: 3.2, y: 0.765, z: 0}
-  remainingLoops: 0
   resetDistanceThreshold: 0.1
   moveByLocalPoint: 1
 --- !u!1 &7452256592549928529

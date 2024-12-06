@@ -7,4 +7,5 @@ public enum ObjTagCollision{
     Obstacle_White,
     Player_Black,
     Player_White,
+    Coin,
 }

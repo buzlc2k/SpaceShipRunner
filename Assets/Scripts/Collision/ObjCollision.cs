@@ -11,12 +11,12 @@ public abstract class ObjCollision : ButMonobehavior
 {
     [Header("CollisionAreaAttribute")]
     protected float colliderRadius;
-    protected ObjTagCollision tagOfCollisionableObject;
+    protected List<ObjTagCollision> tagOfCollisionableObject;
     protected ObjTagCollision tagOfObject;
 
     #region  Properties
     public float ColliderRadius => colliderRadius; 
-    public ObjTagCollision TagOfCollisionableObject => tagOfCollisionableObject;
+    public List<ObjTagCollision> TagOfCollisionableObject => tagOfCollisionableObject;
     public ObjTagCollision TagOfObject => tagOfObject; 
     #endregion
 
@@ -39,7 +39,7 @@ public abstract class ObjCollision : ButMonobehavior
             //Tính toán có va chạm không dựa vào bound của 2 object.
             bool isWithinCollisionDistance = obj.GetComponentInChildren<ObjCollision>().ColliderRadius + colliderRadius >= Vector3.Distance(obj.transform.position, this.transform.parent.position);
             //Kiểm tra Object va chạm có phải là object được va chạm không.
-            bool hasMatchingCollisionTag = obj.GetComponentInChildren<ObjCollision>().TagOfObject == tagOfCollisionableObject; 
+            bool hasMatchingCollisionTag = tagOfCollisionableObject.Contains(obj.GetComponentInChildren<ObjCollision>().TagOfObject); 
             if(!isWithinCollisionDistance || !hasMatchingCollisionTag) continue;
             OnEnterCollide();
         }

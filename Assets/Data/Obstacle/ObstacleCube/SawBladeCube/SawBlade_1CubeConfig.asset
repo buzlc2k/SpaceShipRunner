@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SawBlade_1CubeConfig
   m_EditorClassIdentifier: 
   InitialColliderRadius: 1.25
-  InitialTagOfCollisionableObject: 4
+  InitialTagOfCollisionableObject: 04000000
   InitialTagOfObject: 2
   InitialMoveSpeed: 1.5
   InitialSpawnPoint: {x: -3, y: 0, z: 0}

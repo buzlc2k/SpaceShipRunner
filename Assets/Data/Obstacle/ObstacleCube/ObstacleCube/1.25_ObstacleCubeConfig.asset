@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: 1.25_ObstacleCubeConfig
   m_EditorClassIdentifier: 
   InitialColliderRadius: 1.25
-  InitialTagOfCollisionableObject: 4
+  InitialTagOfCollisionableObject: 04000000
   InitialTagOfObject: 2

@@ -22,13 +22,16 @@ public class ObstacleTileCtrl : ButMonobehavior, IPooled
 
     protected override void ResetValue()
     {
-        base.ResetValue();
-
         foreach(Transform child in transform){
             if(!child.gameObject.activeSelf) child.gameObject.SetActive(true);
         }
+
+        for(int i = 0; i < obstacleCubes.Length; i++){
+            obstacleCubes[i].localPosition = obstacleTileConfig.ObstacleCubePosition[i];
+        }
+
+        base.ResetValue();        
     }
 
     public Action<GameObject> ReleaseCallback { get; set; }
 }
-

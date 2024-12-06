@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObject/ObstacleTileConfig")]
@@ -9,4 +10,10 @@ public class ObstacleTileConfig : ScriptableObject
     [Header("Despawning")]
     public Vector3 InitialPosToCalculateDespawn;
     public float InitialDisToDespawn;
+
+    [Header("ObstacleCubeTransform")]
+    public List<Vector3> ObstacleCubePosition;
+
+    [Header("SpawningItem")]
+    public List<Vector3> AvailablePositionToSpawnItem;
 }
