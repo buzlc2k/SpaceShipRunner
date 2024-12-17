@@ -51,7 +51,7 @@ MonoBehaviour:
   - {fileID: 3435439409015278673}
   obstacleTileMovement: {fileID: 3505565647839629491}
   obstacleTileDespawn: {fileID: 2032850349991326618}
-  obstacleTileConfig: {fileID: 11400000, guid: 41dede5d9d4efa8409869fb5f5cd0782, type: 2}
+  obstacleTileConfig: {fileID: 11400000, guid: 74e96aad6fd2f3540979150a3e8d21f4, type: 2}
 --- !u!1 &2350395378153165401
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,8 +96,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59201c63c71d3814a87e7cdee48a1898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posToCalculateDespawn: {x: 0, y: 0, z: 60}
-  disToDespawn: 85
 --- !u!1 &3138439803641704179
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,8 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee84bdba6749d547a1c65a2e25e9ce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8.41667
-  targetTransform: {fileID: 0}
 --- !u!1 &3690144522888972718
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,7 +387,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 9664
+  m_VersionIndex: 9667
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -567,4 +563,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806f1521e99df2c4fbfaeb1dc1dffa09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderRadius: 1.25

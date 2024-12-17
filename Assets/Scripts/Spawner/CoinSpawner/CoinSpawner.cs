@@ -32,18 +32,41 @@ public class CoinSpawner : ButMonobehavior
         Observer.RemoveListener(EventID.ObstacleTileSpawned, spawnCoinDelegate);
     }
 
-    private void SpawnCoin(GameObject obstacleTile ,List<Vector3> spawnPositions){
-        for(int i = 0; i < 4; i++){
-            if(UnityEngine.Random.value > 0.5) continue;
+    private void SpawnCoin(GameObject obstacleTile, List<Vector3> spawnPositions)
+    {
+        // Clone danh sách vị trí spawn để không thay đổi danh sách gốc
+        var cloneSpawnPositions = new List<Vector3>(spawnPositions);
 
-            var offsetPoint = spawnPositions[UnityEngine.Random.Range(0, spawnPositions.Count)];
-            var spawnPosition = obstacleTile.transform.position + offsetPoint;
-            var spawnRotation = Quaternion.identity;
+        for (int i = 0; i < spawnPositions.Count; i++)
+        {
+            Tuple<int, Vector3, Vector3> spawnData = GetSpawnData(obstacleTile, cloneSpawnPositions);
 
-            CoinCtrl coin = coinPooler.Get(spawnPosition, spawnRotation);
+            InitializeCoin(obstacleTile, spawnData.Item2, spawnData.Item3);
 
-            ((CoinMoveByTargetTransformWithOffset)coin.coinMovement).SetOffsetPoint(offsetPoint);
-            ((CoinMoveByTargetTransformWithOffset)coin.coinMovement).SetTargetTransform(obstacleTile.transform);
+            RemoveSpawnPosUsed(cloneSpawnPositions, spawnData.Item1);
         }
+    }
+
+    private Tuple<int, Vector3, Vector3> GetSpawnData(GameObject obstacleTile, List<Vector3> cloneSpawnPositions){
+        int randomIndex = UnityEngine.Random.Range(0, cloneSpawnPositions.Count);
+        Vector3 offsetPoint = cloneSpawnPositions[randomIndex];
+        Vector3 spawnPosition = obstacleTile.transform.position + offsetPoint;
+
+        return Tuple.Create<int, Vector3, Vector3>(randomIndex, offsetPoint, spawnPosition);
+    }
+
+    private void InitializeCoin(GameObject obstacleTile, Vector3 offsetPoint, Vector3 spawnPosition){
+        var coin = coinPooler.Get(spawnPosition, Quaternion.identity);
+
+        if (coin.coinMovement is CoinMoveByTargetTransformWithOffset coinMovement)
+        {
+            coinMovement.SetOffsetPoint(offsetPoint);
+            coinMovement.SetTargetTransform(obstacleTile.transform);
+        }
+    }
+
+    private void RemoveSpawnPosUsed(List<Vector3> cloneSpawnPositions, int indexToRemove){
+        cloneSpawnPositions[indexToRemove] = cloneSpawnPositions[^1];
+        cloneSpawnPositions.RemoveAt(cloneSpawnPositions.Count - 1);
     }
 }

@@ -281,7 +281,7 @@ MonoBehaviour:
   - {fileID: 2884705454401110652}
   obstacleTileMovement: {fileID: 808859084529842003}
   obstacleTileDespawn: {fileID: 3248599147547617260}
-  obstacleTileConfig: {fileID: 11400000, guid: 452b99608482657469b3d2e5829440f2, type: 2}
+  obstacleTileConfig: {fileID: 11400000, guid: a66079be49127af4493d9dc2566a03df, type: 2}
 --- !u!1 &8916579096305439048
 GameObject:
   m_ObjectHideFlags: 0

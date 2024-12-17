@@ -247,7 +247,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1685
+  m_VersionIndex: 1688
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -423,8 +423,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59201c63c71d3814a87e7cdee48a1898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posToCalculateDespawn: {x: 0, y: 0, z: 60}
-  disToDespawn: 85
 --- !u!1 &3826150586906456192
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +478,7 @@ MonoBehaviour:
   - {fileID: 5085698534077159041}
   obstacleTileMovement: {fileID: 5200441159893579595}
   obstacleTileDespawn: {fileID: 3300977128573761762}
-  obstacleTileConfig: {fileID: 11400000, guid: 41dede5d9d4efa8409869fb5f5cd0782, type: 2}
+  obstacleTileConfig: {fileID: 11400000, guid: decd8fa584f903941933c22e2f66d693, type: 2}
 --- !u!1 &4565918181738102011
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,7 +726,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1765
+  m_VersionIndex: 1768
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -904,8 +902,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee84bdba6749d547a1c65a2e25e9ce8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8.41667
-  targetTransform: {fileID: 0}
 --- !u!1 &5166226243219259804
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,7 +946,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806f1521e99df2c4fbfaeb1dc1dffa09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderRadius: 0.5
 --- !u!1 &6264077658065682261
 GameObject:
   m_ObjectHideFlags: 0
@@ -995,7 +990,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806f1521e99df2c4fbfaeb1dc1dffa09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderRadius: 1
 --- !u!1 &6323856039703740044
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,7 +1034,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 806f1521e99df2c4fbfaeb1dc1dffa09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colliderRadius: 0.5
 --- !u!1 &7263026194713368619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1288,7 +1281,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1765
+  m_VersionIndex: 1768
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

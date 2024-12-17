@@ -6,4 +6,7 @@ public enum EventID{
     ResetWalkableTile,
     AddMoreObstacle,
     ObstacleTileSpawned,
+    InitializeCalculateDifficulty,
+    InitializeResetUpdateCalculateDifficulty,
+    PauseCalculateGameDifficulty
 }

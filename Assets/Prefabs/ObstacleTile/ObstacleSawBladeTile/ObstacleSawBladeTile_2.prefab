@@ -330,7 +330,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1790
+  m_VersionIndex: 1793
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1078,7 +1078,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1790
+  m_VersionIndex: 1793
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1216,7 +1216,7 @@ MonoBehaviour:
   - {fileID: 1369991441738192466}
   obstacleTileMovement: {fileID: 8080993380328171361}
   obstacleTileDespawn: {fileID: 8080993380470730201}
-  obstacleTileConfig: {fileID: 11400000, guid: 41dede5d9d4efa8409869fb5f5cd0782, type: 2}
+  obstacleTileConfig: {fileID: 11400000, guid: d2b5ba1956d56994689bda159d3d143b, type: 2}
 --- !u!1 &8279260289889494199
 GameObject:
   m_ObjectHideFlags: 0

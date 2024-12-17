@@ -146,7 +146,7 @@ MonoBehaviour:
   - {fileID: 4288811518014567114}
   obstacleTileMovement: {fileID: 3886578925383113340}
   obstacleTileDespawn: {fileID: 3886578926062473412}
-  obstacleTileConfig: {fileID: 11400000, guid: 41dede5d9d4efa8409869fb5f5cd0782, type: 2}
+  obstacleTileConfig: {fileID: 11400000, guid: 0bedcc20f5df28744851c027d4a9a738, type: 2}
 --- !u!1 &3886578924988539535
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,7 +394,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1783
+  m_VersionIndex: 1786
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1178,7 +1178,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 1783
+  m_VersionIndex: 1786
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

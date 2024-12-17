@@ -7,4 +7,7 @@ public enum EventParameterType{
     ResetWalkableTile_WalkableTileObject,
     AddMoreObstacle_ListObstaclePrefab,
     ObstacleTileSpawned_WalkableTileObjectAndListSpawnPositions,
+    InitializeCalculateDifficulty_null,
+    InitializeResetUpdateCalculateDifficulty_Null,
+    PauseCalculateGameDifficulty_Null,
 }
