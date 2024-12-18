@@ -5,13 +5,27 @@ public class DifficultyManager : Singleton<DifficultyManager>
 {
     public BaseDifficultyAbstract GameSpeedDifficultyCtrl;
     public BaseDifficultyAbstract ObstacleDifficultyCtrl;
+    public BaseDifficultyAbstract CoinDifficultyCtrl;
 
     private bool isCalculating = true; //Có đang tính toán không hay là đang reset rồi mới tính 
 
+    #region Property
     /// <summary>
     /// Tỉ lệ tốc độ hiện tại của trò chơi
     /// </summary>
-    public float GameSpeedRate => ((GameSpeedDifficultyCtrl)GameSpeedDifficultyCtrl).GetGameSpeedRate();
+    public float GameSpeedRate { get => ((GameSpeedDifficultyCtrl)GameSpeedDifficultyCtrl).GetGameSpeedRate(); }
+
+    /// <summary>
+    /// Tỉ lệ spawn ra coin
+    /// </summary>
+    public float CoinSpawnRate { get => ((CoinDifficultyCtrl)CoinDifficultyCtrl).GetCoinSpawnData().Item1; }
+
+    /// <summary>
+    /// Tỉ lệ coin có thể spawn/ tổng số coin
+    /// </summary>
+    public float NumCoinSpawnedRate { get => ((CoinDifficultyCtrl)CoinDifficultyCtrl).GetCoinSpawnData().Item2; }
+
+    #endregion
 
     protected override void Start() {
         base.Start();
@@ -25,6 +39,7 @@ public class DifficultyManager : Singleton<DifficultyManager>
 
         GameSpeedDifficultyCtrl = GetComponentInChildren<GameSpeedDifficultyCtrl>();
         ObstacleDifficultyCtrl = GetComponentInChildren<ObstacleDifficultyCtrl>();
+        CoinDifficultyCtrl = GetComponentInChildren<CoinDifficultyCtrl>();
     }
 
     /// <summary>

@@ -17,9 +17,18 @@ public class CoinSpawner : ButMonobehavior
         coinPooler = new ObjectPooler<CoinCtrl>(coinPrefab.GetComponent<CoinCtrl>(), coinHolder, 10);
     }
 
-    protected override void Start()
-    {
-        spawnCoinDelegate = (param) => {
+    protected override void OnEnable(){
+        base.OnEnable();
+
+        SetUpDelegate();
+    }
+
+    protected override void OnDisable() {
+        Observer.RemoveListener(EventID.ObstacleTileSpawned, spawnCoinDelegate);
+    }
+
+    private void SetUpDelegate(){
+        spawnCoinDelegate ??= (param) => {
             if(param.Key != EventParameterType.ObstacleTileSpawned_WalkableTileObjectAndListSpawnPositions) return;
 
             SpawnCoin(((Tuple<GameObject, List<Vector3>>)param.Value).Item1, ((Tuple<GameObject, List<Vector3>>)param.Value).Item2);
@@ -28,22 +37,20 @@ public class CoinSpawner : ButMonobehavior
         Observer.AddListener(EventID.ObstacleTileSpawned, spawnCoinDelegate);
     }
 
-    private void OnDestroy() {
-        Observer.RemoveListener(EventID.ObstacleTileSpawned, spawnCoinDelegate);
-    }
-
     private void SpawnCoin(GameObject obstacleTile, List<Vector3> spawnPositions)
     {
         // Clone danh sách vị trí spawn để không thay đổi danh sách gốc
         var cloneSpawnPositions = new List<Vector3>(spawnPositions);
 
-        for (int i = 0; i < spawnPositions.Count; i++)
+        for (int i = 0; i < spawnPositions.Count * DifficultyManager.Instance.NumCoinSpawnedRate; i++)
         {
+            if(UnityEngine.Random.value > DifficultyManager.Instance.CoinSpawnRate) return;
+
             Tuple<int, Vector3, Vector3> spawnData = GetSpawnData(obstacleTile, cloneSpawnPositions);
 
-            InitializeCoin(obstacleTile, spawnData.Item2, spawnData.Item3);
+            Spawn(obstacleTile, spawnData.Item2, spawnData.Item3);
 
-            RemoveSpawnPosUsed(cloneSpawnPositions, spawnData.Item1);
+            RemoveSpawnDataUsed(cloneSpawnPositions, spawnData.Item1);
         }
     }
 
@@ -55,7 +62,7 @@ public class CoinSpawner : ButMonobehavior
         return Tuple.Create<int, Vector3, Vector3>(randomIndex, offsetPoint, spawnPosition);
     }
 
-    private void InitializeCoin(GameObject obstacleTile, Vector3 offsetPoint, Vector3 spawnPosition){
+    private void Spawn(GameObject obstacleTile, Vector3 offsetPoint, Vector3 spawnPosition){
         var coin = coinPooler.Get(spawnPosition, Quaternion.identity);
 
         if (coin.coinMovement is CoinMoveByTargetTransformWithOffset coinMovement)
@@ -65,7 +72,7 @@ public class CoinSpawner : ButMonobehavior
         }
     }
 
-    private void RemoveSpawnPosUsed(List<Vector3> cloneSpawnPositions, int indexToRemove){
+    private void RemoveSpawnDataUsed(List<Vector3> cloneSpawnPositions, int indexToRemove){
         cloneSpawnPositions[indexToRemove] = cloneSpawnPositions[^1];
         cloneSpawnPositions.RemoveAt(cloneSpawnPositions.Count - 1);
     }
