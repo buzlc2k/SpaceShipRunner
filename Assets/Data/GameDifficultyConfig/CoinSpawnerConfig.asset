@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f27df57ab65fe204b82ca12f153cf82f, type: 3}
   m_Name: CoinSpawnerConfig
   m_EditorClassIdentifier: 
-  TimeInterval: 20
-  CoinSpawnRates: []
-  NumCoinSpawnedRates: []
+  TimeInterval: 10
+  CoinSpawnRates:
+  - 0.2
+  - 0.4
+  - 0.6
+  NumCoinSpawnedRates:
+  - 0.5
+  - 0.75
+  - 1

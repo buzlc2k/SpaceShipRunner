@@ -93,10 +93,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e127d2536a79b46b8880fb0328a8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8.41667
-  spawnPoint: {x: 0, y: 0, z: 54}
-  targetPoint: {x: 0, y: 0, z: -30}
-  remainingLoops: -1
   resetDistanceThreshold: 0.1
   moveByLocalPoint: 0
 --- !u!1 &6185817764268891534
@@ -1801,7 +1797,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 112
+  m_VersionIndex: 172
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1826,7 +1822,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 1c65ab1fe37cfbd438c77dc85d45a91e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
