@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ObstacleCubeCollision : ObjCollision
+public class ObstacleCubeCollision : ObjChangeTagCollision
 { 
     protected override void LoadValue()
     {
@@ -8,6 +8,8 @@ public class ObstacleCubeCollision : ObjCollision
         colliderRadius = ((ObstacleCubeCtrl)GetObjCtrl()).obstacleCubeConfig.InitialColliderRadius;
         tagOfCollisionableObject = ((ObstacleCubeCtrl)GetObjCtrl()).obstacleCubeConfig.InitialTagOfCollisionableObject;
         tagOfObject = ((ObstacleCubeCtrl)GetObjCtrl()).obstacleCubeConfig.InitialTagOfObject;
+        targetTagOfCollisionableObject = ((ObstacleCubeCtrl)GetObjCtrl()).obstacleCubeConfig.InitialTargetTagOfCollisionableObject;
+        targetTagOfOfject = ((ObstacleCubeCtrl)GetObjCtrl()).obstacleCubeConfig.InitialTargetTagOfObject;
     }
 
     protected override object GetObjCtrl()

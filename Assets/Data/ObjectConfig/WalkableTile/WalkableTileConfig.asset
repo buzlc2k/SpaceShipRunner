@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: WalkableTileConfig
   m_EditorClassIdentifier: 
   InitialMoveSpeed: 8.41667
-  InitialSpawnPoint: {x: 0, y: 0, z: 54}
-  InitialTargetPoint: {x: 0, y: 0, z: -30}
+  InitialSpawnPoint: {x: 0, y: 0, z: 60}
+  InitialTargetPoint: {x: 0, y: 0, z: -10}
   InitialRemainingLoops: -1

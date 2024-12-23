@@ -7,7 +7,7 @@ public class ObstacleTileCtrl : ButMonobehavior, IPooled
 {
     public Transform[] obstacleCubes;
     public ObjMovement obstacleTileMovement;
-    public ObjDespawn obstacleTileDespawn;
+    public ObjDespawning obstacleTileDespawn;
     public ObstacleTileConfig obstacleTileConfig;
 
     protected override void LoadComponents() {
@@ -17,7 +17,7 @@ public class ObstacleTileCtrl : ButMonobehavior, IPooled
                .Select(obstacleCubeCtrl => obstacleCubeCtrl.transform)
                .ToArray();
         if(obstacleTileMovement == null) obstacleTileMovement = GetComponentInChildren<ObjMovement>();
-        if(obstacleTileDespawn == null) obstacleTileDespawn = GetComponentInChildren<ObjDespawn>();
+        if(obstacleTileDespawn == null) obstacleTileDespawn = GetComponentInChildren<ObjDespawning>();
     }
 
     protected override void ResetValue()

@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InitialMoveSpeed: 8.41667
   InitialPosToCalculateDespawn: {x: 0, y: 0, z: 60}
-  InitialDisToDespawn: 65
+  InitialDisToDespawn: 60

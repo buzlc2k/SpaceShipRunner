@@ -7,7 +7,7 @@ public class CoinCtrl : ButMonobehavior, IPooled
 {
     public Transform coinCube;
     public ObjMovement coinMovement;
-    public ObjDespawn coinDespawn;
+    public ObjDespawning coinDespawn;
     public CoinConfig coinConfig;
 
     protected override void LoadComponents()
@@ -16,7 +16,7 @@ public class CoinCtrl : ButMonobehavior, IPooled
 
         if(coinCube == null) coinCube = GetComponentInChildren<CoinCubeCtrl>().transform;
         if(coinMovement == null) coinMovement = GetComponentInChildren<ObjMovement>();
-        if(coinDespawn == null) coinDespawn = GetComponentInChildren<ObjDespawn>();
+        if(coinDespawn == null) coinDespawn = GetComponentInChildren<ObjDespawning>();
     }
 
     protected override void ResetValue()

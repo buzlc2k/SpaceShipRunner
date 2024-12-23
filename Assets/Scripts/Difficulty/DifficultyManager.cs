@@ -27,8 +27,9 @@ public class DifficultyManager : Singleton<DifficultyManager>
 
     #endregion
 
-    protected override void Start() {
-        base.Start();
+    protected override void OnEnable()
+    {
+        base.OnEnable();
         
         InitializeUpdateGameDifficulty();
     }
@@ -50,7 +51,7 @@ public class DifficultyManager : Singleton<DifficultyManager>
     {
         if((isCalculating && resumePreviousState) || (!isCalculating && !resumePreviousState)){
             isCalculating = true;
-            Observer.PostEvent(EventID.InitializeCalculateDifficulty, new KeyValuePair<EventParameterType, object>(EventParameterType.InitializeCalculateDifficulty_null, null));
+            Observer.PostEvent(EventID.InitializeCalculateDifficulty, new KeyValuePair<EventParameterType, object>(EventParameterType.InitializeCalculateDifficulty_Null, null));
         }  
         else{
             isCalculating = false;

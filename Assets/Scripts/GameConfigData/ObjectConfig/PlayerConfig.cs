@@ -14,4 +14,6 @@ public class PlayerConfig : ScriptableObject
     public float InitialColliderRadius;
     public List<ObjTagCollision> InitialTagOfCollisionableObject;
     public ObjTagCollision InitialTagOfObject;
+    public List<ObjTagCollision> InitialTargetTagOfCollisionableObject;
+    public ObjTagCollision InitialTargetTagOfObject;
 }

@@ -8,5 +8,7 @@ public enum EventID{
     ObstacleTileSpawned,
     InitializeCalculateDifficulty,
     InitializeResetUpdateCalculateDifficulty,
-    PauseCalculateGameDifficulty
+    PauseCalculateGameDifficulty,
+    InitializeUpdatePhaseChanging,
+    ChangePhase,
 }

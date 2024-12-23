@@ -10,9 +10,9 @@ public class GameSpeedDifficultyCtrl : BaseDifficultyAbstract
     private GameSpeedRateCalculator gameSpeedRateCalculator;
     private float gameSpeedRate;
 
-    protected override void Awake()
+    protected override void LoadComponents()
     {
-        base.Awake();
+        base.LoadComponents();
         gameSpeedRateCalculator = new GameSpeedRateCalculator(gameSpeedRateConfig);
     }
 

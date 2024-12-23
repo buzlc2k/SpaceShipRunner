@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InitialMoveSpeed: 8.41667
   InitialPosToCalculateDespawn: {x: 0, y: 0, z: 60}
-  InitialDisToDespawn: 85
+  InitialDisToDespawn: 65
   ObstacleCubePosition:
   - {x: -3.2, y: 0.765, z: 0}
   AvailablePositionToSpawnItem:
