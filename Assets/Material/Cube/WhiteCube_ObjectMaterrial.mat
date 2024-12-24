@@ -48,7 +48,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Emission: 0
-    - _FadeCount: -0.00035175838
+    - _FadeCount: 0.038211443
     - _Float: -0.0046712575
     - _QueueControl: 0
     - _QueueOffset: 0

@@ -35,7 +35,7 @@ public class BaseMaterialColorChanging : ButMonobehavior
 
             Tuple<Color, Color> colorData = (Tuple<Color, Color>)param.Value;
 
-            SetUpMaterialColor(colorData.Item1, colorData.Item2);
+            InitilizeSetColor(colorData.Item1, colorData.Item2);
         };
 
         initializeChangingColor ??= (param) => {
@@ -46,7 +46,7 @@ public class BaseMaterialColorChanging : ButMonobehavior
         Observer.AddListener(EventID.ChangePhase, initializeChangingColor);
     }
 
-    protected virtual void SetUpMaterialColor(Color currentColor, Color targetColor){
+    protected virtual void InitilizeSetColor(Color currentColor, Color targetColor){
         Tuple<Color, Color> colorData = ApplyColorIntensity(currentColor, targetColor);
 
         SetThisColor(colorData.Item1, colorData.Item2);
