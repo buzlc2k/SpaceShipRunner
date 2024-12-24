@@ -11,4 +11,7 @@ public enum EventID{
     PauseCalculateGameDifficulty,
     InitializeUpdatePhaseChanging,
     ChangePhase,
+    B_Cube_Collide,
+    W_Cube_Collide,
+    Player_Collide,
 }

@@ -8,6 +8,4 @@ public class ObstacleCubeConfig : ScriptableObject
     public float InitialColliderRadius;
     public List<ObjTagCollision> InitialTagOfCollisionableObject; 
     public ObjTagCollision InitialTagOfObject;
-    public List<ObjTagCollision> InitialTargetTagOfCollisionableObject;
-    public ObjTagCollision InitialTargetTagOfObject;
 }

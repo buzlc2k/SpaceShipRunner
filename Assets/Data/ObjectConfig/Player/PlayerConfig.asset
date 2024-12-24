@@ -17,5 +17,3 @@ MonoBehaviour:
   InitialColliderRadius: 1.15
   InitialTagOfCollisionableObject: 02000000
   InitialTagOfObject: 3
-  InitialTargetTagOfCollisionableObject: 01000000
-  InitialTargetTagOfObject: 4

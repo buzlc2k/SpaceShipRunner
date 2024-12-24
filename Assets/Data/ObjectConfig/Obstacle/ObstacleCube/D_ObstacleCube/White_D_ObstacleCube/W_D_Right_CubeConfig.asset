@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: W_D_Right_CubeConfig
   m_EditorClassIdentifier: 
   InitialColliderRadius: 1.8
-  InitialTagOfCollisionableObject: 0400000003000000
+  InitialTagOfCollisionableObject: 03000000
   InitialTagOfObject: 2
-  InitialTargetTagOfCollisionableObject: 0400000003000000
-  InitialTargetTagOfObject: 1
   InitialMoveSpeed: 2
   InitialSpawnPoint: {x: -3.2, y: 0.765, z: 0}
   InitialTargetPoint: {x: 3.2, y: 0.765, z: 0}

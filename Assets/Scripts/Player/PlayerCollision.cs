@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// Derived class extending ObjChangeTagCollision that define Player's collide calculating logic.
 /// </summary>
-public class PlayerCollision : ObjChangeTagCollision
+public class PlayerCollision : ObjCollision
 {    
     protected override void LoadValue()
     {
@@ -12,12 +12,19 @@ public class PlayerCollision : ObjChangeTagCollision
         colliderRadius = ((PlayerCtrl)GetObjCtrl()).playerConfig.InitialColliderRadius;
         tagOfCollisionableObject = ((PlayerCtrl)GetObjCtrl()).playerConfig.InitialTagOfCollisionableObject;
         tagOfObject = ((PlayerCtrl)GetObjCtrl()).playerConfig.InitialTagOfObject;
-        targetTagOfCollisionableObject = ((PlayerCtrl)GetObjCtrl()).playerConfig.InitialTargetTagOfCollisionableObject;
-        targetTagOfOfject = ((PlayerCtrl)GetObjCtrl()).playerConfig.InitialTargetTagOfObject;
     }
 
     protected override object GetObjCtrl()
     {
         return PlayerCtrl.Instance;
+    }
+
+    protected override void OnEnterCollide()
+    {
+        base.OnEnterCollide();
+
+        GameObject playerModel = ((PlayerCtrl)GetObjCtrl()).playerModel.gameObject;
+        Observer.PostEvent(EventID.Player_Collide, new KeyValuePair<EventParameterType, object>(EventParameterType.Player_Collide_PlayerObject, playerModel));
+        playerModel.SetActive(false);
     }
 }

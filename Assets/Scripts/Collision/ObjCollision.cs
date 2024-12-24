@@ -10,6 +10,7 @@ using UnityEngine.Events;
 public abstract class ObjCollision : ButMonobehavior
 {
     [Header("CollisionAreaAttribute")]
+    protected bool canCollide = true;
     protected float colliderRadius;
     protected List<ObjTagCollision> tagOfCollisionableObject;
     protected ObjTagCollision tagOfObject;
@@ -17,8 +18,15 @@ public abstract class ObjCollision : ButMonobehavior
     #region  Properties
     public float ColliderRadius => colliderRadius; 
     public List<ObjTagCollision> TagOfCollisionableObject => tagOfCollisionableObject;
-    public ObjTagCollision TagOfObject => tagOfObject; 
+    public ObjTagCollision TagOfObject => tagOfObject;
     #endregion
+
+    protected override void LoadValue()
+    {
+        base.LoadValue();
+
+        canCollide = true;
+    }
 
     protected virtual void Update() {
         CollisionLogicRunning();
@@ -41,7 +49,7 @@ public abstract class ObjCollision : ButMonobehavior
             //Kiểm tra Object va chạm có phải là object được va chạm không.
             bool hasMatchingCollisionTag = tagOfCollisionableObject.Contains(obj.GetComponentInChildren<ObjCollision>().TagOfObject); 
             if(!isWithinCollisionDistance || !hasMatchingCollisionTag) continue;
-            OnEnterCollide();
+            if(canCollide) OnEnterCollide();
         }
     }
 
@@ -56,7 +64,7 @@ public abstract class ObjCollision : ButMonobehavior
 
     // Hàm thực hiện logic khi Obj va chạm
     protected virtual void OnEnterCollide(){
-        //noop
+        canCollide = false;
     }
 
     // Hàm thực hiện logic khi Obj vào vùng có thể va chạm
