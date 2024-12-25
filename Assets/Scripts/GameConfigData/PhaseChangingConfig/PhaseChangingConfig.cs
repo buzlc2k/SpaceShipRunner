@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObject/PhaseChangingConfig")]
+[CreateAssetMenu(menuName = "ScriptableObject/PhaseChangingConfig/PhaseChangingConfig")]
 public class PhaseChangingConfig : ScriptableObject
 {
     [Header("PhaseChangingConfig")]

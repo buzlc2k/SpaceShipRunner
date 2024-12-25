@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObject/WalkableTileConfig")]
+[CreateAssetMenu(menuName = "ScriptableObject/ObjectConfig/WalkableTileConfig")]
 public class WalkableTileConfig : ScriptableObject
 {
     [Header("Movement")]

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObject/CoinSpawnerConfig")]
+[CreateAssetMenu(menuName = "ScriptableObject/GameDifficultyConfig/CoinSpawnerConfig")]
 public class CoinSpawnerConfig : ScriptableObject
 {
     [Tooltip("Khoảng thời gian để cập nhật tỉ lệ spawn coin")] public float TimeInterval = 10f;

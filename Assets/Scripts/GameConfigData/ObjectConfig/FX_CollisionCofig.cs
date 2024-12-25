@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObject/FX_CollisionCofig")]
+[CreateAssetMenu(menuName = "ScriptableObject/ObjectConfig/FX_CollisionCofig")]
 public class FX_CollisionCofig : ScriptableObject
 {
     [Header("Movement")]

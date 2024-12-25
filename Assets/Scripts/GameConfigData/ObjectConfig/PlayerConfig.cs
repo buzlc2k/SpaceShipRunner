@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObject/PlayerConfig")]
+[CreateAssetMenu(menuName = "ScriptableObject/ObjectConfig/PlayerConfig")]
 public class PlayerConfig : ScriptableObject
 {
     [Header("Movement")]

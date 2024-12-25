@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObject/CoinConfig")]
+[CreateAssetMenu(menuName = "ScriptableObject/ObjectConfig/CoinConfig")]
 public class CoinConfig : ScriptableObject
 {
     [Header("Movement")]

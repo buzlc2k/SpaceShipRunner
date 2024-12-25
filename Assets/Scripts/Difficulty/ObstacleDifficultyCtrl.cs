@@ -19,17 +19,10 @@ public class ObstacleDifficultyCtrl : BaseDifficultyAbstract
                 continue;
             }
 
-            switch((int)(currentTime / obstacleTileSpawnerConfig.TimeInterval)){
-                case 0:
-                    Observer.PostEvent(EventID.AddMoreObstacle, new KeyValuePair<EventParameterType, object>(EventParameterType.AddMoreObstacle_ListObstaclePrefab, obstacleTileSpawnerConfig.ObstacleTilePrefabs_1));
-                    break;
-                case 1: 
-                    Observer.PostEvent(EventID.AddMoreObstacle, new KeyValuePair<EventParameterType, object>(EventParameterType.AddMoreObstacle_ListObstaclePrefab, obstacleTileSpawnerConfig.ObstacleTilePrefabs_2));
-                    break;
-                case 2: 
-                    Observer.PostEvent(EventID.AddMoreObstacle, new KeyValuePair<EventParameterType, object>(EventParameterType.AddMoreObstacle_ListObstaclePrefab, obstacleTileSpawnerConfig.ObstacleTilePrefabs_3));
-                    break;
-            }
+            int currentDifficultyLevel = (int)(currentTime / obstacleTileSpawnerConfig.TimeInterval);
+
+            if(currentDifficultyLevel < obstacleTileSpawnerConfig.ObstacleTilePrefabs.Count) 
+                Observer.PostEvent(EventID.AddMoreObstacle, new KeyValuePair<EventParameterType, object>(EventParameterType.AddMoreObstacle_ListObstaclePrefab, obstacleTileSpawnerConfig.ObstacleTilePrefabs[currentDifficultyLevel].L_ObstacleTilePrefabs));
 
             yield return null;
         }

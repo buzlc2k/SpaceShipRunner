@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObject/ObstacleCubeConfig/D_ObstacleCubeConfig")]
+[CreateAssetMenu(menuName = "ScriptableObject/ObjectConfig/ObstacleCubeConfig/D_ObstacleCubeConfig")]
 public class D_ObstacleCubeConfig : ObstacleCubeConfig
 {
     [Header("Movement")]

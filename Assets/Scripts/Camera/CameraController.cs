@@ -1,16 +1,24 @@
 using UnityEngine;
+using Cinemachine;
+using System.Collections;
+using System;
+using System.Collections.Generic;
 
 /// <summary>
 /// Class control the main camera of scene
 /// </summary>
 public class CameraController : Singleton<CameraController>
 {
-    /// <summary>
-    /// Main Camera in Scene
-    /// </summary>
-    public Camera MainCamera { get; private set; }
+    public CameraShake CameraShake;
+    public CinemachineVirtualCamera CinemachineVirtualCamera;
+    public Camera MainCamera;
+    public MainCameraConfig MainCameraConfig;
 
     protected override void LoadComponents() {
-        MainCamera = GetComponent<Camera>();
+        base.LoadComponents();
+
+        if(MainCamera == null) MainCamera = GetComponent<Camera>();
+        if(CinemachineVirtualCamera == null) CinemachineVirtualCamera =  GetComponentInChildren<CinemachineVirtualCamera>();
+        if(CameraShake == null) CameraShake = GetComponentInChildren<CameraShake>();
     }
 }

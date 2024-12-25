@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObject/GameSpeedRateConfig")]
+[CreateAssetMenu(menuName = "ScriptableObject/GameDifficultyConfig/GameSpeedRateConfig")]
 public class GameSpeedRateConfig : ScriptableObject
 {
     [Tooltip("Thời gian tối thiểu người chơi có thể phản ứng với chướng ngại vật.")] 

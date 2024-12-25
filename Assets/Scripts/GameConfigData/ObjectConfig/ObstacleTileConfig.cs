@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObject/ObstacleTileConfig")]
+[CreateAssetMenu(menuName = "ScriptableObject/ObjectConfig/ObstacleTileConfig")]
 public class ObstacleTileConfig : ScriptableObject
 {
     [Header("Movement")]
