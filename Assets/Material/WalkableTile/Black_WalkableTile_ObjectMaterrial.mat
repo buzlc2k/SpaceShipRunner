@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 5
+  version: 9
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -22,6 +22,8 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Black_WalkableTile_ObjectMaterrial
   m_Shader: {fileID: -6465566751694194690, guid: 9f0137b2630cd1744937bfedc108f04c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 2
@@ -29,7 +31,9 @@ Material:
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
-  disabledShaderPasses: []
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -48,14 +52,15 @@ Material:
     m_Ints: []
     m_Floats:
     - _Emission: 0
-    - _FadeCount: 0.30475342
+    - _FadeCount: -0.0008933438
     - _Float: -0.0046712575
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _CurrentColor: {r: 1.9766746, g: 0.41396326, b: 0, a: 1}
+    - _CurrentColor: {r: 1.148748, g: 1.9766746, b: 0.19663255, a: 1}
     - _Current_Color: {r: 1.148748, g: 1.9766746, b: 0.19663255, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
-    - _TargetColor: {r: 0.18628347, g: 1.9663254, b: 1.9766746, a: 1}
+    - _TargetColor: {r: 1.5937586, g: 0.18628347, b: 1.9766746, a: 1}
     - _Target_Color: {r: 1.5937586, g: 0.18628347, b: 1.9766746, a: 1}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

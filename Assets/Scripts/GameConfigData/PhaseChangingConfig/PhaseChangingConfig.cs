@@ -13,6 +13,6 @@ public class PhaseChangingConfig : ScriptableObject
 [Serializable]
 public struct ColorConfig
 {
-    [ColorUsage(true, true)] public Color InitialCurrentColor;
-    [ColorUsage(true, true)] public Color InitialTargetColor;
+    public Color InitialCurrentColor;
+    public Color InitialTargetColor;
 }
