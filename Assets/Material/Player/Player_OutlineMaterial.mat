@@ -38,16 +38,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _FadeCount: -0.0008933438
+    - _FadeCount: -0.0067037903
     - _Float: -0.0010758559
     - _OutlineThickness: 0.01
     - _Outline_Thickness: 0.015
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _CurrentColor: {r: 1.7411765, g: 2.9960785, b: 0.29803923, a: 1}
+    - _CurrentColor: {r: 0.28235295, g: 2.9803922, b: 2.9960785, a: 1}
     - _Current_Color: {r: 1.8661467, g: 3.2111173, b: 0.31943053, a: 1}
-    - _TargetColor: {r: 2.4156864, g: 0.28235295, b: 2.9960785, a: 1}
+    - _TargetColor: {r: 3.1215687, g: 1.254902, b: 0.29803923, a: 1}
     - _Target_Color: {r: 2.5890684, g: 0.30261838, b: 3.2111173, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
