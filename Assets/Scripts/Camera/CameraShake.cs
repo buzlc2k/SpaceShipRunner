@@ -39,27 +39,31 @@ public class CameraShake : ButMonobehavior
         Observer.AddListener(EventID.W_Cube_Collide, initializeShakeCameraDelegate);
     }
 
-    private void InitializeShakeCamera(float shakeTimer, float shakeAmplitude){
+    private void InitializeShakeCamera(float shakeDuration, float shakeAmplitude){
 
         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = shakeAmplitude;
 
-        StartCoroutine(C_ResetShakeCamera(shakeTimer, shakeAmplitude));
+        StartCoroutine(C_ResetShakeCamera(shakeDuration, shakeAmplitude));
     }
 
-    private IEnumerator C_ResetShakeCamera(float shakeTimer, float shakeAmplitude){
-        float shakeTime = shakeTimer;
-        while(shakeTimer > 0){
-            shakeTimer -= Time.deltaTime;
-            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = (shakeTimer/shakeTime)*shakeAmplitude;
-            if(shakeTimer <= 0){
-                cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0;
+    private IEnumerator C_ResetShakeCamera(float shakeDuration, float shakeAmplitude){
+        float elapsedTime = 0f; 
+        
+        while (elapsedTime < shakeDuration)
+        {
+            elapsedTime += Time.deltaTime;
 
-                CameraController.Instance.MainCamera.transform.SetPositionAndRotation(CameraController.Instance.MainCameraConfig.InitialPosition
-                                                                                        , CameraController.Instance.MainCameraConfig.InitialRotation);
-            }
-            yield return null;
+            float currentAmplitude = Mathf.Lerp(shakeAmplitude, 0f, elapsedTime / shakeDuration);
+            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = currentAmplitude;
+
+            yield return new WaitForSeconds(Time.deltaTime); 
         }
 
-        yield break;
+        // Reset lại giá trị m_AmplitudeGain và vị trí camera khi hiệu ứng kết thúc
+        cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0;
+        CameraController.Instance.MainCamera.transform.SetPositionAndRotation(
+            CameraController.Instance.MainCameraConfig.InitialPosition,
+            CameraController.Instance.MainCameraConfig.InitialRotation
+        );
     }
 }

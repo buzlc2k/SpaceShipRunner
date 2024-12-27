@@ -36,7 +36,7 @@ public class GameSpeedDifficultyCtrl : BaseDifficultyAbstract
         {
             this.currentTime += Time.deltaTime;
             this.gameSpeedRate = gameSpeedRateCalculator.GetGameSpeedRate(currentTime);
-            yield return null;
+            yield return new WaitForSeconds(Time.deltaTime); 
         }
 
         yield break;
@@ -49,7 +49,7 @@ public class GameSpeedDifficultyCtrl : BaseDifficultyAbstract
         {
             this.currentTime = Mathf.Clamp(currentTime - 10 * Time.deltaTime, 0, currentTime); // Giảm thời gian nhanh hơn để reset
             this.gameSpeedRate = gameSpeedRateCalculator.GetGameSpeedRate(currentTime);
-            yield return null;
+            yield return new WaitForSeconds(Time.deltaTime); 
         }
 
         StartCoroutine(C_CalculateGameDifficulty());

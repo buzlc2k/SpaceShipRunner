@@ -29,7 +29,7 @@ public class CoinDifficultyCtrl : BaseDifficultyAbstract
             currentTime += Time.deltaTime;
             
             if(currentTime % coinSpawnerConfig.TimeInterval > 0.02f){
-                yield return null;
+                yield return new WaitForSeconds(Time.deltaTime); 
                 continue;
             }
 
@@ -41,7 +41,7 @@ public class CoinDifficultyCtrl : BaseDifficultyAbstract
             if(currentDifficultyLevel < coinSpawnerConfig.NumCoinSpawnedRates.Count) 
                 numCoinSpawnedRate = coinSpawnerConfig.NumCoinSpawnedRates[currentDifficultyLevel];
 
-            yield return null;
+            yield return new WaitForSeconds(Time.deltaTime); 
         }
 
         yield break;

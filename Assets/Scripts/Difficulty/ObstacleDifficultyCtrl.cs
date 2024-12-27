@@ -15,7 +15,7 @@ public class ObstacleDifficultyCtrl : BaseDifficultyAbstract
             currentTime += Time.deltaTime;
             
             if(currentTime % obstacleTileSpawnerConfig.TimeInterval > 0.02f){
-                yield return null;
+                yield return new WaitForSeconds(Time.deltaTime); 
                 continue;
             }
 
@@ -24,7 +24,7 @@ public class ObstacleDifficultyCtrl : BaseDifficultyAbstract
             if(currentDifficultyLevel < obstacleTileSpawnerConfig.ObstacleTilePrefabs.Count) 
                 Observer.PostEvent(EventID.AddMoreObstacle, new KeyValuePair<EventParameterType, object>(EventParameterType.AddMoreObstacle_ListObstaclePrefab, obstacleTileSpawnerConfig.ObstacleTilePrefabs[currentDifficultyLevel].L_ObstacleTilePrefabs));
 
-            yield return null;
+            yield return new WaitForSeconds(Time.deltaTime); 
         }
 
         yield break;

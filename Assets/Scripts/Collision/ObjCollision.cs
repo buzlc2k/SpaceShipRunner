@@ -56,7 +56,7 @@ public abstract class ObjCollision : ButMonobehavior
     // Coroutine kiểm tra xem đối tượng có vào khu vực va chạm trong frame tiếp theo hay không.
     // Nếu có, gọi OnEnterCollisionableArea().
     protected virtual IEnumerator C_CheckEnterCollisionableAreaNextFrame(){
-        yield return null;
+        yield return new WaitForSeconds(Time.deltaTime); 
         if(CollisionManager.Instance.CheckObjectIsInCollisionableArea(this.transform.parent.gameObject)){
             OnEnterCollisionableArea();
         }
