@@ -74,6 +74,7 @@ public abstract class BaseColorChanging : ButMonobehavior
 
         while(fadeCount >= 0){
             fadeCount -= Time.deltaTime * (1 + DifficultyManager.Instance.GameSpeedRate);
+            if(fadeCount < 0) fadeCount = 0;
             SetFadeColor(fadeCount);
             yield return null;
         }

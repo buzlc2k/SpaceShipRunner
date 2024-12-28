@@ -6,14 +6,13 @@ using UnityEngine;
 public class MapColorChanging : BaseColorChanging {
     protected override void SetColor(Color currentColor, Color targetColor)
     {
-        RenderSettings.fogColor = currentColor;
-        CameraController.Instance.MainCamera.backgroundColor = currentColor;
+        SetColor(currentColor);
     }
 
-    protected virtual void SetColor(Color currentColor)
+    protected virtual void SetColor(Color fadeColor)
     {
-        RenderSettings.fogColor = currentColor;
-        CameraController.Instance.MainCamera.backgroundColor = currentColor;
+        RenderSettings.fogColor = fadeColor;
+        CameraController.Instance.MainCamera.backgroundColor = fadeColor;
     }
 
     protected override void SetFadeColor(float fadeCount){

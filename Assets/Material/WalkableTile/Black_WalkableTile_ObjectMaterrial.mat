@@ -52,15 +52,16 @@ Material:
     m_Ints: []
     m_Floats:
     - _Emission: 0
-    - _FadeCount: -0.0007867801
+    - _FadeCount: -0.00276501
     - _Float: -0.0046712575
+    - _Intensity: 1.2
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _CurrentColor: {r: 0, g: 0, b: 0, a: 1}
+    - _CurrentColor: {r: 1.9766746, g: 1.6662021, b: 0, a: 1}
     - _Current_Color: {r: 1.148748, g: 1.9766746, b: 0.19663255, a: 1}
     - _Emission: {r: 0, g: 0, b: 0, a: 0}
-    - _TargetColor: {r: 1.9766746, g: 1.9766746, b: 1.9766746, a: 1}
+    - _TargetColor: {r: 1.9766746, g: 0.07244357, b: 0.103490815, a: 1}
     - _Target_Color: {r: 1.5937586, g: 0.18628347, b: 1.9766746, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
