@@ -47,7 +47,6 @@ public class Observer
     public static void PostEvent(EventID eventID, KeyValuePair<EventParameterType, object> param)
     {
         if (!Events.TryGetValue(eventID, out var eventList)) return;
-        
         foreach (var callback in eventList)
         {
             callback(param);

@@ -3,15 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseDifficultyAbstract : ButMonobehavior
+public abstract class BaseDifficulty : ButMonobehavior
 {
-    [Header("BaseDifficultyAbstract")]
+    [Header("BaseDifficulty")]
     protected float currentTime;
     protected static float maxTimeToCalculate;
     protected bool canCalculate;
 
     private Action<KeyValuePair<EventParameterType, object>> initializeUpdateDifficultyDelegate; 
-    private Action<KeyValuePair<EventParameterType, object>> initiallizeResetUpdateCalculateDifficulty;
+    private Action<KeyValuePair<EventParameterType, object>> initiallizeResetUpdateDifficulty;
 
     protected override void OnEnable(){
         base.OnEnable();
@@ -23,8 +23,8 @@ public abstract class BaseDifficultyAbstract : ButMonobehavior
     {
         base.OnDisable();
 
-        Observer.RemoveListener(EventID.InitializeCalculateDifficulty, initializeUpdateDifficultyDelegate);
-        Observer.RemoveListener(EventID.InitializeResetUpdateCalculateDifficulty, initiallizeResetUpdateCalculateDifficulty);
+        Observer.RemoveListener(EventID.InitializeUpdateGame, initializeUpdateDifficultyDelegate);
+        Observer.RemoveListener(EventID.InitializeResetUpdateGame, initiallizeResetUpdateDifficulty);
     }
 
     protected override void LoadValue() {
@@ -40,12 +40,12 @@ public abstract class BaseDifficultyAbstract : ButMonobehavior
             InitializeUpdateDifficulty();
         };
 
-        initiallizeResetUpdateCalculateDifficulty ??= (param) => {
-            InitializeResetUpdateCalculateDifficulty();
+        initiallizeResetUpdateDifficulty ??= (param) => {
+            InitializeResetUpdateDifficulty();
         };
 
-        Observer.AddListener(EventID.InitializeCalculateDifficulty, initializeUpdateDifficultyDelegate);
-        Observer.AddListener(EventID.InitializeResetUpdateCalculateDifficulty, initiallizeResetUpdateCalculateDifficulty);
+        Observer.AddListener(EventID.InitializeUpdateGame, initializeUpdateDifficultyDelegate);
+        Observer.AddListener(EventID.InitializeResetUpdateGame, initiallizeResetUpdateDifficulty);
     }
 
     //Thực hiện việc tính toán độ khó
@@ -55,9 +55,9 @@ public abstract class BaseDifficultyAbstract : ButMonobehavior
     }
 
     //Thực hiện việc reset độ khó sau đó mới bắt đầu tính toán độ khó
-    protected virtual void InitializeResetUpdateCalculateDifficulty(){
+    protected virtual void InitializeResetUpdateDifficulty(){
         canCalculate = true;
-        StartCoroutine(C_ResetCalculateGameDifficulty());
+        StartCoroutine(C_ResetUpdateGameDifficulty());
     }
 
     //Tạm dừng việc tính toán độ khó hoặc việc reset độ khó
@@ -69,7 +69,7 @@ public abstract class BaseDifficultyAbstract : ButMonobehavior
     protected abstract IEnumerator C_CalculateGameDifficulty();
 
     //Hàm abstract định nghĩa logic của việc reset độ khó
-    protected abstract IEnumerator C_ResetCalculateGameDifficulty();
+    protected abstract IEnumerator C_ResetUpdateGameDifficulty();
 
     protected virtual bool CheckCanUpdateDifficulty() {
         return canCalculate && currentTime <= maxTimeToCalculate;

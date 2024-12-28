@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinDifficultyCtrl : BaseDifficultyAbstract
+public class CoinDifficultyCtrl : BaseDifficulty
 {
     [Header("CoinDifficultyCtrl")]
     [SerializeField] CoinSpawnerConfig coinSpawnerConfig;
@@ -47,7 +47,7 @@ public class CoinDifficultyCtrl : BaseDifficultyAbstract
         yield break;
     }
 
-    protected override IEnumerator C_ResetCalculateGameDifficulty()
+    protected override IEnumerator C_ResetUpdateGameDifficulty()
     {
         yield break;
     }

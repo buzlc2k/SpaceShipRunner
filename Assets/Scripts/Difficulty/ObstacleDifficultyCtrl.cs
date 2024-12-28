@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleDifficultyCtrl : BaseDifficultyAbstract
+public class ObstacleDifficultyCtrl : BaseDifficulty
 {
     [Header("ObstacleDifficultyCtrl")]
     [SerializeField] private ObstacleTileSpawnerConfig obstacleTileSpawnerConfig;
@@ -30,7 +30,7 @@ public class ObstacleDifficultyCtrl : BaseDifficultyAbstract
         yield break;
     }
 
-    protected override IEnumerator C_ResetCalculateGameDifficulty()
+    protected override IEnumerator C_ResetUpdateGameDifficulty()
     {
         //noop
         yield break;

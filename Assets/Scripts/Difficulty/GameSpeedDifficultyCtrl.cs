@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameSpeedDifficultyCtrl : BaseDifficultyAbstract
+public class GameSpeedDifficultyCtrl : BaseDifficulty
 {
     [Header("GameSpeedDifficultyCtrl")]
     [SerializeField] private GameSpeedRateConfig gameSpeedRateConfig;
@@ -43,7 +43,7 @@ public class GameSpeedDifficultyCtrl : BaseDifficultyAbstract
     }
 
     // Đặt lại thời gian rồi bắt đầu lại
-    protected override IEnumerator C_ResetCalculateGameDifficulty()
+    protected override IEnumerator C_ResetUpdateGameDifficulty()
     {
         while (CheckCanResetUpdateDifficulty())
         {
