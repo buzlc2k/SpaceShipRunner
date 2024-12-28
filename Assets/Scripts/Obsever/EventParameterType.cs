@@ -15,4 +15,5 @@ public enum EventParameterType{
     B_Cube_Collide_CubeObject,
     W_Cube_Collide_CubeObject,
     Player_Collide_PlayerObject,
+    Player_TakeCoin_Null,
 }

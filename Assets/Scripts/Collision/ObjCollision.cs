@@ -43,13 +43,15 @@ public abstract class ObjCollision : ButMonobehavior
     // Kiểm tra va chạm giữa đối tượng hiện tại và các đối tượng khác trong khu vực va chạm.
     // Nếu có, gọi OnEnterCollide().
     protected virtual void CheckCollisionWithOtherObject(){
+        if(!canCollide) return;
+        
         foreach(GameObject obj in CollisionManager.Instance.ObjectsInCollisionableArea){
             //Tính toán có va chạm không dựa vào bound của 2 object.
             bool isWithinCollisionDistance = obj.GetComponentInChildren<ObjCollision>().ColliderRadius + colliderRadius >= Vector3.Distance(obj.transform.position, this.transform.parent.position);
             //Kiểm tra Object va chạm có phải là object được va chạm không.
             bool hasMatchingCollisionTag = tagOfCollisionableObject.Contains(obj.GetComponentInChildren<ObjCollision>().TagOfObject); 
             if(!isWithinCollisionDistance || !hasMatchingCollisionTag) continue;
-            if(canCollide) OnEnterCollide();
+            OnEnterCollide();
         }
     }
 

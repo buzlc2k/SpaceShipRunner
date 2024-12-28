@@ -1,15 +1,9 @@
 using TMPro;
 using UnityEngine;
 
-public class PointText : ButMonobehavior
+public class PointText : BaseText
 {
-    [SerializeField] TextMeshProUGUI pointText;
-
-    private void Update() {
-        UpdateText();
-    }
-
-    protected virtual void UpdateText(){
+    protected override void UpdateText(){
         pointText.text = ((int)PointTrackingManager.Instance.CurrentPoint).ToString();
     }
 }

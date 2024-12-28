@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CoinCubeCollision : ObjCollision
@@ -14,5 +15,14 @@ public class CoinCubeCollision : ObjCollision
     protected override object GetObjCtrl()
     {
         return this.transform.parent.GetComponent<CoinCubeCtrl>();
+    }
+
+    protected override void OnEnterCollide()
+    {
+        base.OnEnterCollide();
+
+        GameObject coinModel = ((CoinCubeCtrl)GetObjCtrl()).coinCubeModel.gameObject;
+        coinModel.SetActive(false);
+        Observer.PostEvent(EventID.Player_TakeCoin, new KeyValuePair<EventParameterType, object>(EventParameterType.Player_TakeCoin_Null, null));
     }
 }
