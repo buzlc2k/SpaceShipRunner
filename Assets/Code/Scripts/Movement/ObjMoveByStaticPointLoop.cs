@@ -15,8 +15,6 @@ public abstract class ObjMoveByStaticPointLoop : ObjMovement
 
     protected override void Moving()
     {
-        UpdateTargetPosition();
-
         base.Moving();
 
         ResetMoving();
@@ -34,7 +32,7 @@ public abstract class ObjMoveByStaticPointLoop : ObjMovement
     #region UpdateTargetPos
 
     // Updates the target position based on local or world space.
-    protected virtual void UpdateTargetPosition()
+    protected override void UpdateTargetPosition()
     {
         if (!CheckCanUpdateTargetPosition()) return;
 

@@ -7,6 +7,7 @@ public class CoinCubeCtrl : ButMonobehavior
     public ObjMovement coinCubeMovement;
     public ObjRotation coinCubeRotation;
     public ObjCollision coiCubeCollision;
+    public ObjDespawning coinCubeDespawning;
     public CoinCubeConfig coinCubeConfig;
 
     protected override void LoadComponents() {
@@ -15,14 +16,6 @@ public class CoinCubeCtrl : ButMonobehavior
         if (coiCubeCollision == null) coiCubeCollision = GetComponentInChildren<ObjCollision>();
         if(coinCubeMovement == null) coinCubeMovement = GetComponentInChildren<ObjMovement>();
         if (coinCubeRotation == null) coinCubeRotation = GetComponentInChildren<ObjRotation>();
-    }
-
-    protected override void ResetValue()
-    {
-        foreach(Transform child in transform){
-            if(!child.gameObject.activeSelf) child.gameObject.SetActive(true);
-        }
-        
-        base.ResetValue();
+        if(coinCubeDespawning == null) coinCubeDespawning = GetComponentInChildren<ObjDespawning>();
     }
 }

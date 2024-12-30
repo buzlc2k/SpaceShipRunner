@@ -35,5 +35,15 @@ public class CollisionManager : Singleton<CollisionManager>
             if (isWithinArea) ObjectsInCollisionableArea.Add(_gameObject);
             return isWithinArea;
         }
-    }   
+    }
+
+    public void RegisterToRemoveInCollisionableArea(GameObject _gameObject){
+        StartCoroutine(RemoveObjectInCollisionableArea(_gameObject));
+    }
+
+    private IEnumerator RemoveObjectInCollisionableArea(GameObject _gameObject){
+        yield return new WaitForSeconds(Time.deltaTime); 
+
+        ObjectsInCollisionableArea.Remove(_gameObject);
+    }
 }

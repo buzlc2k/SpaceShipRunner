@@ -18,16 +18,10 @@ public abstract class ObjMoveByTargetTransform : ObjMovement
     }
 
     // Set targetPos base on moveTarget
-    protected virtual void UpdateTargetPosition()
+    protected override void UpdateTargetPosition()
     {
         if (this.targetTransform == null) return;
 
         this.targetPosition = this.targetTransform.position;
-    }
-
-    protected override void Moving(){
-        UpdateTargetPosition();
-
-        base.Moving();
     }
 }

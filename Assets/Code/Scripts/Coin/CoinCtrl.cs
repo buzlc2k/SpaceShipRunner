@@ -19,5 +19,14 @@ public class CoinCtrl : ButMonobehavior, IPooled
         if(coinDespawn == null) coinDespawn = GetComponentInChildren<ObjDespawning>();
     }
 
+    protected override void ResetValue()
+    {
+        foreach(Transform child in transform){
+            if(!child.gameObject.activeSelf) child.gameObject.SetActive(true);
+        }
+        
+        base.ResetValue();
+    }
+
     public Action<GameObject> ReleaseCallback { get; set; }
 }

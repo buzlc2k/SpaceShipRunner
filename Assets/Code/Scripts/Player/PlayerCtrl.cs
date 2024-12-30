@@ -8,6 +8,7 @@ public class PlayerCtrl : Singleton<PlayerCtrl>
     public ObjMovement playerMovement;
     public ObjRotation playerRotation;
     public ObjCollision playerCollision;
+    public ObjDespawning playerDespawning;
     public PlayerConfig playerConfig;
     protected override void LoadComponents()
     {
@@ -17,6 +18,7 @@ public class PlayerCtrl : Singleton<PlayerCtrl>
         if(playerMovement == null) playerMovement = GetComponentInChildren<ObjMovement>();
         if(playerRotation == null) playerRotation = GetComponentInChildren<ObjRotation>();
         if(playerCollision == null) playerCollision = GetComponentInChildren<ObjCollision>();
+        if(playerDespawning == null) playerDespawning = GetComponentInChildren<ObjDespawning>();
     }
 
     protected override void ResetValue()

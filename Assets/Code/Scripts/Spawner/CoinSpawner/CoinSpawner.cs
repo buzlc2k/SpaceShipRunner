@@ -64,12 +64,6 @@ public class CoinSpawner : ButMonobehavior
 
     private void Spawn(GameObject obstacleTile, Vector3 offsetPoint, Vector3 spawnPosition){
         var coin = coinPooler.Get(spawnPosition, Quaternion.identity);
-
-        if (coin.coinMovement is CoinMoveByTargetTransformWithOffset coinMovement)
-        {
-            coinMovement.SetOffsetPoint(offsetPoint);
-            coinMovement.SetTargetTransform(obstacleTile.transform);
-        }
     }
 
     private void RemoveSpawnDataUsed(List<Vector3> cloneSpawnPositions, int indexToRemove){

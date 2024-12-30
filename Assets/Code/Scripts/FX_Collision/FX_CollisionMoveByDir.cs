@@ -1,9 +1,9 @@
 using UnityEngine;
 
 /// <summary>
-/// Derived class from ObjMoveForward that define FX_Collision is moved foward a target.
+/// Derived class from ObjMoveByDir that define FX_Collision is moved by dir.
 /// </summary>
-public class FX_CollisionMoveByTargetTransform : ObjMoveByTargetTransform
+public class FX_CollisionMoveByDir : ObjMoveByDir
 {
     protected override void LoadValue(){
         base.LoadValue();
@@ -15,4 +15,5 @@ public class FX_CollisionMoveByTargetTransform : ObjMoveByTargetTransform
     {
         return this.transform.parent.GetComponent<FX_CollisionCtrl>();
     }
+    
 }

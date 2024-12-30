@@ -22,9 +22,8 @@ public class PlayerCollision : ObjCollision
     protected override void OnEnterCollide()
     {
         base.OnEnterCollide();
-
-        GameObject playerModel = ((PlayerCtrl)GetObjCtrl()).playerModel.gameObject;
-        Observer.PostEvent(EventID.Player_Collide, new KeyValuePair<EventParameterType, object>(EventParameterType.Player_Collide_PlayerObject, playerModel));
-        playerModel.SetActive(false);
+        
+        Observer.PostEvent(EventID.Player_Collide, new KeyValuePair<EventParameterType, object>(EventParameterType.Player_Collide_PlayerObject, this.transform.parent.gameObject));
+        ((ObjDespawnByCollide)((PlayerCtrl)GetObjCtrl()).playerDespawning).SetObjectCanDespawn();
     }
 }

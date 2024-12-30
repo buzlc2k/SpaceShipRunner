@@ -25,8 +25,12 @@ public abstract class ObjMovement : ButMonobehavior
         this.moveSpeed = moveSpeed;
     }
 
+    protected abstract void UpdateTargetPosition();
+
     // Handle movement logic, moving the object's parent position towards the target position.
     protected virtual void Moving(){
+        UpdateTargetPosition();
+
         if(this.transform.parent.position.Equals(targetPosition)) return;
         this.transform.parent.position = Vector3.MoveTowards(this.transform.parent.position, 
                                                             this.targetPosition, 

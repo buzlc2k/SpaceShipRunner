@@ -12,15 +12,14 @@ public abstract class ObjMoveByDynamicPoint : ObjMovement
     }
 
     // Set targetPos base on a point given
-    protected virtual void SetTargetPosition(Vector3 targetPosition)
+    protected override void UpdateTargetPosition()
     {
-        this.targetPosition = targetPosition;
+        this.targetPosition = CalculateTargetPosition();
     }
 
     protected override void Moving()
     {
-        var _targetPosition = CalculateTargetPosition();
-        SetTargetPosition(_targetPosition);
+        UpdateTargetPosition();
         base.Moving();
     }
 }

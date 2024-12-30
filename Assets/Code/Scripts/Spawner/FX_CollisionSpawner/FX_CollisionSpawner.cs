@@ -42,7 +42,5 @@ public abstract class FX_CollisionSpawner : ButMonobehavior
 
     private void Spawn(GameObject objectCollided, Vector3 spawnPosition, Quaternion spawnRotation){
         FX_CollisionCtrl fx_Collision = fx_CollisionPoolers.Get(spawnPosition, spawnRotation);
-        
-        ((FX_CollisionMoveByTargetTransform)fx_Collision.fxMovement).SetTargetTransform(objectCollided.transform.parent);
     }
 }

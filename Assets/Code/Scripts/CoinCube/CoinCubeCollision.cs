@@ -20,9 +20,7 @@ public class CoinCubeCollision : ObjCollision
     protected override void OnEnterCollide()
     {
         base.OnEnterCollide();
-
-        GameObject coinModel = ((CoinCubeCtrl)GetObjCtrl()).coinCubeModel.gameObject;
-        coinModel.SetActive(false);
         Observer.PostEvent(EventID.Player_TakeCoin, new KeyValuePair<EventParameterType, object>(EventParameterType.Player_TakeCoin_Null, null));
+        ((ObjDespawnByCollide)((CoinCubeCtrl)GetObjCtrl()).coinCubeDespawning).SetObjectCanDespawn();
     }
 }

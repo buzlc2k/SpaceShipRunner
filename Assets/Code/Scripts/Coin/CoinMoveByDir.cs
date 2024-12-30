@@ -1,9 +1,9 @@
 using UnityEngine;
 
 /// <summary>
-/// Derived class from ObjMoveByTargetTransformWithOffset that define coin is moved foward a target with offset.
+/// Derived class from ObjMoveByDir that define coin is moved by dir.
 /// </summary>
-public class CoinMoveByTargetTransformWithOffset : ObjMoveByTargetTransformWithOffset
+public class CoinMoveByDir : ObjMoveByDir
 {
     protected override void LoadValue()
     {
