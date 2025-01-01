@@ -15,4 +15,7 @@ public enum EventID{
     W_Cube_Collide,
     Player_Collide,
     Player_TakeCoin,
+    ButtonPauseGame_Click,
+    ButtonResumeGame_Click,
+    
 }

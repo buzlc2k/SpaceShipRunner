@@ -16,4 +16,6 @@ public enum EventParameterType{
     W_Cube_Collide_CubeObject,
     Player_Collide_PlayerObject,
     Player_TakeCoin_Null,
+    ButtonPauseGame_Click_Null,
+    ButtonResumeGame_Click_Null,
 }

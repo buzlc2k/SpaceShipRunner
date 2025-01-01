@@ -5,12 +5,38 @@ public class GameManager : Singleton<GameManager>
 {
     private bool isCalculating = true; //Có đang tính toán không hay là đang reset rồi mới tính 
 
+    private StateMachine gameStateMachine;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        //Load State Machine
+        gameStateMachine = new StateMachine();
+    }
+
     protected override void Start()
     {
         base.Start();
 
-        InitializeUpdateGame();
+        //load State
+        var gameRunningState = new GameRunningState(this);
+        var gamePausedState = new GamePausedState(this);
+        var gameOverState = new GameOverState(this);
+
+        //Define transition
+        gameStateMachine.AddTransition(gameRunningState, gamePausedState, new EventPredicate(EventID.ButtonPauseGame_Click));
+        gameStateMachine.AddTransition(gamePausedState, gameRunningState, new EventPredicate(EventID.ButtonResumeGame_Click));
+        gameStateMachine.AddTransition(gameRunningState, gameOverState, new EventPredicate(EventID.Player_Collide));
+
+        //Set default state
+        gameStateMachine.SetState(gameRunningState);
     }
+
+    private void Update() {
+        gameStateMachine.StateMachineUpdate();
+    }
+
 
     /// <summary>
     /// Tiến hành cập nhật trò chơi
