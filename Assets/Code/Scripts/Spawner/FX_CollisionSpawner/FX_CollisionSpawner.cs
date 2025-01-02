@@ -16,17 +16,6 @@ public abstract class FX_CollisionSpawner : ButMonobehavior
         fx_CollisionPoolers = new ObjectPooler<FX_CollisionCtrl>(FX_CollisionPrefabs.GetComponent<FX_CollisionCtrl>(), FX_CollisionHolder, 1);
     }
 
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-
-        SetUpDelegate();
-    }
-
-    protected virtual void SetUpDelegate(){
-        //noop
-    }
-
     protected void SpawnFX_Collision(GameObject objectCollided){
          Tuple<Vector3, Quaternion> spawnData = GetSpawnData(objectCollided);
 

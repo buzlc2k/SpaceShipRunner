@@ -4,7 +4,7 @@ public abstract class ButMonobehavior : MonoBehaviour
 {
     protected virtual void Awake()
     {
-        this.LoadComponents();
+        LoadComponents();
         //For override
     }
 
@@ -15,8 +15,8 @@ public abstract class ButMonobehavior : MonoBehaviour
 
     protected virtual void Reset()
     {
-        this.LoadComponents();
-        this.LoadValue();
+        LoadComponents();
+        LoadValue();
         //For override
     }
 
@@ -37,12 +37,29 @@ public abstract class ButMonobehavior : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        this.ResetValue();
+        ResetValue();
+        SetUpDelegate();
+        AddListenerToObsever();
         //For override
+
+        
     }
 
     protected virtual void OnDisable()
     {
+        //For override
+        RemoveListenerFromObsever();
+    }
+
+    protected virtual void SetUpDelegate(){
+        //For override
+    }
+
+    protected virtual void AddListenerToObsever(){
+        //For override
+    }
+
+    protected virtual void RemoveListenerFromObsever(){
         //For override
     }
 }

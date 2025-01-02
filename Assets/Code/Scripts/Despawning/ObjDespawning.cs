@@ -6,10 +6,14 @@ using UnityEngine;
 public abstract class ObjDespawning : ButMonobehavior
 {  
     protected virtual void Update() {
-        Despawning();
+        if(CheckCanUpdateDespawning()) Despawning();
     }
 
     protected abstract object GetObjCtrl();
+
+    protected virtual bool CheckCanUpdateDespawning(){
+        return GameManager.Instance.CurrentGameState.Equals(GameState.Running) || GameManager.Instance.CurrentGameState.Equals(GameState.Restarting);
+    }
 
     protected virtual void Despawning(){
         if(CheckCanDespawn()) InitializeDespawn();

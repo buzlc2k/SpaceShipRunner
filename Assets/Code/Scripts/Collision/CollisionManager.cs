@@ -42,7 +42,7 @@ public class CollisionManager : Singleton<CollisionManager>
     }
 
     private IEnumerator RemoveObjectInCollisionableArea(GameObject _gameObject){
-        yield return new WaitForSeconds(Time.deltaTime); 
+        yield return null; 
 
         ObjectsInCollisionableArea.Remove(_gameObject);
     }

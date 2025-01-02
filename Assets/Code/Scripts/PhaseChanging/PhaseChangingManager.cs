@@ -7,71 +7,30 @@ public class PhaseChangingManager : Singleton<PhaseChangingManager>
 {
     [Header("PhaseChangingManager")]
     [SerializeField] private PhaseChangingConfig phaseChangingConfig;
-    private bool canCalculate;
     private float phaseChangingTimer;
-
-    private Action<KeyValuePair<EventParameterType, object>> initializeUpdatePhaseChanging;
-
-    protected override void Start()
-    {
-        base.Start();
-        
-        StartCoroutine(C_InitializeUpdatePhaseChanging());
-    }
-
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-    
-        SetUpDelegate(); 
-    }
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-
-        Observer.RemoveListener(EventID.InitializeUpdateGame, initializeUpdatePhaseChanging);
-    }
 
     protected override void LoadValue()
     {
         base.LoadValue();
 
-        canCalculate = false;        
         phaseChangingTimer = phaseChangingConfig.TimeInterval;
     }
 
-    //Tạo các delegate để lắng nghe sự kiện
-    protected virtual void SetUpDelegate(){
-        initializeUpdatePhaseChanging ??= (param) => {
-            InitializeUpdatePhaseChanging();
-        };
-
-        Observer.AddListener(EventID.InitializeUpdateGame, initializeUpdatePhaseChanging);
-    }
-
-    /// <summary>
-    /// Tiến hành cập nhật phase của trò chơi
-    /// </summary>
-    public void InitializeUpdatePhaseChanging()
+    protected override void Start()
     {
-        canCalculate = true;
-    }
+        base.Start();
 
-    /// <summary>
-    /// Tạm dừng cập nhật phase của trò chơi
-    /// </summary>
-    public void PauseUpdatePhaseChanging()
-    {
-        canCalculate = false;
-    }
-
-    IEnumerator C_InitializeUpdatePhaseChanging(){
         SetUpPhaseChanging();
+    }
 
-        while(true){
-            yield return StartCoroutine(C_UpdatePhaseChanging());   
-        }
+    private void Update(){
+        if(!CheckCanUpdatePhaseChanging()) return;
+
+        UpdatePhaseChanging();
+    }
+
+    protected virtual bool CheckCanUpdatePhaseChanging(){
+        return GameManager.Instance.CurrentGameState.Equals(GameState.Running) || GameManager.Instance.CurrentGameState.Equals(GameState.Restarting);
     }
 
     private void SetUpPhaseChanging(){
@@ -84,16 +43,12 @@ public class PhaseChangingManager : Singleton<PhaseChangingManager>
             new KeyValuePair<EventParameterType, object>(EventParameterType.InitializeUpdatePhaseChanging_TupleColor, Tuple.Create<Color, Color>(initialCurrentColor, initialTargetColor)));
     }
 
-    IEnumerator C_UpdatePhaseChanging(){
-        if(canCalculate){
-            phaseChangingTimer -= Time.deltaTime * (1+ DifficultyManager.Instance.GameSpeedRate);
-            if(phaseChangingTimer < 0){
-                phaseChangingTimer = phaseChangingConfig.TimeInterval;
-                Observer.PostEvent(EventID.ChangePhase, new KeyValuePair<EventParameterType, object>(EventParameterType.ChangePhase_Null, null));
-            }
-            yield return new WaitForSeconds(Time.deltaTime);
+    private void UpdatePhaseChanging(){
+        phaseChangingTimer -= Time.deltaTime * (1+ DifficultyManager.Instance.GameSpeedRate);
+
+        if(phaseChangingTimer < 0){
+            phaseChangingTimer = phaseChangingConfig.TimeInterval;
+            Observer.PostEvent(EventID.ChangePhase, new KeyValuePair<EventParameterType, object>(EventParameterType.ChangePhase_Null, null));
         }
-        else
-            yield return new WaitForSeconds(Time.deltaTime);
     }
 }

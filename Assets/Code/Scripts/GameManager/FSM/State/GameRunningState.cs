@@ -7,7 +7,7 @@ public class GameRunningState : BaseGameState
 
     public override void OnEnterState(){
         Debug.Log("Run Game");
-        gameManager.InitializeUpdateGame();
+        gameManager.CurrentGameState = GameState.Running;
     }
     public override void OnExitState(){
 

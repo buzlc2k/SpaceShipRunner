@@ -29,10 +29,14 @@ public abstract class ObjCollision : ButMonobehavior
     }
 
     protected virtual void Update() {
-        CollisionLogicRunning();
+        if(CheckCanUpdateCollision()) CollisionLogicRunning();
     }
 
     protected abstract object GetObjCtrl();
+
+    protected virtual bool CheckCanUpdateCollision(){
+        return GameManager.Instance.CurrentGameState.Equals(GameState.Running) || GameManager.Instance.CurrentGameState.Equals(GameState.Restarting);
+    }
 
     //Thực hiện logic kiểm tra va chạm cho đối tượng.
     protected virtual void CollisionLogicRunning(){
@@ -58,7 +62,7 @@ public abstract class ObjCollision : ButMonobehavior
     // Coroutine kiểm tra xem đối tượng có vào khu vực va chạm trong frame tiếp theo hay không.
     // Nếu có, gọi OnEnterCollisionableArea().
     protected virtual IEnumerator C_CheckEnterCollisionableAreaNextFrame(){
-        yield return new WaitForSeconds(Time.deltaTime); 
+        yield return null; 
         if(CollisionManager.Instance.CheckObjectIsInCollisionableArea(this.transform.parent.gameObject)){
             OnEnterCollisionableArea();
         }

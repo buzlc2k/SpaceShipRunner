@@ -7,6 +7,7 @@ public class GamePausedState : BaseGameState
 
     public override void OnEnterState(){
         Debug.Log("Pause game");
+        gameManager.CurrentGameState = GameState.Paused;
     }
     public override void OnExitState(){
 

@@ -6,9 +6,10 @@ public class GameStartRunningState : BaseGameState
     public GameStartRunningState(GameManager gameManager) : base(gameManager) { }
 
     public override void OnEnterState(){
-        //noop
+        Debug.Log("StartScenceRunning");
+        gameManager.CurrentGameState = GameState.StartSceneRunning;
     }
     public override void OnExitState(){
-        //noop
+        
     }
 }

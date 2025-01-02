@@ -15,20 +15,6 @@ public class CoinTrackingManager : Singleton<CoinTrackingManager>
 
     #endregion
 
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-    
-        SetUpDelegate(); 
-    }
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-
-        Observer.RemoveListener(EventID.Player_TakeCoin, addCoin);
-    }
-
     protected override void LoadValue()
     {
         base.LoadValue();
@@ -37,12 +23,24 @@ public class CoinTrackingManager : Singleton<CoinTrackingManager>
     }
 
     //Tạo các delegate để lắng nghe sự kiện
-    protected virtual void SetUpDelegate(){
+    protected override void SetUpDelegate(){
         addCoin ??= (param) => {
             AddCoin();
         };
+    }
+
+    protected override void AddListenerToObsever()
+    {
+        base.AddListenerToObsever();
 
         Observer.AddListener(EventID.Player_TakeCoin, addCoin);
+    }
+
+    protected override void RemoveListenerFromObsever()
+    {
+        base.RemoveListenerFromObsever();
+
+        Observer.RemoveListener(EventID.Player_TakeCoin, addCoin);
     }
 
     private void AddCoin(){

@@ -21,7 +21,6 @@ public class GameSpeedDifficultyCtrl : BaseDifficulty
         base.LoadValue();
 
         maxTimeToCalculate = gameSpeedRateCalculator.GetMaxTimeToCalculate();
-
         gameSpeedRate = 0f;
     }
 
@@ -30,30 +29,17 @@ public class GameSpeedDifficultyCtrl : BaseDifficulty
     }
 
     // Cập nhật tốc độ trò chơi dựa trên thời gian
-    protected override IEnumerator C_CalculateGameDifficulty()
+    protected override void UpdatingGameDifficulty()
     {
-        while (CheckCanUpdateDifficulty())
-        {
-            this.currentTime += Time.deltaTime;
-            this.gameSpeedRate = gameSpeedRateCalculator.GetGameSpeedRate(currentTime);
-            yield return new WaitForSeconds(Time.deltaTime); 
-        }
-
-        yield break;
+        this.currentTime += Time.deltaTime;
+        this.gameSpeedRate = gameSpeedRateCalculator.GetGameSpeedRate(currentTime);
     }
 
     // Đặt lại thời gian rồi bắt đầu lại
-    protected override IEnumerator C_ResetUpdateGameDifficulty()
+    protected override void ResetingGameDifficulty()
     {
-        while (CheckCanResetUpdateDifficulty())
-        {
-            this.currentTime = Mathf.Clamp(currentTime - 10 * Time.deltaTime, 0, currentTime); // Giảm thời gian nhanh hơn để reset
-            this.gameSpeedRate = gameSpeedRateCalculator.GetGameSpeedRate(currentTime);
-            yield return new WaitForSeconds(Time.deltaTime); 
-        }
-
-        StartCoroutine(C_CalculateGameDifficulty());
-        yield break;
+        this.currentTime = Mathf.Clamp(currentTime - 10 * Time.deltaTime, 0, currentTime); // Giảm thời gian nhanh hơn để reset
+        this.gameSpeedRate = gameSpeedRateCalculator.GetGameSpeedRate(currentTime);
     }
 }
 

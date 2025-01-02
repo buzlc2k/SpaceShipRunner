@@ -11,30 +11,33 @@ public class CoinSpawner : ButMonobehavior
     private ObjectPooler<CoinCtrl> coinPooler;
     private Action<KeyValuePair<EventParameterType, object>> spawnCoinDelegate;
 
-    protected override void Awake()
+    protected override void LoadComponents()
     {
-        base.Awake();
+        base.LoadComponents();
+
         coinPooler = new ObjectPooler<CoinCtrl>(coinPrefab.GetComponent<CoinCtrl>(), coinHolder, 10);
     }
 
-    protected override void OnEnable(){
-        base.OnEnable();
-
-        SetUpDelegate();
-    }
-
-    protected override void OnDisable() {
-        Observer.RemoveListener(EventID.ObstacleTileSpawned, spawnCoinDelegate);
-    }
-
-    private void SetUpDelegate(){
+    protected override void SetUpDelegate(){
         spawnCoinDelegate ??= (param) => {
             if(param.Key != EventParameterType.ObstacleTileSpawned_WalkableTileObjectAndListSpawnPositions) return;
 
             SpawnCoin(((Tuple<GameObject, List<Vector3>>)param.Value).Item1, ((Tuple<GameObject, List<Vector3>>)param.Value).Item2);
         };
+    }
+
+    protected override void AddListenerToObsever()
+    {
+        base.AddListenerToObsever();
 
         Observer.AddListener(EventID.ObstacleTileSpawned, spawnCoinDelegate);
+    }
+
+    protected override void RemoveListenerFromObsever()
+    {
+        base.RemoveListenerFromObsever();
+
+        Observer.RemoveListener(EventID.ObstacleTileSpawned, spawnCoinDelegate);
     }
 
     private void SpawnCoin(GameObject obstacleTile, List<Vector3> spawnPositions)

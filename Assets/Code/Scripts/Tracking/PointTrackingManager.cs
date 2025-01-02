@@ -6,9 +6,6 @@ using UnityEngine;
 public class PointTrackingManager : Singleton<PointTrackingManager>
 {
     private float currentPoint;
-    private bool canCalculate;
-
-    private Action<KeyValuePair<EventParameterType, object>> initializeUpdatePoint;
 
     #region Property
 
@@ -16,72 +13,22 @@ public class PointTrackingManager : Singleton<PointTrackingManager>
 
     #endregion
 
-    protected override void Start()
-    {
-        base.Start();
-
-        StartCoroutine(C_InitializeUpdatePoint());
-    }
-
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-    
-        SetUpDelegate(); 
-    }
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-
-        Observer.RemoveListener(EventID.InitializeUpdateGame, initializeUpdatePoint);
-    }
-
     protected override void LoadValue()
     {
         base.LoadValue();
 
         currentPoint = 0;
-        canCalculate = false;
     }
 
-    //Tạo các delegate để lắng nghe sự kiện
-    protected virtual void SetUpDelegate(){
-        initializeUpdatePoint ??= (param) => {
-            InitializeUpdatePoint();
-        };
-
-        Observer.AddListener(EventID.InitializeUpdateGame, initializeUpdatePoint);
+    private void Update() {
+        if(CheckCanUpdatePoint()) UpdatePoint();
     }
 
-    /// <summary>
-    /// Tiến hành cập nhật điểm của người chơi
-    /// </summary>
-    public void InitializeUpdatePoint()
-    {
-        canCalculate = true;
+    protected virtual bool CheckCanUpdatePoint(){
+        return GameManager.Instance.CurrentGameState.Equals(GameState.Running) || GameManager.Instance.CurrentGameState.Equals(GameState.Restarting);
     }
 
-    /// <summary>
-    /// Tạm dừng cập nhật điểm của người chơi
-    /// </summary>
-    public void PauseUpdatePoint()
-    {
-        canCalculate = false;
-    }
-
-    private IEnumerator C_InitializeUpdatePoint(){
-        while(true){
-            yield return StartCoroutine(C_UpdatePoint());;
-        }
-    }
-
-    IEnumerator C_UpdatePoint(){
-        if(canCalculate){
-            currentPoint += 5 * Time.deltaTime * (1 + DifficultyManager.Instance.GameSpeedRate);
-            yield return new WaitForSeconds(Time.deltaTime);
-        }
-        else
-            yield return new WaitForSeconds(Time.deltaTime);
+    private void UpdatePoint(){
+        currentPoint += 5 * Time.deltaTime * (1 + DifficultyManager.Instance.GameSpeedRate);
     }
 }

@@ -8,35 +8,34 @@ public class CameraShake : ButMonobehavior
 {
     private CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin;      
     protected Action<KeyValuePair<EventParameterType, object>> initializeShakeCameraDelegate;
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-
-        SetUpDelegate();
-    }
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-
-        Observer.RemoveListener(EventID.Player_Collide, initializeShakeCameraDelegate);
-        Observer.RemoveListener(EventID.B_Cube_Collide, initializeShakeCameraDelegate);
-        Observer.RemoveListener(EventID.W_Cube_Collide, initializeShakeCameraDelegate);
-    }
 
     protected override void LoadComponents() {
         base.LoadComponents();
 
         cinemachineBasicMultiChannelPerlin = CameraController.Instance.CinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
-    protected virtual void SetUpDelegate(){
+    protected override void SetUpDelegate(){
         initializeShakeCameraDelegate ??= param => {
             InitializeShakeCamera(0.075f, 1.5f);
         };
+    }
+
+    protected override void AddListenerToObsever()
+    {
+        base.AddListenerToObsever();
 
         Observer.AddListener(EventID.Player_Collide, initializeShakeCameraDelegate);
         Observer.AddListener(EventID.B_Cube_Collide, initializeShakeCameraDelegate);
         Observer.AddListener(EventID.W_Cube_Collide, initializeShakeCameraDelegate);
+    }
+
+    protected override void RemoveListenerFromObsever()
+    {
+        base.RemoveListenerFromObsever();
+
+        Observer.RemoveListener(EventID.Player_Collide, initializeShakeCameraDelegate);
+        Observer.RemoveListener(EventID.B_Cube_Collide, initializeShakeCameraDelegate);
+        Observer.RemoveListener(EventID.W_Cube_Collide, initializeShakeCameraDelegate);
     }
 
     private void InitializeShakeCamera(float shakeDuration, float shakeAmplitude){
@@ -56,7 +55,7 @@ public class CameraShake : ButMonobehavior
             float currentAmplitude = Mathf.Lerp(shakeAmplitude, 0f, elapsedTime / shakeDuration);
             cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = currentAmplitude;
 
-            yield return new WaitForSeconds(Time.deltaTime); 
+            yield return null; 
         }
 
         // Reset lại giá trị m_AmplitudeGain và vị trí camera khi hiệu ứng kết thúc

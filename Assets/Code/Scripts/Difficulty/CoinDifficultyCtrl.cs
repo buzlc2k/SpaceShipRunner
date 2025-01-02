@@ -22,33 +22,23 @@ public class CoinDifficultyCtrl : BaseDifficulty
         return Tuple.Create(coinSpawnRate, numCoinSpawnedRate);
     }
 
-    protected override IEnumerator C_CalculateGameDifficulty()
+    protected override void UpdatingGameDifficulty()
     {
-        while(CheckCanUpdateDifficulty()){
-
-            currentTime += Time.deltaTime;
+        currentTime += Time.deltaTime;
             
-            if(currentTime % coinSpawnerConfig.TimeInterval > 0.02f){
-                yield return new WaitForSeconds(Time.deltaTime); 
-                continue;
-            }
+        if(currentTime % coinSpawnerConfig.TimeInterval > 0.02f) return;
 
-            int currentDifficultyLevel = (int)(currentTime / coinSpawnerConfig.TimeInterval);
+        int currentDifficultyLevel = (int)(currentTime / coinSpawnerConfig.TimeInterval);
 
-            if(currentDifficultyLevel < coinSpawnerConfig.CoinSpawnRates.Count) 
-                coinSpawnRate = coinSpawnerConfig.CoinSpawnRates[currentDifficultyLevel];
+        if(currentDifficultyLevel < coinSpawnerConfig.CoinSpawnRates.Count) 
+            coinSpawnRate = coinSpawnerConfig.CoinSpawnRates[currentDifficultyLevel];
                 
-            if(currentDifficultyLevel < coinSpawnerConfig.NumCoinSpawnedRates.Count) 
-                numCoinSpawnedRate = coinSpawnerConfig.NumCoinSpawnedRates[currentDifficultyLevel];
-
-            yield return new WaitForSeconds(Time.deltaTime); 
-        }
-
-        yield break;
+        if(currentDifficultyLevel < coinSpawnerConfig.NumCoinSpawnedRates.Count) 
+            numCoinSpawnedRate = coinSpawnerConfig.NumCoinSpawnedRates[currentDifficultyLevel];
     }
 
-    protected override IEnumerator C_ResetUpdateGameDifficulty()
+    protected override void ResetingGameDifficulty()
     {
-        yield break;
+        
     }
 }

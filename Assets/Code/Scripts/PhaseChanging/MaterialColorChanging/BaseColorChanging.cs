@@ -10,23 +10,9 @@ public abstract class BaseColorChanging : ButMonobehavior
     protected Color targetColor;
 
     private Action<KeyValuePair<EventParameterType, object>> setColor; 
-    private Action<KeyValuePair<EventParameterType, object>> initializeChangingColor; 
+    private Action<KeyValuePair<EventParameterType, object>> initializeChangingColor;
 
-    protected override void OnEnable(){
-        base.OnEnable();
-
-        SetUpDelegate();
-    }
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-
-        Observer.RemoveListener(EventID.InitializeUpdatePhaseChanging, setColor);
-        Observer.RemoveListener(EventID.ChangePhase, initializeChangingColor);
-    }
-
-    protected virtual void SetUpDelegate(){
+    protected override void SetUpDelegate(){
         setColor ??= param => {
             if (param.Key != EventParameterType.InitializeUpdatePhaseChanging_TupleColor) return;
 
@@ -38,9 +24,22 @@ public abstract class BaseColorChanging : ButMonobehavior
         initializeChangingColor ??= (param) => {
             InitializeChangingColor();
         };
+    }
+
+    protected override void AddListenerToObsever()
+    {
+        base.AddListenerToObsever();
 
         Observer.AddListener(EventID.InitializeUpdatePhaseChanging, setColor);
         Observer.AddListener(EventID.ChangePhase, initializeChangingColor);
+    }
+
+    protected override void RemoveListenerFromObsever()
+    {
+        base.RemoveListenerFromObsever();
+
+        Observer.RemoveListener(EventID.InitializeUpdatePhaseChanging, setColor);
+        Observer.RemoveListener(EventID.ChangePhase, initializeChangingColor);
     }
 
     protected virtual void InitilizeSetColor(Color currentColor, Color targetColor){
@@ -62,9 +61,9 @@ public abstract class BaseColorChanging : ButMonobehavior
     }
 
     protected virtual IEnumerator C_ChangingColor(){
-        (this.currentColor, this.targetColor) = (this.targetColor, this.currentColor);
+        (currentColor, targetColor) = (targetColor, currentColor);
 
-        SetColor(this.currentColor, this.targetColor);
+        SetColor(currentColor, targetColor);
 
         yield return StartCoroutine(C_FadeColor());
     }
@@ -72,7 +71,7 @@ public abstract class BaseColorChanging : ButMonobehavior
     protected virtual IEnumerator C_FadeColor(){
         float fadeCount = 1;
 
-        while(fadeCount >= 0){
+        while(fadeCount > 0){
             fadeCount -= Time.deltaTime * (1 + DifficultyManager.Instance.GameSpeedRate);
             if(fadeCount < 0) fadeCount = 0;
             SetFadeColor(fadeCount);

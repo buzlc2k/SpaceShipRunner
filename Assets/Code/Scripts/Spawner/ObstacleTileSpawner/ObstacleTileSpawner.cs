@@ -11,19 +11,7 @@ public class ObstacleTileSpawner : ButMonobehavior
     private Action<KeyValuePair<EventParameterType, object>> spawnObstacleTileDelegate;
     private Action<KeyValuePair<EventParameterType, object>> addNewObstacleTilePoolerDelegate;
 
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-
-        SetUpDelegate();
-    }
-
-    protected override void OnDisable() {
-        Observer.RemoveListener(EventID.ResetWalkableTile, spawnObstacleTileDelegate);
-        Observer.RemoveListener(EventID.AddMoreObstacle, addNewObstacleTilePoolerDelegate);
-    }
-
-    private void SetUpDelegate(){
+    protected override void SetUpDelegate(){
         spawnObstacleTileDelegate ??= (param) => {
             if (param.Key != EventParameterType.ResetWalkableTile_WalkableTileObject) return;
             SpawnObstacleTile((GameObject)param.Value);
@@ -33,9 +21,22 @@ public class ObstacleTileSpawner : ButMonobehavior
             if (param.Key != EventParameterType.AddMoreObstacle_ListObstaclePrefab) return;
             AddNewObstacleTilePooler((List<GameObject>)param.Value);
         };
+    }
+
+    protected override void AddListenerToObsever()
+    {
+        base.AddListenerToObsever();
 
         Observer.AddListener(EventID.ResetWalkableTile, spawnObstacleTileDelegate);
         Observer.AddListener(EventID.AddMoreObstacle, addNewObstacleTilePoolerDelegate);
+    }
+
+    protected override void RemoveListenerFromObsever()
+    {
+        base.RemoveListenerFromObsever();
+
+        Observer.RemoveListener(EventID.ResetWalkableTile, spawnObstacleTileDelegate);
+        Observer.RemoveListener(EventID.AddMoreObstacle, addNewObstacleTilePoolerDelegate);
     }
 
     private void SpawnObstacleTile(GameObject walkableTile){

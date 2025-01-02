@@ -12,7 +12,7 @@ public abstract class ObjMovement : ButMonobehavior
     protected float moveSpeed; 
 
     protected virtual void Update() {
-        Moving();
+        if(CheckCanUpdateMoving()) Moving();
     }
 
     protected abstract object GetObjCtrl();
@@ -26,6 +26,10 @@ public abstract class ObjMovement : ButMonobehavior
     }
 
     protected abstract void UpdateTargetPosition();
+
+    protected virtual bool CheckCanUpdateMoving(){
+        return GameManager.Instance.CurrentGameState.Equals(GameState.Running) || GameManager.Instance.CurrentGameState.Equals(GameState.Restarting);
+    }
 
     // Handle movement logic, moving the object's parent position towards the target position.
     protected virtual void Moving(){
