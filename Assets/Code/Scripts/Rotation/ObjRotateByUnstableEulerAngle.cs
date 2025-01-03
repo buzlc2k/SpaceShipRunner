@@ -21,7 +21,7 @@ public abstract class ObjRotateByUnstableEulerAngle : ObjRotation
     protected virtual Vector3 CalculateTheSmoothlyAngleToRotate(Vector3 finalAngle){
         Vector3 _angleToRotate;
         //If the current rotation is close to the target angle (within the rotation threshold), set the target angle directly
-        if(Quaternion.Angle(this.objModel.rotation, Quaternion.Euler(finalAngle)) < rotationThreshold) _angleToRotate = finalAngle;
+        if(Quaternion.Angle(objModel.rotation, Quaternion.Euler(finalAngle)) < rotationThreshold) _angleToRotate = finalAngle;
         //Otherwise, interpolate smoothly from the current angle to the target angle using Quaternion.Lerp
         else _angleToRotate = Quaternion.Lerp(
                 objModel.rotation,

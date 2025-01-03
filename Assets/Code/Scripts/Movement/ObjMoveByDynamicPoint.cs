@@ -14,7 +14,7 @@ public abstract class ObjMoveByDynamicPoint : ObjMovement
     // Set targetPos base on a point given
     protected override void UpdateTargetPosition()
     {
-        this.targetPosition = CalculateTargetPosition();
+        targetPosition = CalculateTargetPosition();
     }
 
     protected override void Moving()

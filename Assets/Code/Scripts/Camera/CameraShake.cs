@@ -16,7 +16,7 @@ public class CameraShake : ButMonobehavior
     }
     protected override void SetUpDelegate(){
         initializeShakeCameraDelegate ??= param => {
-            InitializeShakeCamera(0.075f, 1.5f);
+            InitializeShakeCamera(0.1f, 1.5f);
         };
     }
 

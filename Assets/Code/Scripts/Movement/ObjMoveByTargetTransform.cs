@@ -11,17 +11,17 @@ public abstract class ObjMoveByTargetTransform : ObjMovement
     /// <summary>
     /// Set target to move forward.
     /// </summary>
-    /// <param name="target">target to move forward.</param>
-    public virtual void SetTargetTransform(Transform target)
+    /// <param name="targetTransform">target to move forward.</param>
+    public virtual void SetTargetTransform(Transform targetTransform)
     {
-        this.targetTransform = target;
+        this.targetTransform = targetTransform;
     }
 
     // Set targetPos base on moveTarget
     protected override void UpdateTargetPosition()
     {
-        if (this.targetTransform == null) return;
+        if (targetTransform == null) return;
 
-        this.targetPosition = this.targetTransform.position;
+        targetPosition = targetTransform.position;
     }
 }

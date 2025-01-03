@@ -7,9 +7,6 @@ public enum EventParameterType{
     ResetWalkableTile_WalkableTileObject,
     AddMoreObstacle_ListObstaclePrefab,
     ObstacleTileSpawned_WalkableTileObjectAndListSpawnPositions,
-    InitializeUpdateGame_Null,
-    InitializeResetUpdateGame_Null,
-    PauseUpdateGame_Null,
     InitializeUpdatePhaseChanging_TupleColor,
     ChangePhase_Null,
     B_Cube_Collide_CubeObject,
@@ -18,4 +15,5 @@ public enum EventParameterType{
     Player_TakeCoin_Null,
     ButtonPauseGame_Click_Null,
     ButtonResumeGame_Click_Null,
+    ChangeGameState_GameState,
 }

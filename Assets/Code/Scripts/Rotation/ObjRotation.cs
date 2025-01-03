@@ -14,7 +14,7 @@ public abstract class ObjRotation : ButMonobehavior
     protected Transform objModel;
 
     protected virtual void Update() {
-        Rotating();
+        if(CheckCanUpdateRotating()) Rotating();
     }
 
     protected override void LoadComponents() {
@@ -46,6 +46,12 @@ public abstract class ObjRotation : ButMonobehavior
         this.targetAngleToRotate = targetAngleToRotate;
     }
 
+    protected virtual bool CheckCanUpdateRotating(){
+        return GameManager.Instance.CurrentGameState.Equals(GameState.Running) 
+            || GameManager.Instance.CurrentGameState.Equals(GameState.Restarting)
+            || GameManager.Instance.CurrentGameState.Equals(GameState.Over);
+    }
+
     // Basic rotate logic of an object in the scene
     protected virtual void Rotating()
     {
@@ -53,6 +59,6 @@ public abstract class ObjRotation : ButMonobehavior
         SetTargetAngleToRotate(_targetAngleToRotate);
         
         // Sets the rotation of objModel directly to the currentRotationAngle.
-        this.objModel.rotation = Quaternion.Euler(this.targetAngleToRotate);
+        objModel.rotation = Quaternion.Euler(targetAngleToRotate);
     }
 }

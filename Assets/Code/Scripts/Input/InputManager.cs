@@ -21,13 +21,42 @@ public class InputManager : Singleton<InputManager>
         //When the game runs, the player is standing at position (0, 0, 3.5), so the default MoveInput is the same as the player's position
         MoveInput = new(0, 0, 3.5f);
 
-        IsTouching = false;
+        isTouching = false;
         currentTouchIdleFrames = 0;
     }
 
     private void Update() {
+        if(!CheckCanUpdateInput()) return;
+        
         CalculateIsTouching();
         CalculateMoveInput();
+    }
+
+    protected virtual bool CheckCanUpdateInput(){
+        return GameManager.Instance.CurrentGameState.Equals(GameState.Running) 
+            || GameManager.Instance.CurrentGameState.Equals(GameState.Restarting);
+    }
+
+    private bool isTouching;
+    private int currentTouchIdleFrames;
+    private void CalculateIsTouching(){
+        if(UnityEngine.InputSystem.EnhancedTouch.Touch.activeFingers.Count == 0) {
+            isTouching = false;
+            currentTouchIdleFrames = 0;
+            return;
+        }
+
+        UnityEngine.InputSystem.EnhancedTouch.Touch touch = UnityEngine.InputSystem.EnhancedTouch.Touch.activeTouches[0];
+            
+        if(touch.phase == UnityEngine.InputSystem.TouchPhase.Moved){
+            isTouching = true;
+            currentTouchIdleFrames = 0;
+            return;
+        }
+
+        // 150 is max idle frames
+        if(currentTouchIdleFrames <= 150) currentTouchIdleFrames ++;
+        else isTouching = false;       
     }
 
     /// <summary>
@@ -35,7 +64,7 @@ public class InputManager : Singleton<InputManager>
     /// </summary>
     public Vector3 MoveInput;
     private void CalculateMoveInput(){
-        if(!IsTouching) return;
+        if(!isTouching) return;
 
         UnityEngine.InputSystem.EnhancedTouch.Touch touch = UnityEngine.InputSystem.EnhancedTouch.Touch.activeTouches[0];
         
@@ -47,30 +76,5 @@ public class InputManager : Singleton<InputManager>
             Debug.DrawRay(hit.point, Vector3.up * 2f, Color.cyan, 0.5f);
             MoveInput = new(hit.point.x, 0, 3.5f);
         }
-    }
-
-    /// <summary>
-    /// Check is touching
-    /// </summary>
-    public bool IsTouching;
-    private int currentTouchIdleFrames;
-    private void CalculateIsTouching(){
-        if(UnityEngine.InputSystem.EnhancedTouch.Touch.activeFingers.Count == 0) {
-            IsTouching = false;
-            currentTouchIdleFrames = 0;
-            return;
-        }
-
-        UnityEngine.InputSystem.EnhancedTouch.Touch touch = UnityEngine.InputSystem.EnhancedTouch.Touch.activeTouches[0];
-            
-        if(touch.phase == UnityEngine.InputSystem.TouchPhase.Moved){
-            IsTouching = true;
-            currentTouchIdleFrames = 0;
-            return;
-        }
-
-        // 150 is max idle frames
-        if(currentTouchIdleFrames <= 150) currentTouchIdleFrames ++;
-        else IsTouching = false;       
     }
 }

@@ -28,16 +28,18 @@ public abstract class ObjMovement : ButMonobehavior
     protected abstract void UpdateTargetPosition();
 
     protected virtual bool CheckCanUpdateMoving(){
-        return GameManager.Instance.CurrentGameState.Equals(GameState.Running) || GameManager.Instance.CurrentGameState.Equals(GameState.Restarting);
+        return GameManager.Instance.CurrentGameState.Equals(GameState.Running) 
+            || GameManager.Instance.CurrentGameState.Equals(GameState.Restarting)
+            || GameManager.Instance.CurrentGameState.Equals(GameState.Over);
     }
 
     // Handle movement logic, moving the object's parent position towards the target position.
     protected virtual void Moving(){
         UpdateTargetPosition();
 
-        if(this.transform.parent.position.Equals(targetPosition)) return;
-        this.transform.parent.position = Vector3.MoveTowards(this.transform.parent.position, 
-                                                            this.targetPosition, 
-                                                            this.moveSpeed * (1 + DifficultyManager.Instance.GameSpeedRate) * Time.deltaTime);
+        if(transform.parent.position.Equals(targetPosition)) return;
+        transform.parent.position = Vector3.MoveTowards(transform.parent.position, 
+                                                            targetPosition, 
+                                                            moveSpeed * (1 + DifficultyManager.Instance.GameSpeedRate) * Time.deltaTime);
     }
 }

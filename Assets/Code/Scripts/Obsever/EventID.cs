@@ -14,5 +14,5 @@ public enum EventID{
     Player_TakeCoin,
     ButtonPauseGame_Click,
     ButtonResumeGame_Click,
-    
+    ChangeGameState,
 }

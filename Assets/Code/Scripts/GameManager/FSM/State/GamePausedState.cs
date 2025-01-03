@@ -8,8 +8,11 @@ public class GamePausedState : BaseGameState
     public override void OnEnterState(){
         Debug.Log("Pause game");
         gameManager.CurrentGameState = GameState.Paused;
+        Time.timeScale = 0;
+
+        Observer.PostEvent(EventID.ChangeGameState, new KeyValuePair<EventParameterType, object>(EventParameterType.ChangeGameState_GameState, GameState.Paused));
     }
     public override void OnExitState(){
-
+        Time.timeScale = 1;
     }
 }

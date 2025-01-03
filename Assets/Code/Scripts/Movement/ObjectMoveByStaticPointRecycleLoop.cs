@@ -11,6 +11,6 @@ public abstract class ObjectMoveByStaticPointRecycleLoop : ObjMoveByStaticPointL
     protected override void InitializeResetMoving()
     {
         // Reset the object's position back to the spawn position
-        this.transform.parent.position = this.spawnPoint;
+        transform.parent.position = spawnPoint;
     }
 }

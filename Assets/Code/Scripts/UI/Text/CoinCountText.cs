@@ -6,6 +6,6 @@ using UnityEngine;
 public class CoinCountText : BaseText
 {
     protected override void UpdateText(){
-        pointText.text = ((int)CoinTrackingManager.Instance.CurrentCoin).ToString();
+        pointText.text = "Coin: " + ((int)CoinTrackingManager.Instance.CurrentCoin).ToString();
     }
 }

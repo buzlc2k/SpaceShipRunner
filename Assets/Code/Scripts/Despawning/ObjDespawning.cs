@@ -12,7 +12,9 @@ public abstract class ObjDespawning : ButMonobehavior
     protected abstract object GetObjCtrl();
 
     protected virtual bool CheckCanUpdateDespawning(){
-        return GameManager.Instance.CurrentGameState.Equals(GameState.Running) || GameManager.Instance.CurrentGameState.Equals(GameState.Restarting);
+        return GameManager.Instance.CurrentGameState.Equals(GameState.Running) 
+            || GameManager.Instance.CurrentGameState.Equals(GameState.Restarting)
+            || GameManager.Instance.CurrentGameState.Equals(GameState.Over);
     }
 
     protected virtual void Despawning(){

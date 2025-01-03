@@ -20,6 +20,6 @@ public abstract class ObjMoveByDir : ObjMovement
     // Set targetPos base on moveTarget
     protected override void UpdateTargetPosition()
     {
-        this.targetPosition = this.transform.parent.position + dir;
+        targetPosition = transform.parent.position + dir;
     }
 }

@@ -35,12 +35,13 @@ public abstract class ObjCollision : ButMonobehavior
     protected abstract object GetObjCtrl();
 
     protected virtual bool CheckCanUpdateCollision(){
-        return GameManager.Instance.CurrentGameState.Equals(GameState.Running) || GameManager.Instance.CurrentGameState.Equals(GameState.Restarting);
+        return GameManager.Instance.CurrentGameState.Equals(GameState.Running) 
+            || GameManager.Instance.CurrentGameState.Equals(GameState.Restarting);
     }
 
     //Thực hiện logic kiểm tra va chạm cho đối tượng.
     protected virtual void CollisionLogicRunning(){
-        if(!CollisionManager.Instance.CheckObjectIsInCollisionableArea(this.transform.parent.gameObject)) StartCoroutine(C_CheckEnterCollisionableAreaNextFrame());
+        if(!CollisionManager.Instance.CheckObjectIsInCollisionableArea(transform.parent.gameObject)) StartCoroutine(C_CheckEnterCollisionableAreaNextFrame());
         else CheckCollisionWithOtherObject();
     }
 
@@ -50,7 +51,7 @@ public abstract class ObjCollision : ButMonobehavior
         
         foreach(GameObject obj in CollisionManager.Instance.ObjectsInCollisionableArea){
             //Tính toán có va chạm không dựa vào bound của 2 object.
-            bool isWithinCollisionDistance = obj.GetComponentInChildren<ObjCollision>().ColliderRadius + colliderRadius >= Vector3.Distance(obj.transform.position, this.transform.parent.position);
+            bool isWithinCollisionDistance = obj.GetComponentInChildren<ObjCollision>().ColliderRadius + colliderRadius >= Vector3.Distance(obj.transform.position, transform.parent.position);
             //Kiểm tra Object va chạm có phải là object được va chạm không.
             bool hasMatchingCollisionTag = tagOfCollisionableObject.Contains(obj.GetComponentInChildren<ObjCollision>().TagOfObject); 
             if(!isWithinCollisionDistance || !hasMatchingCollisionTag) continue;
@@ -63,7 +64,7 @@ public abstract class ObjCollision : ButMonobehavior
     // Nếu có, gọi OnEnterCollisionableArea().
     protected virtual IEnumerator C_CheckEnterCollisionableAreaNextFrame(){
         yield return null; 
-        if(CollisionManager.Instance.CheckObjectIsInCollisionableArea(this.transform.parent.gameObject)){
+        if(CollisionManager.Instance.CheckObjectIsInCollisionableArea(transform.parent.gameObject)){
             OnEnterCollisionableArea();
         }
     }
@@ -72,11 +73,11 @@ public abstract class ObjCollision : ButMonobehavior
     protected virtual void OnEnterCollide(){
         canCollide = false;
         
-        CollisionManager.Instance.RegisterToRemoveInCollisionableArea(this.transform.parent.gameObject);
+        CollisionManager.Instance.RegisterToRemoveInCollisionableArea(transform.parent.gameObject);
     }
 
     // Hàm thực hiện logic khi Obj vào vùng có thể va chạm
     protected virtual void OnEnterCollisionableArea(){
-        //noop
+        //For override
     }
 }
