@@ -15,4 +15,5 @@ public enum EventID{
     ButtonPauseGame_Click,
     ButtonResumeGame_Click,
     ChangeGameState,
+    GameOver_FinishCountDown,
 }

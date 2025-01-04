@@ -31,6 +31,11 @@ public abstract class BaseButton : ButMonobehavior
         button.onClick.RemoveListener(onButtonClickAction);
     }
 
+    protected virtual BaseCanvas GetCanvas()
+    {
+        return GetComponentInParent<BaseCanvas>();
+    }
+
     private void AddButtonClickAction()
     {
         onButtonClickAction ??= () => {

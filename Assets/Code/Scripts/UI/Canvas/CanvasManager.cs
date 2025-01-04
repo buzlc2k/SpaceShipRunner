@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class CanvasManager : Singleton<CanvasManager>
 {
-    [SerializeField] List<GameStateCanvas> Canvases;
-
+    private BaseCanvas currentCanvas;
+    [SerializeField] private List<BaseCanvas> canvases = new();
     protected Action<KeyValuePair<EventParameterType, object>> setActiveCanvas;
+
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+        
+        if (canvases == null || canvases.Count == 0)
+        {
+            canvases.AddRange(GetComponentsInChildren<BaseCanvas>());
+        }
+    }
 
     protected override void SetUpDelegate()
     {
@@ -33,16 +43,13 @@ public class CanvasManager : Singleton<CanvasManager>
     }
 
     private void SetActiveCanvas(GameState currentGameState){
-        foreach(var canvas in Canvases){
-            if(currentGameState.Equals(canvas.RespondingState)) canvas.Canvas.SetActive(true);
-            else canvas.Canvas.SetActive(false);
+        if(currentCanvas != null) 
+            currentCanvas.gameObject.SetActive(false);
+
+        foreach(var canvas in canvases){
+            if(!currentGameState.Equals(canvas.RespondingState)) continue;
+            canvas.gameObject.SetActive(true);
+            currentCanvas = canvas;
         }
     }
-}
-
-[Serializable]
-public struct GameStateCanvas
-{
-    public GameState RespondingState; 
-    public GameObject Canvas;
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class PauseGameButton : BaseButton
+public class GameRunning_PauseGameButton : BaseButton
 {
     protected override void OnClick()
     {
