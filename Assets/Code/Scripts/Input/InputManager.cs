@@ -22,7 +22,6 @@ public class InputManager : Singleton<InputManager>
         MoveInput = new(0, 0, 3.5f);
 
         isTouching = false;
-        currentTouchIdleFrames = 0;
     }
 
     private void Update() {
@@ -38,25 +37,18 @@ public class InputManager : Singleton<InputManager>
     }
 
     private bool isTouching;
-    private int currentTouchIdleFrames;
     private void CalculateIsTouching(){
         if(UnityEngine.InputSystem.EnhancedTouch.Touch.activeFingers.Count == 0) {
             isTouching = false;
-            currentTouchIdleFrames = 0;
             return;
         }
 
         UnityEngine.InputSystem.EnhancedTouch.Touch touch = UnityEngine.InputSystem.EnhancedTouch.Touch.activeTouches[0];
             
-        if(touch.phase == UnityEngine.InputSystem.TouchPhase.Moved){
-            isTouching = true;
-            currentTouchIdleFrames = 0;
-            return;
-        }
-
-        // 150 is max idle frames
-        if(currentTouchIdleFrames <= 150) currentTouchIdleFrames ++;
-        else isTouching = false;       
+        if(touch.phase == UnityEngine.InputSystem.TouchPhase.Moved)
+            isTouching = true;  
+        else
+            isTouching = false;  
     }
 
     /// <summary>

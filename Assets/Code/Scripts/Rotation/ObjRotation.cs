@@ -34,18 +34,6 @@ public abstract class ObjRotation : ButMonobehavior
         this.rotateSpeed = rotateSpeed;
     }
 
-    // Method to custom the logic of object's target rotation calculation
-    protected virtual Vector3 CalculateTargetAngleToRotate(){
-        //noop
-        return Vector3.zero;
-    }
-
-    /// Direct set the target rotation of object
-    protected virtual void SetTargetAngleToRotate(Vector3 targetAngleToRotate)
-    {
-        this.targetAngleToRotate = targetAngleToRotate;
-    }
-
     protected virtual bool CheckCanUpdateRotating(){
         return GameManager.Instance.CurrentGameState.Equals(GameState.Running) 
             || GameManager.Instance.CurrentGameState.Equals(GameState.Restarting)
@@ -54,11 +42,12 @@ public abstract class ObjRotation : ButMonobehavior
 
     // Basic rotate logic of an object in the scene
     protected virtual void Rotating()
-    {
-        var _targetAngleToRotate = CalculateTargetAngleToRotate();
-        SetTargetAngleToRotate(_targetAngleToRotate);
-        
-        // Sets the rotation of objModel directly to the currentRotationAngle.
-        objModel.rotation = Quaternion.Euler(targetAngleToRotate);
+    {    
+        // Quay tới góc mục tiêu theo rotateSpeed
+        objModel.rotation = Quaternion.RotateTowards(
+            objModel.rotation,
+            Quaternion.Euler(targetAngleToRotate),
+            rotateSpeed * (1 + DifficultyManager.Instance.GameSpeedRate) * Time.deltaTime
+        );
     }
 }

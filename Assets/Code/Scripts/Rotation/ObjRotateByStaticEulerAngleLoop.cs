@@ -12,7 +12,7 @@ public abstract class ObjRotateByStaticEulerAngleLoop : ObjRotation
     protected override void LoadValue()
     {
         base.LoadValue();
-        targetAngleToRotate = spawnAngle;
+        targetAngleToRotate = targetAngle;
     }
 
     protected override void Rotating()
@@ -28,7 +28,7 @@ public abstract class ObjRotateByStaticEulerAngleLoop : ObjRotation
 
     // Check if the object is qualified to reset the rotation
     protected virtual bool CanResetRotating(){
-        return Quaternion.Angle(objModel.rotation, Quaternion.Euler(targetAngle)) < rotationThreshold;
+        return Quaternion.Angle(objModel.rotation, Quaternion.Euler(targetAngleToRotate)) < rotationThreshold;
     }
 
     // logic when the object is qualified to reset rotation

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
   InitialMoveSpeed: 50
-  InitialRotateSpeed: 0.05
+  InitialRotateSpeed: 200
   InitialColliderRadius: 1.15
   InitialTagOfCollisionableObject: 02000000
   InitialTagOfObject: 3

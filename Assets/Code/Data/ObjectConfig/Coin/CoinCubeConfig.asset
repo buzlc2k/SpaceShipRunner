@@ -18,7 +18,7 @@ MonoBehaviour:
   InitialRemainingLoops: -1
   InitialRotateSpeed: 200
   InitialSpawnAngle: {x: 0, y: 0, z: 0}
-  InitialTargetAngle: {x: 0, y: 355, z: 0}
+  InitialTargetAngle: {x: 0, y: 175, z: 0}
   InitialColliderRadius: 0.5
-  InitialTagOfCollisionableObject: 0400000003000000
-  InitialTagOfObject: 5
+  InitialTagOfCollisionableObject: 03000000
+  InitialTagOfObject: 4

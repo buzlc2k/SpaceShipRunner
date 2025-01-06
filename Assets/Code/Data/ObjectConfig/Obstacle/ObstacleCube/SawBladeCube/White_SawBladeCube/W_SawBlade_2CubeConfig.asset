@@ -21,4 +21,4 @@ MonoBehaviour:
   InitialRemainingLoops: -1
   InitialRotateSpeed: 200
   InitialSpawnAngle: {x: 0, y: 60, z: 0}
-  InitialTargetAngle: {x: 355, y: 60, z: 0}
+  InitialTargetAngle: {x: 175, y: 60, z: 0}

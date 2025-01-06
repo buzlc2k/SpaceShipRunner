@@ -5,30 +5,30 @@ using UnityEngine;
 /// </summary>
 public abstract class ObjRotateByUnstableEulerAngle : ObjRotation
 {
-    protected override Vector3 CalculateTargetAngleToRotate(){
-        var _desiredAngle = GetTheFinalAngleToRotate();
-        var _angleToRotate = CalculateTheSmoothlyAngleToRotate(_desiredAngle);
-        return _angleToRotate;
+    // Method to custom the logic of object's target rotation calculation
+    protected abstract Vector3 CalculateTargetAngleToRotate();
+
+    /// Direct set the target rotation of object
+    protected virtual void SetTargetAngleToRotate(Vector3 targetAngleToRotate)
+    {
+        this.targetAngleToRotate = targetAngleToRotate;
     }
 
-    // Method to get the final rotation of object.
-    protected virtual Vector3 GetTheFinalAngleToRotate(){
-        //noop
-        return Vector3.zero;
-    }
-
-    // Method interpolate smoothly from the current angle to the final angle
-    protected virtual Vector3 CalculateTheSmoothlyAngleToRotate(Vector3 finalAngle){
-        Vector3 _angleToRotate;
-        //If the current rotation is close to the target angle (within the rotation threshold), set the target angle directly
-        if(Quaternion.Angle(objModel.rotation, Quaternion.Euler(finalAngle)) < rotationThreshold) _angleToRotate = finalAngle;
-        //Otherwise, interpolate smoothly from the current angle to the target angle using Quaternion.Lerp
-        else _angleToRotate = Quaternion.Lerp(
-                objModel.rotation,
-                Quaternion.Euler(finalAngle),
-                rotateSpeed * (1 + DifficultyManager.Instance.GameSpeedRate)
-            ).eulerAngles;
+    protected override void Rotating()
+    {
+        var _targetAngleToRotate = CalculateTargetAngleToRotate();
+        SetTargetAngleToRotate(_targetAngleToRotate);
         
-        return _angleToRotate;
-    } 
+        if(Quaternion.Angle(objModel.rotation, Quaternion.Euler(targetAngleToRotate)) < rotationThreshold){
+            objModel.rotation = Quaternion.Lerp(
+                objModel.rotation,
+                Quaternion.Euler(targetAngleToRotate),
+                0.1f
+            );   
+            return;
+        }
+                 
+
+        base.Rotating();
+    }
 }
