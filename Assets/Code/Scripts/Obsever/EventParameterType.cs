@@ -16,5 +16,6 @@ public enum EventParameterType{
     ButtonPauseGame_Click_Null,
     ButtonResumeGame_Click_Null,
     ChangeGameState_GameState,
-    GameOver_FinishCountDown_Null,
+    ADS_WatchFullAds_Placement,
+    ButtonRiveve_Click_Placement,
 }

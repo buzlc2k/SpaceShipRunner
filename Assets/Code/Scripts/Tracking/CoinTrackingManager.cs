@@ -29,16 +29,16 @@ public class CoinTrackingManager : Singleton<CoinTrackingManager>
         };
     }
 
-    protected override void AddListenerToObsever()
+    protected override void RegisterListener()
     {
-        base.AddListenerToObsever();
+        base.RegisterListener();
 
         Observer.AddListener(EventID.Player_TakeCoin, addCoin);
     }
 
-    protected override void RemoveListenerFromObsever()
+    protected override void UnregisterListener()
     {
-        base.RemoveListenerFromObsever();
+        base.UnregisterListener();
 
         Observer.RemoveListener(EventID.Player_TakeCoin, addCoin);
     }

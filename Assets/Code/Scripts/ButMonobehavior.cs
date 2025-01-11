@@ -39,7 +39,7 @@ public abstract class ButMonobehavior : MonoBehaviour
     {
         ResetValue();
         SetUpDelegate();
-        AddListenerToObsever();
+        RegisterListener();
         //For override
 
         
@@ -48,18 +48,18 @@ public abstract class ButMonobehavior : MonoBehaviour
     protected virtual void OnDisable()
     {
         //For override
-        RemoveListenerFromObsever();
+        UnregisterListener();
     }
 
     protected virtual void SetUpDelegate(){
         //For override
     }
 
-    protected virtual void AddListenerToObsever(){
+    protected virtual void RegisterListener(){
         //For override
     }
 
-    protected virtual void RemoveListenerFromObsever(){
+    protected virtual void UnregisterListener(){
         //For override
     }
 }

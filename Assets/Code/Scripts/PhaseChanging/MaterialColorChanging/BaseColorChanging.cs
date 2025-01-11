@@ -26,17 +26,17 @@ public abstract class BaseColorChanging : ButMonobehavior
         };
     }
 
-    protected override void AddListenerToObsever()
+    protected override void RegisterListener()
     {
-        base.AddListenerToObsever();
+        base.RegisterListener();
 
         Observer.AddListener(EventID.InitializeUpdatePhaseChanging, setColor);
         Observer.AddListener(EventID.ChangePhase, initializeChangingColor);
     }
 
-    protected override void RemoveListenerFromObsever()
+    protected override void UnregisterListener()
     {
-        base.RemoveListenerFromObsever();
+        base.UnregisterListener();
 
         Observer.RemoveListener(EventID.InitializeUpdatePhaseChanging, setColor);
         Observer.RemoveListener(EventID.ChangePhase, initializeChangingColor);

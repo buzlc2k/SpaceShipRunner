@@ -16,22 +16,22 @@ public class CameraShake : ButMonobehavior
     }
     protected override void SetUpDelegate(){
         initializeShakeCameraDelegate ??= param => {
-            InitializeShakeCamera(0.1f, 1.5f);
+            InitializeShakeCamera(0.08f, 1.5f);
         };
     }
 
-    protected override void AddListenerToObsever()
+    protected override void RegisterListener()
     {
-        base.AddListenerToObsever();
+        base.RegisterListener();
 
         Observer.AddListener(EventID.Player_Collide, initializeShakeCameraDelegate);
         Observer.AddListener(EventID.B_Cube_Collide, initializeShakeCameraDelegate);
         Observer.AddListener(EventID.W_Cube_Collide, initializeShakeCameraDelegate);
     }
 
-    protected override void RemoveListenerFromObsever()
+    protected override void UnregisterListener()
     {
-        base.RemoveListenerFromObsever();
+        base.UnregisterListener();
 
         Observer.RemoveListener(EventID.Player_Collide, initializeShakeCameraDelegate);
         Observer.RemoveListener(EventID.B_Cube_Collide, initializeShakeCameraDelegate);

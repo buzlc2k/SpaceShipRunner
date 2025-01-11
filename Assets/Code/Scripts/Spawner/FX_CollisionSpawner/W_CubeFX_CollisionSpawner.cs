@@ -14,16 +14,16 @@ public class W_CubeFX_CollisionSpawner : FX_CollisionSpawner
         };
     }
 
-    protected override void AddListenerToObsever()
+    protected override void RegisterListener()
     {
-        base.AddListenerToObsever();
+        base.RegisterListener();
 
         Observer.AddListener(EventID.W_Cube_Collide, spawnFX_CollisionDelegate);
     }
 
-    protected override void RemoveListenerFromObsever()
+    protected override void UnregisterListener()
     {
-        base.RemoveListenerFromObsever();
+        base.UnregisterListener();
 
         Observer.RemoveListener(EventID.W_Cube_Collide, spawnFX_CollisionDelegate);
     }

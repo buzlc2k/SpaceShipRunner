@@ -23,17 +23,17 @@ public class ObstacleTileSpawner : ButMonobehavior
         };
     }
 
-    protected override void AddListenerToObsever()
+    protected override void RegisterListener()
     {
-        base.AddListenerToObsever();
+        base.RegisterListener();
 
         Observer.AddListener(EventID.ResetWalkableTile, spawnObstacleTileDelegate);
         Observer.AddListener(EventID.AddMoreObstacle, addNewObstacleTilePoolerDelegate);
     }
 
-    protected override void RemoveListenerFromObsever()
+    protected override void UnregisterListener()
     {
-        base.RemoveListenerFromObsever();
+        base.UnregisterListener();
 
         Observer.RemoveListener(EventID.ResetWalkableTile, spawnObstacleTileDelegate);
         Observer.RemoveListener(EventID.AddMoreObstacle, addNewObstacleTilePoolerDelegate);
