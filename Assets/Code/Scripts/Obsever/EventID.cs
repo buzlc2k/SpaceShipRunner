@@ -17,4 +17,5 @@ public enum EventID{
     ChangeGameState,
     ADS_WatchFullAds,
     ButtonRiveve_Click,
+    GameOver_FinishGameOver,
 }

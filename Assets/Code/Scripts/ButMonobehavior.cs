@@ -40,9 +40,7 @@ public abstract class ButMonobehavior : MonoBehaviour
         ResetValue();
         SetUpDelegate();
         RegisterListener();
-        //For override
-
-        
+        //For override       
     }
 
     protected virtual void OnDisable()

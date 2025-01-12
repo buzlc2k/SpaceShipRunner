@@ -1,50 +1,47 @@
-using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameOverCanvas : BaseCanvas
 {  
     public GameObject CountDownText; 
     public GameObject ContinueButton;
-    [HideInInspector] public float CountDownTime = 5f;
+    public GameObject ReviveButton;
+    [HideInInspector] public float CountDownTime = 10f;
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
 
+        if(RespondingState.Equals(GameState.None)) RespondingState = GameState.Over;
         if(CountDownText == null) CountDownText = GetComponentInChildren<GameOver_CountDownText>().gameObject;
         if(ContinueButton == null) ContinueButton = GetComponentInChildren<GameOver_ContinueButton>().gameObject;
+        if(ReviveButton == null) ReviveButton = GetComponentInChildren<GameOver_ReviveButton>().gameObject;
     }
 
-    protected override void LoadValue()
+    protected override void ResetValue()
     {
-        base.LoadValue();
+        base.ResetValue();
 
-        CountDownTime = 5f;
+        if(!AdsManager.Instance.InternetReachable) ReviveButton.SetActive(false);
+        else ContinueButton.SetActive(false);
+        CountDownText.SetActive(true);
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
 
-        SwitchCountDownTextAndResumeButton();
-        Invoke(nameof(SwitchCountDownTextAndResumeButton), CountDownTime);
+        StartCoroutine(CountDownTimer());
     }
 
-    private void Update() {
-        CountDownTimer();
-    }
-
-    private void CountDownTimer(){
-        if(CountDownTime > 0) {
+    private IEnumerator CountDownTimer(){
+        CountDownTime = 10f;
+        while(CountDownTime > 0){
             CountDownTime -= Time.deltaTime;
+            yield return null;
         }
-    }    
 
-    private void SwitchCountDownTextAndResumeButton(){
-        bool countDownTextEnable = CountDownText.activeSelf;
-        
-        CountDownText.SetActive(!countDownTextEnable);
-        ContinueButton.SetActive(countDownTextEnable);
+        Observer.PostEvent(EventID.GameOver_FinishGameOver, new KeyValuePair<EventParameterType, object>(EventParameterType.GameOver_FinishGameOver_Null, null));
     }
 }

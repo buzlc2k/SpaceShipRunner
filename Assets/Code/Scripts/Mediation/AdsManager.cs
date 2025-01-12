@@ -4,17 +4,21 @@ using System;
 using TMPro;
 using System.Collections.Generic;
 
-public class AdsManager : ButMonobehavior
+public class AdsManager : Singleton<AdsManager>
 {
     #if UNITY_ANDROID
         string appKey = "20ab36525";
     #else
         string appKey = "unexpected_platform";
     #endif
+
+    [HideInInspector] public bool InternetReachable = true;
     
     protected override void Start() {
-        IronSource.Agent.validateIntegration();
-        LevelPlay.Init(appKey,adFormats:new []{LevelPlayAdFormat.REWARDED});
+        if(Application.internetReachability.Equals(NetworkReachability.NotReachable))
+            InternetReachable = false;
+        else
+            InitializeLevelPlaySDK();
     }
 
     protected override void RegisterListener()
@@ -35,6 +39,11 @@ public class AdsManager : ButMonobehavior
 
     void OnApplicationPause(bool isPaused) { 	 
         IronSource.Agent.onApplicationPause(isPaused);	 
+    }
+
+    private void InitializeLevelPlaySDK(){
+        IronSource.Agent.validateIntegration();
+        LevelPlay.Init(appKey,adFormats:new []{LevelPlayAdFormat.REWARDED});
     }
     
     private void SdkInitializationCompletedEvent(LevelPlayConfiguration configuration)
