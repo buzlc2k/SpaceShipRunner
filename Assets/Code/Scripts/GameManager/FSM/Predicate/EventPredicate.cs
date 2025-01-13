@@ -17,6 +17,17 @@ public class EventPredicate: BasePredicate
         Observer.AddListener(this.listenedEvent, onEventTriggered);
     }
 
+    public EventPredicate(EventID listenedEvent, object eventParamenterCondition){
+        this.listenedEvent = listenedEvent;
+
+        onEventTriggered = (param) => {
+            if(!param.Value.Equals(eventParamenterCondition)) return;
+            isEventTriggered = true;
+        };
+
+        Observer.AddListener(this.listenedEvent, onEventTriggered);
+    }
+
     ~EventPredicate(){
         Observer.RemoveListener(listenedEvent, onEventTriggered);
     }

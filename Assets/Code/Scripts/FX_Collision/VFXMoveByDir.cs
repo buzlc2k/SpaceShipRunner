@@ -3,17 +3,17 @@ using UnityEngine;
 /// <summary>
 /// Derived class from ObjMoveByDir that define FX_Collision is moved by dir.
 /// </summary>
-public class FX_CollisionMoveByDir : ObjMoveByDir
+public class VFXMoveByDir : ObjMoveByDir
 {
     protected override void LoadValue(){
         base.LoadValue();
 
-        moveSpeed = ((FX_CollisionCtrl)GetObjCtrl()).fxConfig.InitialMoveSpeed;
+        moveSpeed = ((VFXCtrl)GetObjCtrl()).vfxConfig.InitialMoveSpeed;
     }
 
     protected override object GetObjCtrl()
     {
-        return this.transform.parent.GetComponent<FX_CollisionCtrl>();
+        return this.transform.parent.GetComponent<VFXCtrl>();
     }
     
 }

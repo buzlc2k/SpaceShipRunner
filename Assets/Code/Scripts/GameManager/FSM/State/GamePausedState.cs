@@ -14,5 +14,6 @@ public class GamePausedState : BaseGameState
     }
     public override void OnExitState(){
         Time.timeScale = 1;
+        gameManager.PreviousGameState = GameState.Paused;
     }
 }

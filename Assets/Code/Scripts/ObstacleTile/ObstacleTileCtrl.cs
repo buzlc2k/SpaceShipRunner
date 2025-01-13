@@ -33,5 +33,12 @@ public class ObstacleTileCtrl : ButMonobehavior, IPooled
         base.ResetValue();        
     }
 
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+
+        ReleaseCallback?.Invoke(gameObject);
+    }
+
     public Action<GameObject> ReleaseCallback { get; set; }
 }

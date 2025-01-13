@@ -26,8 +26,6 @@ public abstract class ObjDespawning : ButMonobehavior
 
     // Thực hiện despawn obj
     protected virtual void InitializeDespawn(){
-        this.transform.parent.gameObject.SetActive(false);
-        //Nếu Obj là Obj trong Pool, gọi ReleaseCallback để trở giải phóng Obj về Pool
-        if(GetObjCtrl() is IPooled objPooled) objPooled.ReleaseCallback?.Invoke(this.transform.parent.gameObject);
+        transform.parent.gameObject.SetActive(false);
     }
 }

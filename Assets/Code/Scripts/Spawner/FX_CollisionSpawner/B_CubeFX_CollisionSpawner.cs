@@ -2,15 +2,15 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
-public class B_CubeFX_CollisionSpawner : FX_CollisionSpawner
+public class B_CubeFX_CollisionSpawner : DynamicVFX_Spawner
 {
     protected override void SetUpDelegate()
     {
         base.SetUpDelegate();
 
-        spawnFX_CollisionDelegate ??= param => {
+        spawnVFX_Delegate ??= param => {
             if (param.Key != EventParameterType.B_Cube_Collide_CubeObject) return;
-            SpawnFX_Collision((GameObject)param.Value);
+            SpawnVFX((GameObject)param.Value);
         };
     }
 
@@ -20,13 +20,13 @@ public class B_CubeFX_CollisionSpawner : FX_CollisionSpawner
     {
         base.RegisterListener();
 
-        Observer.AddListener(EventID.B_Cube_Collide, spawnFX_CollisionDelegate);
+        Observer.AddListener(EventID.B_Cube_Collide, spawnVFX_Delegate);
     }
 
     protected override void UnregisterListener()
     {
         base.UnregisterListener();
 
-        Observer.RemoveListener(EventID.B_Cube_Collide, spawnFX_CollisionDelegate);
+        Observer.RemoveListener(EventID.B_Cube_Collide, spawnVFX_Delegate);
     }
 }

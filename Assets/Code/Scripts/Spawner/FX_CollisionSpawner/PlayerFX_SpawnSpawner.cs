@@ -2,15 +2,18 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
-public class W_CubeFX_CollisionSpawner : DynamicVFX_Spawner
+public class PlayerFX_SpawnSpawner : StaticVFX_Spawner
 {
+
     protected override void SetUpDelegate()
     {
         base.SetUpDelegate();
 
         spawnVFX_Delegate ??= param => {
-            if (param.Key != EventParameterType.W_Cube_Collide_CubeObject) return;
-            SpawnVFX((GameObject)param.Value);
+            if (param.Key != EventParameterType.ChangeGameState_GameState) return;
+            
+            if(param.Value.Equals(GameState.Restarting))
+                SpawnVFX();
         };
     }
 
@@ -18,13 +21,13 @@ public class W_CubeFX_CollisionSpawner : DynamicVFX_Spawner
     {
         base.RegisterListener();
 
-        Observer.AddListener(EventID.W_Cube_Collide, spawnVFX_Delegate);
+        Observer.AddListener(EventID.ChangeGameState, spawnVFX_Delegate);
     }
 
     protected override void UnregisterListener()
     {
         base.UnregisterListener();
 
-        Observer.RemoveListener(EventID.W_Cube_Collide, spawnVFX_Delegate);
+        Observer.RemoveListener(EventID.ChangeGameState, spawnVFX_Delegate);
     }
 }

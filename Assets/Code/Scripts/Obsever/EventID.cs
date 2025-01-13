@@ -13,9 +13,11 @@ public enum EventID{
     Player_Collide,
     Player_TakeCoin,
     ButtonPauseGame_Click,
-    ButtonResumeGame_Click,
+    ButtonResumeGameRunning_Click,
+    ButtonResumeGameRestarting_Click,
     ChangeGameState,
     ADS_WatchFullAds,
     ButtonRiveve_Click,
     GameOver_FinishGameOver,
+    FinishRestarting,
 }

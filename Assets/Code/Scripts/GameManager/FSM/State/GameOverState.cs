@@ -12,6 +12,6 @@ public class GameOverState : BaseGameState
         Observer.PostEvent(EventID.ChangeGameState, new KeyValuePair<EventParameterType, object>(EventParameterType.ChangeGameState_GameState, GameState.Over));
     }
     public override void OnExitState(){
-
+        gameManager.PreviousGameState = GameState.Over;
     }
 }

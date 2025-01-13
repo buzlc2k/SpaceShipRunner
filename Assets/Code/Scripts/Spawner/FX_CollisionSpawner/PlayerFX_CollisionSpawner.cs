@@ -2,16 +2,16 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
-public class PlayerFX_CollisionSpawner : FX_CollisionSpawner
+public class PlayerFX_CollisionSpawner : DynamicVFX_Spawner
 {
 
     protected override void SetUpDelegate()
     {
         base.SetUpDelegate();
 
-        spawnFX_CollisionDelegate ??= param => {
+        spawnVFX_Delegate ??= param => {
             if (param.Key != EventParameterType.Player_Collide_PlayerObject) return;
-            SpawnFX_Collision((GameObject)param.Value);
+            SpawnVFX((GameObject)param.Value);
         };
     }
 
@@ -19,13 +19,13 @@ public class PlayerFX_CollisionSpawner : FX_CollisionSpawner
     {
         base.RegisterListener();
 
-        Observer.AddListener(EventID.Player_Collide, spawnFX_CollisionDelegate);
+        Observer.AddListener(EventID.Player_Collide, spawnVFX_Delegate);
     }
 
     protected override void UnregisterListener()
     {
         base.UnregisterListener();
 
-        Observer.RemoveListener(EventID.Player_Collide, spawnFX_CollisionDelegate);
+        Observer.RemoveListener(EventID.Player_Collide, spawnVFX_Delegate);
     }
 }

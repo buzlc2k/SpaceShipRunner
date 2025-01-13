@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObject/ObjectConfig/FX_CollisionCofig")]
-public class FX_CollisionCofig : ScriptableObject
+[CreateAssetMenu(menuName = "ScriptableObject/ObjectConfig/VFXConfig")]
+public class VFXConfig : ScriptableObject
 {
     [Header("Movement")]
     public float InitialMoveSpeed;

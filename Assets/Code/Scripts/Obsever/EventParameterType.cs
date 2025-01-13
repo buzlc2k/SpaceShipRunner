@@ -14,9 +14,11 @@ public enum EventParameterType{
     Player_Collide_PlayerObject,
     Player_TakeCoin_Null,
     ButtonPauseGame_Click_Null,
-    ButtonResumeGame_Click_Null,
+    ButtonResumeGameRunning_Click_Null,
+    ButtonResumeGameRestarting_Click_Null,
     ChangeGameState_GameState,
     ADS_WatchFullAds_Placement,
     ButtonRiveve_Click_Placement,
     GameOver_FinishGameOver_Null,
+    FinishRestarting_Null,
 }

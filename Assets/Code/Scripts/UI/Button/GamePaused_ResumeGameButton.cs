@@ -8,6 +8,9 @@ public class GamePaused_ResumeGameButton : BaseButton
 {
     protected override void OnClick()
     {
-        Observer.PostEvent(EventID.ButtonResumeGame_Click, new KeyValuePair<EventParameterType, object>(EventParameterType.ButtonResumeGame_Click_Null, null));
+        if(GameManager.Instance.PreviousGameState.Equals(GameState.Running))
+            Observer.PostEvent(EventID.ButtonResumeGameRunning_Click, new KeyValuePair<EventParameterType, object>(EventParameterType.ButtonResumeGameRunning_Click_Null, null));
+        else
+            Observer.PostEvent(EventID.ButtonResumeGameRestarting_Click, new KeyValuePair<EventParameterType, object>(EventParameterType.ButtonResumeGameRestarting_Click_Null, null));
     }
 }

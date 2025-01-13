@@ -3,7 +3,7 @@ using UnityEngine;
 
 public enum GameState{
     None = 0,
-    StartSceneRunning,
+    MainMenu,
     Running,
     Paused,
     Restarting,
@@ -13,7 +13,9 @@ public enum GameState{
 public class GameManager : Singleton<GameManager>
 {
     private StateMachine gameStateMachine;
-    public GameState CurrentGameState;
+    [HideInInspector] public GameState PreviousGameState;
+    [HideInInspector] public GameState CurrentGameState;
+    [HideInInspector] public int CurrentGameSession = 0;
 
     protected override void Awake()
     {
@@ -31,11 +33,17 @@ public class GameManager : Singleton<GameManager>
         var gameRunningState = new GameRunningState(this);
         var gamePausedState = new GamePausedState(this);
         var gameOverState = new GameOverState(this);
+        var gameRestartingState = new GameRestartingState(this);
 
         //Define transition
         gameStateMachine.AddTransition(gameRunningState, gamePausedState, new EventPredicate(EventID.ButtonPauseGame_Click));
-        gameStateMachine.AddTransition(gamePausedState, gameRunningState, new EventPredicate(EventID.ButtonResumeGame_Click));
+        gameStateMachine.AddTransition(gamePausedState, gameRunningState, new EventPredicate(EventID.ButtonResumeGameRunning_Click));
         gameStateMachine.AddTransition(gameRunningState, gameOverState, new EventPredicate(EventID.Player_Collide));
+
+        gameStateMachine.AddTransition(gameOverState, gameRestartingState, new EventPredicate(EventID.ADS_WatchFullAds, PlacementID.ReviveButton));
+        gameStateMachine.AddTransition(gameRestartingState, gameRunningState, new EventPredicate(EventID.FinishRestarting));
+        gameStateMachine.AddTransition(gameRestartingState, gamePausedState, new EventPredicate(EventID.ButtonPauseGame_Click));
+        gameStateMachine.AddTransition(gamePausedState, gameRestartingState, new EventPredicate(EventID.ButtonResumeGameRestarting_Click));
 
         //Set default state
         gameStateMachine.SetState(gameRunningState);

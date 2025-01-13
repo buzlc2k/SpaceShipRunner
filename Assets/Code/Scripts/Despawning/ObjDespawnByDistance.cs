@@ -11,7 +11,7 @@ public abstract class ObjDespawnByDistance : ObjDespawning
 
     protected override bool CheckCanDespawn()
     {
-        if(Vector3.Distance(this.posToCalculateDespawn, this.transform.parent.position) > disToDespawn) return true;
+        if(Vector3.Distance(posToCalculateDespawn, transform.parent.position) > disToDespawn) return true;
         return false;
     }
 }

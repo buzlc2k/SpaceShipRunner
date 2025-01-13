@@ -9,6 +9,7 @@ public class GameSpeedDifficultyCtrl : BaseDifficulty
     [SerializeField] private GameSpeedRateConfig gameSpeedRateConfig;
     private GameSpeedRateCalculator gameSpeedRateCalculator;
     private float gameSpeedRate;
+    private float timeBeforeRestarting;
 
     protected override void LoadComponents()
     {
@@ -21,7 +22,8 @@ public class GameSpeedDifficultyCtrl : BaseDifficulty
         base.LoadValue();
 
         maxTimeToCalculate = gameSpeedRateCalculator.GetMaxTimeToCalculate();
-        gameSpeedRate = 0f;
+        gameSpeedRate = 0f;        
+        timeBeforeRestarting = 0f;
     }
 
     public float GetGameSpeedRate(){
@@ -31,15 +33,28 @@ public class GameSpeedDifficultyCtrl : BaseDifficulty
     // Cập nhật tốc độ trò chơi dựa trên thời gian
     protected override void UpdatingGameDifficulty()
     {
-        this.currentTime += Time.deltaTime;
-        this.gameSpeedRate = gameSpeedRateCalculator.GetGameSpeedRate(currentTime);
+        currentTime += Time.deltaTime;
+        gameSpeedRate = gameSpeedRateCalculator.GetGameSpeedRate(currentTime);
+
+        UpdateTimeBeforeRestarting();
+    }
+
+    protected virtual void UpdateTimeBeforeRestarting(){
+        timeBeforeRestarting = currentTime;
     }
 
     // Đặt lại thời gian rồi bắt đầu lại
     protected override void ResetingGameDifficulty()
     {
-        this.currentTime = Mathf.Clamp(currentTime - 10 * Time.deltaTime, 0, currentTime); // Giảm thời gian nhanh hơn để reset
-        this.gameSpeedRate = gameSpeedRateCalculator.GetGameSpeedRate(currentTime);
+        currentTime = Mathf.Clamp(currentTime - 10 * Time.deltaTime, timeBeforeRestarting/2, currentTime); // Giảm thời gian nhanh hơn để reset
+        gameSpeedRate = gameSpeedRateCalculator.GetGameSpeedRate(currentTime);
+
+        CheckFinishRestartingGame();
+    }
+
+    protected virtual void CheckFinishRestartingGame(){
+        if(currentTime == timeBeforeRestarting/2)
+            Observer.PostEvent(EventID.FinishRestarting, new KeyValuePair<EventParameterType, object>(EventParameterType.FinishRestarting_Null, null));
     }
 }
 

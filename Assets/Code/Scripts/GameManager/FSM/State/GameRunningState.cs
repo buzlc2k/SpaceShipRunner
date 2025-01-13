@@ -8,10 +8,11 @@ public class GameRunningState : BaseGameState
     public override void OnEnterState(){
         Debug.Log("Run Game");
         gameManager.CurrentGameState = GameState.Running;
+        gameManager.CurrentGameSession++;
 
         Observer.PostEvent(EventID.ChangeGameState, new KeyValuePair<EventParameterType, object>(EventParameterType.ChangeGameState_GameState, GameState.Running));
     }
     public override void OnExitState(){
-
+        gameManager.PreviousGameState = GameState.Running;
     }
 }

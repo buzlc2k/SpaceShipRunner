@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,13 +9,49 @@ using UnityEngine;
 public class CollisionManager : Singleton<CollisionManager>
 {
     #region CollisionableAreaAttribute
-    private readonly Vector3 collisionableAreaCenterPoint = new(0, 0, 3.5f);
-    private readonly float collisionableAreaRadius = 7.5f;
+    private Vector3 collisionableAreaCenterPoint;
+    private float collisionableAreaRadius;
     #endregion
     
     #region ListObjectsInCollisionableArea
     public HashSet<GameObject> ObjectsInCollisionableArea = new();
     #endregion
+
+    [SerializeField] private CollisionManagerConfig collisionManagerConfig;
+    protected Action<KeyValuePair<EventParameterType, object>> removeAllObjectsInCollisionableArea;
+
+    protected override void LoadValue()
+    {
+        base.LoadValue();
+
+        collisionableAreaCenterPoint = collisionManagerConfig.InitialCollisionableAreaCenterPoint;
+        collisionableAreaRadius = collisionManagerConfig.InitialCollisionableAreaRadius;
+    }
+
+    protected override void SetUpDelegate()
+    {
+        base.SetUpDelegate();
+
+        removeAllObjectsInCollisionableArea ??= param => {
+            if (param.Key != EventParameterType.ChangeGameState_GameState) return;
+            
+            if(param.Value.Equals(GameState.Restarting)) RemoveAllObjectsInCollisionableArea();
+        };
+    }
+
+    protected override void RegisterListener()
+    {
+        base.RegisterListener();
+
+        Observer.AddListener(EventID.ChangeGameState, removeAllObjectsInCollisionableArea);
+    }
+
+    protected override void UnregisterListener()
+    {
+        base.UnregisterListener();
+
+        Observer.RemoveListener(EventID.ChangeGameState, removeAllObjectsInCollisionableArea);
+    }
     
     /// <summary>
     /// Kiểm tra xem một đối tượng có nằm trong khu vực va chạm hay không.
@@ -37,13 +74,20 @@ public class CollisionManager : Singleton<CollisionManager>
         }
     }
 
+    /// <summary>
+    /// Đăng ký 1 Object sẽ bị loại bỏ trong Collisionable Area trong frame sau.
+    /// </summary>
+    /// <param name="_gameObject">Đối tượng cần loại bỏ.</param>
     public void RegisterToRemoveInCollisionableArea(GameObject _gameObject){
         StartCoroutine(RemoveObjectInCollisionableArea(_gameObject));
     }
 
     private IEnumerator RemoveObjectInCollisionableArea(GameObject _gameObject){
         yield return null; 
-
         ObjectsInCollisionableArea.Remove(_gameObject);
+    }
+
+    private void RemoveAllObjectsInCollisionableArea(){
+        ObjectsInCollisionableArea.Clear();
     }
 }

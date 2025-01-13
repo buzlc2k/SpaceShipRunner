@@ -9,8 +9,6 @@ public class ObjectPooler<T> where T : ButMonobehavior, IPooled
     private readonly Queue<T> Pool;
     private readonly T _prefab;
     private readonly Transform _parent;
-
-    public readonly List<T> List = new ();
     
     /// <summary>
     /// Khởi tạo 1 pool với type T
@@ -24,7 +22,7 @@ public class ObjectPooler<T> where T : ButMonobehavior, IPooled
         _parent = new GameObject().transform;
         for (var i = 0; i < size; i++)
         {
-            Pool.Enqueue(Create());
+            Create();
         }
     }
     
@@ -41,22 +39,20 @@ public class ObjectPooler<T> where T : ButMonobehavior, IPooled
         _parent = parent;
         for (var i = 0; i < size; i++)
         {
-            Pool.Enqueue(Create());
+            Create();
         }
     }    
     
     private T Create()
     {
         var newObj = Object.Instantiate(_prefab, _parent);
-        ((IPooled)newObj).ReleaseCallback += Release;
+        newObj.ReleaseCallback += Release;
         newObj.gameObject.SetActive(false);
-        List.Add(newObj);
         return newObj;
     }   
 
     private void Release(GameObject _object)
     {
-        _object.gameObject.SetActive(false);
         Pool.Enqueue(_object.GetComponent<T>());
     } 
     
