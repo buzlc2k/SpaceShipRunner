@@ -21,4 +21,5 @@ public enum EventParameterType{
     ButtonRiveve_Click_Placement,
     GameOver_FinishGameOver_Null,
     FinishRestarting_Null,
+    ButtonPlayGame_Click_Null,
 }

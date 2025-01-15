@@ -10,7 +10,9 @@ public class ObstacleDifficultyCtrl : BaseDifficulty
 
     //Cập nhật các loại obstacle khác nhau dựa trên thời gian chơi
     protected override void UpdatingGameDifficulty(){
-        currentTime += Time.deltaTime; 
+        if(currentTime == 0) currentTime = 0.02f;
+        else currentTime += Time.deltaTime; 
+        
         if(currentTime % obstacleTileSpawnerConfig.TimeInterval > 0.02f) return;
 
         int currentDifficultyLevel = (int)(currentTime / obstacleTileSpawnerConfig.TimeInterval);

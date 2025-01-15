@@ -30,12 +30,15 @@ public class GameManager : Singleton<GameManager>
         base.Start();
 
         //load State
+        var mainMenuSatate = new MainMenuState(this);
         var gameRunningState = new GameRunningState(this);
         var gamePausedState = new GamePausedState(this);
         var gameOverState = new GameOverState(this);
-        var gameRestartingState = new GameRestartingState(this);
+        var gameRestartingState = new GameRestartingState(this);        
 
         //Define transition
+        gameStateMachine.AddTransition(mainMenuSatate, gameRunningState, new EventPredicate(EventID.ButtonPlayGame_Click));
+
         gameStateMachine.AddTransition(gameRunningState, gamePausedState, new EventPredicate(EventID.ButtonPauseGame_Click));
         gameStateMachine.AddTransition(gamePausedState, gameRunningState, new EventPredicate(EventID.ButtonResumeGameRunning_Click));
         gameStateMachine.AddTransition(gameRunningState, gameOverState, new EventPredicate(EventID.Player_Collide));
@@ -46,7 +49,7 @@ public class GameManager : Singleton<GameManager>
         gameStateMachine.AddTransition(gamePausedState, gameRestartingState, new EventPredicate(EventID.ButtonResumeGameRestarting_Click));
 
         //Set default state
-        gameStateMachine.SetState(gameRunningState);
+        gameStateMachine.SetState(mainMenuSatate);
     }
 
     private void Update() {

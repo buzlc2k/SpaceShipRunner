@@ -18,10 +18,10 @@ MonoBehaviour:
     InitialTargetColor: {r: 0, g: 0, b: 0, a: 1}
   - InitialCurrentColor: {r: 0, g: 0, b: 0, a: 1}
     InitialTargetColor: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 1}
-  - InitialCurrentColor: {r: 0.7490196, g: 0.02745098, b: 0.039215688, a: 1}
-    InitialTargetColor: {r: 0.7490196, g: 0.6313726, b: 0, a: 1}
-  - InitialCurrentColor: {r: 0.7490196, g: 0.6313726, b: 0, a: 1}
-    InitialTargetColor: {r: 0.7490196, g: 0.02745098, b: 0.039215688, a: 1}
+  - InitialCurrentColor: {r: 0.2784314, g: 0.30588236, b: 0.5764706, a: 1}
+    InitialTargetColor: {r: 0.9098039, g: 0.14509805, b: 0.38039216, a: 1}
+  - InitialCurrentColor: {r: 0.9098039, g: 0.14509805, b: 0.38039216, a: 1}
+    InitialTargetColor: {r: 0.2784314, g: 0.30588236, b: 0.5764706, a: 1}
   - InitialCurrentColor: {r: 0.6039216, g: 0.07058824, b: 0.7490196, a: 1}
     InitialTargetColor: {r: 0.43529412, g: 0.7490196, b: 0.07450981, a: 1}
   - InitialCurrentColor: {r: 0.43529412, g: 0.7490196, b: 0.07450981, a: 1}

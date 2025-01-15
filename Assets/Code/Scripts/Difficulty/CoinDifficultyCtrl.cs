@@ -24,7 +24,8 @@ public class CoinDifficultyCtrl : BaseDifficulty
 
     protected override void UpdatingGameDifficulty()
     {
-        currentTime += Time.deltaTime;
+        if(currentTime == 0) currentTime = 0.02f;
+        else currentTime += Time.deltaTime; 
             
         if(currentTime % coinSpawnerConfig.TimeInterval > 0.02f) return;
 

@@ -39,7 +39,14 @@ public class ObstacleTileSpawner : ButMonobehavior
         Observer.RemoveListener(EventID.AddMoreObstacle, addNewObstacleTilePoolerDelegate);
     }
 
+    private bool CheckCanSpawn(){
+        return GameManager.Instance.CurrentGameState.Equals(GameState.Running)
+            || GameManager.Instance.CurrentGameState.Equals(GameState.Restarting);
+    }
+
     private void SpawnObstacleTile(GameObject walkableTile){
+        if(!CheckCanSpawn()) return;
+
         Tuple<Vector3, Quaternion> spawnData = GetSpawnData(walkableTile);
 
         Spawn(walkableTile, spawnData.Item1, spawnData.Item2);
@@ -60,6 +67,8 @@ public class ObstacleTileSpawner : ButMonobehavior
     }
 
     private void Spawn(GameObject walkableTile, Vector3 spawnPosition, Quaternion spawnRotation){
+        if(obstacleTilePoolers.Count == 0) return;
+
         ObstacleTileCtrl obstacleTile = obstacleTilePoolers[UnityEngine.Random.Range(0, obstacleTilePoolers.Count)].Get(spawnPosition, spawnRotation);
         
         ((ObstacleTileMoveByTargetTransform)obstacleTile.obstacleTileMovement).SetTargetTransform(walkableTile.transform);

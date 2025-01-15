@@ -10,6 +10,7 @@ using System.Collections.Generic;
 public class CameraController : Singleton<CameraController>
 {
     public CameraShake CameraShake;
+    public CameraTransition CameraTransition;
     public CinemachineVirtualCamera CinemachineVirtualCamera;
     public Camera MainCamera;
     public MainCameraConfig MainCameraConfig;
@@ -20,5 +21,16 @@ public class CameraController : Singleton<CameraController>
         if(MainCamera == null) MainCamera = GetComponent<Camera>();
         if(CinemachineVirtualCamera == null) CinemachineVirtualCamera =  GetComponentInChildren<CinemachineVirtualCamera>();
         if(CameraShake == null) CameraShake = GetComponentInChildren<CameraShake>();
+        if(CameraTransition == null) CameraTransition = GetComponentInChildren<CameraTransition>();
+    }
+
+    protected override void ResetValue()
+    {
+        base.ResetValue();
+
+        MainCamera.transform.SetPositionAndRotation(
+            MainCameraConfig.InitialMainMenuPosition,
+            MainCameraConfig.InitialMainMenuRotation
+        );
     }
 }

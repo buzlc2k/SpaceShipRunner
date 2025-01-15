@@ -18,8 +18,15 @@ public class WalkableTileMoveByPointRecycleLoop : ObjectMoveByStaticPointRecycle
 
     protected override object GetObjCtrl()
     {
-        return this.transform.parent.GetComponent<WalkableTileCtrl>();
+        return transform.parent.GetComponent<WalkableTileCtrl>();
     }
+
+    protected override bool CheckCanUpdateMoving()
+    {
+        return base.CheckCanUpdateMoving() 
+            || GameManager.Instance.CurrentGameState.Equals(GameState.MainMenu);
+    }
+
     protected override void InitializeResetMoving()
     {
         base.InitializeResetMoving();

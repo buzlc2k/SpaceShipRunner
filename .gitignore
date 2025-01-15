@@ -73,6 +73,6 @@ crashlytics-build.properties
 
 
 #But Config
-/Package/*
-/Art/*
-/.utmp/*
+/Assets/Package/*
+/Assets/Art/*
+/Assets/.utmp/*

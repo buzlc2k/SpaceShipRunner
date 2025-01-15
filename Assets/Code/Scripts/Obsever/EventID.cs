@@ -20,4 +20,5 @@ public enum EventID{
     ButtonRiveve_Click,
     GameOver_FinishGameOver,
     FinishRestarting,
+    ButtonPlayGame_Click,
 }

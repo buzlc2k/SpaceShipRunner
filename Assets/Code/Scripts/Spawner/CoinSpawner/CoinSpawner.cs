@@ -40,8 +40,14 @@ public class CoinSpawner : ButMonobehavior
         Observer.RemoveListener(EventID.ObstacleTileSpawned, spawnCoinDelegate);
     }
 
+    private bool CheckCanSpawn(){
+        return GameManager.Instance.CurrentGameState.Equals(GameState.Running)
+            || GameManager.Instance.CurrentGameState.Equals(GameState.Restarting);
+    }
+
     private void SpawnCoin(GameObject obstacleTile, List<Vector3> spawnPositions)
     {
+        if(!CheckCanSpawn()) return;
         // Clone danh sách vị trí spawn để không thay đổi danh sách gốc
         var cloneSpawnPositions = new List<Vector3>(spawnPositions);
 

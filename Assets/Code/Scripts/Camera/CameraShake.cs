@@ -16,7 +16,7 @@ public class CameraShake : ButMonobehavior
     }
     protected override void SetUpDelegate(){
         initializeShakeCameraDelegate ??= param => {
-            InitializeShakeCamera(0.08f, 1.5f);
+            InitializeShakeCamera(0.08f * 165/(1/Time.deltaTime), 1.5f);
         };
     }
 
@@ -61,8 +61,8 @@ public class CameraShake : ButMonobehavior
         // Reset lại giá trị m_AmplitudeGain và vị trí camera khi hiệu ứng kết thúc
         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0;
         CameraController.Instance.MainCamera.transform.SetPositionAndRotation(
-            CameraController.Instance.MainCameraConfig.InitialPosition,
-            CameraController.Instance.MainCameraConfig.InitialRotation
+            CameraController.Instance.MainCameraConfig.InitialGameRunningPosition,
+            CameraController.Instance.MainCameraConfig.InitialGameRunningRotation
         );
     }
 }
