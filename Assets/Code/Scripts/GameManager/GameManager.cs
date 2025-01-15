@@ -8,6 +8,7 @@ public enum GameState{
     Paused,
     Restarting,
     Over,
+    Result,
 }
 
 public class GameManager : Singleton<GameManager>
@@ -34,7 +35,8 @@ public class GameManager : Singleton<GameManager>
         var gameRunningState = new GameRunningState(this);
         var gamePausedState = new GamePausedState(this);
         var gameOverState = new GameOverState(this);
-        var gameRestartingState = new GameRestartingState(this);        
+        var gameRestartingState = new GameRestartingState(this);  
+        var gameResultState = new GameResultState(this);      
 
         //Define transition
         gameStateMachine.AddTransition(mainMenuSatate, gameRunningState, new EventPredicate(EventID.ButtonPlayGame_Click));
@@ -47,6 +49,8 @@ public class GameManager : Singleton<GameManager>
         gameStateMachine.AddTransition(gameRestartingState, gameRunningState, new EventPredicate(EventID.FinishRestarting));
         gameStateMachine.AddTransition(gameRestartingState, gamePausedState, new EventPredicate(EventID.ButtonPauseGame_Click));
         gameStateMachine.AddTransition(gamePausedState, gameRestartingState, new EventPredicate(EventID.ButtonResumeGameRestarting_Click));
+
+        gameStateMachine.AddTransition(gameOverState, gameResultState, new EventPredicate(EventID.GameOver_FinishGameOver));
 
         //Set default state
         gameStateMachine.SetState(mainMenuSatate);

@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d6a959558470d42a665855bcaf6e20, type: 3}
   m_Name: MainCameraConfig
   m_EditorClassIdentifier: 
-  InitialPosition: {x: 0, y: 13, z: -7.5}
-  InitialRotation: {x: 0.21643962, y: 0, z: 0, w: 0.976296}
-  InitialScale: {x: 1, y: 1, z: 1}
+  InitialMainMenuPosition: {x: -16, y: 13.5, z: -1.6}
+  InitialMainMenuRotation: {x: 0.14645346, y: 0.5291369, z: -0.09330116, w: 0.8305783}
+  InitialGameRunningPosition: {x: 0, y: 13, z: -7.5}
+  InitialGameRunningRotation: {x: 0.21643962, y: 0, z: 0, w: 0.976296}
+  InitialGameResultPosition: {x: 0, y: 13, z: -7.5}
+  InitialGameResultRotation: {x: -0.3007058, y: 0, z: 0, w: 0.95371693}

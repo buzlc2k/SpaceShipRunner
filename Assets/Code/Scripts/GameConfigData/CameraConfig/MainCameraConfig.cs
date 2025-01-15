@@ -9,4 +9,6 @@ public class MainCameraConfig : ScriptableObject
     public Quaternion InitialMainMenuRotation;
     public Vector3 InitialGameRunningPosition;
     public Quaternion InitialGameRunningRotation;
+    public Vector3 InitialGameResultPosition;
+    public Quaternion InitialGameResultRotation;
 }

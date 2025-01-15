@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 
-public class CoinCountText : BaseText
+public class GamePaused_CoinCountText : BaseText
 {
-    protected override void UpdateText()
+    protected override IEnumerator UpdateText()
     {
         text.text = "Coin: " + ((int)CoinTrackingManager.Instance.CurrentCoin).ToString();
+        yield return null;
     }
 }

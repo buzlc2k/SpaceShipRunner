@@ -17,11 +17,7 @@ public abstract class BaseText : ButMonobehavior
     {
         base.OnEnable();
 
-        UpdateText();
-    }
-
-    private void Update() {
-        UpdateText();
+        StartCoroutine(UpdateText());
     }
 
     protected virtual BaseCanvas GetCanvas()
@@ -29,5 +25,5 @@ public abstract class BaseText : ButMonobehavior
         return GetComponentInParent<BaseCanvas>();
     }
 
-    protected abstract void UpdateText();
+    protected abstract IEnumerator UpdateText();
 }

@@ -1,14 +1,12 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
 public abstract class BaseButton : ButMonobehavior
 {
-    [SerializeField] private Button button;
+    [SerializeField] protected Button button;
 
-    private UnityAction onButtonClickAction;
+    protected UnityAction onButtonClickAction;
 
     protected override void LoadComponents()
     {

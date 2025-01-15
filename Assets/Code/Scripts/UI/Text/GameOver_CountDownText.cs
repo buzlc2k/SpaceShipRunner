@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class GameOver_CountDownText : BaseText
 {
-    protected override void UpdateText()
+    protected override IEnumerator UpdateText()
     {
-        text.text = ((int)((GameOverCanvas)GetCanvas()).CountDownTime + 1).ToString();
+        while(true){
+            if (!gameObject.activeInHierarchy)
+            {
+                yield break;
+            }
+
+            text.text = ((int)((GameOverCanvas)GetCanvas()).CountDownTime + 1).ToString();
+            yield return null;
+        }
     }
 }

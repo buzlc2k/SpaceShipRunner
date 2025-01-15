@@ -28,7 +28,9 @@ public class StateMachine
         current = nodes[state.GetType()];
     }
 
-    Transition GetTransition() {            
+    Transition GetTransition() {
+        if(current.Transitions.Count == 0) return null;
+                    
         foreach (var transition in current.Transitions)
             if (transition.Condition.Evaluate())
                 return transition;
