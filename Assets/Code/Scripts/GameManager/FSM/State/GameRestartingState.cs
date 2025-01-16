@@ -10,6 +10,7 @@ public class GameRestartingState : BaseGameState
         gameManager.CurrentGameState = GameState.Restarting;
 
         Observer.PostEvent(EventID.ChangeGameState, new KeyValuePair<EventParameterType, object>(EventParameterType.ChangeGameState_GameState, GameState.Restarting));
+        Observer.PostEvent(EventID.EnterGameRestartingState, new KeyValuePair<EventParameterType, object>(EventParameterType.EnterGameRestartingState_Null, null));
     }
     
     public override void OnExitState(){

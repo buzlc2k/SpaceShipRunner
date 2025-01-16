@@ -11,7 +11,7 @@ public class GameRunning_CoinCountText : BaseText
                 yield break;
             }
 
-            text.text = "Coin: " + ((int)CoinTrackingManager.Instance.CurrentCoin).ToString();
+            text.text = "Coin: " + CoinTrackingManager.Instance.CurrentCoinGained.ToString();
             yield return null;
         }
     }

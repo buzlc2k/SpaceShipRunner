@@ -5,7 +5,7 @@ public class GamePaused_CoinCountText : BaseText
 {
     protected override IEnumerator UpdateText()
     {
-        text.text = "Coin: " + ((int)CoinTrackingManager.Instance.CurrentCoin).ToString();
+        text.text = "Coin: " + CoinTrackingManager.Instance.CurrentCoinGained.ToString();
         yield return null;
     }
 }

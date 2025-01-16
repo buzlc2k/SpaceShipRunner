@@ -12,9 +12,6 @@ public class ObjectsManager : Singleton<ObjectsManager>
         base.SetUpDelegate();
 
         resetObjectsInScene ??= param => {
-            if (param.Key != EventParameterType.ChangeGameState_GameState) return;
-            
-            if(!param.Value.Equals(GameState.Restarting)) return;
             SetActivePlayer(true);
             SetActiveCoins(false);
             SetActiveObstacleTiles(false);
@@ -25,14 +22,14 @@ public class ObjectsManager : Singleton<ObjectsManager>
     {
         base.RegisterListener();
 
-        Observer.AddListener(EventID.ChangeGameState, resetObjectsInScene);
+        Observer.AddListener(EventID.EnterGameRestartingState, resetObjectsInScene);
     }
 
     protected override void UnregisterListener()
     {
         base.UnregisterListener();
 
-        Observer.RemoveListener(EventID.ChangeGameState, resetObjectsInScene);
+        Observer.RemoveListener(EventID.EnterGameRestartingState, resetObjectsInScene);
     }
 
     private void SetActivePlayer(bool enable){

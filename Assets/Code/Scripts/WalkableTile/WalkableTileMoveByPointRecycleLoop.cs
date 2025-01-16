@@ -24,6 +24,7 @@ public class WalkableTileMoveByPointRecycleLoop : ObjectMoveByStaticPointRecycle
     protected override bool CheckCanUpdateMoving()
     {
         return base.CheckCanUpdateMoving() 
+            || GameManager.Instance.CurrentGameState.Equals(GameState.StartTransition)
             || GameManager.Instance.CurrentGameState.Equals(GameState.MainMenu);
     }
 
@@ -31,6 +32,6 @@ public class WalkableTileMoveByPointRecycleLoop : ObjectMoveByStaticPointRecycle
     {
         base.InitializeResetMoving();
         //Post event that walkabletile is reseted
-        Observer.PostEvent(EventID.ResetWalkableTile, new KeyValuePair<EventParameterType, object>(EventParameterType.ResetWalkableTile_WalkableTileObject, this.transform.parent.gameObject));
+        Observer.PostEvent(EventID.ResetWalkableTile, new KeyValuePair<EventParameterType, object>(EventParameterType.ResetWalkableTile_WalkableTileObject, transform.parent.gameObject));
     }
 }

@@ -33,9 +33,7 @@ public class CollisionManager : Singleton<CollisionManager>
         base.SetUpDelegate();
 
         removeAllObjectsInCollisionableArea ??= param => {
-            if (param.Key != EventParameterType.ChangeGameState_GameState) return;
-            
-            if(param.Value.Equals(GameState.Restarting)) RemoveAllObjectsInCollisionableArea();
+            RemoveAllObjectsInCollisionableArea();
         };
     }
 
@@ -43,14 +41,14 @@ public class CollisionManager : Singleton<CollisionManager>
     {
         base.RegisterListener();
 
-        Observer.AddListener(EventID.ChangeGameState, removeAllObjectsInCollisionableArea);
+        Observer.AddListener(EventID.EnterGameRestartingState, removeAllObjectsInCollisionableArea);
     }
 
     protected override void UnregisterListener()
     {
         base.UnregisterListener();
 
-        Observer.RemoveListener(EventID.ChangeGameState, removeAllObjectsInCollisionableArea);
+        Observer.RemoveListener(EventID.EnterGameRestartingState, removeAllObjectsInCollisionableArea);
     }
     
     /// <summary>

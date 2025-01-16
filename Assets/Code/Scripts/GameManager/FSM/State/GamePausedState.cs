@@ -11,6 +11,7 @@ public class GamePausedState : BaseGameState
         Time.timeScale = 0;
 
         Observer.PostEvent(EventID.ChangeGameState, new KeyValuePair<EventParameterType, object>(EventParameterType.ChangeGameState_GameState, GameState.Paused));
+        Observer.PostEvent(EventID.EnterGamePausedState, new KeyValuePair<EventParameterType, object>(EventParameterType.EnterGamePausedState_Null, null));
     }
     public override void OnExitState(){
         Time.timeScale = 1;

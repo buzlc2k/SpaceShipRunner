@@ -3,12 +3,14 @@ using UnityEngine;
 
 public enum GameState{
     None = 0,
+    StartTransition,
     MainMenu,
     Running,
     Paused,
     Restarting,
     Over,
     Result,
+    EndTransition,
 }
 
 public class GameManager : Singleton<GameManager>
@@ -31,14 +33,18 @@ public class GameManager : Singleton<GameManager>
         base.Start();
 
         //load State
+        var startGameState = new StartGameState(this);
         var mainMenuSatate = new MainMenuState(this);
         var gameRunningState = new GameRunningState(this);
         var gamePausedState = new GamePausedState(this);
         var gameOverState = new GameOverState(this);
         var gameRestartingState = new GameRestartingState(this);  
-        var gameResultState = new GameResultState(this);      
+        var gameResultState = new GameResultState(this);  
+        var EndGameState = new EndGameState(this);    
 
         //Define transition
+        gameStateMachine.AddTransition(startGameState, mainMenuSatate, new TimerPredicate(1.5f));
+
         gameStateMachine.AddTransition(mainMenuSatate, gameRunningState, new EventPredicate(EventID.ButtonPlayGame_Click));
 
         gameStateMachine.AddTransition(gameRunningState, gamePausedState, new EventPredicate(EventID.ButtonPauseGame_Click));
@@ -52,8 +58,11 @@ public class GameManager : Singleton<GameManager>
 
         gameStateMachine.AddTransition(gameOverState, gameResultState, new EventPredicate(EventID.GameOver_FinishGameOver));
 
+        gameStateMachine.AddTransition(gameResultState, EndGameState, new EventPredicate(EventID.ButtonEndGame_Click));
+        //End
+
         //Set default state
-        gameStateMachine.SetState(mainMenuSatate);
+        gameStateMachine.SetState(startGameState);
     }
 
     private void Update() {

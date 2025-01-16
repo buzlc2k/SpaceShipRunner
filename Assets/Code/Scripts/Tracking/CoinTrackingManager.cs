@@ -5,13 +5,18 @@ using UnityEngine;
 
 public class CoinTrackingManager : Singleton<CoinTrackingManager>
 {
-    private float currentCoin;
+    private int currentCoinGained; 
+    private int currentPointCoin;
+    private int totalCoin;
 
-    private Action<KeyValuePair<EventParameterType, object>> addCoin;
+    private Action<KeyValuePair<EventParameterType, object>> addCoinGained;
+    private Action<KeyValuePair<EventParameterType, object>> setPointCoinAndTotalCoin;
 
     #region Property
 
-    public float CurrentCoin { get => currentCoin; }
+    public int CurrentCoinGained { get => currentCoinGained; }
+    public int CurrentPointCoin { get => currentPointCoin; }
+    public int TotalCoin { get => totalCoin; }
 
     #endregion
 
@@ -19,13 +24,21 @@ public class CoinTrackingManager : Singleton<CoinTrackingManager>
     {
         base.LoadValue();
 
-        currentCoin = 0;
+        currentCoinGained = 0;
+        currentPointCoin = 0;
     }
 
     //Tạo các delegate để lắng nghe sự kiện
     protected override void SetUpDelegate(){
-        addCoin ??= (param) => {
-            AddCoin();
+        base.SetUpDelegate();
+
+        addCoinGained ??= (param) => {
+            AddCoinGained();
+        };
+
+        setPointCoinAndTotalCoin ??= (param) => {
+            SetPointCoint();
+            SetTotalCoin();
         };
     }
 
@@ -33,17 +46,27 @@ public class CoinTrackingManager : Singleton<CoinTrackingManager>
     {
         base.RegisterListener();
 
-        Observer.AddListener(EventID.Player_TakeCoin, addCoin);
+        Observer.AddListener(EventID.Player_TakeCoin, addCoinGained);
+        Observer.AddListener(EventID.EnterGameResultState, setPointCoinAndTotalCoin);
     }
 
     protected override void UnregisterListener()
     {
         base.UnregisterListener();
 
-        Observer.RemoveListener(EventID.Player_TakeCoin, addCoin);
+        Observer.RemoveListener(EventID.Player_TakeCoin, addCoinGained);
+        Observer.RemoveListener(EventID.EnterGameResultState, setPointCoinAndTotalCoin);
     }
 
-    private void AddCoin(){
-        currentCoin++;
+    private void AddCoinGained(){
+        currentCoinGained++;
+    }
+
+    private void SetPointCoint(){
+        currentPointCoin = (int)(PointTrackingManager.Instance.CurrentPoint / 10);
+    }
+
+    private void SetTotalCoin(int multiply = 1){
+        totalCoin = (currentCoinGained + currentPointCoin) * multiply;
     }
 }

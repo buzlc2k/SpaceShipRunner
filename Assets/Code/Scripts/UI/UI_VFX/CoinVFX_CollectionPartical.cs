@@ -15,6 +15,15 @@ public class CoinVFX_CollectionPartical : ButMonobehavior
         particlesEnter = new();
     }
 
+    protected virtual BaseCanvas GetCanvas()
+    {
+        return GetComponentInParent<BaseCanvas>();
+    }
+
+    public void PlayVFXPartical(){
+        vfxPartical.Play();
+    }
+
     private void OnParticleTrigger() {
         int numEnter = vfxPartical.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, particlesEnter);
 

@@ -10,6 +10,7 @@ public class GameResultState : BaseGameState
         gameManager.CurrentGameState = GameState.Result;
 
         Observer.PostEvent(EventID.ChangeGameState, new KeyValuePair<EventParameterType, object>(EventParameterType.ChangeGameState_GameState, GameState.Result));
+        Observer.PostEvent(EventID.EnterGameResultState, new KeyValuePair<EventParameterType, object>(EventParameterType.EnterGameResultState_Null, null));
     }
     public override void OnExitState(){
         gameManager.PreviousGameState = GameState.Result;

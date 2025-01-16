@@ -10,10 +10,7 @@ public class PlayerFX_SpawnSpawner : StaticVFX_Spawner
         base.SetUpDelegate();
 
         spawnVFX_Delegate ??= param => {
-            if (param.Key != EventParameterType.ChangeGameState_GameState) return;
-            
-            if(param.Value.Equals(GameState.Restarting))
-                SpawnVFX();
+            SpawnVFX();
         };
     }
 
@@ -21,13 +18,13 @@ public class PlayerFX_SpawnSpawner : StaticVFX_Spawner
     {
         base.RegisterListener();
 
-        Observer.AddListener(EventID.ChangeGameState, spawnVFX_Delegate);
+        Observer.AddListener(EventID.EnterGameRestartingState, spawnVFX_Delegate);
     }
 
     protected override void UnregisterListener()
     {
         base.UnregisterListener();
 
-        Observer.RemoveListener(EventID.ChangeGameState, spawnVFX_Delegate);
+        Observer.RemoveListener(EventID.EnterGameRestartingState, spawnVFX_Delegate);
     }
 }

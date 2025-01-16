@@ -12,17 +12,11 @@ public class CameraTransition : ButMonobehavior
 
     protected override void SetUpDelegate(){
         initializeTranslateCameraGameRunning ??= param => {
-            if (param.Key != EventParameterType.ChangeGameState_GameState) return;
-            
-            if(param.Value.Equals(GameState.Running))
-                InitializeTranslateCamera(CameraController.Instance.MainCameraConfig.InitialGameRunningPosition, CameraController.Instance.MainCameraConfig.InitialGameRunningRotation, 2.5f);
+            InitializeTranslateCamera(CameraController.Instance.MainCameraConfig.InitialGameRunningPosition, CameraController.Instance.MainCameraConfig.InitialGameRunningRotation, 2.5f);
         };
 
         initializeTranslateCameraGameResult ??= param => {
-            if (param.Key != EventParameterType.ChangeGameState_GameState) return;
-            
-            if(param.Value.Equals(GameState.Result))
-                InitializeTranslateCamera(CameraController.Instance.MainCameraConfig.InitialGameResultPosition, CameraController.Instance.MainCameraConfig.InitialGameResultRotation, 2);
+            InitializeTranslateCamera(CameraController.Instance.MainCameraConfig.InitialGameResultPosition, CameraController.Instance.MainCameraConfig.InitialGameResultRotation, 2);
         };
     }
 
@@ -30,16 +24,16 @@ public class CameraTransition : ButMonobehavior
     {
         base.RegisterListener();
 
-        Observer.AddListener(EventID.ChangeGameState, initializeTranslateCameraGameRunning);
-        Observer.AddListener(EventID.ChangeGameState, initializeTranslateCameraGameResult);
+        Observer.AddListener(EventID.EnterGameRunningState, initializeTranslateCameraGameRunning);
+        Observer.AddListener(EventID.EnterGameResultState, initializeTranslateCameraGameResult);
     }
 
     protected override void UnregisterListener()
     {
         base.UnregisterListener();
 
-        Observer.RemoveListener(EventID.ChangeGameState, initializeTranslateCameraGameRunning);
-        Observer.RemoveListener(EventID.ChangeGameState, initializeTranslateCameraGameResult);
+        Observer.RemoveListener(EventID.EnterGameRunningState, initializeTranslateCameraGameRunning);
+        Observer.RemoveListener(EventID.EnterGameResultState, initializeTranslateCameraGameResult);
     }
 
     private void InitializeTranslateCamera(Vector3 targetPos, Quaternion targetRotation, float timeTransition)
