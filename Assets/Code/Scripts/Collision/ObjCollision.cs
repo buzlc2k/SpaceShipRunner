@@ -64,16 +64,14 @@ public abstract class ObjCollision : ButMonobehavior
     // Nếu có, gọi OnEnterCollisionableArea().
     protected virtual IEnumerator C_CheckEnterCollisionableAreaNextFrame(){
         yield return null; 
-        if(CollisionManager.Instance.CheckObjectIsInCollisionableArea(transform.parent.gameObject)){
+        if(CollisionManager.Instance.CheckObjectIsInCollisionableArea(transform.parent.gameObject))
             OnEnterCollisionableArea();
-        }
     }
 
     // Hàm thực hiện logic khi Obj va chạm
     protected virtual void OnEnterCollide(){
         canCollide = false;
-        
-        CollisionManager.Instance.RegisterToRemoveInCollisionableArea(transform.parent.gameObject);
+        //For override
     }
 
     // Hàm thực hiện logic khi Obj vào vùng có thể va chạm

@@ -7,7 +7,7 @@ public class GameResult_TotalCoinText : GameResult_BaseAnimatedText
     {
         yield return new WaitForSeconds(8.47f);
 
-        yield return StartCoroutine(InitializeAnimation(CoinTrackingManager.Instance.TotalCoin));
+        yield return StartCoroutine(InitializeAnimation(CoinTrackingManager.Instance.CurrentTotalCoin));
         
         ((GameResultCanvas)GetCanvas()).CoinVFX_CollectionPartical.PlayVFXPartical();
     }

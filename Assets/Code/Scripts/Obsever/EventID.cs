@@ -28,4 +28,8 @@ public enum EventID{
     FinishRestarting,
     ButtonPlayGame_Click,
     ButtonEndGame_Click,
+    ButtonReloadGame_Click,
+    LoadCoinsData,
+    LoadCurrentSpaceShip,
+    LoadSpaceShipOwned,
 }

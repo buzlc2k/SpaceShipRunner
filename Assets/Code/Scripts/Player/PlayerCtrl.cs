@@ -14,7 +14,7 @@ public class PlayerCtrl : Singleton<PlayerCtrl>
     {
         base.LoadComponents();
 
-        if(playerModel == null) playerModel = GetComponentInChildren<MeshRenderer>().transform.parent;
+        if(playerModel == null) playerModel = GetComponentInChildren<PlayerModel>().transform;
         if(playerMovement == null) playerMovement = GetComponentInChildren<ObjMovement>();
         if(playerRotation == null) playerRotation = GetComponentInChildren<ObjRotation>();
         if(playerCollision == null) playerCollision = GetComponentInChildren<ObjCollision>();

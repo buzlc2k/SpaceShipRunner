@@ -29,4 +29,9 @@ public enum EventParameterType{
     FinishRestarting_Null,
     ButtonPlayGame_Click_Null,
     ButtonEndGame_Click,
+    InitializeLoadData_GameDataSaved,
+    ButtonReloadGame_Click_Null,
+    LoadCoinsData_TotalCoins,
+    LoadCurrentSpaceShip_CurrentSpaceShip,
+    LoadSpaceShipOwned_SpaceShipOwned,
 }

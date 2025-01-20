@@ -54,7 +54,7 @@ public class InputManager : Singleton<InputManager>
     /// <summary>
     /// The movement position of the touch
     /// </summary>
-    public Vector3 MoveInput;
+    [HideInInspector] public Vector3 MoveInput;
     private void CalculateMoveInput(){
         if(!isTouching) return;
 

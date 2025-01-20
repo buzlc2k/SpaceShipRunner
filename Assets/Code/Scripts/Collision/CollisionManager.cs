@@ -50,39 +50,29 @@ public class CollisionManager : Singleton<CollisionManager>
 
         Observer.RemoveListener(EventID.EnterGameRestartingState, removeAllObjectsInCollisionableArea);
     }
+
+    private void Update() {
+        GetObjectsInCollisionableArea();
+    }
+
+    public void GetObjectsInCollisionableArea(){
+        List<ObjCollision> objCollisions = new(FindObjectsByType<ObjCollision>(FindObjectsSortMode.None));
+
+        ObjectsInCollisionableArea.Clear();
+
+        foreach(var objCollision in objCollisions){
+            if(Vector3.Distance(objCollision.transform.parent.position, collisionableAreaCenterPoint) < collisionableAreaRadius)
+                ObjectsInCollisionableArea.Add(objCollision.transform.parent.gameObject);
+            else continue;
+        }
+    }
     
     /// <summary>
     /// Kiểm tra xem một đối tượng có nằm trong khu vực va chạm hay không.
     /// </summary>
     /// <param name="_gameObject">Đối tượng cần kiểm tra.</param>
     public bool CheckObjectIsInCollisionableArea(GameObject _gameObject){
-        float distanceToCenterPoint = Vector3.Distance(_gameObject.transform.position, collisionableAreaCenterPoint);
-        bool isWithinArea = distanceToCenterPoint < collisionableAreaRadius;
-
-        if (ObjectsInCollisionableArea.Contains(_gameObject))
-        {
-            if (isWithinArea) return true;
-            ObjectsInCollisionableArea.Remove(_gameObject);
-            return false;
-        }
-        else
-        {
-            if (isWithinArea) ObjectsInCollisionableArea.Add(_gameObject);
-            return isWithinArea;
-        }
-    }
-
-    /// <summary>
-    /// Đăng ký 1 Object sẽ bị loại bỏ trong Collisionable Area trong frame sau.
-    /// </summary>
-    /// <param name="_gameObject">Đối tượng cần loại bỏ.</param>
-    public void RegisterToRemoveInCollisionableArea(GameObject _gameObject){
-        StartCoroutine(RemoveObjectInCollisionableArea(_gameObject));
-    }
-
-    private IEnumerator RemoveObjectInCollisionableArea(GameObject _gameObject){
-        yield return null; 
-        ObjectsInCollisionableArea.Remove(_gameObject);
+        return ObjectsInCollisionableArea.Contains(_gameObject);
     }
 
     private void RemoveAllObjectsInCollisionableArea(){
