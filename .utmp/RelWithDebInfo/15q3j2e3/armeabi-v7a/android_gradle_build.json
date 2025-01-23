@@ -1,7 +1,7 @@
 {
   "buildFiles": [
-    "E:\\UnityLearn\\Beginner 3D Project\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\unityLibrary\\src\\main\\cpp\\CMakeLists.txt",
-    "E:\\UnityLearn\\Beginner 3D Project\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\unityLibrary\\src\\main\\cpp\\FramePacing\\CMakeLists.txt"
+    "E:\\UnityLearn\\Beginner 3D Project\\Library\\Bee\\Android\\Prj\\IL2CPP\\Gradle\\unityLibrary\\src\\main\\cpp\\CMakeLists.txt",
+    "E:\\UnityLearn\\Beginner 3D Project\\Library\\Bee\\Android\\Prj\\IL2CPP\\Gradle\\unityLibrary\\src\\main\\cpp\\FramePacing\\CMakeLists.txt"
   ],
   "cleanCommandsComponents": [
     [
@@ -22,7 +22,7 @@
       "toolchain": "toolchain",
       "abi": "armeabi-v7a",
       "artifactName": "swappywrapper",
-      "output": "E:\\UnityLearn\\Beginner 3D Project\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\unityLibrary\\build\\intermediates\\cxx\\RelWithDebInfo\\15q3j2e3\\obj\\armeabi-v7a\\libswappywrapper.so",
+      "output": "E:\\UnityLearn\\Beginner 3D Project\\Library\\Bee\\Android\\Prj\\IL2CPP\\Gradle\\unityLibrary\\build\\intermediates\\cxx\\RelWithDebInfo\\15q3j2e3\\obj\\armeabi-v7a\\libswappywrapper.so",
       "runtimeFiles": []
     }
   },

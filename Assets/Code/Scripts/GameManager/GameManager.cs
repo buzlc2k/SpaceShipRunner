@@ -20,9 +20,9 @@ public class GameManager : Singleton<GameManager>
     [HideInInspector] public GameState CurrentGameState;
     [HideInInspector] public int CurrentGameSession = 0;
 
-    protected override void Awake()
+    protected override void LoadComponents()
     {
-        base.Awake();
+        base.LoadComponents();
 
         //Load State Machine
         gameStateMachine = new StateMachine();

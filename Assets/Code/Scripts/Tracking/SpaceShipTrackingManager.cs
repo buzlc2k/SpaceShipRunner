@@ -37,20 +37,23 @@ public class SpaceShipTrackingManager : Singleton<SpaceShipTrackingManager>
     {
         base.RegisterListener();
 
-        Observer.AddListener(EventID.LoadCurrentSpaceShip, setCurrentSpaceShip);
-        Observer.AddListener(EventID.LoadSpaceShipOwned, addSpaceShipOwner);
+        Observer.AddListener(EventID.LoadCurrentSpaceShipData, setCurrentSpaceShip);
+        Observer.AddListener(EventID.LoadSpaceShipOwnedData, addSpaceShipOwner);
+        Observer.AddListener(EventID.SpaceShipItem_SelectedItem, setCurrentSpaceShip);
     }
 
     protected override void UnregisterListener()
     {
         base.UnregisterListener();
 
-        Observer.RemoveListener(EventID.LoadCurrentSpaceShip, setCurrentSpaceShip);
-        Observer.RemoveListener(EventID.LoadSpaceShipOwned, addSpaceShipOwner);
+        Observer.RemoveListener(EventID.LoadCurrentSpaceShipData, setCurrentSpaceShip);
+        Observer.RemoveListener(EventID.LoadSpaceShipOwnedData, addSpaceShipOwner);
+        Observer.RemoveListener(EventID.SpaceShipItem_SelectedItem, setCurrentSpaceShip);
     }
 
     private void SetCurrentSpaceShip(SpaceShipConfig currentSpaceShip){
         this.currentSpaceShip = currentSpaceShip;
+        Observer.PostEvent(EventID.SetCurrentSpaceShipSuccess, new KeyValuePair<EventParameterType, object>(EventParameterType.SetCurrentSpaceShipSuccess_Null, null));
     }
 
     private void AddSpaceShipOwner(SpaceShipConfig spaceShipAdded){

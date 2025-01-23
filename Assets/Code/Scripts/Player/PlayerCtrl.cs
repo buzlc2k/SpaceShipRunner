@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCtrl : Singleton<PlayerCtrl>
 {
-    public Transform playerModel;
+    public PlayerModel playerModel;
     public ObjMovement playerMovement;
     public ObjRotation playerRotation;
     public ObjCollision playerCollision;
@@ -14,7 +14,7 @@ public class PlayerCtrl : Singleton<PlayerCtrl>
     {
         base.LoadComponents();
 
-        if(playerModel == null) playerModel = GetComponentInChildren<PlayerModel>().transform;
+        if(playerModel == null) playerModel = GetComponentInChildren<PlayerModel>();
         if(playerMovement == null) playerMovement = GetComponentInChildren<ObjMovement>();
         if(playerRotation == null) playerRotation = GetComponentInChildren<ObjRotation>();
         if(playerCollision == null) playerCollision = GetComponentInChildren<ObjCollision>();

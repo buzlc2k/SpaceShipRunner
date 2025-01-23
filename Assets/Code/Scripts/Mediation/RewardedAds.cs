@@ -9,6 +9,12 @@ public class RewardedAds : ButMonobehavior
     private PlacementID currentPlacementID;
     private Action<KeyValuePair<EventParameterType, object>> showRewardAds; 
 
+    #region Property
+
+    public bool CanShowAds { get => IronSource.Agent.isRewardedVideoAvailable(); }
+
+    #endregion
+
     protected override void SetUpDelegate()
     {
         base.SetUpDelegate();

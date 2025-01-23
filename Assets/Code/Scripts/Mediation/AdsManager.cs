@@ -6,19 +6,24 @@ using System.Collections.Generic;
 
 public class AdsManager : Singleton<AdsManager>
 {
+    public RewardedAds RewardedAds;
+
     #if UNITY_ANDROID
-        string appKey = "20ab36525";
+        string appKey = "20cfc9885";
     #else
         string appKey = "unexpected_platform";
     #endif
-
-    [HideInInspector] public bool InternetReachable = true;
     
     protected override void Start() {
-        if(Application.internetReachability.Equals(NetworkReachability.NotReachable))
-            InternetReachable = false;
-        else
+        if(!Application.internetReachability.Equals(NetworkReachability.NotReachable))
             InitializeLevelPlaySDK();
+    }
+
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+
+        if(RewardedAds == null) RewardedAds = GetComponentInChildren<RewardedAds>();
     }
 
     protected override void RegisterListener()

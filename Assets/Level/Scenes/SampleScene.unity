@@ -4350,7 +4350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &434393802
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8043,7 +8043,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDontDestroy: 0
-  InternetReachable: 1
+  RewardedAds: {fileID: 1991273730}
 --- !u!1 &783311728
 GameObject:
   m_ObjectHideFlags: 0
@@ -15270,7 +15270,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1124963308
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20926,7 +20926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fileName: Profile.bin
-  dontDestroyOnLoad: 1
+  dontDestroyOnLoad: 0
 --- !u!4 &1880064456
 Transform:
   m_ObjectHideFlags: 0
@@ -28569,10 +28569,10 @@ SceneRoots:
   m_Roots:
   - {fileID: 223672582}
   - {fileID: 957654130}
-  - {fileID: 175443084}
   - {fileID: 1153832265}
   - {fileID: 1819002761}
   - {fileID: 1562982739}
+  - {fileID: 175443084}
   - {fileID: 1254027650}
   - {fileID: 1880064456}
   - {fileID: 782628376}

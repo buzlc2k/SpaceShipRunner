@@ -1,13 +1,15 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SaveGameManager : Singleton<SaveGameManager>
 {
-    private string jsonString;
     public GameDataSaved GameDataSaved;
     [SerializeField] SaveGameConfig saveGameConfig;
 
     [SerializeField] private List<BaseSaver> savers = new();
+
+    private Action<KeyValuePair<EventParameterType, object>> saveData;
 
     protected override void LoadComponents()
     {
@@ -20,16 +22,32 @@ public class SaveGameManager : Singleton<SaveGameManager>
         }
     }
 
-    protected override void LoadValue()
+    protected override void SetUpDelegate()
     {
-        base.LoadValue();
+        base.SetUpDelegate();
 
-        jsonString = "";
+        saveData = (param) => {
+            SaveData();
+        };
     }
 
-    protected override void OnEnable()
+    protected override void RegisterListener()
     {
-        base.OnEnable();
+        base.RegisterListener();
+
+        Observer.AddListener(EventID.ButtonReloadGame_Click, saveData);
+    }
+
+    protected override void UnregisterListener()
+    {
+        base.UnregisterListener();
+
+        Observer.RemoveListener(EventID.ButtonReloadGame_Click, saveData);
+    }
+
+    protected override void Start()
+    {
+        base.Start();
 
         LoadData();
     }
@@ -43,7 +61,7 @@ public class SaveGameManager : Singleton<SaveGameManager>
     }
 
     private void LoadData(){
-        jsonString = SaveSystem.HasKey(saveGameConfig.GameDataSaved_ID) 
+        string jsonString = SaveSystem.HasKey(saveGameConfig.GameDataSaved_ID) 
                 ? SaveSystem.GetString(saveGameConfig.GameDataSaved_ID) 
                 : null;
 
@@ -63,7 +81,7 @@ public class SaveGameManager : Singleton<SaveGameManager>
             saver.SaveData();
         }
 
-        jsonString = JsonUtility.ToJson(GameDataSaved);
+        string jsonString = JsonUtility.ToJson(GameDataSaved);
 
         SaveSystem.SetString(saveGameConfig.GameDataSaved_ID, jsonString);
         SaveSystem.SaveToDisk();

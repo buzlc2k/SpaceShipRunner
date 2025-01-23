@@ -30,6 +30,17 @@ public enum EventID{
     ButtonEndGame_Click,
     ButtonReloadGame_Click,
     LoadCoinsData,
-    LoadCurrentSpaceShip,
-    LoadSpaceShipOwned,
+    LoadCurrentSpaceShipData,
+    LoadSpaceShipOwnedData,
+    SetCurrentSpaceShipSuccess,
+
+
+
+
+
+
+    //Test
+    SpaceShipItem_SelectedItem,
+    SpaceShipItem_OwnedItemClick,
+    SpaceShipItem_BuySuccess,
 }

@@ -23,7 +23,7 @@ public class GameOverCanvas : BaseCanvas
     {
         base.ResetValue();
 
-        if(!AdsManager.Instance.InternetReachable || GameManager.Instance.CurrentGameSession > 1) {
+        if(!AdsManager.Instance.RewardedAds.CanShowAds || GameManager.Instance.CurrentGameSession > 1) {
             ReviveButton.SetActive(false);
             ContinueButton.SetActive(true);
         }

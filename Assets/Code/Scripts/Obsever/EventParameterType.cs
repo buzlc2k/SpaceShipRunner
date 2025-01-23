@@ -32,6 +32,17 @@ public enum EventParameterType{
     InitializeLoadData_GameDataSaved,
     ButtonReloadGame_Click_Null,
     LoadCoinsData_TotalCoins,
-    LoadCurrentSpaceShip_CurrentSpaceShip,
-    LoadSpaceShipOwned_SpaceShipOwned,
+    LoadCurrentSpaceShipData_CurrentSpaceShip,
+    LoadSpaceShipOwnedData_SpaceShipOwned,
+    SetCurrentSpaceShipSuccess_Null,
+
+
+
+
+
+
+    //Test
+    SpaceShipItem_SelectedItem_SpaceShipConfig,
+    SpaceShipItem_OwnedItemClick_SpaceShipConfig,
+    SpaceShipItem_BuySuccess_SpaceShipConfig,
 }
