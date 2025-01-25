@@ -3,7 +3,9 @@ using UnityEngine;
 
 public abstract class GameResult_BaseAnimatedText : BaseText
 {
-    protected virtual IEnumerator InitializeAnimation(float totalUnitCount, float animatedTime = 1.1f){
+    protected virtual IEnumerator InitializeAnimation(float totalUnitCount, float animatedTime = 1.12f, float timeOffset = 0){
+        yield return new WaitForSeconds(0);
+        
         float targetTime = totalUnitCount * animatedTime;
         float time = 0;
 

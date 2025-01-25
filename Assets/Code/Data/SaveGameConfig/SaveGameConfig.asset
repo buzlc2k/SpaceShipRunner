@@ -16,4 +16,4 @@ MonoBehaviour:
   CurrentSpaceShip: {fileID: 11400000, guid: c630a9183e3c35a4eae09c5d992b0a97, type: 2}
   SpaceShipOwned:
   - {fileID: 11400000, guid: c630a9183e3c35a4eae09c5d992b0a97, type: 2}
-  CurrentCoinsOwned: 0
+  CurrentCoinsOwned: 5000

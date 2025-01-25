@@ -24,10 +24,10 @@ public enum EventID{
     EnterGameResultState,
     ADS_WatchFullAds,
     ButtonRiveve_Click,
+    ButtonDoubleCoin_Click,
     GameOver_FinishGameOver,
     FinishRestarting,
     ButtonPlayGame_Click,
-    ButtonEndGame_Click,
     ButtonReloadGame_Click,
     LoadCoinsData,
     LoadCurrentSpaceShipData,
@@ -42,5 +42,10 @@ public enum EventID{
     //Test
     SpaceShipItem_SelectedItem,
     SpaceShipItem_OwnedItemClick,
+    WantToBuyItem,
     SpaceShipItem_BuySuccess,
+    MinusTotalCoin,
+    ButtonShopping_Click,
+    ButtonHome_Click,
+    CoinItem_BuySuccess,
 }

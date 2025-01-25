@@ -25,7 +25,8 @@ public class WalkableTileMoveByPointRecycleLoop : ObjectMoveByStaticPointRecycle
     {
         return base.CheckCanUpdateMoving() 
             || GameManager.Instance.CurrentGameState.Equals(GameState.StartTransition)
-            || GameManager.Instance.CurrentGameState.Equals(GameState.MainMenu);
+            || GameManager.Instance.CurrentGameState.Equals(GameState.MainMenu)
+            || GameManager.Instance.CurrentGameState.Equals(GameState.Shopping);
     }
 
     protected override void InitializeResetMoving()

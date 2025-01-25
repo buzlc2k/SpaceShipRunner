@@ -5,6 +5,7 @@ public enum GameState{
     None = 0,
     StartTransition,
     MainMenu,
+    Shopping,
     Running,
     Paused,
     Restarting,
@@ -35,6 +36,7 @@ public class GameManager : Singleton<GameManager>
         //load State
         var startGameState = new StartGameState(this);
         var mainMenuSatate = new MainMenuState(this);
+        var shoppingState = new ShoppingState(this);
         var gameRunningState = new GameRunningState(this);
         var gamePausedState = new GamePausedState(this);
         var gameOverState = new GameOverState(this);
@@ -46,6 +48,9 @@ public class GameManager : Singleton<GameManager>
         gameStateMachine.AddTransition(startGameState, mainMenuSatate, new TimerPredicate(1.5f));
 
         gameStateMachine.AddTransition(mainMenuSatate, gameRunningState, new EventPredicate(EventID.ButtonPlayGame_Click));
+        gameStateMachine.AddTransition(mainMenuSatate, shoppingState, new EventPredicate(EventID.ButtonShopping_Click));
+
+        gameStateMachine.AddTransition(shoppingState, mainMenuSatate, new EventPredicate(EventID.ButtonHome_Click));
 
         gameStateMachine.AddTransition(gameRunningState, gamePausedState, new EventPredicate(EventID.ButtonPauseGame_Click));
         gameStateMachine.AddTransition(gamePausedState, gameRunningState, new EventPredicate(EventID.ButtonResumeGameRunning_Click));
@@ -58,7 +63,7 @@ public class GameManager : Singleton<GameManager>
 
         gameStateMachine.AddTransition(gameOverState, gameResultState, new EventPredicate(EventID.GameOver_FinishGameOver));
 
-        gameStateMachine.AddTransition(gameResultState, EndGameState, new EventPredicate(EventID.ButtonEndGame_Click));
+        gameStateMachine.AddTransition(gameResultState, EndGameState, new EventPredicate(EventID.ButtonReloadGame_Click));
         //End
 
         //Set default state

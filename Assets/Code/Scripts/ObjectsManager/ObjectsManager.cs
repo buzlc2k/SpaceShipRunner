@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class ObjectsManager : Singleton<ObjectsManager>
 {
+    public List<CoinItem> CoinItems;
+    public List<SpaceShipItem> SpaceShipItems;
+
     protected Action<KeyValuePair<EventParameterType, object>> resetObjectsInScene;
 
     protected override void SetUpDelegate()

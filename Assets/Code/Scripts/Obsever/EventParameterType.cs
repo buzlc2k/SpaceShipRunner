@@ -25,11 +25,10 @@ public enum EventParameterType{
     EnterGameResultState_Null,
     ADS_WatchFullAds_Placement,
     ButtonRiveve_Click_Placement,
+    ButtonDoubleCoin_Click_Placement,
     GameOver_FinishGameOver_Null,
     FinishRestarting_Null,
     ButtonPlayGame_Click_Null,
-    ButtonEndGame_Click,
-    InitializeLoadData_GameDataSaved,
     ButtonReloadGame_Click_Null,
     LoadCoinsData_TotalCoins,
     LoadCurrentSpaceShipData_CurrentSpaceShip,
@@ -44,5 +43,10 @@ public enum EventParameterType{
     //Test
     SpaceShipItem_SelectedItem_SpaceShipConfig,
     SpaceShipItem_OwnedItemClick_SpaceShipConfig,
+    WantToBuyItem_ItemConfig,
     SpaceShipItem_BuySuccess_SpaceShipConfig,
+    MinusTotalCoin_Coins,
+    ButtonShopping_Click_Null,
+    ButtonHome_Click_Null,
+    CoinItem_BuySuccess_CoinConfigID,
 }

@@ -1,31 +1,19 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-public class CoinVFX_CollectionPartical : ButMonobehavior
+public class CoinVFX_CollectionPartical : BaseUIVFX
 {
-    [SerializeField] private ParticleSystem vfxPartical;
     public List<ParticleSystem.Particle> particlesEnter;
 
     protected override void LoadComponents() {
         base.LoadComponents();
-        
-        if(vfxPartical == null) vfxPartical = GetComponent<ParticleSystem>();
+
         particlesEnter = new();
     }
 
-    protected virtual BaseCanvas GetCanvas()
-    {
-        return GetComponentInParent<BaseCanvas>();
-    }
-
-    public void PlayVFXPartical(){
-        vfxPartical.Play();
-    }
-
     private void OnParticleTrigger() {
-        int numEnter = vfxPartical.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, particlesEnter);
+        int numEnter = uiVFXPartical.GetTriggerParticles(ParticleSystemTriggerEventType.Enter, particlesEnter);
 
         for (int i = 0; i < numEnter; i++)
         {
@@ -34,6 +22,6 @@ public class CoinVFX_CollectionPartical : ButMonobehavior
             particlesEnter[i] = p;
         }
 
-        vfxPartical.SetTriggerParticles(ParticleSystemTriggerEventType.Enter, particlesEnter);
+        uiVFXPartical.SetTriggerParticles(ParticleSystemTriggerEventType.Enter, particlesEnter);
     }
 }

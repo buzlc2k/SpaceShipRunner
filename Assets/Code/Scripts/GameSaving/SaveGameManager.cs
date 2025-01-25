@@ -36,6 +36,7 @@ public class SaveGameManager : Singleton<SaveGameManager>
         base.RegisterListener();
 
         Observer.AddListener(EventID.ButtonReloadGame_Click, saveData);
+        Observer.AddListener(EventID.SpaceShipItem_BuySuccess, saveData);
     }
 
     protected override void UnregisterListener()
@@ -43,11 +44,12 @@ public class SaveGameManager : Singleton<SaveGameManager>
         base.UnregisterListener();
 
         Observer.RemoveListener(EventID.ButtonReloadGame_Click, saveData);
+        Observer.RemoveListener(EventID.SpaceShipItem_BuySuccess, saveData);
     }
 
-    protected override void Start()
+    protected override void OnEnable()
     {
-        base.Start();
+        base.OnEnable();
 
         LoadData();
     }
@@ -68,6 +70,8 @@ public class SaveGameManager : Singleton<SaveGameManager>
         GameDataSaved = !string.IsNullOrEmpty(jsonString) 
                 ? JsonUtility.FromJson<GameDataSaved>(jsonString) 
                 : new GameDataSaved(saveGameConfig.CurrentSpaceShip, saveGameConfig.SpaceShipOwned, saveGameConfig.CurrentCoinsOwned);
+
+        Debug.Log(jsonString);
 
         //Set Game Data Saved to Game Running Data
         foreach(var saver in savers){
