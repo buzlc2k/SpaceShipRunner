@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObject/ItemConfig/CoinItemConfig")]
+[CreateAssetMenu(menuName = "ScriptableObject/ItemConfig")]
 public class ItemConfig : ScriptableObject
 {    
     public string Name;
@@ -24,5 +24,5 @@ public enum ItemID{
     BabyDooDooDoo,
     ssr_100coins,
     ssr_200coins,
-    ssr_500coins
+    ssr_500coins,
 }

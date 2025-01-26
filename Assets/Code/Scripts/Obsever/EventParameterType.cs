@@ -26,27 +26,20 @@ public enum EventParameterType{
     ADS_WatchFullAds_Placement,
     ButtonRiveve_Click_Placement,
     ButtonDoubleCoin_Click_Placement,
+    ButtonGetCoin_Click_Placement,
     GameOver_FinishGameOver_Null,
     FinishRestarting_Null,
     ButtonPlayGame_Click_Null,
     ButtonReloadGame_Click_Null,
     LoadCoinsData_TotalCoins,
-    LoadCurrentSpaceShipData_CurrentSpaceShip,
-    LoadSpaceShipOwnedData_SpaceShipOwned,
+    LoadCurrentSpaceShipData_CurrentSpaceShipID,
+    LoadSpaceShipOwnedData_SpaceShipOwnedIDs,
     SetCurrentSpaceShipSuccess_Null,
-
-
-
-
-
-
-    //Test
     SpaceShipItem_SelectedItem_SpaceShipConfig,
     SpaceShipItem_OwnedItemClick_SpaceShipConfig,
     WantToBuyItem_ItemConfig,
     SpaceShipItem_BuySuccess_SpaceShipConfig,
-    MinusTotalCoin_Coins,
     ButtonShopping_Click_Null,
     ButtonHome_Click_Null,
-    CoinItem_BuySuccess_CoinConfigID,
+    CoinItem_BuySuccess_NumCoinBuyed,
 }

@@ -70,8 +70,10 @@ public class ShopManager : Singleton<ShopManager>, IDetailedStoreListener
     public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs purchaseEvent)
     {
         var itemPurchase = purchaseEvent.purchasedProduct;
-
-        Observer.PostEvent(EventID.CoinItem_BuySuccess, new KeyValuePair<EventParameterType, object>(EventParameterType.CoinItem_BuySuccess_CoinConfigID, itemPurchase.definition.id));
+        
+        var coinItemConfig = ObjectsManager.Instance.GetCoinItem(itemPurchase.definition.id);
+        
+        Observer.PostEvent(EventID.CoinItem_BuySuccess, new KeyValuePair<EventParameterType, object>(EventParameterType.CoinItem_BuySuccess_NumCoinBuyed, ((CoinItemConfig)coinItemConfig.ItemConfig).NumCoinInItem));
     
         return PurchaseProcessingResult.Complete;
     }
@@ -102,7 +104,7 @@ public class ShopManager : Singleton<ShopManager>, IDetailedStoreListener
 
     private void InitializePurchaseCoinItem(ItemConfig itemConfig){
         if(itemConfig.Price <= CoinTrackingManager.Instance.TotalCoins){
-            Observer.PostEvent(EventID.SpaceShipItem_BuySuccess, new KeyValuePair<EventParameterType, object>(EventParameterType.SpaceShipItem_BuySuccess_SpaceShipConfig, itemConfig));
+            Observer.PostEvent(EventID.SpaceShipItem_BuySuccess, new KeyValuePair<EventParameterType, object>(EventParameterType.SpaceShipItem_BuySuccess_SpaceShipConfig, itemConfig.ID));
             Observer.PostEvent(EventID.LoadCoinsData, new KeyValuePair<EventParameterType, object>(EventParameterType.LoadCoinsData_TotalCoins, -itemConfig.Price));
         }
         else{

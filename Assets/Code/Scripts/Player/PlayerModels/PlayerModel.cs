@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 public class PlayerModel : ButMonobehavior
@@ -36,7 +37,9 @@ public class PlayerModel : ButMonobehavior
                 Destroy(spaceShip.gameObject);
             }
         }
-
-        Instantiate(SpaceShipTrackingManager.Instance.CurrentSpaceShip.SpaceShipPrefab, transform.position, transform.rotation, transform);
+        
+        var spaceShipPrefab = ((SpaceShipItemConfig)ObjectsManager.Instance.GetSpaceShipItem(SpaceShipTrackingManager.Instance.CurrentSpaceShipID.ToString()).ItemConfig).SpaceShipPrefab;
+        
+        Instantiate(spaceShipPrefab, transform.position, transform.rotation, transform);
     }
 }

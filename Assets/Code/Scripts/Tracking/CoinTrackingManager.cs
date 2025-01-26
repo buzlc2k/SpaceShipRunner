@@ -54,7 +54,15 @@ public class CoinTrackingManager : Singleton<CoinTrackingManager>
         };
 
         setTotalCoin ??= (param) => {
-            SetTotalCoin((int)param.Value);
+            if(param.Key.Equals(EventParameterType.ButtonReloadGame_Click_Null)){
+                SetTotalCoin(currentTotalCoin);
+            }
+            else if(param.Key.Equals(EventParameterType.ADS_WatchFullAds_Placement)){
+                if(param.Value.Equals(PlacementID.GetCoinButton)) SetTotalCoin(30);
+            }
+            else{
+                SetTotalCoin((int)param.Value);
+            }  
         };
     }
 
@@ -70,6 +78,9 @@ public class CoinTrackingManager : Singleton<CoinTrackingManager>
         Observer.AddListener(EventID.ADS_WatchFullAds, setCurrentTotalCoin);
 
         Observer.AddListener(EventID.LoadCoinsData, setTotalCoin);
+        Observer.AddListener(EventID.CoinItem_BuySuccess, setTotalCoin);
+        Observer.AddListener(EventID.ButtonReloadGame_Click, setTotalCoin);
+        Observer.AddListener(EventID.ADS_WatchFullAds, setTotalCoin);
     }
 
     protected override void UnregisterListener()
@@ -84,6 +95,9 @@ public class CoinTrackingManager : Singleton<CoinTrackingManager>
         Observer.RemoveListener(EventID.ADS_WatchFullAds, setCurrentTotalCoin);
 
         Observer.RemoveListener(EventID.LoadCoinsData, setTotalCoin);
+        Observer.RemoveListener(EventID.CoinItem_BuySuccess, setTotalCoin);
+        Observer.RemoveListener(EventID.ButtonReloadGame_Click, setTotalCoin);
+        Observer.RemoveListener(EventID.ADS_WatchFullAds, setTotalCoin);
     }
 
     private void AddCoinGained(){

@@ -1,15 +1,13 @@
+using System.Collections.Generic;
 using DG.Tweening;
 
-public class Shop_ItemButton : BaseAnimatedButton
+public class Shop_GetFreeCoinButton : BaseAnimatedButton
 {
-    protected virtual BaseItem GetItem(){
-        return GetComponent<BaseItem>();
-    }
 
     protected override void OnClick()
     {
         InitializeAnimation();
-        GetItem().InitializeItemAction();
+        Observer.PostEvent(EventID.ButtonGetCoin_Click, new KeyValuePair<EventParameterType, object>(EventParameterType.ButtonGetCoin_Click_Placement, PlacementID.GetCoinButton));
     }
 
     protected override void InitializeAnimation()

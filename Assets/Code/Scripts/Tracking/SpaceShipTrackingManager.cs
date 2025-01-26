@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class SpaceShipTrackingManager : Singleton<SpaceShipTrackingManager>
 {
-    private SpaceShipConfig currentSpaceShip; 
-    private List<SpaceShipConfig> spaceShipsOwned = new();
+    private ItemID currentSpaceShipID; 
+    private List<ItemID> spaceShipsOwnedID = new();
 
     private Action<KeyValuePair<EventParameterType, object>> setCurrentSpaceShip;
     private Action<KeyValuePair<EventParameterType, object>> addSpaceShipOwner;
 
     #region Property
 
-    public SpaceShipConfig CurrentSpaceShip { get => currentSpaceShip; }
-    public List<SpaceShipConfig> SpaceShipsOwned { get => spaceShipsOwned; }
+    public ItemID CurrentSpaceShipID { get => currentSpaceShipID; }
+    public List<ItemID> SpaceShipsOwnedID { get => spaceShipsOwnedID; }
 
     #endregion
 
@@ -23,12 +23,12 @@ public class SpaceShipTrackingManager : Singleton<SpaceShipTrackingManager>
         base.SetUpDelegate();
 
         setCurrentSpaceShip = (param) => {
-            SetCurrentSpaceShip((SpaceShipConfig)param.Value);
+            SetCurrentSpaceShip((ItemID)param.Value);
         };
 
         addSpaceShipOwner = (param) => {
-            if(param.Value is SpaceShipConfig spaceShipConfig) AddSpaceShipOwner(spaceShipConfig);
-            else AddSpaceShipOwner((List<SpaceShipConfig>)param.Value);
+            if(param.Value is ItemID spaceShipConfig) AddSpaceShipOwner(spaceShipConfig);
+            else AddSpaceShipOwner((List<ItemID>)param.Value);
 
         };
     }
@@ -55,16 +55,16 @@ public class SpaceShipTrackingManager : Singleton<SpaceShipTrackingManager>
         Observer.RemoveListener(EventID.SpaceShipItem_BuySuccess, addSpaceShipOwner);
     }
 
-    private void SetCurrentSpaceShip(SpaceShipConfig currentSpaceShip){
-        this.currentSpaceShip = currentSpaceShip;
+    private void SetCurrentSpaceShip(ItemID currentSpaceShipID){
+        this.currentSpaceShipID = currentSpaceShipID;
         Observer.PostEvent(EventID.SetCurrentSpaceShipSuccess, new KeyValuePair<EventParameterType, object>(EventParameterType.SetCurrentSpaceShipSuccess_Null, null));
     }
 
-    private void AddSpaceShipOwner(SpaceShipConfig spaceShipAdded){
-        spaceShipsOwned.Add(spaceShipAdded);
+    private void AddSpaceShipOwner(ItemID spaceShipAddedID){
+        spaceShipsOwnedID.Add(spaceShipAddedID);
     }
 
-    private void AddSpaceShipOwner(List<SpaceShipConfig> spaceShipAdded){
-        spaceShipsOwned.AddRange(spaceShipAdded);
+    private void AddSpaceShipOwner(List<ItemID> spaceShipAddedID){
+        spaceShipsOwnedID.AddRange(spaceShipAddedID);
     }
 }

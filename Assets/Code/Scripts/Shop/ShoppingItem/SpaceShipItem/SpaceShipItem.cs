@@ -33,18 +33,18 @@ public class SpaceShipItem : BaseItem
         //End
 
         //Add Trasition
-        spaceShipStateMachine.AddTransition(selectedSpaceShipItemState, ownedSpaceShipItemState, new EventPredicate(EventID.SpaceShipItem_OwnedItemClick, (SpaceShipConfig)ItemConfig, false));
-        spaceShipStateMachine.AddTransition(selectedSpaceShipItemState, ownedSpaceShipItemState, new EventPredicate(EventID.SpaceShipItem_BuySuccess, (SpaceShipConfig)ItemConfig, false));
+        spaceShipStateMachine.AddTransition(selectedSpaceShipItemState, ownedSpaceShipItemState, new EventPredicate(EventID.SpaceShipItem_OwnedItemClick, ((SpaceShipItemConfig)ItemConfig).ID, false));
+        spaceShipStateMachine.AddTransition(selectedSpaceShipItemState, ownedSpaceShipItemState, new EventPredicate(EventID.SpaceShipItem_BuySuccess, ((SpaceShipItemConfig)ItemConfig).ID, false));
         
-        spaceShipStateMachine.AddTransition(ownedSpaceShipItemState, selectedSpaceShipItemState, new EventPredicate(EventID.SpaceShipItem_OwnedItemClick, (SpaceShipConfig)ItemConfig));
+        spaceShipStateMachine.AddTransition(ownedSpaceShipItemState, selectedSpaceShipItemState, new EventPredicate(EventID.SpaceShipItem_OwnedItemClick, ((SpaceShipItemConfig)ItemConfig).ID));
 
-        spaceShipStateMachine.AddTransition(buyableSpaceShipItemState, selectedSpaceShipItemState, new EventPredicate(EventID.SpaceShipItem_BuySuccess, (SpaceShipConfig)ItemConfig));
+        spaceShipStateMachine.AddTransition(buyableSpaceShipItemState, selectedSpaceShipItemState, new EventPredicate(EventID.SpaceShipItem_BuySuccess, ((SpaceShipItemConfig)ItemConfig).ID));
         //End
 
         //Set default state
-        if(SpaceShipTrackingManager.Instance.CurrentSpaceShip.Equals((SpaceShipConfig)ItemConfig))
+        if(SpaceShipTrackingManager.Instance.CurrentSpaceShipID.Equals(((SpaceShipItemConfig)ItemConfig).ID))
             spaceShipStateMachine.SetState(selectedSpaceShipItemState);
-        else if(SpaceShipTrackingManager.Instance.SpaceShipsOwned.Contains((SpaceShipConfig)ItemConfig))
+        else if(SpaceShipTrackingManager.Instance.SpaceShipsOwnedID.Contains(((SpaceShipItemConfig)ItemConfig).ID))
             spaceShipStateMachine.SetState(ownedSpaceShipItemState);
         else
             spaceShipStateMachine.SetState(buyableSpaceShipItemState);

@@ -62,4 +62,20 @@ public class ObjectsManager : Singleton<ObjectsManager>
             obstacleTile.SetActive(enable);
         }
     }
+
+    public CoinItem GetCoinItem(string itemID){
+        foreach(var coinItem in CoinItems)
+            if(coinItem.ItemConfig.ID.ToString().Equals(itemID))
+                 return coinItem;
+        
+        return null;
+    }
+
+    public SpaceShipItem GetSpaceShipItem(string itemID){
+        foreach(var spaceShipItem in SpaceShipItems)
+            if(spaceShipItem.ItemConfig.ID.ToString().Equals(itemID))
+                 return spaceShipItem;
+        
+        return null;
+    }
 }

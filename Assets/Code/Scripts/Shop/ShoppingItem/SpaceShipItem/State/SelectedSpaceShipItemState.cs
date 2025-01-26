@@ -6,7 +6,7 @@ public class SelectedSpaceShipItemState : BaseSpaceShipItemState
     public SelectedSpaceShipItemState(SpaceShipItem SpaceShipItem) : base(SpaceShipItem){ }
     public override void OnEnterState()
     {
-        Observer.PostEvent(EventID.SpaceShipItem_SelectedItem, new KeyValuePair<EventParameterType, object>(EventParameterType.SpaceShipItem_SelectedItem_SpaceShipConfig, SpaceShipItem.ItemConfig));
+        Observer.PostEvent(EventID.SpaceShipItem_SelectedItem, new KeyValuePair<EventParameterType, object>(EventParameterType.SpaceShipItem_SelectedItem_SpaceShipConfig, SpaceShipItem.ItemConfig.ID));
         SpaceShipItem.CurrentSpaceShipItemState = SpaceShipItemState.Selected;
     }
 

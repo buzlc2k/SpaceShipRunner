@@ -27,6 +27,8 @@ public class SaveGameManager : Singleton<SaveGameManager>
         base.SetUpDelegate();
 
         saveData = (param) => {
+            if(param.Key.Equals(EventParameterType.ADS_WatchFullAds_Placement))
+                if(!param.Value.Equals(PlacementID.GetCoinButton)) return;
             SaveData();
         };
     }
@@ -37,6 +39,8 @@ public class SaveGameManager : Singleton<SaveGameManager>
 
         Observer.AddListener(EventID.ButtonReloadGame_Click, saveData);
         Observer.AddListener(EventID.SpaceShipItem_BuySuccess, saveData);
+        Observer.AddListener(EventID.CoinItem_BuySuccess, saveData);
+        Observer.AddListener(EventID.ADS_WatchFullAds, saveData);
     }
 
     protected override void UnregisterListener()
@@ -45,6 +49,8 @@ public class SaveGameManager : Singleton<SaveGameManager>
 
         Observer.RemoveListener(EventID.ButtonReloadGame_Click, saveData);
         Observer.RemoveListener(EventID.SpaceShipItem_BuySuccess, saveData);
+        Observer.RemoveListener(EventID.CoinItem_BuySuccess, saveData);
+        Observer.RemoveListener(EventID.ADS_WatchFullAds, saveData);
     }
 
     protected override void OnEnable()
@@ -70,8 +76,6 @@ public class SaveGameManager : Singleton<SaveGameManager>
         GameDataSaved = !string.IsNullOrEmpty(jsonString) 
                 ? JsonUtility.FromJson<GameDataSaved>(jsonString) 
                 : new GameDataSaved(saveGameConfig.CurrentSpaceShip, saveGameConfig.SpaceShipOwned, saveGameConfig.CurrentCoinsOwned);
-
-        Debug.Log(jsonString);
 
         //Set Game Data Saved to Game Running Data
         foreach(var saver in savers){

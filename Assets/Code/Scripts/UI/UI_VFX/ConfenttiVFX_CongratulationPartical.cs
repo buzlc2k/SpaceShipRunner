@@ -10,6 +10,7 @@ public class ConfenttiVFX_CongratulationPartical : BaseUIVFX
 
         Observer.AddListener(EventID.CoinItem_BuySuccess, playUIVFXPartical);
         Observer.AddListener(EventID.SpaceShipItem_BuySuccess, playUIVFXPartical);
+        Observer.AddListener(EventID.ADS_WatchFullAds, playUIVFXPartical);
     }
 
     protected override void UnregisterListener()
@@ -18,5 +19,6 @@ public class ConfenttiVFX_CongratulationPartical : BaseUIVFX
 
         Observer.RemoveListener(EventID.CoinItem_BuySuccess, playUIVFXPartical);
         Observer.RemoveListener(EventID.SpaceShipItem_BuySuccess, playUIVFXPartical);
+        Observer.RemoveListener(EventID.ADS_WatchFullAds, playUIVFXPartical);
     }
 }

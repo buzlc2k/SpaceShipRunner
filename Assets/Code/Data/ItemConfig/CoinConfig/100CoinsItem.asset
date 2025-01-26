@@ -9,10 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdee0b5f4188318419cdec3abb46d8f4, type: 3}
+  m_Script: {fileID: 11500000, guid: f81ee8a7469b19247bf3e72e8a583b33, type: 3}
   m_Name: 100CoinsItem
   m_EditorClassIdentifier: 
   Name: 100 Coins
   Type: 2
   ID: 3
   Price: 10000
+  NumCoinInItem: 100

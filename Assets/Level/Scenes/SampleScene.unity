@@ -1799,6 +1799,7 @@ GameObject:
   - component: {fileID: 239984289}
   - component: {fileID: 239984288}
   - component: {fileID: 239984291}
+  - component: {fileID: 239984292}
   m_Layer: 5
   m_Name: Item_100Coins
   m_TagString: Untagged
@@ -1922,7 +1923,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81a8e7a22de8ce41a4f4f6209faed3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemConfig: {fileID: 11400000, guid: 3de2f0b1293c72d45b05e06ec3d555f1, type: 2}
+  ItemConfig: {fileID: 11400000, guid: 1367ef7c517122c45bd76214c09e02bb, type: 2}
+--- !u!114 &239984292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 239984286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f658f2b7f5f68a458137a51b743a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 239984289}
 --- !u!1 &248771006
 GameObject:
   m_ObjectHideFlags: 0
@@ -4163,6 +4177,7 @@ GameObject:
   - component: {fileID: 419398275}
   - component: {fileID: 419398274}
   - component: {fileID: 419398277}
+  - component: {fileID: 419398278}
   m_Layer: 5
   m_Name: Item_500Coins
   m_TagString: Untagged
@@ -4286,7 +4301,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81a8e7a22de8ce41a4f4f6209faed3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemConfig: {fileID: 11400000, guid: db805173723bd1246883027a92d93950, type: 2}
+  ItemConfig: {fileID: 11400000, guid: aedf9ccbcb64b064280116f37e3afc8a, type: 2}
+--- !u!114 &419398278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 419398272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f658f2b7f5f68a458137a51b743a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 419398275}
 --- !u!1 &421781922
 GameObject:
   m_ObjectHideFlags: 0
@@ -4937,6 +4965,7 @@ GameObject:
   - component: {fileID: 457313802}
   - component: {fileID: 457313801}
   - component: {fileID: 457313800}
+  - component: {fileID: 457313803}
   m_Layer: 5
   m_Name: Item_30Coins
   m_TagString: Untagged
@@ -5049,6 +5078,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 457313798}
   m_CullTransparentMesh: 1
+--- !u!114 &457313803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457313798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fcefb21edf7bd14b83d81999b1e350b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 457313801}
 --- !u!1 &494261576
 GameObject:
   m_ObjectHideFlags: 0
@@ -14207,6 +14249,7 @@ GameObject:
   - component: {fileID: 932383287}
   - component: {fileID: 932383289}
   - component: {fileID: 932383288}
+  - component: {fileID: 932383290}
   m_Layer: 5
   m_Name: ButtonContinue
   m_TagString: Untagged
@@ -14289,6 +14332,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 932383286}
   m_CullTransparentMesh: 1
+--- !u!114 &932383290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932383286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afcc88ca652ff6f4da9588bc19618821, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 932383288}
 --- !u!1 &946388149
 GameObject:
   m_ObjectHideFlags: 0
@@ -14786,6 +14842,7 @@ GameObject:
   - component: {fileID: 984202279}
   - component: {fileID: 984202278}
   - component: {fileID: 984202281}
+  - component: {fileID: 984202282}
   m_Layer: 5
   m_Name: Item_200Coins
   m_TagString: Untagged
@@ -14909,7 +14966,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c81a8e7a22de8ce41a4f4f6209faed3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemConfig: {fileID: 11400000, guid: 5cfe1f0ca1aace24a927a780d94355cf, type: 2}
+  ItemConfig: {fileID: 11400000, guid: 20a0e5f4e7465c64caf08ad699cd7fb7, type: 2}
+--- !u!114 &984202282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984202276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f658f2b7f5f68a458137a51b743a450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 984202279}
 --- !u!1 &999906860
 GameObject:
   m_ObjectHideFlags: 0
@@ -15218,22 +15288,22 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.5377357, g: 0.92936575, b: 1, a: 1}
-        key1: {r: 0.6313726, g: 1, b: 0.66974044, a: 1}
-        key2: {r: 1, g: 0.9798691, b: 0.72156864, a: 0}
-        key3: {r: 1, g: 0.51257855, b: 0.54320395, a: 0}
-        key4: {r: 0.98742133, g: 0.34466583, b: 0.7662893, a: 0}
-        key5: {r: 0.7676069, g: 0.22327036, b: 1, a: 0}
-        key6: {r: 0.7676069, g: 0.22327036, b: 1, a: 0}
-        key7: {r: 0, g: 0, b: 0, a: 0}
+        key0: {r: 1, g: 1, b: 1, a: 1}
+        key1: {r: 0, g: 0, b: 0, a: 1}
+        key2: {r: 0.89440864, g: 0.50628924, b: 1, a: 0}
+        key3: {r: 0.71610534, g: 0.99371064, b: 0.39685917, a: 0}
+        key4: {r: 0.99371064, g: 0.65847194, b: 0.48435578, a: 0}
+        key5: {r: 0.42140332, g: 0.93412596, b: 0.93710685, a: 0}
+        key6: {r: 0.5766385, g: 0.60926026, b: 0.9308176, a: 0}
+        key7: {r: 1, g: 0.53144646, b: 0.6294602, a: 0}
         ctime0: 0
-        ctime1: 13493
-        ctime2: 26214
-        ctime3: 39578
-        ctime4: 52942
-        ctime5: 65535
-        ctime6: 65535
-        ctime7: 0
+        ctime1: 8610
+        ctime2: 17990
+        ctime3: 26985
+        ctime4: 35980
+        ctime5: 45746
+        ctime6: 55769
+        ctime7: 65535
         atime0: 0
         atime1: 65535
         atime2: 0
@@ -15244,7 +15314,7 @@ ParticleSystem:
         atime7: 0
         m_Mode: 0
         m_ColorSpace: 0
-        m_NumColorKeys: 6
+        m_NumColorKeys: 8
         m_NumAlphaKeys: 2
       minGradient:
         serializedVersion: 2
@@ -26236,6 +26306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RespondingState: 3
+  shop_GetFreeCoinButton: {fileID: 457313803}
 --- !u!95 &1855161858
 Animator:
   serializedVersion: 7
@@ -26396,9 +26467,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDontDestroy: 0
   GameDataSaved:
-    CurrentSpaceShip: {fileID: 0}
-    SpaceShipOwned:
-    - {fileID: 0}
+    CurrentSpaceShip: 0
+    SpaceShipOwned: 00000000
     CurrentCoinsOwned: 0
   saveGameConfig: {fileID: 11400000, guid: ccd42cbdedec87b4cbdeaa9f9324699b, type: 2}
   savers:
@@ -34058,8 +34128,8 @@ SceneRoots:
   - {fileID: 1153832265}
   - {fileID: 1819002761}
   - {fileID: 1562982739}
-  - {fileID: 175443084}
   - {fileID: 1254027650}
+  - {fileID: 175443084}
   - {fileID: 1386150471}
   - {fileID: 1880064456}
   - {fileID: 782628376}

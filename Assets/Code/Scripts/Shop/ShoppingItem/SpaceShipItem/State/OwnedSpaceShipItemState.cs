@@ -16,6 +16,6 @@ public class OwnedSpaceShipItemState : BaseSpaceShipItemState
 
     public override void InitializeStateAction()
     {
-        Observer.PostEvent(EventID.SpaceShipItem_OwnedItemClick, new KeyValuePair<EventParameterType, object>(EventParameterType.SpaceShipItem_OwnedItemClick_SpaceShipConfig, SpaceShipItem.ItemConfig));
+        Observer.PostEvent(EventID.SpaceShipItem_OwnedItemClick, new KeyValuePair<EventParameterType, object>(EventParameterType.SpaceShipItem_OwnedItemClick_SpaceShipConfig, SpaceShipItem.ItemConfig.ID));
     }
 }

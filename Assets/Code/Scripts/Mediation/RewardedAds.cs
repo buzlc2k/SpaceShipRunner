@@ -38,6 +38,7 @@ public class RewardedAds : ButMonobehavior
 
         Observer.AddListener(EventID.ButtonRiveve_Click, showRewardAds);
         Observer.AddListener(EventID.ButtonDoubleCoin_Click, showRewardAds);
+        Observer.AddListener(EventID.ButtonGetCoin_Click, showRewardAds);
     }
 
     protected override void UnregisterListener()
@@ -54,6 +55,7 @@ public class RewardedAds : ButMonobehavior
 
         Observer.RemoveListener(EventID.ButtonRiveve_Click, showRewardAds);
         Observer.RemoveListener(EventID.ButtonDoubleCoin_Click, showRewardAds);
+        Observer.RemoveListener(EventID.ButtonGetCoin_Click, showRewardAds);
     }
 
     public void ShowRewardAds(PlacementID placementID){

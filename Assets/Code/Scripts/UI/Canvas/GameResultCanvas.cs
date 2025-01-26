@@ -16,6 +16,13 @@ public class GameResultCanvas : BaseCanvas
         if(CoinVFX_CollectionPartical == null) CoinVFX_CollectionPartical = GetComponentInChildren<CoinVFX_CollectionPartical>();
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+
+        if(!AdsManager.Instance.RewardedAds.CanShowAds) Invoke(nameof(SetOnlyReloadGameButton), 11.47f);
+    }
+
     public void SetOnlyReloadGameButton(){
         DoubleCoinButton.gameObject.SetActive(false);
         ReloadGameButton.GetComponent<RectTransform>().DOPivotY(140, 0.5f);

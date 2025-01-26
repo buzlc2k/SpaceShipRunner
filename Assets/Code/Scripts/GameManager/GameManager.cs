@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum GameState{
     None = 0,
@@ -72,5 +74,11 @@ public class GameManager : Singleton<GameManager>
 
     private void Update() {
         gameStateMachine.StateMachineUpdate();
+    }
+
+    public IEnumerator ReloadGame(float offsetTime = 1.5f){
+        yield return new WaitForSeconds(offsetTime);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
