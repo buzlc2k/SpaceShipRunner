@@ -41,6 +41,6 @@ public class GameResult_TotalCoinText : GameResult_BaseAnimatedText
     protected override IEnumerator InitializeAnimation(float totalUnitCount, float animatedTime = 1.1f, float timeOffset = 0){
         yield return base.InitializeAnimation(totalUnitCount, animatedTime);
 
-        ((GameResultCanvas)GetCanvas()).CoinVFX_CollectionPartical.PlayUIVFXPartical();
+        Observer.PostEvent(EventID.FinishCalculateTotalCoin, new KeyValuePair<EventParameterType, object>(EventParameterType.FinishCalculateTotalCoin_Null, null));
     }
 }

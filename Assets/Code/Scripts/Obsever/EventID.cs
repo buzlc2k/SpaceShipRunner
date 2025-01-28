@@ -41,4 +41,5 @@ public enum EventID{
     ButtonShopping_Click,
     ButtonHome_Click,
     CoinItem_BuySuccess,
+    FinishCalculateTotalCoin,
 }

@@ -30,9 +30,8 @@ public class PhaseChangingManager : Singleton<PhaseChangingManager>
     }
 
     protected virtual bool CheckCanUpdatePhaseChanging(){
-        return GameManager.Instance.CurrentGameState.Equals(GameState.MainMenu) 
-            || GameManager.Instance.CurrentGameState.Equals(GameState.Running) 
-            || GameManager.Instance.CurrentGameState.Equals(GameState.Restarting);
+        return !GameManager.Instance.CurrentGameState.Equals(GameState.StartTransition) 
+            && !GameManager.Instance.CurrentGameState.Equals(GameState.EndTransition);
     }
 
     private void SetUpPhaseChanging(){

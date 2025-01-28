@@ -91,10 +91,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c2a0a9587fc9c4eae274428e62dc63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vfxPartical: {fileID: 7768143683802229259}
-  vfxMovement: {fileID: 6835696224127827155}
+  vfxPartical: {fileID: 7694630590485170059}
   vfxDespawn: {fileID: 6608918115584039622}
   vfxConfig: {fileID: 11400000, guid: 81b0381ac4f36f0419e3317a69263aea, type: 2}
+  worldVFXMovement: {fileID: 6835696224127827155}
 --- !u!1 &3510548437171580892
 GameObject:
   m_ObjectHideFlags: 0

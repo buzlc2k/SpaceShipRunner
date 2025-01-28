@@ -42,4 +42,5 @@ public enum EventParameterType{
     ButtonShopping_Click_Null,
     ButtonHome_Click_Null,
     CoinItem_BuySuccess_NumCoinBuyed,
+    FinishCalculateTotalCoin_Null,
 }

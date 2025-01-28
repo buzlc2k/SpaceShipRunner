@@ -4960,7 +4960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c2a0a9587fc9c4eae274428e62dc63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vfxPartical: {fileID: 3059000097543866694}
-  vfxMovement: {fileID: 5728877711792917880}
+  vfxPartical: {fileID: 3059000097524454956}
   vfxDespawn: {fileID: 2362862099483269636}
-  vfxConfig: {fileID: 11400000, guid: 7caaed231f91a69449b305e0ae284473, type: 2}
+  vfxConfig: {fileID: 11400000, guid: f37137138891f124692c6d8806e7c74e, type: 2}
+  worldVFXMovement: {fileID: 5728877711792917880}

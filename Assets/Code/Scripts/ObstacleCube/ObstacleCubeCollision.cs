@@ -23,8 +23,8 @@ public class ObstacleCubeCollision : ObjCollision
         if(tagOfObject.Equals(ObjTagCollision.Obstacle_Black))
             Observer.PostEvent(EventID.B_Cube_Collide, new KeyValuePair<EventParameterType, object>(EventParameterType.B_Cube_Collide_CubeObject, this.transform.parent.gameObject));
         else
-             Observer.PostEvent(EventID.W_Cube_Collide, new KeyValuePair<EventParameterType, object>(EventParameterType.W_Cube_Collide_CubeObject, this.transform.parent.gameObject));
-        
+            Observer.PostEvent(EventID.W_Cube_Collide, new KeyValuePair<EventParameterType, object>(EventParameterType.W_Cube_Collide_CubeObject, this.transform.parent.gameObject));
+
         ((ObjDespawnByCollide)((ObstacleCubeCtrl)GetObjCtrl()).obstacleCubeDespawn).SetObjectCanDespawn();
     }
 }

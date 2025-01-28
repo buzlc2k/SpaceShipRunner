@@ -6,14 +6,12 @@ public class GameResultCanvas : BaseCanvas
 { 
     public Button DoubleCoinButton;
     public Button ReloadGameButton;
-    public CoinVFX_CollectionPartical CoinVFX_CollectionPartical;
 
     protected override void LoadComponents()
     {
         base.LoadComponents();
 
         if(RespondingState.Equals(GameState.None)) RespondingState = GameState.Result;
-        if(CoinVFX_CollectionPartical == null) CoinVFX_CollectionPartical = GetComponentInChildren<CoinVFX_CollectionPartical>();
     }
 
     protected override void OnEnable()

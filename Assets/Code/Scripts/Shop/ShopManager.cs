@@ -74,7 +74,7 @@ public class ShopManager : Singleton<ShopManager>, IDetailedStoreListener
         var coinItemConfig = ObjectsManager.Instance.GetCoinItem(itemPurchase.definition.id);
         
         Observer.PostEvent(EventID.CoinItem_BuySuccess, new KeyValuePair<EventParameterType, object>(EventParameterType.CoinItem_BuySuccess_NumCoinBuyed, ((CoinItemConfig)coinItemConfig.ItemConfig).NumCoinInItem));
-    
+        
         return PurchaseProcessingResult.Complete;
     }
 

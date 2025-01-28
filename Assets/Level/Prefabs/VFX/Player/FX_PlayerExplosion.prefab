@@ -47,10 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c2a0a9587fc9c4eae274428e62dc63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vfxPartical: {fileID: 8725690959030759359}
-  vfxMovement: {fileID: 2194114657011552482}
+  vfxPartical: {fileID: 8725690959049126101}
   vfxDespawn: {fileID: 7821407578457251703}
-  vfxConfig: {fileID: 11400000, guid: 148044e6f6ede5c45b42c81ae1f77916, type: 2}
+  vfxConfig: {fileID: 11400000, guid: b74afcef4584f34478adba89c2267c91, type: 2}
+  worldVFXMovement: {fileID: 2194114657011552482}
 --- !u!1 &6427086569822156368
 GameObject:
   m_ObjectHideFlags: 0
