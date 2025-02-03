@@ -38,7 +38,7 @@ public class PlayerModel : ButMonobehavior
             }
         }
         
-        var spaceShipPrefab = ((SpaceShipItemConfig)ObjectsManager.Instance.GetSpaceShipItem(SpaceShipTrackingManager.Instance.CurrentSpaceShipID.ToString()).ItemConfig).SpaceShipPrefab;
+        var spaceShipPrefab = ((SpaceShipItemConfig)ObjectsManager.Instance.GetItem(SpaceShipTrackingManager.Instance.CurrentSpaceShipID.ToString()).ItemConfig).SpaceShipPrefab;
         
         Instantiate(spaceShipPrefab, transform.position, transform.rotation, transform);
     }

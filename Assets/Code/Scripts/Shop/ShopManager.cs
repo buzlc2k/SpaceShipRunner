@@ -21,7 +21,7 @@ public class ShopManager : Singleton<ShopManager>, IDetailedStoreListener
         base.SetUpDelegate();
 
         initializePurchaseItem ??= (param) => {
-            InitializePurchaseItem((ItemConfig)param.Value);
+            InitializePurchaseItem((BaseItem)param.Value);
         };
     }
 
@@ -49,31 +49,38 @@ public class ShopManager : Singleton<ShopManager>, IDetailedStoreListener
         UnityPurchasing.Initialize(this, builder);
     }
 
-    private void InitializePurchaseItem(ItemConfig itemConfig){
-        switch (itemConfig.Type){
-        case ItemType.Coin: 
-            InitializePurchaseCoinItem(itemConfig);
-            break;
-
-        case ItemType.IAP: 
-            InitializePurchaseIAPItem(itemConfig);
-            break;
-        }
-    }
-
     public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
     {
         storeController = controller;
         Debug.Log("Initialie IAP Success");
     }
 
+    public void InitializePurchaseItem(BaseItem item){
+        switch (item.ItemConfig.Type){
+        case ItemType.Coin: 
+            InitializePurchaseCoinItem(item);
+            break;
+
+        case ItemType.IAP: 
+            InitializePurchaseIAPItem(item);
+            break;
+        }
+    }
+
+    private void InitializePurchaseCoinItem(BaseItem item){
+        if(item.ItemConfig.Price <= CoinTrackingManager.Instance.TotalCoins)
+            item.OnItemPuschaseSuccess();
+    }
+
+    private void InitializePurchaseIAPItem(BaseItem item){
+        storeController.InitiatePurchase(item.ItemConfig.ID.ToString());
+    }
+
     public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs purchaseEvent)
     {
         var itemPurchase = purchaseEvent.purchasedProduct;
         
-        var coinItemConfig = ObjectsManager.Instance.GetCoinItem(itemPurchase.definition.id);
-        
-        Observer.PostEvent(EventID.CoinItem_BuySuccess, new KeyValuePair<EventParameterType, object>(EventParameterType.CoinItem_BuySuccess_NumCoinBuyed, ((CoinItemConfig)coinItemConfig.ItemConfig).NumCoinInItem));
+        ObjectsManager.Instance.GetItem(itemPurchase.definition.id)?.OnItemPuschaseSuccess();
         
         return PurchaseProcessingResult.Complete;
     }
@@ -96,19 +103,5 @@ public class ShopManager : Singleton<ShopManager>, IDetailedStoreListener
     public void OnInitializeFailed(InitializationFailureReason error, string message)
     {
         Debug.Log("Initialize IAP Fail: " + error + " " + message);
-    }
-
-    private void InitializePurchaseIAPItem(ItemConfig itemConfig){
-        storeController.InitiatePurchase(itemConfig.ID.ToString());
-    }
-
-    private void InitializePurchaseCoinItem(ItemConfig itemConfig){
-        if(itemConfig.Price <= CoinTrackingManager.Instance.TotalCoins){
-            Observer.PostEvent(EventID.SpaceShipItem_BuySuccess, new KeyValuePair<EventParameterType, object>(EventParameterType.SpaceShipItem_BuySuccess_SpaceShipConfig, itemConfig.ID));
-            Observer.PostEvent(EventID.LoadCoinsData, new KeyValuePair<EventParameterType, object>(EventParameterType.LoadCoinsData_TotalCoins, -itemConfig.Price));
-        }
-        else{
-            Debug.Log("Not enough coins");
-        }
     }
 }

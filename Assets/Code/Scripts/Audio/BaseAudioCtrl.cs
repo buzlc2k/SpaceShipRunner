@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class BaseAudioCtrl : ButMonobehavior, IPooled
@@ -39,21 +37,6 @@ public abstract class BaseAudioCtrl : ButMonobehavior, IPooled
 
         if(CurrentAudioClip !=  AudioSource.clip) CurrentAudioClip = AudioSource.clip;
 	}
-
-    public void Fade(float timeFade, float targetVolume){
-        StartCoroutine(FadeAudio(timeFade, targetVolume));
-    }
-
-    protected virtual IEnumerator FadeAudio(float timeFade, float targetVolume){
-        float timer = timeFade;
-        float volumeRange = AudioSource.volume - targetVolume;
-
-        while(timer > 0){
-            timer -= Time.deltaTime;
-            AudioSource.volume = targetVolume + (timer/timeFade) * volumeRange;
-            yield return null;
-        }
-    }
 
     public AudioClip GetRandomAudioClip(){
         return AudioConfig.AudioClips[UnityEngine.Random.Range(0, AudioConfig.AudioClips.Count)];

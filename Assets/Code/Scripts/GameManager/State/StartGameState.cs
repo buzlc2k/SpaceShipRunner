@@ -10,6 +10,7 @@ public class StartGameState : BaseGameState
         gameManager.CurrentGameState = GameState.StartTransition;
 
         Observer.PostEvent(EventID.ChangeGameState, new KeyValuePair<EventParameterType, object>(EventParameterType.ChangeGameState_GameState, GameState.StartTransition));
+        Observer.PostEvent(EventID.EnterStartTrasitionState, new KeyValuePair<EventParameterType, object>(EventParameterType.EnterStartTrasitionState_Null, null));
     }
     public override void OnExitState(){
         gameManager.PreviousGameState = GameState.StartTransition;

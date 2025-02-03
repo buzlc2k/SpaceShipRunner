@@ -12,8 +12,11 @@ public class CoinTrackingManager : Singleton<CoinTrackingManager>
 
     private Action<KeyValuePair<EventParameterType, object>> addCoinGained;
     private Action<KeyValuePair<EventParameterType, object>> setPointCoin;
-    private Action<KeyValuePair<EventParameterType, object>> setCurrentTotalCoin;
-    private Action<KeyValuePair<EventParameterType, object>> setTotalCoin;
+    private Action<KeyValuePair<EventParameterType, object>> setCurrentTotalCoinGameResultState;
+    private Action<KeyValuePair<EventParameterType, object>> setCurrentTotalCoinWatchFullAds;
+    private Action<KeyValuePair<EventParameterType, object>> setTotalCoinLoadCoinData;
+    private Action<KeyValuePair<EventParameterType, object>> setTotalCoinButtonReloadGame;
+    private Action<KeyValuePair<EventParameterType, object>> setTotalCoinWatchFullAds;
 
     #region Property
 
@@ -46,23 +49,25 @@ public class CoinTrackingManager : Singleton<CoinTrackingManager>
             SetPointCoint();
         };
 
-        setCurrentTotalCoin ??= (param) => {
-            if(param.Key.Equals(EventParameterType.EnterGameResultState_Null))
-                SetCurentTotalCoin();
-            else if(param.Key.Equals(EventParameterType.ADS_WatchFullAds_Placement))
-                if(param.Value.Equals(PlacementID.DoubleCoinButton)) SetCurentTotalCoin(2);   
+        setCurrentTotalCoinGameResultState ??= (param) => {
+            SetCurentTotalCoin(); 
         };
 
-        setTotalCoin ??= (param) => {
-            if(param.Key.Equals(EventParameterType.ButtonReloadGame_Click_Null)){
-                SetTotalCoin(currentTotalCoin);
-            }
-            else if(param.Key.Equals(EventParameterType.ADS_WatchFullAds_Placement)){
-                if(param.Value.Equals(PlacementID.GetCoinButton)) SetTotalCoin(30);
-            }
-            else{
-                SetTotalCoin((int)param.Value);
-            }  
+        setCurrentTotalCoinWatchFullAds ??= (param) => {
+            if(param.Value.Equals(PlacementID.DoubleCoinButton)) SetCurentTotalCoin(2);   
+        }; 
+
+        setTotalCoinLoadCoinData ??= (param) => {
+            SetTotalCoin((int)param.Value);  
+        };
+
+        setTotalCoinButtonReloadGame ??= (param) => {
+            SetTotalCoin(currentTotalCoin);  
+        };
+
+        setTotalCoinWatchFullAds ??= (param) => {
+            if(param.Value.Equals(PlacementID.GetCoinButton)) 
+                SetTotalCoin(30);
         };
     }
 
@@ -74,13 +79,12 @@ public class CoinTrackingManager : Singleton<CoinTrackingManager>
 
         Observer.AddListener(EventID.EnterGameResultState, setPointCoin);
 
-        Observer.AddListener(EventID.EnterGameResultState, setCurrentTotalCoin);
-        Observer.AddListener(EventID.ADS_WatchFullAds, setCurrentTotalCoin);
+        Observer.AddListener(EventID.EnterGameResultState, setCurrentTotalCoinGameResultState);
+        Observer.AddListener(EventID.ADS_WatchFullAds, setCurrentTotalCoinWatchFullAds);
 
-        Observer.AddListener(EventID.LoadCoinsData, setTotalCoin);
-        Observer.AddListener(EventID.CoinItem_BuySuccess, setTotalCoin);
-        Observer.AddListener(EventID.ButtonReloadGame_Click, setTotalCoin);
-        Observer.AddListener(EventID.ADS_WatchFullAds, setTotalCoin);
+        Observer.AddListener(EventID.LoadCoinsData, setTotalCoinLoadCoinData);
+        Observer.AddListener(EventID.ButtonReloadGame_Click, setTotalCoinButtonReloadGame);
+        Observer.AddListener(EventID.ADS_WatchFullAds, setTotalCoinWatchFullAds);
     }
 
     protected override void UnregisterListener()
@@ -91,13 +95,12 @@ public class CoinTrackingManager : Singleton<CoinTrackingManager>
 
         Observer.RemoveListener(EventID.EnterGameResultState, setPointCoin);
 
-        Observer.RemoveListener(EventID.EnterGameResultState, setCurrentTotalCoin);
-        Observer.RemoveListener(EventID.ADS_WatchFullAds, setCurrentTotalCoin);
+        Observer.RemoveListener(EventID.EnterGameResultState, setCurrentTotalCoinGameResultState);
+        Observer.RemoveListener(EventID.ADS_WatchFullAds, setCurrentTotalCoinWatchFullAds);
 
-        Observer.RemoveListener(EventID.LoadCoinsData, setTotalCoin);
-        Observer.RemoveListener(EventID.CoinItem_BuySuccess, setTotalCoin);
-        Observer.RemoveListener(EventID.ButtonReloadGame_Click, setTotalCoin);
-        Observer.RemoveListener(EventID.ADS_WatchFullAds, setTotalCoin);
+        Observer.RemoveListener(EventID.LoadCoinsData, setTotalCoinLoadCoinData);
+        Observer.RemoveListener(EventID.ButtonReloadGame_Click, setTotalCoinButtonReloadGame);
+        Observer.RemoveListener(EventID.ADS_WatchFullAds, setTotalCoinWatchFullAds);
     }
 
     private void AddCoinGained(){

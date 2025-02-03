@@ -57,4 +57,15 @@ public class SpaceShipItem : BaseItem
     public override void InitializeItemAction(){
         spaceShipStateMachine.InitializeStateAction();
     }
+
+    public override void OnItemPuschaseSuccess()
+    {
+        Observer.PostEvent(EventID.LoadCoinsData, new KeyValuePair<EventParameterType, object>(EventParameterType.LoadCoinsData_NumCoinAdded, -ItemConfig.Price));
+        Observer.PostEvent(EventID.SpaceShipItem_BuySuccess, new KeyValuePair<EventParameterType, object>(EventParameterType.SpaceShipItem_BuySuccess_SpaceShipConfigID, ItemConfig.ID));
+    }
+
+    public override void OnItemPuschaseFailed()
+    {
+        Debug.Log("Buy Space Ship Failed");
+    }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class TabButtton : ButMonobehavior
+public class TabButtton : BaseButton
 {
     [SerializeField] int tabButtonIndex;
     [SerializeField] Button tabButton;
@@ -18,20 +18,6 @@ public class TabButtton : ButMonobehavior
         if(tabButton == null)  tabButton = GetComponentInChildren<Button>();
     }
 
-    protected override void RegisterListener()
-    {
-        base.RegisterListener();
-
-        tabButton.onClick.AddListener(OnClick);
-    }
-
-    protected override void UnregisterListener()
-    {
-        base.UnregisterListener();
-
-        tabButton.onClick.RemoveListener(OnClick);
-    }
-
     public TabButtonCtrl GetTabButtonCtrl(){
         return GetComponentInParent<TabButtonCtrl>();
     }
@@ -44,7 +30,8 @@ public class TabButtton : ButMonobehavior
         tabButton.transform.localScale += scaleDiff;
     }
 
-    public void OnClick(){
+    protected override void OnClick()
+    {
         GetTabButtonCtrl().GetTabCtrl().SwitchTab(tabButtonIndex);
     }
 }

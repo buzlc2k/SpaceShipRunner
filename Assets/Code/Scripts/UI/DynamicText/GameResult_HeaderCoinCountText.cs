@@ -36,6 +36,8 @@ public class GameResult_HeaderCoinCountText : GameResult_BaseAnimatedText
     {
         yield return new WaitForSeconds(10.22f);
 
+        Observer.PostEvent(EventID.TotalCoinCalculated, new KeyValuePair<EventParameterType, object>(EventParameterType.TotalCoinCalculated_Null, null));   
+
         yield return StartCoroutine(InitializeAnimation(CoinTrackingManager.Instance.CurrentTotalCoin, 1.25f));
     }
 }

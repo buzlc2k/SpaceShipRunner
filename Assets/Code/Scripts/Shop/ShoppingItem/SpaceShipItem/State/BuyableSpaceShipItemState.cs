@@ -16,6 +16,6 @@ public class BuyableSpaceShipItemState : BaseSpaceShipItemState
 
     public override void InitializeStateAction()
     {
-        Observer.PostEvent(EventID.WantToBuyItem, new KeyValuePair<EventParameterType, object>(EventParameterType.WantToBuyItem_ItemConfig, SpaceShipItem.ItemConfig));
+        Observer.PostEvent(EventID.WantToBuyItem, new KeyValuePair<EventParameterType, object>(EventParameterType.WantToBuyItem_Item, SpaceShipItem));
     }
 }

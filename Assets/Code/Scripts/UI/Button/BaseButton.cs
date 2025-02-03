@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public abstract class BaseButton : ButMonobehavior
 {
@@ -37,6 +38,7 @@ public abstract class BaseButton : ButMonobehavior
     private void AddButtonClickAction()
     {
         onButtonClickAction ??= () => {
+            Observer.PostEvent(EventID.BaseButton_Click, new KeyValuePair<EventParameterType, object>(EventParameterType.BaseButton_Click_Null, null));
             OnClick();
         };
 

@@ -22,6 +22,8 @@ public enum EventID{
     EnterGameOverState,
     EnterGameRestartingState,
     EnterGameResultState,
+    EnterStartTrasitionState,
+    EnterEndTrasitionState,
     ADS_WatchFullAds,
     ButtonRiveve_Click,
     ButtonDoubleCoin_Click,
@@ -42,4 +44,7 @@ public enum EventID{
     ButtonHome_Click,
     CoinItem_BuySuccess,
     FinishCalculateTotalCoin,
+    BaseButton_Click,
+    CoinDrop,
+    TotalCoinCalculated,
 }

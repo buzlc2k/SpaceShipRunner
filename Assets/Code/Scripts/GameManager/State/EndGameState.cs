@@ -10,6 +10,7 @@ public class EndGameState : BaseGameState
         gameManager.CurrentGameState = GameState.EndTransition;
 
         Observer.PostEvent(EventID.ChangeGameState, new KeyValuePair<EventParameterType, object>(EventParameterType.ChangeGameState_GameState, GameState.EndTransition));
+        Observer.PostEvent(EventID.EnterEndTrasitionState, new KeyValuePair<EventParameterType, object>(EventParameterType.EnterEndTrasitionState_Null, null));
 
         gameManager.StartCoroutine(gameManager.ReloadGame());
     }
