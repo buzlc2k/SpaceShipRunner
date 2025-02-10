@@ -7,18 +7,15 @@ using UnityEngine;
 /// </summary>
 public class WalkableTileMoveByPointRecycleLoop : ObjectMoveByStaticPointRecycleLoop
 {
-    protected override void LoadValue()
-    {
-        base.LoadValue();
-        moveSpeed = ((WalkableTileCtrl)GetObjCtrl()).walkableTileConfig.InitialMoveSpeed;
-        spawnPoint = ((WalkableTileCtrl)GetObjCtrl()).walkableTileConfig.InitialSpawnPoint;
-        targetPoint = ((WalkableTileCtrl)GetObjCtrl()).walkableTileConfig.InitialTargetPoint;
-        remainingLoops = ((WalkableTileCtrl)GetObjCtrl()).walkableTileConfig.InitialRemainingLoops;
-    }
-
     protected override object GetObjCtrl()
     {
         return transform.parent.GetComponent<WalkableTileCtrl>();
+    }
+
+    protected override void SetObjMovementConfig()
+    {
+        objMovementConfig = ((WalkableTileCtrl)GetObjCtrl()).walkableTileConfig.WalkableTileMovementConfig;
+        base.SetObjMovementConfig();
     }
 
     protected override bool CheckCanUpdateMoving()

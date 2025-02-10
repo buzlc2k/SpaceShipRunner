@@ -8,6 +8,6 @@ public abstract class ObjRotateByStaticEulerAngleRecycleLoop : ObjRotateByStatic
     
     protected override void InitializResetRotate()
     {
-        objModel.rotation = Quaternion.Euler(spawnAngle);
+        objModel.rotation = Quaternion.Euler(objRotateByStaticEulerAngleLoopConfig.SpawnAngle);
     }
 }

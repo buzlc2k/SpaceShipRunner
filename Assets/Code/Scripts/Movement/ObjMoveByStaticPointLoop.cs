@@ -7,11 +7,22 @@ using UnityEngine;
 public abstract class ObjMoveByStaticPointLoop : ObjMovement
 {
     [Header("ObjMoveByStaticPointLoop")]
-    protected Vector3 spawnPoint;
-    protected Vector3 targetPoint;
-    protected int remainingLoops = -1; 
-    [SerializeField] protected float resetDistanceThreshold = 0.1f;
-    [SerializeField, Tooltip("True if Object is moving based on parent position")] protected bool moveByLocalPoint;
+    protected Vector3 currentTargetPos;
+    protected int remainingLoops; 
+    protected ObjMoveByStaticPointLoopConfig objMoveByStaticPointLoopConfig;
+
+    protected override void LoadValue()
+    {
+        base.LoadValue();
+        
+        currentTargetPos = objMoveByStaticPointLoopConfig.TargetPoint;
+        remainingLoops = objMoveByStaticPointLoopConfig.RemainingLoops;
+    }
+
+    protected override void SetObjMovementConfig()
+    {
+        objMoveByStaticPointLoopConfig = (ObjMoveByStaticPointLoopConfig)objMovementConfig;
+    }
 
     protected override void Moving()
     {
@@ -28,29 +39,14 @@ public abstract class ObjMoveByStaticPointLoop : ObjMovement
     {
         remainingLoops = _remainingLoops;
     }
-
-    #region UpdateTargetPos
-
-    // Updates the target position based on local or world space.
+    
     protected override void UpdateTargetPosition()
     {
-        if (!CheckCanUpdateTargetPosition()) return;
-
-        targetPosition = CalculateTargetPosition();
+        if (objMoveByStaticPointLoopConfig.MoveByLocalPoint) 
+            targetPosition = transform.parent.parent.position + currentTargetPos;
+        else 
+            targetPosition = currentTargetPos;
     }
-
-    private bool CheckCanUpdateTargetPosition()
-    {
-        return moveByLocalPoint || !targetPoint.Equals(targetPosition);
-    }
-
-    private Vector3 CalculateTargetPosition()
-    {
-        return moveByLocalPoint
-            ? transform.parent.parent.position + targetPoint
-            : targetPoint;
-    }
-    #endregion
 
     #region ResetMovement
     
@@ -65,7 +61,7 @@ public abstract class ObjMoveByStaticPointLoop : ObjMovement
     // Checks if the object is close enough to the target position to reset.
     protected virtual bool CanResetMovement()
     {
-        return Vector3.Distance(transform.parent.position, targetPosition) < resetDistanceThreshold;
+        return Vector3.Distance(transform.parent.position, targetPosition) < objMoveByStaticPointLoopConfig.ResetDistanceThreshold;
     }
 
     // Checks if the object should continue looping and decrements the loop count if applicable.

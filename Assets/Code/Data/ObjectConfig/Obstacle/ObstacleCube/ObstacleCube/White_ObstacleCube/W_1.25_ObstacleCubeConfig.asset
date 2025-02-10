@@ -12,6 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecae9d1a6f7f0a64d89e33a9ef0d8336, type: 3}
   m_Name: W_1.25_ObstacleCubeConfig
   m_EditorClassIdentifier: 
-  InitialColliderRadius: 1.25
-  InitialTagOfCollisionableObject: 03000000
-  InitialTagOfObject: 2
+  ObstacleCubeCollisionConfig: {fileID: 11400000, guid: 6d9ecaf05202ba64cb6bf1e04c931315, type: 2}

@@ -6,18 +6,15 @@ using UnityEngine;
 /// </summary>
 public class CoinCubeRotateByStaticEulerAngleYoyoLoop : ObjRotateByStaticEulerAngleRecycleLoop
 {
-    protected override void LoadValue()
-    {
-        rotateSpeed = ((CoinCubeCtrl)GetObjCtrl()).coinCubeConfig.InitialRotateSpeed;
-        spawnAngle = ((CoinCubeCtrl)GetObjCtrl()).coinCubeConfig.InitialSpawnAngle;
-        targetAngle = ((CoinCubeCtrl)GetObjCtrl()).coinCubeConfig.InitialTargetAngle;
-
-        base.LoadValue();
-    }
-
     protected override object GetObjCtrl()
     {
         return transform.parent.GetComponent<CoinCubeCtrl>();
+    }
+
+    protected override void SetObjRotationConfig()
+    {
+        objRotationConfig = ((CoinCubeCtrl)GetObjCtrl()).coinCubeConfig.CoinRotationConfig;
+        base.SetObjRotationConfig();
     }
 
     protected override void SetObjModel()

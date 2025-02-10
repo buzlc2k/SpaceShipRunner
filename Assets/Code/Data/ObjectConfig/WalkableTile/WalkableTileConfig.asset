@@ -16,3 +16,4 @@ MonoBehaviour:
   InitialSpawnPoint: {x: 0, y: 0, z: 60}
   InitialTargetPoint: {x: 0, y: 0, z: -10}
   InitialRemainingLoops: -1
+  WalkableTileMovementConfig: {fileID: 11400000, guid: ca3711834dac71942931abbf35d49eea, type: 2}

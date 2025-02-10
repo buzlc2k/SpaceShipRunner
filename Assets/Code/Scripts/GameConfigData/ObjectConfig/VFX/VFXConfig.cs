@@ -5,5 +5,5 @@ using UnityEngine;
 public class VFXConfig : ScriptableObject
 {
     [Header("Despawning")]
-    public float InitialTimeToDespawn;
+    public ObjDespawnByTimeConfig VFXDespawningConfig;
 }

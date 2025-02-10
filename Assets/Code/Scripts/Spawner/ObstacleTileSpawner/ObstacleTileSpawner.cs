@@ -49,7 +49,7 @@ public class ObstacleTileSpawner : ButMonobehavior
 
         Tuple<Vector3, Quaternion> spawnData = GetSpawnData(walkableTile);
 
-        Spawn(walkableTile, spawnData.Item1, spawnData.Item2);
+        Spawn(spawnData.Item1, spawnData.Item2);
     }
 
     private void AddNewObstacleTilePooler(List<GameObject> obstacleTilePrefabs){
@@ -66,12 +66,10 @@ public class ObstacleTileSpawner : ButMonobehavior
         return Tuple.Create<Vector3, Quaternion>(spawnPosition, spawnRotation);
     }
 
-    private void Spawn(GameObject walkableTile, Vector3 spawnPosition, Quaternion spawnRotation){
+    private void Spawn(Vector3 spawnPosition, Quaternion spawnRotation){
         if(obstacleTilePoolers.Count == 0) return;
 
         ObstacleTileCtrl obstacleTile = obstacleTilePoolers[UnityEngine.Random.Range(0, obstacleTilePoolers.Count)].Get(spawnPosition, spawnRotation);
-        
-        ((ObstacleTileMoveByTargetTransform)obstacleTile.obstacleTileMovement).SetTargetTransform(walkableTile.transform);
 
         Observer.PostEvent(EventID.ObstacleTileSpawned, new KeyValuePair<EventParameterType, object>
                                                         (EventParameterType.ObstacleTileSpawned_WalkableTileObjectAndListSpawnPositions,

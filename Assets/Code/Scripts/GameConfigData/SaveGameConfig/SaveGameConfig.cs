@@ -9,4 +9,5 @@ public class SaveGameConfig : ScriptableObject
     public ItemID CurrentSpaceShip;
     public List<ItemID> SpaceShipOwned;
     public int CurrentCoinsOwned;
+    public bool AudioEnable;
 }

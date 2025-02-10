@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
   InitialMoveSpeed: 50
+  PlayerMovementConfig: {fileID: 11400000, guid: db66faca2461d1c4888a0f99e98569c9, type: 2}
   InitialRotateSpeed: 200
+  PlayerRotationConfig: {fileID: 11400000, guid: aee757d19b7a59d42b28c0c6a10e798d, type: 2}
   InitialColliderRadius: 1.15
   InitialTagOfCollisionableObject: 02000000
   InitialTagOfObject: 3
+  PlayerCollisionConfig: {fileID: 11400000, guid: 685c71cf25a9b04449a15e8b38f28127, type: 2}

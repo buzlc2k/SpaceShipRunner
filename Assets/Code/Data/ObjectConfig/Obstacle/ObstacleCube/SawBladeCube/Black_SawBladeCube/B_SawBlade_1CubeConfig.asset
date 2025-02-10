@@ -12,13 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ae2949606a332f4abb6bab57e5f8f4f, type: 3}
   m_Name: B_SawBlade_1CubeConfig
   m_EditorClassIdentifier: 
-  InitialColliderRadius: 1.25
-  InitialTagOfCollisionableObject: 03000000
-  InitialTagOfObject: 1
-  InitialMoveSpeed: 1.5
-  InitialSpawnPoint: {x: -3, y: 0, z: 0}
-  InitialTargetPoint: {x: 3, y: 0, z: 0}
-  InitialRemainingLoops: -1
-  InitialRotateSpeed: 200
-  InitialSpawnAngle: {x: 0, y: 90, z: 0}
-  InitialTargetAngle: {x: 175, y: 90, z: 0}
+  ObstacleCubeCollisionConfig: {fileID: 11400000, guid: 2a211f39a72c1c541a93350b2af71283, type: 2}
+  D_ObstacleCubeMovementConfig: {fileID: 11400000, guid: 26f1b628ab5faec4386004e295c9d332, type: 2}
+  SawBladeRotationConfig: {fileID: 11400000, guid: 140d6c6467392a741b5fb3f49eafaf6c, type: 2}

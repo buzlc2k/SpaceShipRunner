@@ -5,14 +5,13 @@ using UnityEngine;
 /// </summary>
 public class WorldVFXMoveByDir : ObjMoveByDir
 {
-    protected override void LoadValue(){
-        base.LoadValue();
-
-        moveSpeed = ((WorldVFXConfig)((WorldVFXCtrl)GetObjCtrl()).vfxConfig).InitialMoveSpeed;
-    }
-
     protected override object GetObjCtrl()
     {
-        return this.transform.parent.GetComponent<WorldVFXCtrl>();
+        return transform.parent.GetComponent<WorldVFXCtrl>();
+    }
+
+    protected override void SetObjMovementConfig()
+    {
+        objMovementConfig = ((WorldVFXConfig)((WorldVFXCtrl)GetObjCtrl()).vfxConfig).VFXMovementConfig;
     }
 }

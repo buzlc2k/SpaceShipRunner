@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: PlayerFX_Spawn Config
   m_EditorClassIdentifier: 
   InitialTimeToDespawn: 3
+  VFXDespawningConfig: {fileID: 11400000, guid: 07e14a26972630f43ab4af54ec35e587, type: 2}
   InitialMoveSpeed: 0
+  VFXMovementConfig: {fileID: 11400000, guid: e6464609dd92dff4bbba620919b28906, type: 2}

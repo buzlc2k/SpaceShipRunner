@@ -19,7 +19,7 @@ public abstract class ObjRotateByUnstableEulerAngle : ObjRotation
         var _targetAngleToRotate = CalculateTargetAngleToRotate();
         SetTargetAngleToRotate(_targetAngleToRotate);
         
-        if(Quaternion.Angle(objModel.rotation, Quaternion.Euler(targetAngleToRotate)) < rotationThreshold){
+        if(Quaternion.Angle(objModel.rotation, Quaternion.Euler(targetAngleToRotate)) < objRotationConfig.RotationThreshold){
             objModel.rotation = Quaternion.Lerp(
                 objModel.rotation,
                 Quaternion.Euler(targetAngleToRotate),

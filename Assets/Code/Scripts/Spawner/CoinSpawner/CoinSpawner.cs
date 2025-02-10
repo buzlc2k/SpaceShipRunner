@@ -55,23 +55,23 @@ public class CoinSpawner : ButMonobehavior
         {
             if(UnityEngine.Random.value > DifficultyManager.Instance.CoinSpawnRate) return;
 
-            Tuple<int, Vector3, Vector3> spawnData = GetSpawnData(obstacleTile, cloneSpawnPositions);
+            Tuple<int, Vector3> spawnData = GetSpawnData(obstacleTile, cloneSpawnPositions);
 
-            Spawn(obstacleTile, spawnData.Item2, spawnData.Item3);
+            Spawn(spawnData.Item2);
 
             RemoveSpawnDataUsed(cloneSpawnPositions, spawnData.Item1);
         }
     }
 
-    private Tuple<int, Vector3, Vector3> GetSpawnData(GameObject obstacleTile, List<Vector3> cloneSpawnPositions){
+    private Tuple<int, Vector3> GetSpawnData(GameObject obstacleTile, List<Vector3> cloneSpawnPositions){
         int randomIndex = UnityEngine.Random.Range(0, cloneSpawnPositions.Count);
         Vector3 offsetPoint = cloneSpawnPositions[randomIndex];
         Vector3 spawnPosition = obstacleTile.transform.position + offsetPoint;
 
-        return Tuple.Create<int, Vector3, Vector3>(randomIndex, offsetPoint, spawnPosition);
+        return Tuple.Create<int, Vector3>(randomIndex, spawnPosition);
     }
 
-    private void Spawn(GameObject obstacleTile, Vector3 offsetPoint, Vector3 spawnPosition){
+    private void Spawn(Vector3 spawnPosition){
         var coin = coinPooler.Get(spawnPosition, Quaternion.identity);
     }
 

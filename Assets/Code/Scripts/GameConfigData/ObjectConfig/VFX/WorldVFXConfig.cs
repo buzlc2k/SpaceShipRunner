@@ -5,5 +5,5 @@ using UnityEngine;
 public class WorldVFXConfig : VFXConfig
 {
     [Header("Movement")]
-    public float InitialMoveSpeed;
+    public ObjMovementConfig VFXMovementConfig;
 }

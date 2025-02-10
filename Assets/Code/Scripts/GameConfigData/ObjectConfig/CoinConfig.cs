@@ -5,9 +5,8 @@ using UnityEngine;
 public class CoinConfig : ScriptableObject
 {
     [Header("Movement")]
-    public float InitialMoveSpeed;
+    public ObjMovementConfig CoinMovementConfig;
 
     [Header("Despawning")]
-    public Vector3 InitialPosToCalculateDespawn;
-    public float InitialDisToDespawn;
+    public ObjDespawnByDistanceConfig CoinDespawningConfig;
 }

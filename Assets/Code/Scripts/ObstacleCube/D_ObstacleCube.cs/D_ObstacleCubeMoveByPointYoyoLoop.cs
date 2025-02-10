@@ -7,17 +7,14 @@ using UnityEngine;
 /// </summary>
 public class D_ObstacleCubeMoveByPointYoyoLoop : ObjMoveByStaticPointYoyoLoop
 {
-    protected override void LoadValue()
-    {
-        base.LoadValue();
-        moveSpeed = ((D_ObstacleCubeConfig)((D_ObstacleCubeCtrl)GetObjCtrl()).obstacleCubeConfig).InitialMoveSpeed;
-        spawnPoint = ((D_ObstacleCubeConfig)((D_ObstacleCubeCtrl)GetObjCtrl()).obstacleCubeConfig).InitialSpawnPoint;
-        targetPoint = ((D_ObstacleCubeConfig)((D_ObstacleCubeCtrl)GetObjCtrl()).obstacleCubeConfig).InitialTargetPoint;
-        remainingLoops = ((D_ObstacleCubeConfig)((D_ObstacleCubeCtrl)GetObjCtrl()).obstacleCubeConfig).InitialRemainingLoops;
-    }
-
     protected override object GetObjCtrl()
     {
-        return this.transform.parent.GetComponent<ObstacleCubeCtrl>();
+        return transform.parent.GetComponent<ObstacleCubeCtrl>();
+    }
+
+    protected override void SetObjMovementConfig()
+    {
+        objMovementConfig = ((D_ObstacleCubeConfig)((ObstacleCubeCtrl)GetObjCtrl()).obstacleCubeConfig).D_ObstacleCubeMovementConfig;
+        base.SetObjMovementConfig();
     }
 }

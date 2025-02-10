@@ -6,15 +6,14 @@ using UnityEngine;
 /// </summary>
 public class PlayerMovingByDynamicPoint : ObjMoveByDynamicPoint
 {
-    protected override void LoadValue()
-    {
-        base.LoadValue();
-        moveSpeed = ((PlayerCtrl)GetObjCtrl()).playerConfig.InitialMoveSpeed;
-    }
-
     protected override object GetObjCtrl()
     {
         return PlayerCtrl.Instance;
+    }
+
+    protected override void SetObjMovementConfig()
+    {
+        objMovementConfig = PlayerCtrl.Instance.playerConfig.PlayerMovementConfig;
     }
 
     protected override Vector3 CalculateTargetPosition()

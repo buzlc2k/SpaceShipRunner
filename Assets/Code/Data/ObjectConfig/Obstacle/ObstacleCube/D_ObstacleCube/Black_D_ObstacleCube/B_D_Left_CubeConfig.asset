@@ -12,10 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce8342e01841e5c4e8cb7d28616fbdc3, type: 3}
   m_Name: B_D_Left_CubeConfig
   m_EditorClassIdentifier: 
-  InitialColliderRadius: 1.8
-  InitialTagOfCollisionableObject: 03000000
-  InitialTagOfObject: 1
-  InitialMoveSpeed: 2
-  InitialSpawnPoint: {x: 3.2, y: 0.765, z: 0}
-  InitialTargetPoint: {x: -3.2, y: 0.765, z: 0}
-  InitialRemainingLoops: 0
+  ObstacleCubeCollisionConfig: {fileID: 11400000, guid: f533f0c86bb2c5b44a706f826178ffc1, type: 2}
+  D_ObstacleCubeMovementConfig: {fileID: 11400000, guid: d8dbe2a00890eab4b8e350106618faec, type: 2}

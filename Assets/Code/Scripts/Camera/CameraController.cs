@@ -29,8 +29,8 @@ public class CameraController : Singleton<CameraController>
         base.ResetValue();
 
         MainCamera.transform.SetPositionAndRotation(
-            MainCameraConfig.InitialMainMenuPosition,
-            MainCameraConfig.InitialMainMenuRotation
+            MainCameraConfig.MainMenuPosition,
+            MainCameraConfig.MainMenuRotation
         );
     }
 }

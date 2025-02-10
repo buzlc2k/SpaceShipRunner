@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29221fd117249c34285bed58a0afc8be, type: 3}
   m_Name: CoinFX_CollectionConfig
   m_EditorClassIdentifier: 
-  InitialTimeToDespawn: 1.25
+  VFXDespawningConfig: {fileID: 11400000, guid: caa2e0ef21d902b4890046d030fa4d82, type: 2}

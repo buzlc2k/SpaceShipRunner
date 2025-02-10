@@ -44,7 +44,7 @@ public class GameManager : Singleton<GameManager>
         var gameOverState = new GameOverState(this);
         var gameRestartingState = new GameRestartingState(this);  
         var gameResultState = new GameResultState(this);  
-        var EndGameState = new EndGameState(this);    
+        var endGameState = new EndGameState(this);    
 
         //Define transition
         gameStateMachine.AddTransition(startGameState, mainMenuSatate, new TimerPredicate(1.5f));
@@ -55,8 +55,10 @@ public class GameManager : Singleton<GameManager>
         gameStateMachine.AddTransition(shoppingState, mainMenuSatate, new EventPredicate(EventID.ButtonHome_Click));
 
         gameStateMachine.AddTransition(gameRunningState, gamePausedState, new EventPredicate(EventID.ButtonPauseGame_Click));
-        gameStateMachine.AddTransition(gamePausedState, gameRunningState, new EventPredicate(EventID.ButtonResumeGameRunning_Click));
         gameStateMachine.AddTransition(gameRunningState, gameOverState, new EventPredicate(EventID.Player_Collide));
+
+        gameStateMachine.AddTransition(gamePausedState, gameRunningState, new EventPredicate(EventID.ButtonResumeGameRunning_Click));
+        gameStateMachine.AddTransition(gamePausedState, endGameState, new EventPredicate(EventID.ButtonHome_Click));
 
         gameStateMachine.AddTransition(gameOverState, gameRestartingState, new EventPredicate(EventID.ADS_WatchFullAds, PlacementID.ReviveButton));
         gameStateMachine.AddTransition(gameRestartingState, gameRunningState, new EventPredicate(EventID.FinishRestarting));
@@ -65,7 +67,7 @@ public class GameManager : Singleton<GameManager>
 
         gameStateMachine.AddTransition(gameOverState, gameResultState, new EventPredicate(EventID.GameOver_FinishGameOver));
 
-        gameStateMachine.AddTransition(gameResultState, EndGameState, new EventPredicate(EventID.ButtonReloadGame_Click));
+        gameStateMachine.AddTransition(gameResultState, endGameState, new EventPredicate(EventID.ButtonReloadGame_Click));
         //End
 
         //Set default state

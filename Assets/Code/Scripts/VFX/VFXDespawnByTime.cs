@@ -5,14 +5,13 @@ using UnityEngine;
 /// </summary>
 public class VFXDespawnByTime: ObjDespawnByTime
 {
-    protected override void LoadValue(){
-        base.LoadValue();
-
-        timeToDespawn = ((VFXCtrl)GetObjCtrl()).vfxConfig.InitialTimeToDespawn;
-    }
-
     protected override object GetObjCtrl()
     {
-        return this.transform.parent.GetComponent<VFXCtrl>();
+        return transform.parent.GetComponent<VFXCtrl>();
+    }
+
+    protected override void SetObjDespawningConfig()
+    {
+        objDespawningConfig = ((VFXCtrl)GetObjCtrl()).vfxConfig.VFXDespawningConfig;
     }
 }

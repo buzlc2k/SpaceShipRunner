@@ -12,11 +12,11 @@ public class CameraTransition : ButMonobehavior
 
     protected override void SetUpDelegate(){
         initializeTranslateCameraGameRunning ??= param => {
-            InitializeTranslateCamera(CameraController.Instance.MainCameraConfig.InitialGameRunningPosition, CameraController.Instance.MainCameraConfig.InitialGameRunningRotation, 2.5f);
+            InitializeTranslateCamera(CameraController.Instance.MainCameraConfig.GameRunningPosition, CameraController.Instance.MainCameraConfig.GameRunningRotation, 2.5f);
         };
 
         initializeTranslateCameraGameResult ??= param => {
-            InitializeTranslateCamera(CameraController.Instance.MainCameraConfig.InitialGameResultPosition, CameraController.Instance.MainCameraConfig.InitialGameResultRotation, 2);
+            InitializeTranslateCamera(CameraController.Instance.MainCameraConfig.GameResultPosition, CameraController.Instance.MainCameraConfig.GameResultRotation, 2);
         };
     }
 

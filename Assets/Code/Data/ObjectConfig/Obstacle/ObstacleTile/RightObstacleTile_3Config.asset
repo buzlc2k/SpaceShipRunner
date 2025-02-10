@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: RightObstacleTile_3Config
   m_EditorClassIdentifier: 
   InitialMoveSpeed: 8.41667
+  ObstacleTileMovementConfig: {fileID: 11400000, guid: cd5c7f9b9f054b0478fea222ea6bac2a, type: 2}
   InitialPosToCalculateDespawn: {x: 0, y: 0, z: 60}
   InitialDisToDespawn: 65
+  ObstacleTileDespawnConfig: {fileID: 11400000, guid: dfe1c3d13560be4459a21c3c91d28e0d, type: 2}
   ObstacleCubePosition:
   - {x: 4.25, y: 0.765, z: 0}
   - {x: 0, y: 0.765, z: 0}

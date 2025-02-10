@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: PlayerFX_Collision Config
   m_EditorClassIdentifier: 
   InitialTimeToDespawn: 1
+  VFXDespawningConfig: {fileID: 11400000, guid: 2f2669b0b33629c48a01c3602e54e983, type: 2}
   InitialMoveSpeed: 8.41667
+  VFXMovementConfig: {fileID: 11400000, guid: 3597a72986fcd764bb1b0b06b709a141, type: 2}

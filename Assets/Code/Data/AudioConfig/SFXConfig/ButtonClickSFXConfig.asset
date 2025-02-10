@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d262c1147df4a3488be1828cf03017a, type: 3}
+  m_Script: {fileID: 11500000, guid: b62be4b6a484c7d4db108cc7413f6802, type: 3}
   m_Name: ButtonClickSFXConfig
   m_EditorClassIdentifier: 
-  AudioID: 4
   AudioClips:
   - {fileID: 8300000, guid: 92d9128629e9e7a45afd47f4eff2c461, type: 3}
   LowPitchRange: 1
   HighPitchRange: 1
+  AudioDespawningConfig: {fileID: 11400000, guid: 320da48674c08b0419aecbaec72c8803, type: 2}

@@ -4,14 +4,21 @@ using UnityEngine;
 /// Despawning objects based on their distance from a specified spawn position.
 /// </summary>
 public abstract class ObjDespawnByDistance : ObjDespawning
-{
-    [Header("ObjDespawnByDistance")]
-    protected Vector3 posToCalculateDespawn;
-    protected float disToDespawn;
+{  
+    protected ObjDespawnByDistanceConfig objDespawningConfig;
+
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+
+        SetObjDespawningConfig();
+    }
+
+    protected abstract void SetObjDespawningConfig();
 
     protected override bool CheckCanDespawn()
     {
-        if(Vector3.Distance(posToCalculateDespawn, transform.parent.position) > disToDespawn) return true;
+        if(Vector3.Distance(objDespawningConfig.PosToCalculateDespawn, transform.parent.position) > objDespawningConfig.DisToDespawn) return true;
         return false;
     }
 }

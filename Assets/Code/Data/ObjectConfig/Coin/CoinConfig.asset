@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: CoinConfig
   m_EditorClassIdentifier: 
   InitialMoveSpeed: 8.41667
+  CoinMovementConfig: {fileID: 11400000, guid: a60ded5262943ad47bb0f087b1618ae9, type: 2}
   InitialPosToCalculateDespawn: {x: 0, y: 0, z: 60}
   InitialDisToDespawn: 60
+  CoinDespawningConfig: {fileID: 11400000, guid: 6b8132a4c4f89ab478c524d2287792f0, type: 2}

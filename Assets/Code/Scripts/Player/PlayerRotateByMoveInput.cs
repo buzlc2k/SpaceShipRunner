@@ -6,14 +6,14 @@ using UnityEngine;
 /// </summary>
 public class PlayerRotateByMoveInput : ObjRotateByUnstableEulerAngle
 {
-    protected override void LoadValue()
-    {
-        base.LoadValue();
-        rotateSpeed = ((PlayerCtrl)GetObjCtrl()).playerConfig.InitialRotateSpeed;
-    }
     protected override object GetObjCtrl()
     {
         return PlayerCtrl.Instance;
+    }
+
+    protected override void SetObjRotationConfig()
+    {
+        objRotationConfig = PlayerCtrl.Instance.playerConfig.PlayerRotationConfig;
     }
 
     protected override void SetObjModel()

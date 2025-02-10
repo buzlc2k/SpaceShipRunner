@@ -16,7 +16,7 @@ public class CameraShake : ButMonobehavior
     }
     protected override void SetUpDelegate(){
         initializeShakeCameraDelegate ??= param => {
-            InitializeShakeCamera(0.08f * 165/(1/Time.deltaTime), 1.5f);
+            InitializeShakeCamera(0.08f, 1.5f);
         };
     }
 
@@ -52,17 +52,20 @@ public class CameraShake : ButMonobehavior
         {
             elapsedTime += Time.deltaTime;
 
-            float currentAmplitude = Mathf.Lerp(shakeAmplitude, 0f, elapsedTime / shakeDuration);
+            float currentAmplitude = shakeAmplitude * (1 - elapsedTime / shakeDuration);
             cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = currentAmplitude;
 
             yield return null; 
         }
 
-        // Reset lại giá trị m_AmplitudeGain và vị trí camera khi hiệu ứng kết thúc
+        SetCameraDefaultTransform();
+    }
+
+    private void SetCameraDefaultTransform(){
         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0;
         CameraController.Instance.MainCamera.transform.SetPositionAndRotation(
-            CameraController.Instance.MainCameraConfig.InitialGameRunningPosition,
-            CameraController.Instance.MainCameraConfig.InitialGameRunningRotation
+            CameraController.Instance.MainCameraConfig.GameRunningPosition,
+            CameraController.Instance.MainCameraConfig.GameRunningRotation
         );
     }
 }

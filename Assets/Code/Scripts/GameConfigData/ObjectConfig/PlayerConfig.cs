@@ -5,13 +5,11 @@ using UnityEngine;
 public class PlayerConfig : ScriptableObject
 {
     [Header("Movement")]
-    public float InitialMoveSpeed;
+    public ObjMovementConfig PlayerMovementConfig;
 
     [Header("Rotation")]
-    public float InitialRotateSpeed;
+    public ObjRotationConfig PlayerRotationConfig;
 
     [Header("Collision")]
-    public float InitialColliderRadius;
-    public List<ObjTagCollision> InitialTagOfCollisionableObject;
-    public ObjTagCollision InitialTagOfObject;
+    public ObjCollisionConfig PlayerCollisionConfig;
 }

@@ -5,12 +5,6 @@ using UnityEngine;
 /// </summary>
 public class UnLoopAudioDespawnByTime: ObjDespawnByTime
 {
-    protected override void LoadValue(){
-        base.LoadValue();
-
-        timeToDespawn = ((UnLoopAudioCtrl)GetObjCtrl()).CurrentAudioClip.length;
-    }
-
     protected override object GetObjCtrl()
     {
         return transform.parent.GetComponent<UnLoopAudioCtrl>();
@@ -19,5 +13,10 @@ public class UnLoopAudioDespawnByTime: ObjDespawnByTime
     protected override bool CheckCanUpdateDespawning()
     {
         return true;
+    }
+
+    protected override void SetObjDespawningConfig()
+    {
+        objDespawningConfig = ((UnLoopAudioConfig)((UnLoopAudioCtrl)GetObjCtrl()).AudioConfig).AudioDespawningConfig;
     }
 }

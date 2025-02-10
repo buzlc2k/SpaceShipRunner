@@ -5,11 +5,10 @@ using UnityEngine;
 public class ObstacleTileConfig : ScriptableObject
 {
     [Header("Movement")]
-    public float InitialMoveSpeed;
+    public ObjMovementConfig ObstacleTileMovementConfig;
 
     [Header("Despawning")]
-    public Vector3 InitialPosToCalculateDespawn;
-    public float InitialDisToDespawn;
+    public ObjDespawnByDistanceConfig ObstacleTileDespawnConfig;
 
     [Header("ObstacleCubeTransform")]
     public List<Vector3> ObstacleCubePosition;

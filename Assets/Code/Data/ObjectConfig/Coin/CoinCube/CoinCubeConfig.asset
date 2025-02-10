@@ -16,9 +16,12 @@ MonoBehaviour:
   InitialSpawnPoint: {x: 0, y: 0.65, z: 0}
   InitialTargetPoint: {x: 0, y: 0.45, z: 0}
   InitialRemainingLoops: -1
+  CoinCubeMovementConfig: {fileID: 11400000, guid: 9037bb96c5270ea4db01486bf729e842, type: 2}
   InitialRotateSpeed: 200
   InitialSpawnAngle: {x: 0, y: 0, z: 0}
   InitialTargetAngle: {x: 0, y: 175, z: 0}
+  CoinRotationConfig: {fileID: 11400000, guid: 6a4911c18b1e7954f92947eedd9918e1, type: 2}
   InitialColliderRadius: 0.5
   InitialTagOfCollisionableObject: 03000000
   InitialTagOfObject: 4
+  CoinCollisionConfig: {fileID: 11400000, guid: a4f8d9ec5823f4a4d9fd42f28d8f685a, type: 2}

@@ -5,14 +5,29 @@ using UnityEngine;
 /// </summary>
 public abstract class ObjDespawnByTime : ObjDespawning
 {
-    [Header("ObjDespawnByTime")]
-    protected float timeToDespawn;
+    protected ObjDespawnByTimeConfig objDespawningConfig;
+    protected float currentTime;
+
+    protected override void LoadComponents() {
+        base.LoadComponents();
+
+        SetObjDespawningConfig();
+    }
+
+    protected override void LoadValue()
+    {
+        base.LoadValue();
+
+        currentTime = objDespawningConfig.TimeToDespawn;
+    }
+
+    protected abstract void SetObjDespawningConfig();
 
     protected override bool CheckCanDespawn()
     {
-        timeToDespawn -= Time.deltaTime;
+        currentTime -= Time.deltaTime;
         
-        if(timeToDespawn < 0) return true;
+        if(currentTime < 0) return true;
         return false;
     }
 }

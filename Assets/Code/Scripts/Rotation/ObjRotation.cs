@@ -8,10 +8,9 @@ using UnityEngine;
 public abstract class ObjRotation : ButMonobehavior
 {
     [Header("ObjRotation")]
-    protected Vector3 targetAngleToRotate; 
-    protected float rotateSpeed;
-    [SerializeField] protected float rotationThreshold = 0.1f;
+    protected Vector3 targetAngleToRotate;
     protected Transform objModel;
+    protected ObjRotationConfig objRotationConfig;
 
     protected virtual void Update() {
         if(CheckCanUpdateRotating()) Rotating();
@@ -19,20 +18,14 @@ public abstract class ObjRotation : ButMonobehavior
 
     protected override void LoadComponents() {
         SetObjModel();
+        SetObjRotationConfig();
     }
 
     protected abstract object GetObjCtrl();
 
-    protected abstract void SetObjModel();
+    protected abstract void SetObjRotationConfig();
 
-    /// <summary>
-    /// Method to set the speed of rotation.
-    /// </summary>
-    /// <param name="rotateSpeed"> Speed of rotation </param>
-    public virtual void SetRotateSpeed(float rotateSpeed){
-        if(rotateSpeed < 0) return;
-        this.rotateSpeed = rotateSpeed;
-    }
+    protected abstract void SetObjModel();
 
     protected virtual bool CheckCanUpdateRotating(){
         return GameManager.Instance.CurrentGameState.Equals(GameState.Running) 
@@ -47,7 +40,7 @@ public abstract class ObjRotation : ButMonobehavior
         objModel.rotation = Quaternion.RotateTowards(
             objModel.rotation,
             Quaternion.Euler(targetAngleToRotate),
-            rotateSpeed * (1 + DifficultyManager.Instance.GameSpeedRate) * Time.deltaTime
+            objRotationConfig.RotateSpeed * (1 + DifficultyManager.Instance.GameSpeedRate) * Time.deltaTime
         );
     }
 }

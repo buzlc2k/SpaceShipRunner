@@ -5,14 +5,18 @@ using UnityEngine;
 /// </summary>
 public abstract class ObjRotateByStaticEulerAngleLoop : ObjRotation
 {
-    [Header("ObjRotateByStaticEulerAngleLoop")]
-    protected Vector3 spawnAngle; 
-    protected Vector3 targetAngle;
+    protected ObjRotateByStaticEulerAngleLoopConfig objRotateByStaticEulerAngleLoopConfig;
 
     protected override void LoadValue()
     {
         base.LoadValue();
-        targetAngleToRotate = targetAngle;
+        
+        targetAngleToRotate = objRotateByStaticEulerAngleLoopConfig.TargetAngle;
+    }
+
+    protected override void SetObjRotationConfig()
+    {
+        objRotateByStaticEulerAngleLoopConfig = (ObjRotateByStaticEulerAngleLoopConfig)objRotationConfig;
     }
 
     protected override void Rotating()
@@ -28,7 +32,7 @@ public abstract class ObjRotateByStaticEulerAngleLoop : ObjRotation
 
     // Check if the object is qualified to reset the rotation
     protected virtual bool CanResetRotating(){
-        return Quaternion.Angle(objModel.rotation, Quaternion.Euler(targetAngleToRotate)) < rotationThreshold;
+        return Quaternion.Angle(objModel.rotation, Quaternion.Euler(targetAngleToRotate)) < objRotationConfig.RotationThreshold;
     }
 
     // logic when the object is qualified to reset rotation

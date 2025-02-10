@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d262c1147df4a3488be1828cf03017a, type: 3}
+  m_Script: {fileID: 11500000, guid: b62be4b6a484c7d4db108cc7413f6802, type: 3}
   m_Name: CoinCollisionSFXConfig
   m_EditorClassIdentifier: 
-  AudioID: 2
   AudioClips:
   - {fileID: 8300000, guid: ae3388a921d20344c8d2498b1451d8e0, type: 3}
   LowPitchRange: 0.85
   HighPitchRange: 1.15
+  AudioDespawningConfig: {fileID: 11400000, guid: 9891ad9531152f14aa9d772b4b1b643b, type: 2}

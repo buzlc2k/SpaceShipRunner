@@ -7,18 +7,14 @@ using UnityEngine;
 /// </summary>
 public class CoinCubeMoveByPointYoyoLoop : ObjMoveByStaticPointYoyoLoop
 {
-    protected override void LoadValue()
-    {
-        base.LoadValue();
-
-        moveSpeed = ((CoinCubeCtrl)GetObjCtrl()).coinCubeConfig.InitialMoveSpeed;
-        spawnPoint = ((CoinCubeCtrl)GetObjCtrl()).coinCubeConfig.InitialSpawnPoint;
-        targetPoint = ((CoinCubeCtrl)GetObjCtrl()).coinCubeConfig.InitialTargetPoint;
-        remainingLoops = ((CoinCubeCtrl)GetObjCtrl()).coinCubeConfig.InitialRemainingLoops;
-    }
-
     protected override object GetObjCtrl()
     {
-        return this.transform.parent.GetComponent<CoinCubeCtrl>();
+        return transform.parent.GetComponent<CoinCubeCtrl>();
+    }
+
+    protected override void SetObjMovementConfig()
+    {
+        objMovementConfig = ((CoinCubeCtrl)GetObjCtrl()).coinCubeConfig.CoinCubeMovementConfig;
+        base.SetObjMovementConfig();
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 /// Abstract base class for managing object despawning logic in Unity.
 /// </summary>
 public abstract class ObjDespawning : ButMonobehavior
-{  
+{
     protected virtual void Update() {
         if(CheckCanUpdateDespawning()) Despawning();
     }

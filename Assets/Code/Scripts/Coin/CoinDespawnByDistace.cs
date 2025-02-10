@@ -5,15 +5,13 @@ using UnityEngine;
 /// </summary>
 public class CoinDespawnByDistace: ObjDespawnByDistance
 {
-    protected override void LoadValue(){
-        base.LoadValue();
-
-        disToDespawn = ((CoinCtrl)GetObjCtrl()).coinConfig.InitialDisToDespawn;
-        posToCalculateDespawn = ((CoinCtrl)GetObjCtrl()).coinConfig.InitialPosToCalculateDespawn;
-    }
-
     protected override object GetObjCtrl()
     {
-        return this.transform.parent.GetComponent<CoinCtrl>();
+        return transform.parent.GetComponent<CoinCtrl>();
+    }
+
+    protected override void SetObjDespawningConfig()
+    {
+        objDespawningConfig = ((CoinCtrl)GetObjCtrl()).coinConfig.CoinDespawningConfig;
     }
 }

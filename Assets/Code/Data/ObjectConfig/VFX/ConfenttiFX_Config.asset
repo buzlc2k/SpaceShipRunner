@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: ConfenttiFX_Config
   m_EditorClassIdentifier: 
   InitialTimeToDespawn: 2.5
+  VFXDespawningConfig: {fileID: 11400000, guid: fb56c22c7e0fb7c458d09d5aeff963b7, type: 2}

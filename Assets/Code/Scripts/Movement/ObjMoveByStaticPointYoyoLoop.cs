@@ -8,7 +8,9 @@ using UnityEngine;
 public abstract class ObjMoveByStaticPointYoyoLoop : ObjMoveByStaticPointLoop
 {
     protected override void InitializeResetMoving(){
-        // Swap value between target point and spawn point
-        (targetPoint, spawnPoint) = (spawnPoint, targetPoint);
+        if(currentTargetPos == objMoveByStaticPointLoopConfig.TargetPoint) 
+            currentTargetPos = objMoveByStaticPointLoopConfig.SpawnPoint;
+        else
+            currentTargetPos = objMoveByStaticPointLoopConfig.TargetPoint;
     }
 }

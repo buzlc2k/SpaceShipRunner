@@ -5,15 +5,13 @@ using UnityEngine;
 /// </summary>
 public class ObstacleTileDespawnByDistance: ObjDespawnByDistance
 {
-    protected override void LoadValue(){
-        base.LoadValue();
-
-        disToDespawn = ((ObstacleTileCtrl)GetObjCtrl()).obstacleTileConfig.InitialDisToDespawn;
-        posToCalculateDespawn = ((ObstacleTileCtrl)GetObjCtrl()).obstacleTileConfig.InitialPosToCalculateDespawn;
-    }
-
     protected override object GetObjCtrl()
     {
-        return this.transform.parent.GetComponent<ObstacleTileCtrl>();
+        return transform.parent.GetComponent<ObstacleTileCtrl>();
+    }
+
+    protected override void SetObjDespawningConfig()
+    {
+        objDespawningConfig = (ObjDespawnByDistanceConfig)((ObstacleTileCtrl)GetObjCtrl()).obstacleTileConfig.ObstacleTileDespawnConfig;
     }
 }

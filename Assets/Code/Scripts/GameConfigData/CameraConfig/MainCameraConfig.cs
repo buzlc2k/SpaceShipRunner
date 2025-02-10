@@ -5,10 +5,10 @@ using UnityEngine;
 public class MainCameraConfig : ScriptableObject
 {
     [Header("CameraTransform")]
-    public Vector3 InitialMainMenuPosition;
-    public Quaternion InitialMainMenuRotation;
-    public Vector3 InitialGameRunningPosition;
-    public Quaternion InitialGameRunningRotation;
-    public Vector3 InitialGameResultPosition;
-    public Quaternion InitialGameResultRotation;
+    public Vector3 MainMenuPosition;
+    public Quaternion MainMenuRotation;
+    public Vector3 GameRunningPosition;
+    public Quaternion GameRunningRotation;
+    public Vector3 GameResultPosition;
+    public Quaternion GameResultRotation;
 }

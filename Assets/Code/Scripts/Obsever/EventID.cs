@@ -33,6 +33,7 @@ public enum EventID{
     ButtonPlayGame_Click,
     ButtonReloadGame_Click,
     LoadCoinsData,
+    LoadAudioEnableData,
     LoadCurrentSpaceShipData,
     LoadSpaceShipOwnedData,
     SetCurrentSpaceShipSuccess,
@@ -47,4 +48,5 @@ public enum EventID{
     BaseButton_Click,
     CoinDrop,
     TotalCoinCalculated,
+    ButtonMusic_Click,
 }

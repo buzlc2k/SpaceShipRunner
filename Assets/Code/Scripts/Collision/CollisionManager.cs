@@ -8,10 +8,6 @@ using UnityEngine;
 /// </summary>
 public class CollisionManager : Singleton<CollisionManager>
 {
-    #region CollisionableAreaAttribute
-    private Vector3 collisionableAreaCenterPoint;
-    private float collisionableAreaRadius;
-    #endregion
     
     #region ListObjectsInCollisionableArea
     public HashSet<GameObject> ObjectsInCollisionableArea = new();
@@ -19,14 +15,6 @@ public class CollisionManager : Singleton<CollisionManager>
 
     [SerializeField] private CollisionManagerConfig collisionManagerConfig;
     protected Action<KeyValuePair<EventParameterType, object>> removeAllObjectsInCollisionableArea;
-
-    protected override void LoadValue()
-    {
-        base.LoadValue();
-
-        collisionableAreaCenterPoint = collisionManagerConfig.InitialCollisionableAreaCenterPoint;
-        collisionableAreaRadius = collisionManagerConfig.InitialCollisionableAreaRadius;
-    }
 
     protected override void SetUpDelegate()
     {
@@ -61,7 +49,7 @@ public class CollisionManager : Singleton<CollisionManager>
         ObjectsInCollisionableArea.Clear();
 
         foreach(var objCollision in objCollisions){
-            if(Vector3.Distance(objCollision.transform.parent.position, collisionableAreaCenterPoint) < collisionableAreaRadius)
+            if(Vector3.Distance(objCollision.transform.parent.position, collisionManagerConfig.CollisionableAreaCenterPoint) < collisionManagerConfig.CollisionableAreaRadius)
                 ObjectsInCollisionableArea.Add(objCollision.transform.parent.gameObject);
             else continue;
         }

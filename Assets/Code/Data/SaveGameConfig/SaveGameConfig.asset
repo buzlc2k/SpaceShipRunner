@@ -15,4 +15,5 @@ MonoBehaviour:
   GameDataSaved_ID: SavingData1
   CurrentSpaceShip: 1
   SpaceShipOwned: 01000000
-  CurrentCoinsOwned: 5000
+  CurrentCoinsOwned: 1000
+  AudioEnable: 1

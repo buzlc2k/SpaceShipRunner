@@ -8,8 +8,15 @@ using UnityEngine;
 public abstract class ObjMovement : ButMonobehavior
 {
     [Header("ObjMovement")]
-    protected Vector3 targetPosition = Vector3.zero; 
-    protected float moveSpeed; 
+    protected Vector3 targetPosition = Vector3.zero;
+    protected ObjMovementConfig objMovementConfig;
+
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+        
+        SetObjMovementConfig();
+    }
 
     protected virtual void Update() {
         if(CheckCanUpdateMoving()) Moving();
@@ -17,13 +24,7 @@ public abstract class ObjMovement : ButMonobehavior
 
     protected abstract object GetObjCtrl();
 
-    /// <summary>
-    /// Method to set the speed of movement.
-    /// </summary>
-    /// <param name="moveSpeed"> speed of movement </param>
-    public virtual void SetMoveSpeed(float moveSpeed){
-        this.moveSpeed = moveSpeed;
-    }
+    protected abstract void SetObjMovementConfig();
 
     protected abstract void UpdateTargetPosition();
 
@@ -40,6 +41,6 @@ public abstract class ObjMovement : ButMonobehavior
         if(transform.parent.position.Equals(targetPosition)) return;
         transform.parent.position = Vector3.MoveTowards(transform.parent.position, 
                                                             targetPosition, 
-                                                            moveSpeed * (1 + DifficultyManager.Instance.GameSpeedRate) * Time.deltaTime);
+                                                            objMovementConfig.MoveSpeed * (1 + DifficultyManager.Instance.GameSpeedRate) * Time.deltaTime);
     }
 }

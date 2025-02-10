@@ -11,15 +11,19 @@ public abstract class ObjCollision : ButMonobehavior
 {
     [Header("CollisionAreaAttribute")]
     protected bool canCollide = true;
-    protected float colliderRadius;
-    protected List<ObjTagCollision> tagOfCollisionableObject;
-    protected ObjTagCollision tagOfObject;
+    protected ObjCollisionConfig objCollisionConfig;
 
     #region  Properties
-    public float ColliderRadius => colliderRadius; 
-    public List<ObjTagCollision> TagOfCollisionableObject => tagOfCollisionableObject;
-    public ObjTagCollision TagOfObject => tagOfObject;
+    public float ColliderRadius => objCollisionConfig.ColliderRadius;
+    public ObjTagCollision TagOfObject => objCollisionConfig.TagOfObject;
     #endregion
+
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+
+        SetObjCollisionConfig();
+    }
 
     protected override void LoadValue()
     {
@@ -33,6 +37,8 @@ public abstract class ObjCollision : ButMonobehavior
     }
 
     protected abstract object GetObjCtrl();
+
+    protected abstract void SetObjCollisionConfig();
 
     protected virtual bool CheckCanUpdateCollision(){
         return GameManager.Instance.CurrentGameState.Equals(GameState.Running) 
@@ -51,9 +57,9 @@ public abstract class ObjCollision : ButMonobehavior
         
         foreach(GameObject obj in CollisionManager.Instance.ObjectsInCollisionableArea){
             //Tính toán có va chạm không dựa vào bound của 2 object.
-            bool isWithinCollisionDistance = obj.GetComponentInChildren<ObjCollision>().ColliderRadius + colliderRadius >= Vector3.Distance(obj.transform.position, transform.parent.position);
+            bool isWithinCollisionDistance = obj.GetComponentInChildren<ObjCollision>().ColliderRadius + objCollisionConfig.ColliderRadius >= Vector3.Distance(obj.transform.position, transform.parent.position);
             //Kiểm tra Object va chạm có phải là object được va chạm không.
-            bool hasMatchingCollisionTag = tagOfCollisionableObject.Contains(obj.GetComponentInChildren<ObjCollision>().TagOfObject); 
+            bool hasMatchingCollisionTag = objCollisionConfig.TagOfCollisionableObject.Contains(obj.GetComponentInChildren<ObjCollision>().TagOfObject); 
             if(!isWithinCollisionDistance || !hasMatchingCollisionTag) continue;
             OnEnterCollide();
             if(!canCollide) break;
