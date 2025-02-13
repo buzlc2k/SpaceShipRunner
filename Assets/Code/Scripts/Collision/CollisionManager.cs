@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,11 +9,20 @@ public class CollisionManager : Singleton<CollisionManager>
 {
     
     #region ListObjectsInCollisionableArea
-    public HashSet<GameObject> ObjectsInCollisionableArea = new();
+    private HashSet<ObjCollision> CurrentNonPlayerObjectsInCollisionableArea;
+    private ObjCollision Player;
     #endregion
 
     [SerializeField] private CollisionManagerConfig collisionManagerConfig;
     protected Action<KeyValuePair<EventParameterType, object>> removeAllObjectsInCollisionableArea;
+
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+
+        Player = PlayerCtrl.Instance.GetComponentInChildren<ObjCollision>();
+        CurrentNonPlayerObjectsInCollisionableArea = new();
+    }
 
     protected override void SetUpDelegate()
     {
@@ -40,30 +48,48 @@ public class CollisionManager : Singleton<CollisionManager>
     }
 
     private void Update() {
-        GetObjectsInCollisionableArea();
+        if(!CheckCanUpdateCollision()) return;
+
+        CalculateNonPlayerObjectsInCollisionableArea();
+        CollisionLogicRunning();
     }
 
-    public void GetObjectsInCollisionableArea(){
-        List<ObjCollision> objCollisions = new(FindObjectsByType<ObjCollision>(FindObjectsSortMode.None));
+    protected virtual bool CheckCanUpdateCollision(){
+        return GameManager.Instance.CurrentGameState.Equals(GameState.Running) 
+            || GameManager.Instance.CurrentGameState.Equals(GameState.Restarting);
+    }
 
-        ObjectsInCollisionableArea.Clear();
+    private void CalculateNonPlayerObjectsInCollisionableArea(){
+        HashSet<ObjCollision> PreviousNonPlayerObjectsInCollisionableArea = new(CurrentNonPlayerObjectsInCollisionableArea);
+        CurrentNonPlayerObjectsInCollisionableArea.Clear();
 
-        foreach(var objCollision in objCollisions){
-            if(Vector3.Distance(objCollision.transform.parent.position, collisionManagerConfig.CollisionableAreaCenterPoint) < collisionManagerConfig.CollisionableAreaRadius)
-                ObjectsInCollisionableArea.Add(objCollision.transform.parent.gameObject);
-            else continue;
+        List<NonPlayerObjCollision> nonPlayerObjCollisions = new(FindObjectsByType<NonPlayerObjCollision>(FindObjectsSortMode.None));
+
+        foreach(var nonPlayerObjCollision in nonPlayerObjCollisions){
+            if(Vector3.Distance(nonPlayerObjCollision.transform.parent.position, collisionManagerConfig.CollisionableAreaCenterPoint) >= collisionManagerConfig.CollisionableAreaRadius) continue;
+            
+            CurrentNonPlayerObjectsInCollisionableArea.Add(nonPlayerObjCollision);
+            if(!PreviousNonPlayerObjectsInCollisionableArea.Contains(nonPlayerObjCollision)) nonPlayerObjCollision.OnEnterCollisionableArea();
         }
     }
-    
-    /// <summary>
-    /// Kiểm tra xem một đối tượng có nằm trong khu vực va chạm hay không.
-    /// </summary>
-    /// <param name="_gameObject">Đối tượng cần kiểm tra.</param>
-    public bool CheckObjectIsInCollisionableArea(GameObject _gameObject){
-        return ObjectsInCollisionableArea.Contains(_gameObject);
+
+    private void CollisionLogicRunning(){
+        foreach(NonPlayerObjCollision nonPlayerObjCollision in CurrentNonPlayerObjectsInCollisionableArea){
+
+            bool isWithinCollisionDistance = (Player.ObjCollisionConfig.ColliderRadius + nonPlayerObjCollision.ObjCollisionConfig.ColliderRadius) >= Vector3.Distance(Player.transform.parent.position, nonPlayerObjCollision.transform.parent.position);
+
+            if(!isWithinCollisionDistance) continue;
+
+            nonPlayerObjCollision.OnEnterCollide(Player);
+            Player.OnEnterCollide(nonPlayerObjCollision);
+        }
+    }
+
+    public bool CheckObjectIsInCollisionableArea(NonPlayerObjCollision _nonPlayerObj){
+        return CurrentNonPlayerObjectsInCollisionableArea.Contains(_nonPlayerObj);
     }
 
     private void RemoveAllObjectsInCollisionableArea(){
-        ObjectsInCollisionableArea.Clear();
+        CurrentNonPlayerObjectsInCollisionableArea.Clear();
     }
 }

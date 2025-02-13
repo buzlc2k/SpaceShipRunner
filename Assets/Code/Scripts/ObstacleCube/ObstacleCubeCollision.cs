@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleCubeCollision : ObjCollision
+public class ObstacleCubeCollision : NonPlayerObjCollision
 {
     protected override object GetObjCtrl()
     {
@@ -13,14 +13,9 @@ public class ObstacleCubeCollision : ObjCollision
         objCollisionConfig = ((ObstacleCubeCtrl)GetObjCtrl()).obstacleCubeConfig.ObstacleCubeCollisionConfig;
     }
 
-    protected override void OnEnterCollide()
+    public override void OnEnterCollide(ObjCollision sender)
     {
-        base.OnEnterCollide();
-
-        if(objCollisionConfig.TagOfObject.Equals(ObjTagCollision.Obstacle_Black))
-            Observer.PostEvent(EventID.B_Cube_Collide, new KeyValuePair<EventParameterType, object>(EventParameterType.B_Cube_Collide_CubeObject, this.transform.parent.gameObject));
-        else
-            Observer.PostEvent(EventID.W_Cube_Collide, new KeyValuePair<EventParameterType, object>(EventParameterType.W_Cube_Collide_CubeObject, this.transform.parent.gameObject));
+        Observer.PostEvent(EventID.ObstacleCube_Collide, new KeyValuePair<EventParameterType, object>(EventParameterType.ObstacleCube_Collide_ObjCollision, this));
 
         ((ObjDespawnByCollide)((ObstacleCubeCtrl)GetObjCtrl()).obstacleCubeDespawn).SetObjectCanDespawn();
     }

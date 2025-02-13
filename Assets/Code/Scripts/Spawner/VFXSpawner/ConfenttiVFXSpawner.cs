@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class ConfenttiVFXSpawner : StaticVFX_Spawner
 {
+    protected Action<KeyValuePair<EventParameterType, object>> spawnVFXADS_Delegate;
 
     protected override void SetUpDelegate()
     {
@@ -11,6 +12,10 @@ public class ConfenttiVFXSpawner : StaticVFX_Spawner
 
         spawnVFX_Delegate ??= param => {
             SpawnVFX();
+        };
+
+        spawnVFXADS_Delegate ??= param => {
+            if(param.Value.Equals(PlacementID.GetCoinButton)) SpawnVFX();
         };
     }
 
@@ -20,7 +25,7 @@ public class ConfenttiVFXSpawner : StaticVFX_Spawner
 
         Observer.AddListener(EventID.CoinItem_BuySuccess, spawnVFX_Delegate);
         Observer.AddListener(EventID.SpaceShipItem_BuySuccess, spawnVFX_Delegate);
-        Observer.AddListener(EventID.ADS_WatchFullAds, spawnVFX_Delegate);
+        Observer.AddListener(EventID.ADS_WatchFullAds, spawnVFXADS_Delegate);
     }
 
     protected override void UnregisterListener()
@@ -29,6 +34,6 @@ public class ConfenttiVFXSpawner : StaticVFX_Spawner
 
         Observer.RemoveListener(EventID.CoinItem_BuySuccess, spawnVFX_Delegate);
         Observer.RemoveListener(EventID.SpaceShipItem_BuySuccess, spawnVFX_Delegate);
-        Observer.RemoveListener(EventID.ADS_WatchFullAds, spawnVFX_Delegate);
+        Observer.RemoveListener(EventID.ADS_WatchFullAds, spawnVFXADS_Delegate);
     }
 }

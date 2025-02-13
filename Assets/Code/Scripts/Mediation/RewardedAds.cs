@@ -36,9 +36,7 @@ public class RewardedAds : ButMonobehavior
         IronSourceRewardedVideoEvents.onAdRewardedEvent += RewardedVideoOnAdRewardedEvent;
         IronSourceRewardedVideoEvents.onAdClickedEvent += RewardedVideoOnAdClickedEvent;
 
-        Observer.AddListener(EventID.ButtonRiveve_Click, showRewardAds);
-        Observer.AddListener(EventID.ButtonDoubleCoin_Click, showRewardAds);
-        Observer.AddListener(EventID.ButtonGetCoin_Click, showRewardAds);
+        Observer.AddListener(EventID.WantToWatch_ADS, showRewardAds);
     }
 
     protected override void UnregisterListener()
@@ -53,9 +51,7 @@ public class RewardedAds : ButMonobehavior
         IronSourceRewardedVideoEvents.onAdRewardedEvent -= RewardedVideoOnAdRewardedEvent;
         IronSourceRewardedVideoEvents.onAdClickedEvent -= RewardedVideoOnAdClickedEvent;
 
-        Observer.RemoveListener(EventID.ButtonRiveve_Click, showRewardAds);
-        Observer.RemoveListener(EventID.ButtonDoubleCoin_Click, showRewardAds);
-        Observer.RemoveListener(EventID.ButtonGetCoin_Click, showRewardAds);
+        Observer.RemoveListener(EventID.WantToWatch_ADS, showRewardAds);
     }
 
     public void ShowRewardAds(PlacementID placementID){

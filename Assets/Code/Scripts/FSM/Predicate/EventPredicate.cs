@@ -1,17 +1,19 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class EventPredicate: BasePredicate
 {
     private readonly EventID listenedEvent;
     private bool isEventTriggered = false;
+    private bool predicateRunning = false;
     private readonly Action<KeyValuePair<EventParameterType, object>> onEventTriggered;
 
     public EventPredicate(EventID listenedEvent){
         this.listenedEvent = listenedEvent;
 
         onEventTriggered = (param) => {
-            isEventTriggered = true;
+            if(predicateRunning) isEventTriggered = true;
         };
 
         Observer.AddListener(this.listenedEvent, onEventTriggered);
@@ -22,7 +24,7 @@ public class EventPredicate: BasePredicate
 
         onEventTriggered = (param) => {
             if(param.Value.Equals(eventParamenterCondition) == equalCondition)
-                isEventTriggered = true;
+                if(predicateRunning) isEventTriggered = true;
         };
 
         Observer.AddListener(this.listenedEvent, onEventTriggered);
@@ -34,9 +36,11 @@ public class EventPredicate: BasePredicate
 
     public override bool Evaluate()
     {
+        predicateRunning = true;
         if(!isEventTriggered) return false;
 
         isEventTriggered = false;
+        predicateRunning = false;
         return true;
     }
 }

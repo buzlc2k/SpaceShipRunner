@@ -4,13 +4,13 @@ public class CoinDropAudioSpawner : UnLoopAudio_Spawner
     {
         base.RegisterListener();
 
-        Observer.AddListener(EventID.CoinDrop, spawnAudio_Delegate);
+        Observer.AddListener(EventID.FinishCalculateTotalCoin, spawnAudio_Delegate);
     }
 
     protected override void UnregisterListener()
     {
         base.UnregisterListener();
 
-        Observer.RemoveListener(EventID.CoinDrop, spawnAudio_Delegate);     
+        Observer.RemoveListener(EventID.FinishCalculateTotalCoin, spawnAudio_Delegate);     
     }
 }

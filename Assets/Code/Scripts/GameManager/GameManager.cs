@@ -59,13 +59,13 @@ public class GameManager : Singleton<GameManager>
 
         gameStateMachine.AddTransition(gamePausedState, gameRunningState, new EventPredicate(EventID.ButtonResumeGameRunning_Click));
         gameStateMachine.AddTransition(gamePausedState, endGameState, new EventPredicate(EventID.ButtonHome_Click));
-
-        gameStateMachine.AddTransition(gameOverState, gameRestartingState, new EventPredicate(EventID.ADS_WatchFullAds, PlacementID.ReviveButton));
-        gameStateMachine.AddTransition(gameRestartingState, gameRunningState, new EventPredicate(EventID.FinishRestarting));
-        gameStateMachine.AddTransition(gameRestartingState, gamePausedState, new EventPredicate(EventID.ButtonPauseGame_Click));
         gameStateMachine.AddTransition(gamePausedState, gameRestartingState, new EventPredicate(EventID.ButtonResumeGameRestarting_Click));
 
+        gameStateMachine.AddTransition(gameOverState, gameRestartingState, new EventPredicate(EventID.ADS_WatchFullAds, PlacementID.ReviveButton));
         gameStateMachine.AddTransition(gameOverState, gameResultState, new EventPredicate(EventID.GameOver_FinishGameOver));
+
+        gameStateMachine.AddTransition(gameRestartingState, gameRunningState, new EventPredicate(EventID.FinishRestarting));
+        gameStateMachine.AddTransition(gameRestartingState, gamePausedState, new EventPredicate(EventID.ButtonPauseGame_Click));
 
         gameStateMachine.AddTransition(gameResultState, endGameState, new EventPredicate(EventID.ButtonReloadGame_Click));
         //End

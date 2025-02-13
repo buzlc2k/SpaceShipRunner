@@ -29,6 +29,6 @@ public class GameOver_ReviveButton : BaseAnimatedButton
 
     protected override void OnClick()
     {
-        Observer.PostEvent(EventID.ButtonRiveve_Click, new KeyValuePair<EventParameterType, object>(EventParameterType.ButtonRiveve_Click_Placement, PlacementID.ReviveButton));
+        Observer.PostEvent(EventID.WantToWatch_ADS, new KeyValuePair<EventParameterType, object>(EventParameterType.WantToWatch_ADS_PlacementID, PlacementID.ReviveButton));
     }
 }

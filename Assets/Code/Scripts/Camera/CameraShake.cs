@@ -25,8 +25,7 @@ public class CameraShake : ButMonobehavior
         base.RegisterListener();
 
         Observer.AddListener(EventID.Player_Collide, initializeShakeCameraDelegate);
-        Observer.AddListener(EventID.B_Cube_Collide, initializeShakeCameraDelegate);
-        Observer.AddListener(EventID.W_Cube_Collide, initializeShakeCameraDelegate);
+        Observer.AddListener(EventID.ObstacleCube_Collide, initializeShakeCameraDelegate);
     }
 
     protected override void UnregisterListener()
@@ -34,12 +33,10 @@ public class CameraShake : ButMonobehavior
         base.UnregisterListener();
 
         Observer.RemoveListener(EventID.Player_Collide, initializeShakeCameraDelegate);
-        Observer.RemoveListener(EventID.B_Cube_Collide, initializeShakeCameraDelegate);
-        Observer.RemoveListener(EventID.W_Cube_Collide, initializeShakeCameraDelegate);
+        Observer.RemoveListener(EventID.ObstacleCube_Collide, initializeShakeCameraDelegate);
     }
 
     private void InitializeShakeCamera(float shakeDuration, float shakeAmplitude){
-
         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = shakeAmplitude;
 
         StartCoroutine(C_ResetShakeCamera(shakeDuration, shakeAmplitude));

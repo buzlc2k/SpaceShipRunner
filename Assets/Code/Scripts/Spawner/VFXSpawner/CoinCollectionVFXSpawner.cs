@@ -27,10 +27,4 @@ public class CoinCollectionVFXSpawner : StaticVFX_Spawner
 
         Observer.RemoveListener(EventID.FinishCalculateTotalCoin, spawnVFX_Delegate);
     }
-
-    protected override void SpawnVFX(){
-        base.SpawnVFX();
-
-        Observer.PostEvent(EventID.CoinDrop, new KeyValuePair<EventParameterType, object>(EventParameterType.CoinDrop_Null, null));
-    }
 }

@@ -16,7 +16,7 @@ public abstract class Audio_Spawner : ButMonobehavior
         Audio_Poolers = new ObjectPooler<BaseAudioCtrl>(Audio_Prefabs.GetComponent<BaseAudioCtrl>(), Audio_Holder, 1);
     }
 
-    protected void SpawnAudio(){
+    protected virtual void SpawnAudio(){
         Audio_Poolers.Get(Vector3.zero, Quaternion.identity);
     }
 }

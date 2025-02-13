@@ -30,11 +30,10 @@ public class StateMachine
 
     Transition GetTransition() {
         if(current.Transitions.Count == 0) return null;
-                    
+
         foreach (var transition in current.Transitions)
-            if (transition.Condition.Evaluate())
-                return transition;
-            
+            if (transition.Condition.Evaluate()) return transition; 
+
         return null;
     }
 

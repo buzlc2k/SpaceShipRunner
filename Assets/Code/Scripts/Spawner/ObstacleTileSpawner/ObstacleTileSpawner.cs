@@ -13,12 +13,10 @@ public class ObstacleTileSpawner : ButMonobehavior
 
     protected override void SetUpDelegate(){
         spawnObstacleTileDelegate ??= (param) => {
-            if (param.Key != EventParameterType.ResetWalkableTile_WalkableTileObject) return;
             SpawnObstacleTile((GameObject)param.Value);
         };
 
         addNewObstacleTilePoolerDelegate ??= (param) => {
-            if (param.Key != EventParameterType.AddMoreObstacle_ListObstaclePrefab) return;
             AddNewObstacleTilePooler((List<GameObject>)param.Value);
         };
     }

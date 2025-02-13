@@ -14,8 +14,7 @@ public abstract class BaseColorChanging : ButMonobehavior
 
     protected override void SetUpDelegate(){
         setColor ??= param => {
-            if (param.Key != EventParameterType.InitializeUpdatePhaseChanging_TupleColor) return;
-
+            
             Tuple<Color, Color> colorData = (Tuple<Color, Color>)param.Value;
 
             InitilizeSetColor(colorData.Item1, colorData.Item2);

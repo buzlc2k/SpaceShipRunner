@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.EnhancedTouch;
 
@@ -6,6 +8,32 @@ using UnityEngine.InputSystem.EnhancedTouch;
 /// </summary>
 public class InputManager : Singleton<InputManager>
 {
+    protected Action<KeyValuePair<EventParameterType, object>> resetInput;
+
+    protected override void SetUpDelegate()
+    {
+        base.SetUpDelegate();
+
+        resetInput ??= param => {
+            MoveInput = new(0, 0, 3.5f);
+            isTouching = false;
+        };
+    }
+
+    protected override void RegisterListener()
+    {
+        base.RegisterListener();
+
+        Observer.AddListener(EventID.EnterGameRestartingState, resetInput);
+    }
+
+    protected override void UnregisterListener()
+    {
+        base.UnregisterListener();
+
+        Observer.RemoveListener(EventID.EnterGameRestartingState, resetInput);
+    }
+
     protected override void OnEnable() {
         //Enable support for the new Enhanced Touch API and testing with the mouse
         EnhancedTouchSupport.Enable();

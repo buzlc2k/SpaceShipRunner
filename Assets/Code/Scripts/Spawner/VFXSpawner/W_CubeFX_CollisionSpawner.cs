@@ -9,8 +9,8 @@ public class W_CubeFX_CollisionSpawner : DynamicVFX_Spawner
         base.SetUpDelegate();
 
         spawnVFX_Delegate ??= param => {
-            if (param.Key != EventParameterType.W_Cube_Collide_CubeObject) return;
-            SpawnVFX((GameObject)param.Value);
+            if(((ObjCollision)param.Value).ObjCollisionConfig.TagOfObject.Equals(ObjTagCollision.Obstacle_White))
+                SpawnVFX(((ObjCollision)param.Value).gameObject);
         };
     }
 
@@ -18,13 +18,13 @@ public class W_CubeFX_CollisionSpawner : DynamicVFX_Spawner
     {
         base.RegisterListener();
 
-        Observer.AddListener(EventID.W_Cube_Collide, spawnVFX_Delegate);
+        Observer.AddListener(EventID.ObstacleCube_Collide, spawnVFX_Delegate);
     }
 
     protected override void UnregisterListener()
     {
         base.UnregisterListener();
 
-        Observer.RemoveListener(EventID.W_Cube_Collide, spawnVFX_Delegate);
+        Observer.RemoveListener(EventID.ObstacleCube_Collide, spawnVFX_Delegate);
     }
 }

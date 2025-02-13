@@ -20,8 +20,6 @@ public class CoinSpawner : ButMonobehavior
 
     protected override void SetUpDelegate(){
         spawnCoinDelegate ??= (param) => {
-            if(param.Key != EventParameterType.ObstacleTileSpawned_WalkableTileObjectAndListSpawnPositions) return;
-
             SpawnCoin(((Tuple<GameObject, List<Vector3>>)param.Value).Item1, ((Tuple<GameObject, List<Vector3>>)param.Value).Item2);
         };
     }

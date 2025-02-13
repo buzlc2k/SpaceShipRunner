@@ -16,11 +16,11 @@ public class PlayerCollision : ObjCollision
         objCollisionConfig = PlayerCtrl.Instance.playerConfig.PlayerCollisionConfig;
     }
 
-    protected override void OnEnterCollide()
-    {
-        base.OnEnterCollide();
-        
-        Observer.PostEvent(EventID.Player_Collide, new KeyValuePair<EventParameterType, object>(EventParameterType.Player_Collide_PlayerObject, this.transform.parent.gameObject));
+    public override void OnEnterCollide(ObjCollision sender)
+    {   
+        if(!objCollisionConfig.TagOfCollisionableObject.Contains(sender.ObjCollisionConfig.TagOfObject)) return;    
+
+        Observer.PostEvent(EventID.Player_Collide, new KeyValuePair<EventParameterType, object>(EventParameterType.Player_Collide_PlayerObject, transform.parent.gameObject));
         ((ObjDespawnByCollide)((PlayerCtrl)GetObjCtrl()).playerDespawning).SetObjectCanDespawn();
     }
 }

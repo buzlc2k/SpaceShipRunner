@@ -13,9 +13,4 @@ public class CoinItem : BaseItem
         Observer.PostEvent(EventID.LoadCoinsData, new KeyValuePair<EventParameterType, object>(EventParameterType.LoadCoinsData_NumCoinAdded, ((CoinItemConfig)ItemConfig).NumCoinInItem));
         Observer.PostEvent(EventID.CoinItem_BuySuccess, new KeyValuePair<EventParameterType, object>(EventParameterType.CoinItem_BuySuccess_CoinConfigID, ItemConfig.ID));
     }
-
-    public override void OnItemPuschaseFailed()
-    {
-        Debug.Log("Buy Coin Failed");
-    }
 }

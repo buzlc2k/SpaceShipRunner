@@ -12,8 +12,9 @@ public class GameResult_HeaderCoinCountText : GameResult_BaseAnimatedText
         base.SetUpDelegate();
 
         initializeAnimation = (param) => {
-            if(param.Value.Equals(PlacementID.DoubleCoinButton))
-                StartCoroutine(InitializeAnimation(CoinTrackingManager.Instance.CurrentTotalCoin, 1.25f, 1.12f));
+            if(!param.Value.Equals(PlacementID.DoubleCoinButton)) return;
+
+            StartCoroutine(InitializeAnimation(CoinTrackingManager.Instance.CurrentTotalCoin, 1.25f, 1.1f));
         };
     }
 
@@ -34,9 +35,7 @@ public class GameResult_HeaderCoinCountText : GameResult_BaseAnimatedText
 
     protected override IEnumerator UpdateText()
     {
-        yield return new WaitForSeconds(10.22f);
-
-        Observer.PostEvent(EventID.TotalCoinCalculated, new KeyValuePair<EventParameterType, object>(EventParameterType.TotalCoinCalculated_Null, null));   
+        yield return new WaitForSeconds(10.22f);   
 
         yield return StartCoroutine(InitializeAnimation(CoinTrackingManager.Instance.CurrentTotalCoin, 1.25f));
     }

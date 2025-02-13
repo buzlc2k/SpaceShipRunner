@@ -10,7 +10,6 @@ public class PlayerFX_CollisionSpawner : DynamicVFX_Spawner
         base.SetUpDelegate();
 
         spawnVFX_Delegate ??= param => {
-            if (param.Key != EventParameterType.Player_Collide_PlayerObject) return;
             SpawnVFX((GameObject)param.Value);
         };
     }

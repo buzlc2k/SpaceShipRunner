@@ -70,6 +70,8 @@ public class ShopManager : Singleton<ShopManager>, IDetailedStoreListener
     private void InitializePurchaseCoinItem(BaseItem item){
         if(item.ItemConfig.Price <= CoinTrackingManager.Instance.TotalCoins)
             item.OnItemPuschaseSuccess();
+        else
+            item.OnItemPuschaseFailed();
     }
 
     private void InitializePurchaseIAPItem(BaseItem item){
@@ -88,11 +90,13 @@ public class ShopManager : Singleton<ShopManager>, IDetailedStoreListener
     public void OnPurchaseFailed(Product product, PurchaseFailureDescription failureDescription)
     {
         Debug.Log("Purchase Fail: " + failureDescription.message);
+        ObjectsManager.Instance.GetItem(product.definition.id)?.OnItemPuschaseFailed();
     }
 
     public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
     {
         Debug.Log("Purchase Fail: " + failureReason);
+        ObjectsManager.Instance.GetItem(product.definition.id)?.OnItemPuschaseFailed();
     }
 
     public void OnInitializeFailed(InitializationFailureReason error)

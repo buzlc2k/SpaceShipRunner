@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinCubeCollision : ObjCollision
+public class CoinCubeCollision : NonPlayerObjCollision
 {
     protected override object GetObjCtrl()
     {
@@ -13,10 +13,8 @@ public class CoinCubeCollision : ObjCollision
         objCollisionConfig = ((CoinCubeCtrl)GetObjCtrl()).coinCubeConfig.CoinCollisionConfig;
     }
 
-    protected override void OnEnterCollide()
-    {
-        base.OnEnterCollide();
-        
+    public override void OnEnterCollide(ObjCollision sender)
+    {     
         Observer.PostEvent(EventID.Player_TakeCoin, new KeyValuePair<EventParameterType, object>(EventParameterType.Player_TakeCoin_Null, null));
         ((ObjDespawnByCollide)((CoinCubeCtrl)GetObjCtrl()).coinCubeDespawning).SetObjectCanDespawn();
     }

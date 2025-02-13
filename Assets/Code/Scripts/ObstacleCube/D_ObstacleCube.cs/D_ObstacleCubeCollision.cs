@@ -10,7 +10,7 @@ public class D_ObstacleCubeCollision : ObstacleCubeCollision
     [SerializeField] private int loopToInitializeMovement = 3;
     #endregion
     
-    protected override void OnEnterCollisionableArea()
+    public override void OnEnterCollisionableArea()
     {
         base.OnEnterCollisionableArea();
         ((D_ObstacleCubeMoveByPointYoyoLoop)((D_ObstacleCubeCtrl)GetObjCtrl()).obstacleCubeMovement).InitializeMovement(loopToInitializeMovement);

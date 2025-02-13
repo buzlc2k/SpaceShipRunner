@@ -7,7 +7,7 @@ public class Shop_GetFreeCoinButton : BaseAnimatedButton
     protected override void OnClick()
     {
         InitializeAnimation();
-        Observer.PostEvent(EventID.ButtonGetCoin_Click, new KeyValuePair<EventParameterType, object>(EventParameterType.ButtonGetCoin_Click_Placement, PlacementID.GetCoinButton));
+        Observer.PostEvent(EventID.WantToWatch_ADS, new KeyValuePair<EventParameterType, object>(EventParameterType.WantToWatch_ADS_PlacementID, PlacementID.GetCoinButton));
     }
 
     protected override void InitializeAnimation()

@@ -9,5 +9,7 @@ public abstract class BaseItem : ButMonobehavior
     
     public abstract void OnItemPuschaseSuccess();
 
-    public abstract void OnItemPuschaseFailed();
+    public virtual void OnItemPuschaseFailed(){
+        Observer.PostEvent(EventID.Item_BuyFailed, new KeyValuePair<EventParameterType, object>(EventParameterType.Item_BuyFailed_Null, null));
+    }
 }
