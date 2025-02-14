@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1624176112038446036}
   - component: {fileID: 5854442730725358588}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WalkableTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,6 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1070253998050540347}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,7 +33,6 @@ Transform:
   - {fileID: 1475334349460029696}
   - {fileID: 5359483540394088600}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5854442730725358588
 MonoBehaviour:
@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 1475334349460029696}
   - component: {fileID: 6673942343185161728}
   - component: {fileID: 7152755897745541618}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,13 +74,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3746024276521381419}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1624176112038446036}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6673942343185161728
 MeshFilter:
@@ -107,6 +107,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -142,7 +145,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5359483540394088600}
   - component: {fileID: 3349593092952763808}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Moving
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,13 +159,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3786599293165264997}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1624176112038446036}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3349593092952763808
 MonoBehaviour:
@@ -176,5 +179,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64e127d2536a79b46b8880fb0328a8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resetDistanceThreshold: 0.1
-  moveByLocalPoint: 0

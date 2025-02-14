@@ -22,10 +22,9 @@ public class TextColorChanging : BaseColorChanging
     }
 
     protected override void SetFadeColor(float fadeCount){
-        Color fadeColorBlack = Color.Lerp(targetColor, currentColor, fadeCount);
-        Color fadeColorWhite = Color.Lerp(currentColor, targetColor, fadeCount);
-        
-        SetTextColor(textMaterials_Black, fadeColorBlack);
-        SetTextColor(textMaterials_White, fadeColorWhite);
+        Color fadeColorBlack = Color.Lerp(PhaseChangingManager.Instance.TargetColor, PhaseChangingManager.Instance.CurrentColor, fadeCount);
+        Color fadeColorWhite = Color.Lerp(PhaseChangingManager.Instance.CurrentColor, PhaseChangingManager.Instance.TargetColor, fadeCount);
+
+        SetColor(fadeColorWhite, fadeColorBlack);
     }
 }

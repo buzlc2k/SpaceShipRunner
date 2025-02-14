@@ -6,18 +6,12 @@ using UnityEngine;
 public abstract class BaseColorChanging : ButMonobehavior
 {
     [Header("BaseColorChanging")]
-    protected Color currentColor;
-    protected Color targetColor;
-
     private Action<KeyValuePair<EventParameterType, object>> setColor; 
     private Action<KeyValuePair<EventParameterType, object>> initializeChangingColor;
 
     protected override void SetUpDelegate(){
         setColor ??= param => {
-            
-            Tuple<Color, Color> colorData = (Tuple<Color, Color>)param.Value;
-
-            InitilizeSetColor(colorData.Item1, colorData.Item2);
+            InitilizeSetColor();
         };
 
         initializeChangingColor ??= (param) => {
@@ -41,30 +35,14 @@ public abstract class BaseColorChanging : ButMonobehavior
         Observer.RemoveListener(EventID.ChangePhase, initializeChangingColor);
     }
 
-    protected virtual void InitilizeSetColor(Color currentColor, Color targetColor){
-        SetThisColor(currentColor, targetColor);
-
+    protected virtual void InitilizeSetColor(){
         SetFadeColor(0);
-        SetColor(this.currentColor, this.targetColor);
-    }
-
-    protected virtual void SetThisColor(Color currentColor, Color targetColor){        
-        this.currentColor = currentColor;
-        this.targetColor = targetColor;
     }
 
     protected abstract void SetColor(Color currentColor, Color targetColor);
 
     protected virtual void InitializeChangingColor(){
-        StartCoroutine(C_ChangingColor());
-    }
-
-    protected virtual IEnumerator C_ChangingColor(){
-        (currentColor, targetColor) = (targetColor, currentColor);
-
-        SetColor(currentColor, targetColor);
-
-        yield return StartCoroutine(C_FadeColor());
+        StartCoroutine(C_FadeColor());
     }
 
     protected virtual IEnumerator C_FadeColor(){

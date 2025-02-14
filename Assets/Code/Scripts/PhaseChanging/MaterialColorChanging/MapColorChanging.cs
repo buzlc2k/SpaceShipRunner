@@ -6,7 +6,7 @@ using UnityEngine;
 public class MapColorChanging : BaseColorChanging {
     protected override void SetColor(Color currentColor, Color targetColor)
     {
-        SetColor(currentColor);
+        //Do Nothing
     }
 
     protected virtual void SetColor(Color fadeColor)
@@ -16,9 +16,8 @@ public class MapColorChanging : BaseColorChanging {
     }
 
     protected override void SetFadeColor(float fadeCount){
-        Color fadeColor = Color.Lerp(currentColor, targetColor, fadeCount);
+        Color fadeColor = Color.Lerp(PhaseChangingManager.Instance.TargetColor, PhaseChangingManager.Instance.CurrentColor, fadeCount);
 
         SetColor(fadeColor);
     }
-
 }

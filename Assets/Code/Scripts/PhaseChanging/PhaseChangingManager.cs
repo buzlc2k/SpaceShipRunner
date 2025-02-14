@@ -6,6 +6,8 @@ using UnityEngine;
 public class PhaseChangingManager : Singleton<PhaseChangingManager>
 {
     [Header("PhaseChangingManager")]
+    [HideInInspector] public Color CurrentColor;
+    [HideInInspector] public Color TargetColor;
     [SerializeField] private PhaseChangingConfig phaseChangingConfig;
     private float phaseChangingTimer;
 
@@ -37,11 +39,11 @@ public class PhaseChangingManager : Singleton<PhaseChangingManager>
     private void SetUpPhaseChanging(){
         var colorPicked = phaseChangingConfig.InitialListColor[UnityEngine.Random.Range(0, phaseChangingConfig.InitialListColor.Count)];
 
-        var initialCurrentColor = colorPicked.InitialCurrentColor;
-        var initialTargetColor = colorPicked.InitialTargetColor;
+        CurrentColor = colorPicked.InitialCurrentColor;
+        TargetColor = colorPicked.InitialTargetColor;
 
         Observer.PostEvent(EventID.InitializeUpdatePhaseChanging, 
-            new KeyValuePair<EventParameterType, object>(EventParameterType.InitializeUpdatePhaseChanging_TupleColor, Tuple.Create<Color, Color>(initialCurrentColor, initialTargetColor)));
+            new KeyValuePair<EventParameterType, object>(EventParameterType.InitializeUpdatePhaseChanging_Null, null));
     }
 
     private void UpdatePhaseChanging(){
@@ -49,6 +51,9 @@ public class PhaseChangingManager : Singleton<PhaseChangingManager>
 
         if(phaseChangingTimer < 0){
             phaseChangingTimer = phaseChangingConfig.TimeInterval;
+
+            (CurrentColor, TargetColor) = (TargetColor, CurrentColor);
+
             Observer.PostEvent(EventID.ChangePhase, new KeyValuePair<EventParameterType, object>(EventParameterType.ChangePhase_Null, null));
         }
     }

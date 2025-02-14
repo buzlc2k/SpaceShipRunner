@@ -7,7 +7,7 @@ public enum EventParameterType{
     ResetWalkableTile_WalkableTileObject,
     AddMoreObstacle_ListObstaclePrefab,
     ObstacleTileSpawned_WalkableTileObjectAndListSpawnPositions,
-    InitializeUpdatePhaseChanging_TupleColor,
+    InitializeUpdatePhaseChanging_Null,
     ChangePhase_Null,
     ObstacleCube_Collide_ObjCollision,
     Player_Collide_PlayerObject,
