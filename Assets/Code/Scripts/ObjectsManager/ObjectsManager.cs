@@ -66,11 +66,11 @@ public class ObjectsManager : Singleton<ObjectsManager>
     public BaseItem GetItem(string itemID){
         foreach(var coinItem in CoinItems)
             if(coinItem.ItemConfig.ID.ToString().Equals(itemID))
-                 return coinItem;
+                return coinItem;
 
         foreach(var spaceShipItem in SpaceShipItems)
             if(spaceShipItem.ItemConfig.ID.ToString().Equals(itemID))
-                 return spaceShipItem;
+                return spaceShipItem;
         
         return null;
     }

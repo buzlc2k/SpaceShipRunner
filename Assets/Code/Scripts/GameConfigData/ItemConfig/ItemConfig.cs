@@ -21,7 +21,9 @@ public enum ItemType{
 public enum ItemID{
     None,
     BasicPrism,
+    ChillPlane,
     BabyDooDooDoo,
+    CyberShip,
     ssr_100coins,
     ssr_200coins,
     ssr_500coins,

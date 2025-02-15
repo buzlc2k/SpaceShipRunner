@@ -10,7 +10,7 @@ public enum SpaceShipItemState{
 
 public class SpaceShipItem : BaseItem
 {
-    public SpaceShipItemState CurrentSpaceShipItemState;
+    [HideInInspector] public SpaceShipItemState CurrentSpaceShipItemState;
 
     private SpaceShipStateMachine spaceShipStateMachine;
 
