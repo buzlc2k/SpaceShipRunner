@@ -13,10 +13,10 @@ public class MainMenu_MusicButton : BaseButton
     {
         base.Start();
 
-        LoadButtonMaterial();
+        SetButtonMaterial();
     }
 
-    private void LoadButtonMaterial()
+    private void SetButtonMaterial()
     {
         if(AudioTrackingManager.Instance.CurrentAudioEnable) GetComponent<Image>().material = musicEnabledMaterial;
         else GetComponent<Image>().material = musicUnEnabledMaterial;
@@ -25,6 +25,6 @@ public class MainMenu_MusicButton : BaseButton
     protected override void OnClick()
     {
         Observer.PostEvent(EventID.ButtonMusic_Click, new KeyValuePair<EventParameterType, object>(EventParameterType.ButtonMusic_Click_Null, null));
-        LoadButtonMaterial();
+        SetButtonMaterial();
     }
 }

@@ -29,7 +29,6 @@ public enum EventID{
     ButtonPlayGame_Click,
     ButtonReloadGame_Click,
     LoadCoinsData,
-    LoadAudioEnableData,
     LoadCurrentSpaceShipData,
     LoadSpaceShipOwnedData,
     SetCurrentSpaceShipSuccess,

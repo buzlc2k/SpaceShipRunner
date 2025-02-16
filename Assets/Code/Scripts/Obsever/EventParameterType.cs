@@ -30,7 +30,6 @@ public enum EventParameterType{
     ButtonPlayGame_Click_Null,
     ButtonReloadGame_Click_Null,
     LoadCoinsData_NumCoinAdded,
-    LoadAudioEnableData_AudioEnable,
     LoadCurrentSpaceShipData_CurrentSpaceShipID,
     LoadSpaceShipOwnedData_SpaceShipOwnedIDs,
     SetCurrentSpaceShipSuccess_Null,

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 8.41667
   SpawnPoint: {x: 0, y: 0, z: 60}
-  TargetPoint: {x: 0, y: 0, z: -10}
+  TargetPoint: {x: 0, y: 0, z: -12}
   RemainingLoops: -1
   ResetDistanceThreshold: 0.1
   MoveByLocalPoint: 0

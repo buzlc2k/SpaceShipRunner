@@ -75,7 +75,7 @@ public class SaveGameManager : Singleton<SaveGameManager>
 
         GameDataSaved = !string.IsNullOrEmpty(jsonString) 
                 ? JsonUtility.FromJson<GameDataSaved>(jsonString) 
-                : new GameDataSaved(saveGameConfig.CurrentSpaceShip, saveGameConfig.SpaceShipOwned, saveGameConfig.CurrentCoinsOwned, saveGameConfig.AudioEnable);
+                : new GameDataSaved(saveGameConfig.CurrentSpaceShip, saveGameConfig.SpaceShipOwned, saveGameConfig.CurrentCoinsOwned);
 
         //Set Game Data Saved to Game Running Data
         foreach(var saver in savers){

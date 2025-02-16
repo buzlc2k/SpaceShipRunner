@@ -6,19 +6,21 @@ using UnityEngine.Audio;
 
 public class AudioTrackingManager : Singleton<AudioTrackingManager>
 {
-    private bool currentAudioEnable = true;
+    private bool currentAudioEnable;
     [SerializeField] AudioMixer audioMixer;
-    private Action<KeyValuePair<EventParameterType, object>> setEnableAudio;
     private Action<KeyValuePair<EventParameterType, object>> switchEnableAudio;
     public bool CurrentAudioEnable { get => currentAudioEnable; }
+
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+
+        SetDefaultAudioEnable();
+    }
 
     protected override void SetUpDelegate()
     {
         base.SetUpDelegate();
-
-        setEnableAudio = (param) => {
-            SetEnableAudio((bool)param.Value);
-        };
 
         switchEnableAudio = (param) => {
             SwitchEnableAudio();
@@ -29,7 +31,6 @@ public class AudioTrackingManager : Singleton<AudioTrackingManager>
     {
         base.RegisterListener();
 
-        Observer.AddListener(EventID.LoadAudioEnableData, setEnableAudio);
         Observer.AddListener(EventID.ButtonMusic_Click, switchEnableAudio);
     }
 
@@ -37,14 +38,13 @@ public class AudioTrackingManager : Singleton<AudioTrackingManager>
     {
         base.UnregisterListener();
 
-        Observer.RemoveListener(EventID.LoadAudioEnableData, setEnableAudio);
         Observer.RemoveListener(EventID.ButtonMusic_Click, switchEnableAudio);
     }
 
-    private void SetEnableAudio(bool currentAudioEnable){
-        this.currentAudioEnable = currentAudioEnable;
-
-        SetAudioMixerVolume();
+    private void SetDefaultAudioEnable(){
+        audioMixer.GetFloat("_Master", out float a);
+        if(a == -80) currentAudioEnable = false;
+        else currentAudioEnable = true;
     }
 
     private void SwitchEnableAudio(){
@@ -55,7 +55,7 @@ public class AudioTrackingManager : Singleton<AudioTrackingManager>
 
     private void SetAudioMixerVolume()
     {
-        if(currentAudioEnable) audioMixer.SetFloat("_Master", 0);
+        if(currentAudioEnable) audioMixer.SetFloat("_Master", 10);
         else audioMixer.SetFloat("_Master", -80);
     }
 }
