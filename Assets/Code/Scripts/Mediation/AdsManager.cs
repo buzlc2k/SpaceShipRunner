@@ -9,7 +9,7 @@ public class AdsManager : Singleton<AdsManager>
     public RewardedAds RewardedAds;
 
     #if UNITY_ANDROID
-        string appKey = "20cfc9885";
+        string appKey = "210e6394d";
     #else
         string appKey = "unexpected_platform";
     #endif

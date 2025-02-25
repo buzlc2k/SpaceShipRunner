@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +7,11 @@ public class CoinSpawnerConfig : ScriptableObject
 {
     [Tooltip("Khoảng thời gian để cập nhật tỉ lệ spawn coin")] public float TimeInterval = 10f;
 
-    [Tooltip("Tỉ lệ spawn ra coin")] public List<float> CoinSpawnRates;
+    public List<CoinSpawnOneTimeConfig> L_CoinSpawnOneTimeConfig;
+}
 
-    [Tooltip("Tỉ lệ coin có thể spawn/ tổng số coin")] public List<float> NumCoinSpawnedRates;
+[Serializable]
+public class CoinSpawnOneTimeConfig{
+    [Tooltip("Tỉ lệ spawn ra coin")] public float CoinSpawnRates;
+    [Tooltip("Tỉ lệ số coin có thể spawn/ tổng số coin")] public float NumCoinSpawnedRates;
 }

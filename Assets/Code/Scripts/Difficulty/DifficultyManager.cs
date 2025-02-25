@@ -3,25 +3,25 @@ using UnityEngine;
 
 public class DifficultyManager : Singleton<DifficultyManager>
 {
-    public BaseDifficulty GameSpeedDifficultyCtrl;
+    public GameSpeedDifficultyCtrl GameSpeedDifficultyCtrl;
     public BaseDifficulty ObstacleDifficultyCtrl;
-    public BaseDifficulty CoinDifficultyCtrl;
+    public CoinDifficultyCtrl CoinDifficultyCtrl;
 
     #region Property
     /// <summary>
     /// Tỉ lệ tốc độ hiện tại của trò chơi
     /// </summary>
-    public float GameSpeedRate { get => ((GameSpeedDifficultyCtrl)GameSpeedDifficultyCtrl).GetGameSpeedRate(); }
+    public float GameSpeedRate { get => GameSpeedDifficultyCtrl.GetGameSpeedRate(); }
 
     /// <summary>
     /// Tỉ lệ spawn ra coin
     /// </summary>
-    public float CoinSpawnRate { get => ((CoinDifficultyCtrl)CoinDifficultyCtrl).GetCoinSpawnData().Item1; }
+    public float CoinSpawnRate { get => CoinDifficultyCtrl.GetCoinSpawnData().Item1; }
 
     /// <summary>
     /// Tỉ lệ coin có thể spawn/ tổng số coin
     /// </summary>
-    public float NumCoinSpawnedRate { get => ((CoinDifficultyCtrl)CoinDifficultyCtrl).GetCoinSpawnData().Item2; }
+    public float NumCoinSpawnedRate { get => CoinDifficultyCtrl.GetCoinSpawnData().Item2; }
 
     #endregion
 

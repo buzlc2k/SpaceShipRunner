@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CoinDifficultyCtrl : BaseDifficulty
+public class CoinDifficultyCtrl : NonUpdatableDifficulty
 {
     [Header("CoinDifficultyCtrl")]
     [SerializeField] CoinSpawnerConfig coinSpawnerConfig;
@@ -22,24 +22,20 @@ public class CoinDifficultyCtrl : BaseDifficulty
         return Tuple.Create(coinSpawnRate, numCoinSpawnedRate);
     }
 
-    protected override void UpdatingGameDifficulty()
+    protected override bool CheckCanUpdateDifficulty()
     {
-        if(currentTime == 0) currentTime = 0.02f;
-        else currentTime += Time.deltaTime; 
-            
-        if(currentTime % coinSpawnerConfig.TimeInterval > 0.02f) return;
-
-        int currentDifficultyLevel = (int)(currentTime / coinSpawnerConfig.TimeInterval);
-
-        if(currentDifficultyLevel < coinSpawnerConfig.CoinSpawnRates.Count) 
-            coinSpawnRate = coinSpawnerConfig.CoinSpawnRates[currentDifficultyLevel];
-                
-        if(currentDifficultyLevel < coinSpawnerConfig.NumCoinSpawnedRates.Count) 
-            numCoinSpawnedRate = coinSpawnerConfig.NumCoinSpawnedRates[currentDifficultyLevel];
+        return currentDifficultyLevel < coinSpawnerConfig.L_CoinSpawnOneTimeConfig.Count;
     }
 
-    protected override void ResetingGameDifficulty()
+    protected override IEnumerator InternalTimeBetweenUpdate()
     {
-        
+        yield return new WaitForSeconds(coinSpawnerConfig.TimeInterval);
+    }
+
+    protected override void UpdateGameDifficulty()
+    {
+        coinSpawnRate = coinSpawnerConfig.L_CoinSpawnOneTimeConfig[currentDifficultyLevel].CoinSpawnRates;
+        numCoinSpawnedRate = coinSpawnerConfig.L_CoinSpawnOneTimeConfig[currentDifficultyLevel].NumCoinSpawnedRates;
+        currentDifficultyLevel++;
     }
 }

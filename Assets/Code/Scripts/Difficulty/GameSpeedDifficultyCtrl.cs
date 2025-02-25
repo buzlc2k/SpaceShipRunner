@@ -6,6 +6,8 @@ using UnityEngine;
 public class GameSpeedDifficultyCtrl : BaseDifficulty
 {
     [Header("GameSpeedDifficultyCtrl")]
+    protected float currentTime;
+    protected static float maxTimeToCalculate;
     [SerializeField] private GameSpeedRateConfig gameSpeedRateConfig;
     private GameSpeedRateCalculator gameSpeedRateCalculator;
     private float gameSpeedRate;
@@ -21,9 +23,16 @@ public class GameSpeedDifficultyCtrl : BaseDifficulty
     {
         base.LoadValue();
 
+        currentTime = 0;
         maxTimeToCalculate = gameSpeedRateCalculator.GetMaxTimeToCalculate();
         gameSpeedRate = 0f;        
         timeBeforeRestarting = 0f;
+    }
+
+    protected virtual void Update()
+    {
+        if(CheckCanUpdateDifficulty()) UpdateGameDifficulty();
+        else if(CheckCanResetDifficulty()) ResetingGameDifficulty();
     }
 
     public float GetGameSpeedRate(){
@@ -31,7 +40,7 @@ public class GameSpeedDifficultyCtrl : BaseDifficulty
     }
 
     // Cập nhật tốc độ trò chơi dựa trên thời gian
-    protected override void UpdatingGameDifficulty()
+    protected override void UpdateGameDifficulty()
     {
         currentTime += Time.deltaTime;
         gameSpeedRate = gameSpeedRateCalculator.GetGameSpeedRate(currentTime);
@@ -44,12 +53,20 @@ public class GameSpeedDifficultyCtrl : BaseDifficulty
     }
 
     // Đặt lại thời gian rồi bắt đầu lại
-    protected override void ResetingGameDifficulty()
+    protected virtual void ResetingGameDifficulty()
     {
         currentTime = Mathf.Clamp(currentTime - 10 * Time.deltaTime, timeBeforeRestarting/2, currentTime); // Giảm thời gian nhanh hơn để reset
         gameSpeedRate = gameSpeedRateCalculator.GetGameSpeedRate(currentTime);
 
         CheckFinishRestartingGame();
+    }
+
+    protected override bool CheckCanUpdateDifficulty() {
+        return GameManager.Instance.CurrentGameState.Equals(GameState.Running) && currentTime <= maxTimeToCalculate;
+    }
+
+    protected virtual bool CheckCanResetDifficulty(){
+        return GameManager.Instance.CurrentGameState.Equals(GameState.Restarting) && currentTime > 0;
     }
 
     protected virtual void CheckFinishRestartingGame(){
